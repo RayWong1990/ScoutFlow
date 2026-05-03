@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`0/3`，Review count=`0`。
+> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`3/3`，Review count=`0`。
 
 ## 规则
 
@@ -19,7 +19,9 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-010A` | BBDown executable discovery / tool preflight package | `active` | `Codex Desktop window A` | Tool path discovery, preflight result modeling, `BBDown --version` wrapper with mockable subprocess | `services/api/scoutflow_api/external_tools/**`, `tests/contracts/**`, `docs/research/**` status note if needed | `workers/**`, `apps/**`, `packages/**`, `data/**`, `referencerepo/**`, `dispatches/**`, `audits/**`; no URL, no `-info`, no auth, no media, no ffmpeg, no ASR, no receipt, no capture state | `C-BBD-001`, `C-PLT-001`, `C-SEC-001`, `C-OPS-001`, `C-OPS-003` | `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `python -m pytest tests/contracts -q`; `git diff --check` | Any real BBDown execution, credential material, raw stdout/stderr persistence, or `executable_not_found` promoted to `PlatformResult` | Coding PR must not edit `docs/current.md` or `docs/task-index.md`; provide ledger status text in PR body |
+| `T-P1A-010B` | BBDown no-auth `-info` adapter shell with injected runner and parser integration | `active` | `Codex Desktop window B` | Command builder and injected runner for no-auth `BBDown -info`; sanitized fixture and existing parser integration only | `services/api/scoutflow_api/external_tools/**`, `tests/contracts/**`, `tests/fixtures/bbdown/**`, `docs/research/**` status note if needed | `workers/**`, `apps/**`, `packages/**`, `data/**`, `referencerepo/**`, `dispatches/**`, `audits/**`; no real BBDown execution, no auth, no media, no receipt, no capture state | `C-BBD-001`, `C-PLT-001`, `C-SEC-001`, `C-OPS-001`, `C-OPS-003` | `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `python -m pytest tests/contracts -q`; `python -m pytest tests/api tests/contracts -q`; `git diff --check` | Any real subprocess call, credential material, unredacted URL, raw response persistence, or parser output treated as runtime approval | Coding PR must not edit `docs/current.md` or `docs/task-index.md`; no `PlatformResult` emission from tool preflight |
+| `T-P1A-010C` | PRD/SRD amendment repair pack + next dispatch plan + red-team checklist | `active` | `Opus / GPT / OpenClaw sidecar`; one docs writer only if user authorizes | PRD/SRD amendment repair pack, QR-auth separation rules, next dispatch plan, red-team checklist | `docs/PRD-v1.1-amendment-2026-05-02.md`, `docs/SRD-v1.1-amendment-2026-05-03.md`, `docs/specs/contracts-index.md`, `docs/research/**`, `docs/plans/**` only when explicitly authorized | Product code, runtime, `workers/**`, `apps/**`, `packages/**`, `data/**`, `referencerepo/**`, root `dispatches/**`, root `audits/**`; no authority override beyond draft amendments | `C-AUTH-001`, `C-SCOPE-001`, `C-PROC-001`, `C-BBD-001`, `C-OPS-001`, `C-OPS-003` | `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `git diff --check` | Any draft amendment written as final authority, QR/auth material in tracked files, or Phase 2-4 runtime pulled into Phase 1A | Default sidecar is read-only; if one docs writer is authorized, it still must leave `docs/current.md` and `docs/task-index.md` to ledger owner |
 
 ## Review
 
@@ -58,6 +60,7 @@
 | `T-P1A-007` | Explore URL UX / risk / receipt status brainstorm | `2026-05-03` | PR=`#15`; head=`8271a43e88765f8214a303d98df863e1d7ea7f94`; merge commit=`e9b4d1bb5bae0d79ead0b9bb6f60304f3a560abe`; workflow run=`25282020291`; docs-smoke=`success`; api-contract-tests=`success`; merged research note / decision pack only；no frontend / API / runtime approval |
 | `T-P1A-008` | BBDown sanitized fixture parser | `2026-05-03` | PR=`#17`; head=`4e1aa6f13efc9f67f29964aa16da967cd553d84d`; merge commit=`0cfcef58533bba1902eec6ed19a3f7fbed308a64`; workflow run=`25282572121`; docs-smoke=`success`; api-contract-tests=`success`; fixture-only parser / classifier baseline merged；no live BBDown / real Bilibili URL / download / ffmpeg / ASR / workers |
 | `T-P1A-009` | BBDown local runtime spike | `2026-05-03` | PR=`#19`; head=`8d702979009ee49216f871c0fe4cd55fd131e065`; merge commit=`af1cbcedf92409e187e77217cc0b39449738d1ba`; workflow run=`25283202028`; docs-smoke=`success`; api-contract-tests=`success`; report-only spike merged；`BBDown` executable not found in PATH；no `-info`；no `PlatformResult` emitted；`tool_preflight_result=executable_not_found`；not adapter runtime approval；not `audio_transcript` approval |
+| `T-P1A-010` | Wave 1 ledger open | `2026-05-04` | branch=`task/T-P1A-010-wave1-ledger-open`; scope=`ledger-only registration of T-P1A-010A / 010B / 010C`; Active count=`3/3`; Review count=`0`; no BBDown execution, no media download, no ffmpeg, no ASR, no credentials, no browser automation |
 
 ## Stop-the-line
 

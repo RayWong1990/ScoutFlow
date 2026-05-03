@@ -1,6 +1,6 @@
 # ScoutFlow AGENTS
 
-> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线，以及 PR `#10` 的 `T-P1A-003` BBDown research note、PR `#14` 的 `T-P1A-006` BBDown adapter draft spec、PR `#15` 的 `T-P1A-007` Explore URL UX research note、PR `#17` 的 `T-P1A-008` BBDown sanitized fixture parser、PR `#19` 的 `T-P1A-009` BBDown local runtime spike report。`T-P1A-009` 结果为 `BBDown` executable 未在当前 PATH 中找到，未执行 `BBDown -info`；no `PlatformResult` emitted；`tool_preflight_result=executable_not_found`。仍不允许 media download、ffmpeg、ASR、workers、frontend、浏览器自动化或 Phase 2-4 runtime。
+> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线，以及 PR `#10` 的 `T-P1A-003` BBDown research note、PR `#14` 的 `T-P1A-006` BBDown adapter draft spec、PR `#15` 的 `T-P1A-007` Explore URL UX research note、PR `#17` 的 `T-P1A-008` BBDown sanitized fixture parser、PR `#19` 的 `T-P1A-009` BBDown local runtime spike report、PR `#20` 的 `T-P1A-009` close hardening。`T-P1A-009` 结果为 `BBDown` executable 未在当前 PATH 中找到，未执行 `BBDown -info`；no `PlatformResult` emitted；`tool_preflight_result=executable_not_found`。Wave 1 当前只打开 ledger，不允许 media download、ffmpeg、ASR、workers、frontend、浏览器自动化或 Phase 2-4 runtime。
 
 ## 1. 进入项目先读
 
@@ -13,12 +13,12 @@
 ## 2. 当前阶段
 
 - 当前 Phase：`Phase 1A`
-- 当前 Step：`T-P1A-009 done / T-P1A-008 done`
-- 当前活动任务：当前无 active product task；`T-P1A-009` report-only runtime spike 已合入 `main`
+- 当前 Step：`T-P1A-010 wave1 ledger open / T-P1A-009 done`
+- 当前活动任务：`T-P1A-010A` BBDown tool preflight、`T-P1A-010B` injected-runner `-info` adapter shell、`T-P1A-010C` PRD/SRD repair pack；Active count=`3/3`
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：authority 账本同步；不自动批准新 runtime
-- 当前不做：workers、frontend、真实下载、BBDown / yt-dlp / ffmpeg runtime、ASR、浏览器自动化、Phase 2-4 runtime
-- 当前状态：`done`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P1A-003` 已通过 PR `#10` 合并入 `main`，含义仅为 `docs/research/** research note merged`；`T-P1A-006` 已通过 PR `#14` 合并入 `main`，含义仅为 `docs/specs/bbdown-adapter-contract-draft.md` draft spec merged；`T-P1A-007` 已通过 PR `#15` 合并入 `main`，含义仅为 `docs/research/**` Explore URL UX decision pack merged；`T-P1A-008` 已通过 PR `#17` 合并入 `main`，含义仅为 `fixture-only parser / classifier baseline merged`；`T-P1A-009` 已通过 PR `#19` 合并入 `main`，含义仅为 `report-only runtime spike merged`
+- 当前只做：按 `docs/task-index.md` Active 表推进 010A / 010B / 010C；后续状态由 ledger owner 回写
+- 当前不做：workers、frontend、真实下载、真实 BBDown 执行、yt-dlp / ffmpeg runtime、ASR、浏览器自动化、Phase 2-4 runtime
+- 当前状态：`done`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P1A-003` 已通过 PR `#10` 合并入 `main`，含义仅为 `docs/research/** research note merged`；`T-P1A-006` 已通过 PR `#14` 合并入 `main`，含义仅为 `docs/specs/bbdown-adapter-contract-draft.md` draft spec merged；`T-P1A-007` 已通过 PR `#15` 合并入 `main`，含义仅为 `docs/research/**` Explore URL UX decision pack merged；`T-P1A-008` 已通过 PR `#17` 合并入 `main`，含义仅为 `fixture-only parser / classifier baseline merged`；`T-P1A-009` 已通过 PR `#19` 合并入 `main`，含义仅为 `report-only runtime spike merged`；`T-P1A-010` 已打开 Wave 1 ledger，含义仅为登记 active tasks，不是 runtime approval
 
 ## 3. 当前红线
 
@@ -54,8 +54,8 @@
 - `candidates/`
 - `dispatches/`
 - `audits/`
-- `services/**`（当前无 active code-bearing task）
-- `tests/**`（当前无 active code-bearing task）
+- `services/**`（除 `docs/task-index.md` Active 表明确授权的 010A / 010B 范围外）
+- `tests/**`（除 `docs/task-index.md` Active 表明确授权的 010A / 010B 范围外）
 
 ## 6. 写回纪律
 
