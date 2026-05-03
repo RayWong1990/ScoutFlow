@@ -225,3 +225,17 @@
 - Active count: `3/3`; Review count: `0`.
 - Ledger rule: coding PRs for `T-P1A-010A` and `T-P1A-010B` must not independently edit `docs/current.md` or `docs/task-index.md`; they should provide status text for the ledger owner to write back.
 - Boundary: no real BBDown execution, no media download, no ffmpeg, no ASR, no browser automation, no credentials, no browser profile, no Phase 2-4 runtime, and no authority override beyond draft amendments.
+
+## 2026-05-04 — Wave 1 PRs merged after 05 red-team
+
+- Red-team verdict: `PASS_WITH_FIXES`.
+- Decision: accept non-blocking PR body fixes, then merge PR `#23`, PR `#22`, and PR `#24` in that order.
+- PR `#23`: `T-P1A-010A BBDown tool preflight package`; head=`155e0b8a2910e81fc26625dd3be4391ab792e289`; merge commit=`0b5d4350c4dad3ebae3d594245ddfcfb65a22f91`; workflow run=`25284770283`; docs-smoke=`success`; api-contract-tests=`success`.
+- PR `#22`: `T-P1A-010B BBDown info adapter shell`; head=`73bc85443241c336d03bf74c5cef5a676a9a4957`; merge commit=`b6a23a9d46c94e07974404d7eec19ba2dffe7092`; workflow run=`25284816246`; docs-smoke=`success`; api-contract-tests=`success`.
+- PR `#24`: `T-P1A-010C PRD SRD amendment repair pack`; head=`02ab26ebf8e966b7af30abc90d8a56733f1c636e`; merge commit=`297d286a13b8d60d9627db80925289fb85674a8a`; workflow run=`25284792684`; docs-smoke=`success`; api-contract-tests=`success`.
+- Wave 1 state: `closed`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; Active count=`0/3`; Review count=`0`.
+- Contract note: `ToolPreflightResult` / `PlatformResult` separation entered code and candidate amendment docs; `executable_not_found` remains tool preflight evidence, not `PlatformResult`.
+- Boundary: no-auth `-info` adapter shell is not live runtime proof; it uses injected runner / parser contract coverage only.
+- Boundary: PRD/SRD v1.2 amendment remains `candidate / draft / not final authority / not runtime approval`.
+- Boundary: `audio_transcript` remains blocked; no live BBDown, QR/manual auth, media download, ffmpeg, ASR, workers, frontend, or Phase 2-4 runtime approval.
+- Next gate: `T-P1A-011 live no-auth BBDown -info probe` remains `gated / requires explicit user approval`; 06 must not auto-start.
