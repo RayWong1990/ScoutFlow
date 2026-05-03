@@ -552,4 +552,3 @@ open_questions:
 - 不把 `raw response / stderr` 原文写入审计块
 - 不让 `recommendation / keyword / RAW gap` 直接 quick_capture
 - 不把 adapter 阶段的 `parser_drift` 软化成黄色提醒
-
