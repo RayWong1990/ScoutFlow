@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`1/3`，Review count=`0`。
+> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`0/3`，Review count=`0`。
 
 ## 规则
 
@@ -19,7 +19,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-008` | BBDown sanitized fixture parser | `active` | `Codex Desktop` | 基于脱敏 fixture 建立 BBDown `-info` parser / classifier 最小代码基线；fixture-only，不运行 BBDown | `services/api/scoutflow_api/external_tools/**`, `tests/contracts/**`, `tests/fixtures/bbdown/**`, `docs/current.md`, `docs/task-index.md`, `AGENTS.md`, `README.md` | `apps/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `candidates/**`, `dispatches/**`, `audits/**`, `example/**`, `examples/**`, live BBDown output with secrets, real Bilibili URL runtime | `docs/specs/bbdown-adapter-contract-draft.md`; `docs/specs/platform-adapter-risk-contract.md`; `docs/specs/raw-response-redaction.md`; `docs/specs/worker-receipt-contract.md` | `python -m py_compile tools/check-docs-redlines.py`; `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `python -m pytest tests/contracts -q`; `python -m pytest tests/api tests/contracts -q`; `git diff --check`; forbidden-path checks | running BBDown; using real Bilibili URL; saving unsafe stdout; parser silently accepting drift; adding parallel `PlatformResult`; creating worker/runtime | Opened by Dispatch 3；不批准 runtime；不打开 `T-P1A-009` |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Review
 
@@ -56,6 +56,7 @@
 | `T-P1A-005` | Human gate sync and PR #10 research merge | `2026-05-03` | branch=`task/T-P1A-005-human-gate-sync`; head=`e10c9fc3808668fd34b6dc2150db151186640743`; PR=`#12`; merge commit=`419546de000f4a163d4158f2ced9784ba263c09c`; workflow run=`25280435814`; docs-smoke=`success`; api-contract-tests=`success`; scope=`AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/specs/contracts-index.md`; no runtime approval |
 | `T-P1A-006` | BBDown adapter contract draft | `2026-05-03` | PR=`#14`; head=`ef5deba11f12d359bec61564a5bef1c9962037c8`; merge commit=`014e37a11427922c52d35b56c3962110d3711d17`; workflow run=`25280751608`; docs-smoke=`success`; api-contract-tests=`success`; merged draft on `main` only；not final authority；not runtime approval |
 | `T-P1A-007` | Explore URL UX / risk / receipt status brainstorm | `2026-05-03` | PR=`#15`; head=`8271a43e88765f8214a303d98df863e1d7ea7f94`; merge commit=`e9b4d1bb5bae0d79ead0b9bb6f60304f3a560abe`; workflow run=`25282020291`; docs-smoke=`success`; api-contract-tests=`success`; merged research note / decision pack only；no frontend / API / runtime approval |
+| `T-P1A-008` | BBDown sanitized fixture parser | `2026-05-03` | PR=`#17`; head=`4e1aa6f13efc9f67f29964aa16da967cd553d84d`; merge commit=`0cfcef58533bba1902eec6ed19a3f7fbed308a64`; workflow run=`25282572121`; docs-smoke=`success`; api-contract-tests=`success`; fixture-only parser / classifier baseline merged；no live BBDown / real Bilibili URL / download / ffmpeg / ASR / workers；`T-P1A-009` remains backlog/gated |
 
 ## Stop-the-line
 
