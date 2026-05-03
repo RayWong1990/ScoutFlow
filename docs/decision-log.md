@@ -126,3 +126,23 @@
 - Scope: Bilibili `manual_url` quick_capture, `metadata_only only`.
 - Explicit non-goals: `audio_transcript` runtime, workers, browser automation, `recommendation / keyword / RAW gap` direct capture, Phase 2-4 runtime.
 - Required validation: docs-check, API tests, LP-001 rejection tests, redaction tests, platform_result enum tests.
+
+## 2026-05-03 — T-P1A-002 dispatch execution authorized
+
+- Decision: user authorized executing `/Users/wanglei/Downloads/dispatch-t-p1a-002-api-jobs-receipt-ledger.md`.
+- Branch: `task/T-P1A-002-api-jobs-receipt-ledger`.
+- Scope: API-side `POST /jobs/{job_id}/complete`, receipt validation, `jobs` / `job_events` minimum schema, and `artifact_assets` ledger mapping.
+- Non-goals: workers, BBDown / yt-dlp / ffmpeg invocation, ASR, `audio_transcript` runtime, browser automation, Phase 2-4 runtime.
+- Local validation verdict: `verdict=clear` for the full dispatch command set.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/9`
+- Pre-audit GitHub Actions run after PR `#9` head update: `25277857106`; `docs-smoke=pass`; `api-contract-tests=pass`; superseded by Dispatch B audit-fix.
+- Remaining gate: external audit and merge decision.
+
+## 2026-05-03 — T-P1A-002 Dispatch B audit-fix authorized
+
+- Decision: user authorized executing `/Users/wanglei/Downloads/dispatch-b-t-p1a-002-pr9-rebase-auditfix-cn.md`.
+- Scope: clean PR `#9` diff against latest `origin/main`, remove T-P1A-004 pollution from PR `#9`, and add merge-blocking audit fixes for receipt / ledger contracts.
+- PR `#8` status at start: open, not merged; therefore PR `#9` must not carry T-P1A-004 safety files as its own diff.
+- Local audit-fix validation verdict: `verdict=clear`; `python -m pytest tests/api tests/contracts -q` -> `42 passed`.
+- GitHub Actions run: pending after PR `#9` branch update.
+- Non-goals unchanged: workers, BBDown / yt-dlp / ffmpeg invocation, ASR, `audio_transcript` runtime, browser automation, frontend, Phase 2-4 runtime.
