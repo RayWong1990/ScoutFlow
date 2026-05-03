@@ -14,11 +14,11 @@
 
 - 当前 Phase：`Phase 0`
 - 当前 Step：`Step0`
-- 当前活动任务：`T-P0-003`
+- 当前活动任务：`T-P0-002`（close done；等待 user 选择是否进入 Phase 1A 准备任务）
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：Step0 文档、contract、红线 lint stub 已闭合；等待下一任务选择
+- 当前只做：Step0 文档、contract、协作协议收口；等待下一任务
 - 当前不做：API、worker、Console、真实采集、浏览器自动化
-- 当前状态：`T-P0-001 已闭合；T-P0-003 已闭合 / done，等待 user 选择下一任务`
+- 当前状态：`T-P0-002 done`；`T-P0-003 done`；不自动进入 Phase 1A 产品代码
 
 ## 3. 当前红线
 
@@ -31,12 +31,13 @@
 
 ## 4. 当前允许路径
 
-- 项目根轻配置
 - `.github/workflows/docs-check.yml`
-- `tools/`
+- `.github/pull_request_template.md`
+- `tools/check-docs-redlines.py`
 - `docs/`
 - `AGENTS.md`
 - `CLAUDE.md`
+- `README.md`
 
 ## 5. 当前禁止路径
 
@@ -69,13 +70,26 @@
 
 | 工具 | 当前职责 | 当前不应做 |
 |---|---|---|
-| `Codex Desktop` | Step0 文档、contract、任务账本、后续代码主执行 | 当前任务中不写产品代码 |
-| `Claude Code / VSCode` | 文档审读、IA/UX 评论、局部文案修订 | 不主导当前代码主线 |
-| `ChatGPT Pro` | 外部研究 note、参考资料整理 | 不直接改主线文件 |
-| `OpenClaw` | 次级 research / scout note | 不直写 authority |
-| `Hermes CLI` | 未来调度与信号源设计参考 | Phase 1A 不抢跑推荐采集 |
+| `Codex Desktop` | Step0 文档、contract、任务账本、主写入、commit owner | 当前任务中不写产品代码；不让 subagent 独立写 authority |
+| `Codex subagent` | code/doc scan、lint、diff review、风险列举 | 不独立写回 `docs/current.md` / `docs/task-index.md` |
+| `Claude Code / VSCode` | 文档审读、IA/UX 评论、局部文案修订、contract 校对 | 不主导当前代码主线；默认 sidecar read-only |
+| `ChatGPT Pro` | GitHub 外部审计、prompt 派单、PR/commit review | 不直接改 repo；不绕过任务账本 |
+| `OpenClaw / GLM` | 次级 research / scout note、反驳审读 | 默认 read-only；不直写 authority |
+| `Hermes Agent / Kimi` | 未来调度与信号源设计参考、长上下文归纳 | 默认 read-only；Phase 1A 不抢跑推荐采集 |
 
-## 9. GitHub 外部审计工作流
+## 9. 并行执行协议
+
+当前多工具协作遵守 `docs/specs/parallel-execution-protocol.md`：
+
+- `Single Writer`：同一任务只能有一个主写入窗口。
+- `Multi Reviewer`：其他窗口只做 read-only review / research / patch suggestion。
+- `GitHub external audit source`：跨工具审计以 commit / PR diff / workflow run 为事实源，不以聊天摘要替代仓库事实。
+- `Branch / PR preferred`：并行任务优先使用 `task/*` branch 或 PR，不直接 push `main`。
+- `docs/current.md` 与 `docs/task-index.md` 只能由主写入 agent 修改。
+- 网页版 `GPT Pro` 不直接改 repo，只审计 commit / PR / workflow run。
+- `OpenClaw` / `Hermes` / `Claude` 默认不直写 authority，除非任务明确授权且遵守 `Single Writer`。
+
+## 10. GitHub 外部审计工作流
 
 当前多工具协作默认采用 GitHub 作为审计真源：
 
@@ -85,7 +99,7 @@
 4. 网页版 `GPT Pro` 直接从 GitHub 的 commit / PR diff / workflow run 审计，不以聊天转述作为事实源。
 5. `GPT Pro` 输出只作为审计意见或下一轮任务输入；不直接改主线文件，不绕过 `docs/task-index.md` 与 `docs/current.md`。
 
-## 10. 当前输出要求
+## 11. 当前输出要求
 
 - 中文
 - 引用具体文件

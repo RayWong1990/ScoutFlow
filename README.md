@@ -40,6 +40,8 @@ ScoutFlow 当前把 GitHub 记录作为跨工具审计真源：
 4. 网页版 `GPT Pro` 直接从 GitHub 的 commit / PR diff / workflow run 审计。
 5. 审计意见回到任务账本和当前状态文档，不以聊天摘要替代仓库事实。
 
+任务状态以 `docs/current.md` 与 `docs/task-index.md` 为准；并行执行协议见 `docs/specs/parallel-execution-protocol.md`。
+
 ## 当前范围
 
 - Step0 文档与 contract 已形成候选实现基准

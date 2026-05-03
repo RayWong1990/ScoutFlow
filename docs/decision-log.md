@@ -44,3 +44,30 @@
 - Scope: docs redline lint stub, docs-check workflow, README / AGENTS / CLAUDE / current / task-index synchronization.
 - Not a product-code approval.
 - No API / worker / Console implementation.
+
+## 2026-05-03 — T-P0-003 final close recorded
+
+- Decision: 补记 `T-P0-003 final close`。
+- Close commit: `efe607dbafe3c398d582aaf0a0d5e9521ff2a814`
+- GitHub Actions run: `25270929463`
+- Scope: close review, harden task-index Done state parsing, update entry docs.
+- Not a product-code approval.
+
+## 2026-05-03 — T-P0-002 parallel execution protocol started
+
+- Decision: start `T-P0-002` as entry docs deepening + parallel execution protocol candidate baseline.
+- Scope: docs and lightweight repo coordination files only.
+- Not a product-code approval.
+- Branch mode: `task/T-P0-002-parallel-execution-protocol`
+
+## 2026-05-03 — T-P0-002 closed after external audit
+
+- Decision: close `T-P0-002` as `done` after PR `#1` external audit.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/1`
+- Branch: `task/T-P0-002-parallel-execution-protocol`
+- Reviewed commit: `ee1f4cfd34282e39be74afc20310ef7801ac4b25`
+- GitHub Actions run: `25271451489`; docs-check=`success`
+- GPT Pro external audit: COMMENT review; no blocking issue.
+- Scope: Step0 / Phase 0 collaboration protocol, entry docs, and GitHub external audit workflow only.
+- Not a product-code approval.
+- No Phase 1A product code approval.
