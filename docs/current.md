@@ -7,7 +7,7 @@
 - 主任务：`T-P1A-002`
 - 工作模式：`T-P1A-002` authority writer 本地候选实现；`T-P1A-003` / `T-P1A-004` 仍保持各自边界
 - 当前任务状态：`review`（`T-P1A-002` 本地候选）；`T-P1A-003=active`; `T-P1A-004=active`
-- 当前结论：`T-P1A-002` 已在分支 `task/T-P1A-002-api-jobs-receipt-ledger` 落地 API-side `POST /jobs/{job_id}/complete`、`jobs` / `job_events` 最小 migration、receipt validation models 与 `artifact_assets` ledger mapping；本地目标测试 `python -m pytest tests/api tests/contracts -q` 结果为 `46 passed`。该候选仍不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- 当前结论：`T-P1A-002` 已在分支 `task/T-P1A-002-api-jobs-receipt-ledger` 和 PR `#9` 落地 API-side `POST /jobs/{job_id}/complete`、`jobs` / `job_events` 最小 migration、receipt validation models 与 `artifact_assets` ledger mapping；本地 full validation 为 `verdict=clear`，GitHub run `25277830562` 中 `docs-smoke=pass` / `api-contract-tests=pass`。该候选仍不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -64,8 +64,8 @@
 
 ## 下一步候选
 
-- 对 `T-P1A-002` 做 full validation、diff review、GitHub push / PR / Actions 审计
-- `T-P1A-002` 是 API authority writer review-candidate
+- 对 `T-P1A-002` 做外部审计与 merge 决策
+- `T-P1A-002` 是 API authority writer review-candidate；本地与 GitHub Actions 已清，仍需人审
 - `T-P1A-003` 是 research / draft contract proposal，不能直接升级为 authority
 - `T-P1A-004` 是安全 tooling / CI hardening
 - 当前不自动扩展到 `audio_transcript`

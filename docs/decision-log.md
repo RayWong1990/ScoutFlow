@@ -133,5 +133,7 @@
 - Branch: `task/T-P1A-002-api-jobs-receipt-ledger`.
 - Scope: API-side `POST /jobs/{job_id}/complete`, receipt validation, `jobs` / `job_events` minimum schema, and `artifact_assets` ledger mapping.
 - Non-goals: workers, BBDown / yt-dlp / ffmpeg invocation, ASR, `audio_transcript` runtime, browser automation, Phase 2-4 runtime.
-- Local target-test verdict: `verdict=clear` for `python -m pytest tests/api tests/contracts -q` with `46 passed`.
-- Remaining gate: full validation command set plus GitHub PR / Actions audit before merge decision.
+- Local validation verdict: `verdict=clear` for the full dispatch command set.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/9`
+- GitHub Actions run: `25277830562`; `docs-smoke=pass`; `api-contract-tests=pass`.
+- Remaining gate: external audit and merge decision.
