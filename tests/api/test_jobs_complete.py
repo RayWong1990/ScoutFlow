@@ -7,6 +7,7 @@ import sys
 from datetime import UTC, datetime
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 
 
@@ -179,6 +180,7 @@ def test_happy_path_receipt_inserts_artifact_row(tmp_path: Path) -> None:
         assert metadata["redaction_policy"] == "credentials-v1"
         assert metadata["created_by_job"] == job_id
         assert metadata["producer"] == "workers.bili"
+        assert metadata["source_surface"] == "worker_receipt"
 
         capture_status = conn.execute(
             "SELECT status FROM captures WHERE capture_id = ?",
@@ -293,6 +295,97 @@ def test_duplicate_receipt_is_idempotent_without_duplicate_artifact(tmp_path: Pa
         assert artifact_count == 1
 
 
+def test_missing_job_rejected_before_asset_file_validation(tmp_path: Path) -> None:
+    client, _, _ = build_client(tmp_path)
+    capture = create_capture(client)
+    payload = receipt_payload(capture["capture_id"], "job-metadata-1", "0" * 64, 0)
+
+    response = client.post("/jobs/job-metadata-1/complete", json=payload)
+
+    assert response.status_code == 404
+    assert response.json()["code"] == "job_not_found"
+
+
+def test_job_dedupe_unique_index_rejects_duplicate_job(tmp_path: Path) -> None:
+    client, db_path, _ = build_client(tmp_path)
+    capture = create_capture(client)
+    seed_job(db_path, capture["capture_id"], job_id="job-metadata-1")
+
+    with pytest.raises(sqlite3.IntegrityError):
+        seed_job(db_path, capture["capture_id"], job_id="job-metadata-2")
+
+
+def test_artifact_unique_index_rejects_duplicate_file_path(tmp_path: Path) -> None:
+    client, db_path, artifacts_root = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id)
+    sha256, size = write_asset(artifacts_root, capture["capture_id"], "bundle/raw-api-response.json", b"{}")
+    payload = receipt_payload(capture["capture_id"], job_id, sha256, size)
+
+    response = client.post(f"/jobs/{job_id}/complete", json=payload)
+
+    assert response.status_code == 200
+    with sqlite3.connect(db_path) as conn:
+        with pytest.raises(sqlite3.IntegrityError):
+            conn.execute(
+                """
+                INSERT INTO artifact_assets (
+                    capture_id, artifact_zone, artifact_kind, file_path,
+                    size_bytes, sha256, metadata_json, created_at
+                ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                """,
+                (
+                    capture["capture_id"],
+                    "bundle",
+                    "raw_api_response",
+                    f"data/artifacts/bilibili/{capture['capture_id']}/bundle/raw-api-response.json",
+                    size,
+                    sha256,
+                    "{}",
+                    datetime.now(UTC).isoformat(),
+                ),
+            )
+
+
+def test_non_ok_platform_result_marks_job_failed_without_capture_advance(tmp_path: Path) -> None:
+    client, db_path, _ = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id)
+    payload = receipt_payload(capture["capture_id"], job_id, "0" * 64, 0, platform_result="parser_drift")
+    payload["produced_assets"] = []
+
+    response = client.post(f"/jobs/{job_id}/complete", json=payload)
+
+    assert response.status_code == 200
+    assert response.json()["status"] == "failed"
+    assert response.json()["platform_result"] == "parser_drift"
+    assert response.json()["artifact_count"] == 0
+
+    with sqlite3.connect(db_path) as conn:
+        conn.row_factory = sqlite3.Row
+        job = conn.execute(
+            "SELECT status, platform_result FROM jobs WHERE job_id = ?",
+            (job_id,),
+        ).fetchone()
+        assert job["status"] == "failed"
+        assert job["platform_result"] == "parser_drift"
+
+        capture_status = conn.execute(
+            "SELECT status FROM captures WHERE capture_id = ?",
+            (capture["capture_id"],),
+        ).fetchone()[0]
+        assert capture_status == "discovered"
+
+        event = conn.execute(
+            "SELECT event_json FROM job_events WHERE job_id = ?",
+            (job_id,),
+        ).fetchone()
+        assert event is not None
+        assert json.loads(event["event_json"])["platform_result"] == "parser_drift"
+
+
 def test_sha_mismatch_rejected(tmp_path: Path) -> None:
     client, db_path, artifacts_root = build_client(tmp_path)
     capture = create_capture(client)
@@ -322,7 +415,8 @@ def test_bytes_mismatch_rejected(tmp_path: Path) -> None:
 
 
 def test_non_existent_capture_rejected(tmp_path: Path) -> None:
-    client, _, _ = build_client(tmp_path)
+    client, db_path, _ = build_client(tmp_path)
+    seed_job(db_path, "missing-capture", job_id="job-metadata-1")
     payload = receipt_payload("missing-capture", "job-metadata-1", "0" * 64, 0)
 
     response = client.post("/jobs/job-metadata-1/complete", json=payload)

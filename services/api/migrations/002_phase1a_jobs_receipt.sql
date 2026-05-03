@@ -25,4 +25,8 @@ CREATE TABLE IF NOT EXISTS job_events (
 CREATE INDEX IF NOT EXISTS idx_jobs_capture ON jobs(capture_id);
 CREATE INDEX IF NOT EXISTS idx_jobs_status ON jobs(status);
 CREATE INDEX IF NOT EXISTS idx_jobs_type_status ON jobs(job_type, status);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_jobs_capture_type_dedupe
+ON jobs(capture_id, job_type, dedupe_key);
 CREATE INDEX IF NOT EXISTS idx_job_events_job_id ON job_events(job_id);
+CREATE UNIQUE INDEX IF NOT EXISTS idx_artifact_assets_capture_file
+ON artifact_assets(capture_id, file_path);

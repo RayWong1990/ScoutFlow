@@ -248,6 +248,7 @@ class Storage:
             "producer_version": receipt.producer_version,
             "engine": receipt.engine,
             "engine_version": receipt.engine_version,
+            "source_surface": "worker_receipt",
             "job_attempt": receipt.idempotency.job_attempt,
             "dedupe_key": receipt.idempotency.dedupe_key,
             "platform_result": receipt.platform_result.value,
@@ -305,22 +306,6 @@ class Storage:
         completed_at = datetime.now(UTC).isoformat()
 
         with self._connect() as conn:
-            capture = conn.execute(
-                """
-                SELECT capture_id, platform, status
-                FROM captures
-                WHERE capture_id = ?
-                """,
-                (receipt.capture_id,),
-            ).fetchone()
-            if capture is None:
-                raise ReceiptStorageError(404, "capture_not_found", "Receipt capture_id does not exist.")
-
-            platform = capture["platform"]
-            ledger_paths = [
-                self._verify_asset_file(platform, receipt.capture_id, asset) for asset in receipt.produced_assets
-            ]
-
             job = conn.execute(
                 """
                 SELECT job_id, capture_id, job_type, status, dedupe_key, platform_result
@@ -337,6 +322,22 @@ class Storage:
                 raise ReceiptStorageError(409, "job_type_mismatch", "Receipt job_type does not match job record.")
             if job["dedupe_key"] != receipt.idempotency.dedupe_key:
                 raise ReceiptStorageError(409, "job_dedupe_key_mismatch", "Receipt dedupe_key does not match job record.")
+
+            capture = conn.execute(
+                """
+                SELECT capture_id, platform, status
+                FROM captures
+                WHERE capture_id = ?
+                """,
+                (receipt.capture_id,),
+            ).fetchone()
+            if capture is None:
+                raise ReceiptStorageError(404, "capture_not_found", "Receipt capture_id does not exist.")
+
+            platform = capture["platform"]
+            ledger_paths = [
+                self._verify_asset_file(platform, receipt.capture_id, asset) for asset in receipt.produced_assets
+            ]
 
             if receipt.next_status != "metadata_fetched":
                 raise ReceiptStorageError(

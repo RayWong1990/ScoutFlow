@@ -7,7 +7,7 @@
 - 主任务：`T-P1A-002`
 - 工作模式：`T-P1A-002` authority writer 本地候选实现；`T-P1A-003` / `T-P1A-004` 仍保持各自边界
 - 当前任务状态：`review`（`T-P1A-002` 本地候选）；`T-P1A-003=active`; `T-P1A-004=active`
-- 当前结论：`T-P1A-002` 已在分支 `task/T-P1A-002-api-jobs-receipt-ledger` 和 PR `#9` 落地 API-side `POST /jobs/{job_id}/complete`、`jobs` / `job_events` 最小 migration、receipt validation models 与 `artifact_assets` ledger mapping；本地 full validation 为 `verdict=clear`，GitHub run `25277830562` 中 `docs-smoke=pass` / `api-contract-tests=pass`。该候选仍不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- 当前结论：`T-P1A-002` 已在分支 `task/T-P1A-002-api-jobs-receipt-ledger` 和 PR `#9` 落地 API-side `POST /jobs/{job_id}/complete`、`jobs` / `job_events` 最小 migration、receipt validation models 与 `artifact_assets` ledger mapping；Dispatch B audit-fix 已从 `origin/main` 重建 clean branch，去除 T-P1A-004 diff pollution，并补 `jobs` dedupe DB guard、`artifact_assets` capture/file DB guard、receipt 校验顺序、`raw_api_response.metadata_json.source_surface` 与 non-ok `platform_result` failed-job 语义。本地 audit-fix validation 为 `verdict=clear`（`42 passed`）；GitHub run 待 PR `#9` 更新后重跑。该候选仍不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -51,7 +51,7 @@
 
 ## 当前任务
 
-- `T-P1A-002`：API jobs / receipt / artifact ledger foundation；状态 `review-candidate`；只做 API-side receipt ingestion 与 artifact ledger mapping；不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR
+- `T-P1A-002`：API jobs / receipt / artifact ledger foundation；状态 `review-candidate`；只做 API-side receipt ingestion 与 artifact ledger mapping；不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR；audit-fix 已补 DB 幂等 guard 与 receipt 校验顺序
 - `T-P1A-003`：BBDown tool-surface research / adapter contract proposal；只做 public-source research note / draft spec，不实现或调用 runtime capture
 - `T-P1A-004`：Redaction / secret scan / CI hardening；只做未来 tool stdout/stderr/log 的安全 tooling、CI 与 contract tests，不调用外部 capture tools
 - `T-P1A-001`：Bilibili `manual_url` quick_capture metadata contract 已通过 PR `#7` 合并入 `main`；merge commit `d826ce191d71f9ab21d4a45543b980da1d282293`；`artifact_assets` 的 `capture_manifest` API-side ledger stub 作为 `T-P1A-002` receipt mapping 的前置基线
@@ -65,7 +65,7 @@
 ## 下一步候选
 
 - 对 `T-P1A-002` 做外部审计与 merge 决策
-- `T-P1A-002` 是 API authority writer review-candidate；本地与 GitHub Actions 已清，仍需人审
+- `T-P1A-002` 是 API authority writer review-candidate；本地 audit-fix validation 已清，GitHub Actions 待 PR `#9` 更新后重跑，仍需人审
 - `T-P1A-003` 是 research / draft contract proposal，不能直接升级为 authority
 - `T-P1A-004` 是安全 tooling / CI hardening
 - 当前不自动扩展到 `audio_transcript`

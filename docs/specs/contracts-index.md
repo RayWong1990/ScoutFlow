@@ -31,10 +31,10 @@
 
 | Contract ID | 当前代码候选 | 范围声明 |
 |---|---|---|
-| `C-WRK-001` | `T-P1A-002` review-candidate：`POST /jobs/{job_id}/complete`、receipt Pydantic models、`jobs` / `job_events` minimum schema、artifact file sha/bytes validation、idempotent replay | API-side only；不创建 workers；不调用 BBDown / yt-dlp / ffmpeg；不启用 ASR 或 `audio_transcript` runtime |
-| `C-ART-001` | `T-P1A-002` review-candidate：receipt `produced_assets[]` 映射为 `artifact_assets` 行，metadata_json 保留 producer / redaction / idempotency 追溯字段 | 仅登记已存在于 artifacts root 的文件；不定义 Phase 2+ FS 版本化 |
-| `C-PLT-001` | `T-P1A-002` review-candidate：`platform_result` 使用既有 `PlatformResult` enum | 不新增平台状态映射；非 `ok` 的后续状态策略仍按后续任务收敛 |
-| `C-SEC-001` | `T-P1A-002` review-candidate：`raw_api_response` receipt 必须声明 `redaction_applied=true`、`redaction_policy`、非空 `sensitive_fields_removed` | 不替代 `T-P1A-004` 的 secret scan / CI hardening |
+| `C-WRK-001` | `T-P1A-002` review-candidate：`POST /jobs/{job_id}/complete`、receipt Pydantic models、`jobs` / `job_events` minimum schema、`idx_jobs_capture_type_dedupe` DB guard、artifact file sha/bytes validation、job/capture/dedupe 校验先于 artifact 文件校验、idempotent replay | API-side only；不创建 workers；不调用 BBDown / yt-dlp / ffmpeg；不启用 ASR 或 `audio_transcript` runtime |
+| `C-ART-001` | `T-P1A-002` review-candidate：receipt `produced_assets[]` 映射为 `artifact_assets` 行，`idx_artifact_assets_capture_file` 保护同一 capture 下 file_path 唯一，metadata_json 保留 producer / redaction / idempotency / `source_surface` 追溯字段 | 仅登记已存在于 artifacts root 的文件；不定义 Phase 2+ FS 版本化 |
+| `C-PLT-001` | `T-P1A-002` review-candidate：`platform_result` 使用既有 `PlatformResult` enum；非 `ok` receipt 将 job 标记为 `failed`，不推进 capture status，并在 `job_events` 记录 `platform_result` | 不新增平台状态映射；非 `ok` 的更细 operator 策略仍按后续任务收敛 |
+| `C-SEC-001` | `T-P1A-002` review-candidate：`raw_api_response` receipt 必须声明 `redaction_applied=true`、`redaction_policy`、非空 `sensitive_fields_removed`，ledger metadata 至少记录 `source_surface` | 不替代 `T-P1A-004` 的 secret scan / CI hardening |
 
 ## 当前引用但未落地的上游文档
 
