@@ -1,6 +1,6 @@
 # ScoutFlow AGENTS
 
-> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线与 PR `#10` 的 `T-P1A-003` BBDown research note；当前 `T-P1A-006` / `T-P1A-007` 为 active，`T-P1A-008` / `T-P1A-009` 为 gated backlog。仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
+> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线与 PR `#10` 的 `T-P1A-003` BBDown research note；当前 `T-P1A-006` 为 review candidate，`T-P1A-007` 为 active，`T-P1A-008` / `T-P1A-009` 为 gated backlog。仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
 
 ## 1. 进入项目先读
 
@@ -13,12 +13,12 @@
 ## 2. 当前阶段
 
 - 当前 Phase：`Phase 1A`
-- 当前 Step：`T-P1A-006 / T-P1A-007 active`
-- 当前活动任务：`T-P1A-006` BBDown adapter contract draft 与 `T-P1A-007` Explore URL UX / risk / receipt status brainstorm；`T-P1A-008` sanitized fixture parser 与 `T-P1A-009` local runtime spike 仅为 gated backlog
+- 当前 Step：`T-P1A-006 review / T-P1A-007 active`
+- 当前活动任务：`T-P1A-006` BBDown adapter contract draft 当前为 review candidate；`T-P1A-007` Explore URL UX / risk / receipt status brainstorm 仍为 active；`T-P1A-008` sanitized fixture parser 与 `T-P1A-009` local runtime spike 仅为 gated backlog
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：`T-P1A-006` draft spec 与 `T-P1A-007` 交互式脑暴；authority 只允许账本同步，不自动批准新 runtime
+- 当前只做：`T-P1A-006` draft spec review candidate 与 `T-P1A-007` 交互式脑暴；authority 只允许账本同步，不自动批准新 runtime
 - 当前不做：workers、frontend、真实下载、ASR、BBDown / yt-dlp / ffmpeg runtime、浏览器自动化、Phase 2-4 runtime
-- 当前状态：`active`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P1A-003` 已通过 PR `#10` 合并入 `main`，含义仅为 `docs/research/** research note merged`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码或 docs-only draft
+- 当前状态：`review`；`T-P1A-007` 仍为 `active`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P1A-003` 已通过 PR `#10` 合并入 `main`，含义仅为 `docs/research/** research note merged`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码或 docs-only draft
 
 ## 3. 当前红线
 
