@@ -1,6 +1,6 @@
 # ScoutFlow AGENTS
 
-> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段只允许 Step0 文档与 contract 工作，不允许开始产品实现。
+> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段允许 `T-P1A-001` 的受控 API-side metadata-only contract 实现；不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
 
 ## 1. 进入项目先读
 
@@ -12,13 +12,13 @@
 
 ## 2. 当前阶段
 
-- 当前 Phase：`Phase 0`
-- 当前 Step：`Step0`
-- 当前活动任务：`T-P0-007`（Phase 1A Bilibili `manual_url` quick_capture readiness pack；docs-only done / merge candidate）
+- 当前 Phase：`Phase 1A`
+- 当前 Step：`T-P1A-001`
+- 当前活动任务：`T-P1A-001`（Bilibili `manual_url` quick_capture；`metadata_only only`；首个 Phase 1A code-bearing task）
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：Step0 文档、contract、PR `#6` merge candidate 收口；等待 user merge 决策与可能的 `T-P1A-001` 显式批准
-- 当前不做：API、worker、Console、真实采集、浏览器自动化
-- 当前状态：`T-P0-007 done / merge candidate`；历史：`T-P0-002 done`、`T-P0-003 done`、`T-P0-004 done`；`T-P0-005` / `T-P0-006` 视为通信测试并暂停/关闭；等待 user merge 决策与 `T-P1A-001` 可能授权；不自动进入 Phase 1A 产品代码
+- 当前只做：`services/api/**` + `tests/**` 范围内的最小 contract 实现与账本同步
+- 当前不做：workers、frontend、真实下载、ASR、浏览器自动化、Phase 2-4 runtime
+- 当前状态：`T-P1A-001 review`；历史：`T-P0-007` 已合并入 `main`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码
 
 ## 3. 当前红线
 
@@ -27,6 +27,9 @@
 - 不在项目根建立重治理目录
 - `recommendation / keyword / RAW gap` 不直接创建 capture
 - `POST /captures/discover` 当前语义是 `capture 创建入口（capture creation entrypoint）`，不是 source discovery
+- `audio_transcript` runtime 不进入 `T-P1A-001`
+- 不创建或修改 `workers/`
+- 不创建或修改 `apps/`
 - Phase 2-4 只作参考 outline，不进入当前实现任务
 
 ## 4. 当前允许路径
@@ -35,14 +38,16 @@
 - `.github/pull_request_template.md`
 - `tools/check-docs-redlines.py`
 - `docs/`
+- `services/api/`
+- `tests/`
 - `AGENTS.md`
 - `CLAUDE.md`
 - `README.md`
+- `pyproject.toml`
 
 ## 5. 当前禁止路径
 
 - `apps/`
-- `services/`
 - `workers/`
 - `packages/`
 - `data/`
@@ -70,12 +75,12 @@
 
 | 工具 | 当前职责 | 当前不应做 |
 |---|---|---|
-| `Codex Desktop` | Step0 文档、contract、任务账本、主写入、commit owner | 当前任务中不写产品代码；不让 subagent 独立写 authority |
+| `Codex Desktop` | `T-P1A-001` API-side metadata-only contract、任务账本、主写入、commit owner | 不写 workers / frontend；不让 subagent 独立写 authority |
 | `Codex subagent` | code/doc scan、lint、diff review、风险列举 | 不独立写回 `docs/current.md` / `docs/task-index.md` |
 | `Claude Code / VSCode` | 文档审读、IA/UX 评论、局部文案修订、contract 校对 | 不主导当前代码主线；默认 sidecar read-only |
 | `ChatGPT Pro` | GitHub 外部审计、prompt 派单、PR/commit review | 不直接改 repo；不绕过任务账本 |
 | `OpenClaw / GLM` | 次级 research / scout note、反驳审读 | 默认 read-only；不直写 authority |
-| `Hermes Agent / Kimi` | 未来调度与信号源设计参考、长上下文归纳 | 默认 read-only；Phase 1A 不抢跑推荐采集 |
+| `Hermes Agent / Kimi` | 未来调度与信号源设计参考、长上下文归纳 | 默认 read-only；当前不抢跑推荐采集 |
 
 ## 9. 并行执行协议
 

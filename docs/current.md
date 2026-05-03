@@ -2,27 +2,29 @@
 
 ## 当前状态
 
-- Phase：`0`
-- Step：`Step0`
-- 主任务：`T-P0-007`
-- 工作模式：Phase 1A readiness merge candidate 收口；补充 `T-P1A-001` dispatch draft 与 user decision matrix
-- 当前任务状态：`done / merge candidate`
-- 当前结论：`T-P0-007` readiness pack 已通过外部审计并进入 PR `#6` merge candidate；这仍不等于产品代码 approval；未获 user 明确批准前，不启动 `T-P1A-001`。
+- Phase：`1A`
+- Step：`T-P1A-001`
+- 主任务：`T-P1A-001`
+- 工作模式：首个 Phase 1A code-bearing task；`metadata_only only`
+- 当前任务状态：`review`
+- 当前结论：`T-P1A-001` metadata-only contract 已完成最小实现并进入 PR review candidate；产品代码仍仅允许出现在批准路径；禁止 `audio_transcript` runtime、禁止 worker runtime、禁止浏览器自动化。
 
 ## 当前允许
 
 - `docs/`
+- `services/api/`
+- `tests/`
 - `AGENTS.md`
 - `CLAUDE.md`
 - `README.md`
 - `.github/pull_request_template.md`
 - `tools/check-docs-redlines.py` 仅如需
 - `.github/workflows/docs-check.yml` 仅如需
+- `pyproject.toml`
 
 ## 当前禁止
 
 - `apps/`
-- `services/`
 - `workers/`
 - `packages/`
 - `data/`
@@ -30,7 +32,8 @@
 - `candidates/`
 - `dispatches/`
 - `audits/`
-- 真实采集实现
+- `audio_transcript` runtime
+- 真下载 / ASR / BBDown / yt-dlp / ffmpeg
 - 浏览器自动化
 - Phase 2-4 真实逻辑
 
@@ -45,22 +48,21 @@
 
 ## 当前任务
 
+- `T-P1A-001`：Bilibili `manual_url` quick_capture，当前只做 `metadata_only only` 的 API-side contract 与 tests
 - `T-P0-002`：入口文档深化 + 并行执行协议固化，已在 PR `#1` 合并后闭合为 `done`
 - `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，已闭合为 `done`
 - `T-P0-004`：通信测试 artifacts 清理与主线恢复，已闭合为 `done`
 - `T-P0-005` / `T-P0-006`：按 user 决定视为通信测试，不作为活动产品任务或 Phase 1A approval
-- `T-P0-007`：Phase 1A Bilibili `manual_url` quick_capture readiness pack，当前为 docs-only `done / merge candidate`
+- `T-P0-007`：Phase 1A Bilibili `manual_url` quick_capture readiness pack，已合并入 `main`
 - GitHub queue / Web GPT sync smoke / Codex adapter / MCP communication harness 当前暂停或关闭，不是 ScoutFlow 产品方向
 
 ## 下一步候选
 
-- user 决定是否 merge PR `#6`
-- user review [phase1a-manual-url-quick-capture-readiness-2026-05-03.md](/Users/wanglei/workspace/ScoutFlow/docs/plans/phase1a-manual-url-quick-capture-readiness-2026-05-03.md)
-- user review [t-p1a-001-manual-url-quick-capture-implementation-dispatch-draft-2026-05-03.md](/Users/wanglei/workspace/ScoutFlow/docs/plans/t-p1a-001-manual-url-quick-capture-implementation-dispatch-draft-2026-05-03.md)
-- user 后续可选择是否批准 `T-P1A-001` 作为第一项 code-bearing Phase 1A 任务
-- 当前不自动进入 `Phase 1A` 产品代码
+- 当前任务完成后，user review `T-P1A-001` tiny implementation PR
+- 若 user 后续批准，可再开 `T-P1A-002` worker-side metadata fetch / artifact writing
+- 当前不自动扩展到 `audio_transcript`
 
 ## 阻塞
 
-- 未获 user 明确批准前，不启动 `T-P1A-001`
-- PR `#6` 未 merge 前，不把 readiness pack 当成已并入主线事实
+- 不允许让 `recommendation / keyword / RAW gap` 直接创建 capture
+- 不允许把 `/captures/discover` 语义写成 source discovery / search / recommendation discovery
