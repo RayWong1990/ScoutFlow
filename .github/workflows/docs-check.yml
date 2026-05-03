@@ -23,6 +23,8 @@ jobs:
           test -f docs/specs/parallel-execution-protocol.md
       - name: Check docs redlines
         run: python tools/check-docs-redlines.py
+      - name: Check secret redlines
+        run: python tools/check-secrets-redlines.py
 
   api-contract-tests:
     runs-on: ubuntu-latest

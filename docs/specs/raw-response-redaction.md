@@ -70,6 +70,8 @@ receipt 中必须显式声明：
 - job 日志允许保留错误类别、工具版本、时间戳
 - job 日志不允许保留凭据值、完整响应头、完整响应体
 - stderr 若包含敏感字段，写盘前先脱敏
+- Tool stdout/stderr redaction applies before logs or receipts are written.
+- Temporary media URLs and signed query parameters are not safe evidence until redacted.
 
 ## 8. 当前审查清单
 
