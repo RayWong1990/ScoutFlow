@@ -105,8 +105,8 @@
 - Decision: close `T-P0-007` as docs-only readiness pack after GPT Pro external audit.
 - PR: `https://github.com/RayWong1990/ScoutFlow/pull/6`
 - Branch: `task/T-P0-007-phase1a-readiness`
-- Reviewed commit: `db5f672e296a9474062cc114bf46a52f6197cbb7`
-- GitHub Actions run: `25275920728`; docs-check=`success`; docs-smoke=`success`
+- Reviewed commit: `40aa2f325bf5defe9fad9427fd0c8a006bf84436`
+- GitHub Actions run: `25276308045`; docs-smoke=`success`
 - Audit conclusion: PASS — no blocking issue.
 - Scope: Phase 1A Bilibili `manual_url` quick_capture readiness planning only.
 - Not a product-code approval.
