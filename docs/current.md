@@ -5,8 +5,8 @@
 - Phase：`1A`
 - Step：`T-P1A-006 / T-P1A-007 active`
 - 主任务：`T-P1A-006`、`T-P1A-007`
-- 工作模式：PR `#10` 已合并为 `docs/research/**` research note；`T-P1A-005` 人审同步处于 review branch 写回；后续 `T-P1A-006` / `T-P1A-007` 可并行，但仍遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-006=active`; `T-P1A-007=active`; `T-P1A-005=review`; `T-P1A-003=done`; `T-P1A-008=backlog/gated`; `T-P1A-009=backlog/gated`
+- 工作模式：PR `#10` 已合并为 `docs/research/**` research note；PR `#12` 已完成 Dispatch 0 人审同步并合入 `main`；后续 `T-P1A-006` / `T-P1A-007` 可并行，但仍遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-006=active`; `T-P1A-007=active`; `T-P1A-005=done`; `T-P1A-003=done`; `T-P1A-008=backlog/gated`; `T-P1A-009=backlog/gated`
 - 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note。`T-P1A-003` merge commit=`8328c567e26db118ad456b29f8616066174b3568`，head=`42baf4165d7bf9022a9e8742d989a7428ae3ee4b`，PR head GitHub run=`25278481839`，main merge GitHub run=`25280084928`，`docs-smoke=success` / `api-contract-tests=success`。`T-P1A-003` 仍只是 research note，不是 authority，不是 implementation approval。当前 Active count=`2/3`；当前不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
@@ -55,6 +55,7 @@
 - `T-P1A-008`：BBDown sanitized fixture parser；状态 `backlog/gated`；前置为 `T-P1A-006` draft spec 合并；只用脱敏 fixture，不运行 BBDown
 - `T-P1A-009`：BBDown local runtime spike；状态 `backlog/gated`；前置为 `T-P1A-006` + `T-P1A-008` + user 再次明确批准；不得下载媒体，不跑 ASR
 - `T-P1A-003`：BBDown tool-surface research note；状态 `done`；已通过 PR `#10` 合并入 `main`，只作为 research note
+- `T-P1A-005`：Dispatch 0 human gate sync；状态 `done`；已通过 PR `#12` 合并入 `main`，只同步 authority / ledger，不批准 runtime
 - `T-P1A-002`：API jobs / receipt / artifact ledger foundation；状态 `done`；已通过 PR `#9` 合并入 `main`
 - `T-P1A-004`：Redaction / secret scan / CI hardening；状态 `done`；已通过 PR `#8` 合并入 `main`
 - `T-P1A-001`：Bilibili `manual_url` quick_capture metadata contract；状态 `done`；已通过 PR `#7` 合并入 `main`

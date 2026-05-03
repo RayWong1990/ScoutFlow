@@ -197,3 +197,14 @@
 - Decision: Explore URL paste, risk prompts, and receipt status display require separate user brainstorm under `T-P1A-007`.
 - Task sync: `T-P1A-003=done`; `T-P1A-006=active`; `T-P1A-007=active`; `T-P1A-008=backlog/gated`; `T-P1A-009=backlog/gated`.
 - Non-goals unchanged: no workers, no frontend, no real download, no ASR, no browser automation, no `audio_transcript` runtime, no Phase 2-4 runtime.
+
+## 2026-05-03 — PR #12 merged after Dispatch 0 authority sync
+
+- Decision: merge PR `#12` to close `T-P1A-005`.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/12`
+- Reviewed head: `e10c9fc3808668fd34b6dc2150db151186640743`
+- Merge commit: `419546de000f4a163d4158f2ced9784ba263c09c`
+- GitHub Actions run: `25280435814`; `docs-smoke=success`; `api-contract-tests=success`
+- Scope: authority sync only across `AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/specs/contracts-index.md`
+- Task sync: `T-P1A-005=done`; `T-P1A-006=active`; `T-P1A-007=active`; `T-P1A-008=backlog/gated`; `T-P1A-009=backlog/gated`
+- Non-goals unchanged: no runtime approval; no BBDown / yt-dlp / ffmpeg / ASR execution; no workers; no frontend; no browser automation; no `audio_transcript` runtime

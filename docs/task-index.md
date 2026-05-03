@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`2/3`，Review count=`1`。
+> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`2/3`，Review count=`0`。
 
 ## 规则
 
@@ -26,7 +26,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-005` | Human gate sync and PR #10 research merge | `review` | `Codex Desktop` | 同步用户 7 条人审决策；确认并合并 PR `#10` 为 research note；登记 `T-P1A-006` / `T-P1A-007` active 与 `T-P1A-008` / `T-P1A-009` gated backlog | `AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/specs/contracts-index.md`, `docs/research/**` | `services/**`, `apps/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `example/**`, `examples/**`, `candidates/**`, `dispatches/**`, `audits/**` | `/Users/wanglei/Downloads/dispatch-0-t-p1a-005-human-gate-sync-cn.md`; PR `#10`; `docs/specs/parallel-execution-protocol.md` | Dispatch 0 command set；GitHub PR/run evidence；forbidden path checks | PR `#10` contains non-research diff; active count > 3; runtime approval leakage; credentials in logs/artifacts | Branch=`task/T-P1A-005-human-gate-sync`; merge of this sync PR can close the review item |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Backlog
 
@@ -55,6 +55,7 @@
 | `T-P1A-002` | API jobs / receipt / artifact ledger foundation | `2026-05-03` | branch=`task/T-P1A-002-api-jobs-receipt-ledger`; reviewed head=`7e54ec0d0b1a8aae5fcd041b02a6f1f56ac28e97`; PR=`#9`; merge commit=`1449f0d753c2da1476178f99934cf66c3add372c`; workflow run=`25278781456`; docs-smoke=`success`; api-contract-tests=`success`; local audit-fix validation=`42 passed`; API-side only；no workers / ASR / frontend / `audio_transcript` runtime |
 | `T-P1A-004` | Redaction / secret scan / CI hardening | `2026-05-03` | branch=`task/T-P1A-004-redaction-secret-scan-ci`; rebased head=`7c74233095c3c297d4634a7e342547830d77bf32`; PR=`#8`; merge commit=`4f6af1ce3d823c84fc8f38cefee0790ec1830c62`; workflow run=`25279195327`; docs-smoke=`success`; api-contract-tests=`success`; local validation=`25 passed` contracts / `50 passed` api+contracts；no workers / frontend / runtime capture |
 | `T-P1A-003` | BBDown tool-surface research note | `2026-05-03` | PR=`#10`; head=`42baf4165d7bf9022a9e8742d989a7428ae3ee4b`; merge commit=`8328c567e26db118ad456b29f8616066174b3568`; GitHub run=`25280084928`; `docs-smoke=success`; `api-contract-tests=success`; scope=`docs/research/**` research note only；not authority；not implementation approval；no runtime |
+| `T-P1A-005` | Human gate sync and PR #10 research merge | `2026-05-03` | branch=`task/T-P1A-005-human-gate-sync`; head=`e10c9fc3808668fd34b6dc2150db151186640743`; PR=`#12`; merge commit=`419546de000f4a163d4158f2ced9784ba263c09c`; workflow run=`25280435814`; docs-smoke=`success`; api-contract-tests=`success`; scope=`AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/specs/contracts-index.md`; no runtime approval |
 
 ## Stop-the-line
 
