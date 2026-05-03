@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "ms-python.python",
+    "ms-python.vscode-pylance",
+    "charliermarsh.ruff",
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "bradlc.vscode-tailwindcss",
+    "yzhang.markdown-all-in-one",
+    "DavidAnson.vscode-markdownlint",
+    "redhat.vscode-yaml",
+    "qwtel.sqlite-viewer",
+    "humao.rest-client",
+    "GitHub.vscode-pull-request-github",
+    "anthropic.claude-code"
+  ]
+}

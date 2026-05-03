@@ -1,0 +1,21 @@
+name: docs-check
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  docs-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check required docs
+        run: |
+          test -f README.md
+          test -f AGENTS.md
+          test -f CLAUDE.md
+          test -f docs/current.md
+          test -f docs/task-index.md
+          test -f docs/specs/contracts-index.md

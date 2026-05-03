@@ -1,0 +1,49 @@
+# runtime data
+data/
+*.sqlite
+*.sqlite-wal
+*.sqlite-shm
+
+# credentials / env
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# macOS
+.DS_Store
+._*
+__MACOSX/
+
+# Python
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# Node
+node_modules/
+dist/
+build/
+.vite/
+
+# logs / temp
+*.log
+tmp/
+.cache/
+
+# local reference repos
+referencerepo/
+
+# local tool artifacts
+.playwright-mcp/
+.superpowers/
+
+# editor
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
