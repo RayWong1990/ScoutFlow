@@ -166,3 +166,29 @@ def test_in_memory_temporary_media_url_collapses_after_redaction_stage() -> None
 
     assert media_url not in result.safe_stdout_excerpt
     assert "[REDACTED_TEMPORARY_MEDIA_URL]" in result.safe_stdout_excerpt
+
+
+def test_benign_login_status_lines_do_not_trigger_auth_required_when_metadata_is_present() -> None:
+    from scoutflow_api.external_tools.bbdown_info_parser import parse_bbdown_info_output
+    from scoutflow_api.platform_result import PlatformResult
+
+    raw_stdout = "\n".join(
+        [
+            "BBDown version 1.6.3, Bilibili Downloader.",
+            "[2026-05-04 05:33:53.851] - 检测账号登录...",
+            "[2026-05-04 05:33:53.852] - 加载本地cookie...",
+            "[2026-05-04 05:33:55.700] - 获取aid结束: 116493572377107",
+            "[2026-05-04 05:33:57.702] - 视频标题: Agent 编排的四种模式：到底谁说了算？| 7 分钟看懂工业级多 Agent 系统｜AI编程实战 #06",
+            "[2026-05-04 05:33:57.702] - P1: [37978439940] [Agent 编排的四种模式：到底谁说了算？| 7 分钟看懂工业级多 Agent 系统｜AI编程实战 #06] [07m10s]",
+            "[2026-05-04 05:33:57.703] - 共计 1 个分P, 已选择：ALL",
+        ]
+    )
+
+    result = parse_bbdown_info_output(raw_stdout)
+
+    assert result.platform_result is PlatformResult.ok
+    assert result.platform_item_id == "116493572377107"
+    assert result.title == "Agent 编排的四种模式：到底谁说了算？| 7 分钟看懂工业级多 Agent 系统｜AI编程实战 #06"
+    assert result.duration_seconds == 430
+    assert result.page_count == 1
+    assert result.selected_page == "P1"

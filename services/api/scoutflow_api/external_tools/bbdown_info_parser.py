@@ -17,20 +17,23 @@ _MEDIA_URL_EXTENSIONS = (".m4s", ".mp4", ".flv", ".m3u8", ".mp3", ".aac", ".wav"
 _INTEGER_RE = re.compile(r"(\d+)")
 _FIELD_RES = {
     "platform_item_id": re.compile(
-        r"^\s*(?:Platform Item ID|Item ID|BV|AID|AV|EP|SS|视频ID)\s*[:：]\s*(?P<value>[A-Za-z0-9_-]+)\s*$",
+        r"^\s*(?:(?:Platform Item ID|Item ID|BV|AID|AV|EP|SS|视频ID)\s*[:：]\s*(?P<value_a>[A-Za-z0-9_-]+)|(?:\[[^\n]+\]\s*-\s*)?获取aid结束\s*[:：]\s*(?P<value_b>\d+))\s*$",
         re.IGNORECASE | re.MULTILINE,
     ),
-    "title": re.compile(r"^\s*(?:Title|标题)\s*[:：]\s*(?P<value>.+?)\s*$", re.IGNORECASE | re.MULTILINE),
+    "title": re.compile(
+        r"^\s*(?:(?:Title|标题)\s*[:：]\s*(?P<value_a>.+?)|(?:\[[^\n]+\]\s*-\s*)?视频标题\s*[:：]\s*(?P<value_b>.+?))\s*$",
+        re.IGNORECASE | re.MULTILINE,
+    ),
     "duration": re.compile(
-        r"^\s*(?:Duration|Total Duration|时长)\s*[:：]\s*(?P<value>.+?)\s*$",
+        r"^\s*(?:(?:Duration|Total Duration|时长)\s*[:：]\s*(?P<value_a>.+?)|(?:\[[^\n]+\]\s*-\s*)?P\d+\s*:\s*\[[^\]]+\]\s*\[[^\]]+\]\s*\[(?P<value_b>[0-9]{1,3}m[0-9]{2}s)\])\s*$",
         re.IGNORECASE | re.MULTILINE,
     ),
     "page_count": re.compile(
-        r"^\s*(?:Page Count|Pages|分P数量|分P)\s*[:：]\s*(?P<value>\d+)\s*$",
+        r"^\s*(?:(?:Page Count|Pages|分P数量|分P)\s*[:：]\s*(?P<value_a>\d+)|(?:\[[^\n]+\]\s*-\s*)?共计\s*(?P<value_b>\d+)\s*个分P(?:\s*,\s*已选择：.+)?)\s*$",
         re.IGNORECASE | re.MULTILINE,
     ),
     "selected_page": re.compile(
-        r"^\s*(?:Selected Page|Page Selected|当前分P)\s*[:：]\s*(?P<value>.+?)\s*$",
+        r"^\s*(?:(?:Selected Page|Page Selected|当前分P)\s*[:：]\s*(?P<value_a>.+?)|(?:\[[^\n]+\]\s*-\s*)?(?P<value_b>P\d+)\s*:\s*\[[^\]]+\]\s*\[[^\]]+\]\s*\[[0-9]{1,3}m[0-9]{2}s\])\s*$",
         re.IGNORECASE | re.MULTILINE,
     ),
     "uploader_name": re.compile(
@@ -49,7 +52,7 @@ _RESULT_PATTERNS: tuple[tuple[PlatformResult, tuple[re.Pattern[str], ...]], ...]
         (
             re.compile(r"\b(login required|not logged in|auth required|credential required)\b", re.IGNORECASE),
             re.compile(r"\b(qr code|scan qr|scan to login)\b", re.IGNORECASE),
-            re.compile(r"(需要登录|未登录|登录态失效|凭据缺失|账号登录|扫码|二维码)"),
+            re.compile(r"(需要登录|未登录|登录态失效|凭据缺失|扫码|二维码)"),
         ),
     ),
     (
@@ -205,7 +208,7 @@ def _extract_field(field_name: str, text: str) -> str | None:
     match = _FIELD_RES[field_name].search(text)
     if not match:
         return None
-    value = match.group("value").strip()
+    value = next((group for group in match.groups() if group is not None), "").strip()
     return value or None
 
 
@@ -232,6 +235,12 @@ def _parse_duration_seconds(value: str | None) -> int | None:
     seconds_match = re.search(r"\b(\d+)\s*(?:seconds?|sec|s|秒)\b", stripped, re.IGNORECASE)
     if seconds_match:
         return int(seconds_match.group(1))
+
+    compact_clock_match = re.search(r"\b(\d{1,3})m(\d{2})s\b", stripped, re.IGNORECASE)
+    if compact_clock_match:
+        minutes = int(compact_clock_match.group(1))
+        seconds = int(compact_clock_match.group(2))
+        return minutes * 60 + seconds
 
     return None
 

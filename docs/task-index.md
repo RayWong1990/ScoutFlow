@@ -43,6 +43,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-011C` | Auth-present BBDown metadata probe | `2026-05-04` | scope=`repo-external executable/auth store + repo-external temp cwd + single sample URL`; result=`platform_result=ok`; parsed=`aid/title/duration/page_count/selected_page`; fix=`minimal bbdown_info_parser repair + regression test for real BBDown 1.6.3 output`; no media / ffmpeg / ASR / receipt / capture state |
 | `T-P1A-011B` | Manual-auth QR local-only gate | `2026-05-04` | scope=`repo-external executable/auth store + repo-external temp cwd`; result=`QR displayed locally, user scan completed, auth completed from safe tool output`; evidence=`temp QR cwd cleaned, auth sidecar stayed outside Git`; no `-info`, no media, no `PlatformResult`, no receipt/capture state |
 | `T-P1A-011` | BBDown tool preflight compatibility repair | `2026-05-04` | scope=`bbdown_preflight.py + test_bbdown_tool_preflight_contract.py`; fix=`when BBDown 1.6.3 treats --version as missing root url, preflight may retry with --help and still parse version`; live verification=`ContentFlow local BBDown -> executable_found version=1.6.3`; no `-info`, no `PlatformResult`, no auth/media/receipt/capture state |
 | `T-P0-000` | Step0 Execution Plan + SRD 开工安全补丁（含 audit-fix） | `2026-05-03` | user 已批准作为后续实现候选基准 |
