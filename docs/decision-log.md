@@ -208,3 +208,20 @@
 - Scope: authority sync only across `AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/specs/contracts-index.md`
 - Task sync: `T-P1A-005=done`; `T-P1A-006=active`; `T-P1A-007=active`; `T-P1A-008=backlog/gated`; `T-P1A-009=backlog/gated`
 - Non-goals unchanged: no runtime approval; no BBDown / yt-dlp / ffmpeg / ASR execution; no workers; no frontend; no browser automation; no `audio_transcript` runtime
+
+## 2026-05-04 — PR #20 merged after close hardening
+
+- Decision: user authorized Codex to merge PR `#20`.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/20`
+- Head commit: `89ac13dc0c29bc3fffd5d2d6e9f31736af968af1`
+- Merge commit: `f10226fc6cd7724f7af7bd410ed8022ecb500a69`
+- Scope: `T-P1A-009` close wording hardening only.
+- Boundary: PR `#19` remains historical report-only spike; `BBDown --version` attempt and unexecuted `-info` are not reusable runtime permission; no `audio_transcript` approval.
+
+## 2026-05-04 — Wave 1 ledger opened
+
+- Decision: open Wave 1 ledger as `T-P1A-010`.
+- Active tasks: `T-P1A-010A` BBDown executable discovery / tool preflight package; `T-P1A-010B` BBDown no-auth `-info` adapter shell with injected runner and parser integration; `T-P1A-010C` PRD/SRD amendment repair pack + next dispatch plan + red-team checklist.
+- Active count: `3/3`; Review count: `0`.
+- Ledger rule: coding PRs for `T-P1A-010A` and `T-P1A-010B` must not independently edit `docs/current.md` or `docs/task-index.md`; they should provide status text for the ledger owner to write back.
+- Boundary: no real BBDown execution, no media download, no ffmpeg, no ASR, no browser automation, no credentials, no browser profile, no Phase 2-4 runtime, and no authority override beyond draft amendments.
