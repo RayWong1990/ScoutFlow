@@ -239,3 +239,17 @@
 - Boundary: PRD/SRD v1.2 amendment remains `candidate / draft / not final authority / not runtime approval`.
 - Boundary: `audio_transcript` remains blocked; no live BBDown, QR/manual auth, media download, ffmpeg, ASR, workers, frontend, or Phase 2-4 runtime approval.
 - Next gate: `T-P1A-011 live no-auth BBDown -info probe` remains `gated / requires explicit user approval`; 06 must not auto-start.
+
+## 2026-05-04 — T-P1A-011B manual-auth QR local-only gate executed
+
+- Decision: user explicitly requested `执行07`, which is treated as execution approval for `T-P1A-011B`.
+- Scope: local-only `BBDown login` gate only; no `BBDown -info`; no media; no ffmpeg; no ASR; no receipt / artifact ledger / capture state.
+- Execution boundary:
+  - use repo-external local-only executable/auth store
+  - use repo-external temp cwd for QR display
+  - do not use browser profile
+  - do not use command-string credentials
+  - do not use `--debug`
+- Observed lesson: with local BBDown `1.6.3`, `qrcode.png` may be written to cwd and `BBDown.data` / `BBDownTV.data` may be written next to the executable, so repo-local executable/cwd are not acceptable for this gate.
+- Result: QR displayed locally, user completed scan, safe tool output confirmed auth completion, temp QR cwd cleaned, auth sidecar stayed outside Git.
+- Boundary: this does not approve no-auth or auth-present `BBDown -info`, does not emit `PlatformResult`, and does not approve broader runtime.
