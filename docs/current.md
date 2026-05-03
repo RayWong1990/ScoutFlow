@@ -3,16 +3,17 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-008 backlog / T-P1A-009 gated`
+- Step：`T-P1A-008 active / T-P1A-009 gated`
 - 主任务：`T-P1A-008`
-- 工作模式：PR `#14` 与 PR `#15` 已合入 `main`；当前进入小账本同步收口，等待 Dispatch 3 或后续显式开任务；仍遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-008=backlog`; `T-P1A-009=backlog/gated`; `T-P1A-006=done`; `T-P1A-007=done`; `T-P1A-005=done`; `T-P1A-003=done`
-- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note。`T-P1A-006` merge commit=`014e37a11427922c52d35b56c3962110d3711d17`，GitHub run=`25280751608`，`docs-smoke=success` / `api-contract-tests=success`；`T-P1A-007` merge commit=`e9b4d1bb5bae0d79ead0b9bb6f60304f3a560abe`，GitHub run=`25282020291`，`docs-smoke=success` / `api-contract-tests=success`。`T-P1A-006` 仍只是 draft spec，不是 final authority，不是 runtime approval；`T-P1A-007` 仍只是 UX research note，不是 frontend / API / runtime approval。当前 Active count=`0/3`，Review count=`0`；当前不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- 工作模式：Dispatch 3 已显式打开 `T-P1A-008`；当前只做 sanitized fixture parser / classifier 最小代码基线；仍遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-008=active`; `T-P1A-009=backlog/gated`; `T-P1A-006=done`; `T-P1A-007=done`; `T-P1A-005=done`; `T-P1A-003=done`
+- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note。`T-P1A-006` merge commit=`014e37a11427922c52d35b56c3962110d3711d17`，GitHub run=`25280751608`，`docs-smoke=success` / `api-contract-tests=success`；`T-P1A-007` merge commit=`e9b4d1bb5bae0d79ead0b9bb6f60304f3a560abe`，GitHub run=`25282020291`，`docs-smoke=success` / `api-contract-tests=success`。`T-P1A-008` 是 code-bearing task，但仅限 fixture-only parser；不批准 runtime。当前 Active count=`1/3`，Review count=`0`；当前不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不访问真实 Bilibili URL，不下载媒体，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
 - authority 同步文件：`docs/task-index.md`、`docs/current.md`、`docs/decision-log.md`、`docs/specs/contracts-index.md`
 - 入口同步文件：`AGENTS.md`、`README.md`，仅在状态口径需要时修改
+- `T-P1A-008` 代码允许区：`services/api/scoutflow_api/external_tools/**`、`tests/contracts/**`、`tests/fixtures/bbdown/**`
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` 当前只作参考，不自动授权后续代码修改
 
 ## 当前禁止
@@ -43,14 +44,14 @@
 - `POST /captures/discover` = `capture 创建入口（capture creation entrypoint）`
 - `POST /jobs/{job_id}/complete` = `worker receipt API-side validation and ledger entrypoint`; 当前只接收已存在 job 的 receipt，不创建 worker queue runtime
 - `recommendation / keyword / RAW gap` 不直接创建 capture
-- 活动任务上限 `3`；当前 Active count=`0/3`，Review count=`0`
+- 活动任务上限 `3`；当前 Active count=`1/3`，Review count=`0`
 - 项目根不建立重治理目录
 
 > `T-P1A-001` / `T-P1A-002` / `T-P1A-004` 的合并只表示对应 API-side 和安全基线进入 `main`；`T-P1A-003` 的合并只表示 research note 进入 `docs/research/**`。这些都不等于批准 broader Phase 1A runtime、workers、frontend、`audio_transcript` 或 Phase 2-4 产品代码。
 
 ## 当前任务
 
-- `T-P1A-008`：BBDown sanitized fixture parser；状态 `backlog`；前置 `T-P1A-006` 合并已满足，可由 Dispatch 3 显式打开；只用脱敏 fixture，不运行 BBDown
+- `T-P1A-008`：BBDown sanitized fixture parser；状态 `active`；由 Dispatch 3 显式打开；只用脱敏 fixture，不运行 BBDown，不访问真实 Bilibili URL，不下载媒体
 - `T-P1A-009`：BBDown local runtime spike；状态 `backlog/gated`；前置为 `T-P1A-006` + `T-P1A-008` + user 再次明确批准；不得下载媒体，不跑 ASR
 - `T-P1A-007`：Explore URL UX / risk / receipt status brainstorm；状态 `done`；已通过 PR `#15` 合并入 `main`，只作为 research note / decision pack
 - `T-P1A-006`：BBDown adapter contract draft；状态 `done`；已通过 PR `#14` 合并入 `main`，只作为 merged draft spec，不实现或调用 runtime capture
@@ -62,7 +63,7 @@
 
 ## 下一步候选
 
-- `T-P1A-008` 已满足开工前置，可按 Dispatch 3 显式打开
+- `T-P1A-008` 当前执行 sanitized fixture parser / classifier；完成后必须提交 PR 审计
 - `T-P1A-009` 必须等 `T-P1A-006` + `T-P1A-008` 完成后，并由 user 再次明确批准 runtime spike 后再开
 - 当前不自动开启任何 code-bearing task
 

@@ -1,0 +1,11 @@
+BBDown -info sanitized fixture
+Result: ok
+Platform Item ID: BVSCOUTFLOW3
+Title: ScoutFlow temporary media URL redaction fixture
+Duration: 00:03:00
+Page Count: 1
+Selected Page: P1
+Uploader: ScoutFlow Fixture Uploader
+Estimated Media Bytes: 3145728
+Media Risk: [REDACTED_TEMPORARY_MEDIA_URL]
+Note: placeholder only; no temporary media URL.

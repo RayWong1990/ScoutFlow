@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`0/3`，Review count=`0`。
+> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`1/3`，Review count=`0`。
 
 ## 规则
 
@@ -19,7 +19,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-008` | BBDown sanitized fixture parser | `active` | `Codex Desktop` | 基于脱敏 fixture 建立 BBDown `-info` parser / classifier 最小代码基线；fixture-only，不运行 BBDown | `services/api/scoutflow_api/external_tools/**`, `tests/contracts/**`, `tests/fixtures/bbdown/**`, `docs/current.md`, `docs/task-index.md`, `AGENTS.md`, `README.md` | `apps/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `candidates/**`, `dispatches/**`, `audits/**`, `example/**`, `examples/**`, live BBDown output with secrets, real Bilibili URL runtime | `docs/specs/bbdown-adapter-contract-draft.md`; `docs/specs/platform-adapter-risk-contract.md`; `docs/specs/raw-response-redaction.md`; `docs/specs/worker-receipt-contract.md` | `python -m py_compile tools/check-docs-redlines.py`; `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `python -m pytest tests/contracts -q`; `python -m pytest tests/api tests/contracts -q`; `git diff --check`; forbidden-path checks | running BBDown; using real Bilibili URL; saving unsafe stdout; parser silently accepting drift; adding parallel `PlatformResult`; creating worker/runtime | Opened by Dispatch 3；不批准 runtime；不打开 `T-P1A-009` |
 
 ## Review
 
@@ -31,7 +31,6 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-008` | BBDown sanitized fixture parser | `backlog` | `TBD` | `T-P1A-006` 已合入 main，可按 Dispatch 3 打开；使用脱敏 fixture 做 parser；不运行 BBDown | `TBD when opened`; expected `tests/**` and bounded parser modules only after explicit dispatch | `apps/**`, `workers/**`, `data/**`, `referencerepo/**`, real BBDown output with secrets, live Bilibili URL runtime | `docs/specs/bbdown-adapter-contract-draft.md` on `main` | Fixture parser tests; secret scan; forbidden path checks | running BBDown; using raw unsafe stdout; parser silently accepting drift | Gate satisfied for Dispatch 3 opening；仍不等于自动开工 |
 | `T-P1A-009` | BBDown local runtime spike | `backlog/gated` | `TBD` | Local runtime spike only after user re-approval; allowed shape limited to `BBDown --version` and no-auth `-info` metadata probe if later authorized | `TBD when opened`; no runtime path opened now | media download; ASR; workers; frontend; cookies/tokens; browser profile; tracked raw stdout/stderr with secrets | `T-P1A-006`; `T-P1A-008`; future user approval phrase | Explicit runtime-spike validation in later dispatch | treating backlog as approval; downloading media; auth material entering Git/CI/logs | Gate: `T-P1A-006` + `T-P1A-008` + user again explicitly approves runtime spike |
 
 ## Blocked

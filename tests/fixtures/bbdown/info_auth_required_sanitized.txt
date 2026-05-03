@@ -1,0 +1,4 @@
+BBDown -info sanitized fixture
+Result: auth_required
+Error: login required; no credential material is present in this fixture.
+Diagnostic: quick_capture must stop and ask for human action.

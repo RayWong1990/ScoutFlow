@@ -1,0 +1,4 @@
+BBDown -info sanitized fixture
+Result: forbidden
+Error: HTTP 403 forbidden; no explicit missing-auth evidence is present.
+Diagnostic: fail fast with safe summary only.

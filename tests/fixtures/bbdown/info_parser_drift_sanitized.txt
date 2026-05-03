@@ -1,0 +1,4 @@
+BBDown -info sanitized fixture
+Result: parser_drift
+Error: parser drift; output layout changed before required fields were extracted.
+Diagnostic: stop the line and create a parser repair task.

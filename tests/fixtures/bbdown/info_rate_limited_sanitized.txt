@@ -1,0 +1,4 @@
+BBDown -info sanitized fixture
+Result: rate_limited
+Error: rate limit; cooldown required before another platform probe.
+Diagnostic: do not run tight retry.

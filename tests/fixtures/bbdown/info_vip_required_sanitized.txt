@@ -1,0 +1,4 @@
+BBDown -info sanitized fixture
+Result: vip_required
+Error: vip required; paid content is outside current quick_capture.
+Diagnostic: do not bypass the platform permission boundary.
