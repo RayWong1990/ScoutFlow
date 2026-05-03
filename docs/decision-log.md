@@ -71,3 +71,21 @@
 - Scope: Step0 / Phase 0 collaboration protocol, entry docs, and GitHub external audit workflow only.
 - Not a product-code approval.
 - No Phase 1A product code approval.
+
+## 2026-05-03 — PR #1 merged after T-P0-002 audit
+
+- Decision: user authorized merge of PR `#1`.
+- Merge commit: `bafeb56c79c69a43f2806aaec88ea7014db36815`
+- Scope: Step0 / Phase 0 collaboration protocol only.
+- Not a product-code approval.
+- No Phase 1A product code approval.
+
+## 2026-05-03 — Communication tests paused and ScoutFlow mainline restored
+
+- Decision: Treat `T-P0-005` / `T-P0-006` GitHub queue / Codex adapter work as communication tests, not ScoutFlow product tasks.
+- Decision: Close/pause smoke issues and communication-test dispatches.
+- Decision: Remove `example/` and smoke-only `examples/` files from repo.
+- Decision: Delete two archive/test branches: `task/archive-chatgpt-session-prompts-2026-05-03` and `task/archive-t-p0-002-audit-dispatch`.
+- Scope: cleanup only; no API / worker / Console implementation.
+- Not a Phase 1A product-code approval.
+- Product direction restored to PRD/SRD authority-first ScoutFlow / 采集线 mainline.
