@@ -1,0 +1,10 @@
+BBDown -info sanitized fixture
+Result: ok
+Platform Item ID: BVSCOUTFLOW1
+Title: ScoutFlow public fixture title
+Duration: 00:04:12
+Page Count: 1
+Selected Page: P1
+Uploader: ScoutFlow Fixture Uploader
+Estimated Media Bytes: 10485760
+Note: public metadata-only sample, no live tool output.

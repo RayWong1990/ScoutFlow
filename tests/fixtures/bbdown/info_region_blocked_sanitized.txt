@@ -1,0 +1,4 @@
+BBDown -info sanitized fixture
+Result: region_blocked
+Error: region blocked; content is not available in the current area.
+Diagnostic: human judgment required.

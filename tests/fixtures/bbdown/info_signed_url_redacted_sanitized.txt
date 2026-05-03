@@ -1,0 +1,11 @@
+BBDown -info sanitized fixture
+Result: ok
+Platform Item ID: BVSCOUTFLOW2
+Title: ScoutFlow signed URL redaction fixture
+Duration: 00:02:00
+Page Count: 1
+Selected Page: P1
+Uploader: ScoutFlow Fixture Uploader
+Estimated Media Bytes: 2097152
+Media Risk: [REDACTED_SIGNED_MEDIA_URL]
+Note: placeholder only; no real signed URL.

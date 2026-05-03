@@ -1,6 +1,6 @@
 # ScoutFlow AGENTS
 
-> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线，以及 PR `#10` 的 `T-P1A-003` BBDown research note、PR `#14` 的 `T-P1A-006` BBDown adapter draft spec、PR `#15` 的 `T-P1A-007` Explore URL UX research note。当前 `T-P1A-008` 为 `ready/backlog-gated`，`T-P1A-009` 为 `backlog/gated`。仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
+> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线，以及 PR `#10` 的 `T-P1A-003` BBDown research note、PR `#14` 的 `T-P1A-006` BBDown adapter draft spec、PR `#15` 的 `T-P1A-007` Explore URL UX research note。当前 `T-P1A-008` 已由 Dispatch 3 显式打开为 `active`，仅允许 sanitized fixture parser；`T-P1A-009` 仍为 `backlog/gated`。仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
 
 ## 1. 进入项目先读
 
@@ -13,12 +13,12 @@
 ## 2. 当前阶段
 
 - 当前 Phase：`Phase 1A`
-- 当前 Step：`T-P1A-008 backlog / T-P1A-009 gated`
-- 当前活动任务：当前无 active product task；`T-P1A-008` sanitized fixture parser 为当前主候选任务，`T-P1A-009` local runtime spike 仍为 gated backlog
+- 当前 Step：`T-P1A-008 active / T-P1A-009 gated`
+- 当前活动任务：`T-P1A-008` BBDown sanitized fixture parser；fixture-only，不运行 BBDown，不访问真实 Bilibili URL；`T-P1A-009` local runtime spike 仍为 gated backlog
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：authority 账本同步；等待 Dispatch 3 或后续显式开任务；不自动批准新 runtime
+- 当前只做：`T-P1A-008` allowed paths 内的脱敏 fixture parser / classifier 与任务账本同步；不自动批准新 runtime
 - 当前不做：workers、frontend、真实下载、ASR、BBDown / yt-dlp / ffmpeg runtime、浏览器自动化、Phase 2-4 runtime
-- 当前状态：`idle / backlog-gated`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P1A-003` 已通过 PR `#10` 合并入 `main`，含义仅为 `docs/research/** research note merged`；`T-P1A-006` 已通过 PR `#14` 合并入 `main`，含义仅为 `docs/specs/bbdown-adapter-contract-draft.md` draft spec merged；`T-P1A-007` 已通过 PR `#15` 合并入 `main`，含义仅为 `docs/research/**` Explore URL UX decision pack merged；当前只允许受控产品代码或 docs-only draft
+- 当前状态：`active`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P1A-003` 已通过 PR `#10` 合并入 `main`，含义仅为 `docs/research/** research note merged`；`T-P1A-006` 已通过 PR `#14` 合并入 `main`，含义仅为 `docs/specs/bbdown-adapter-contract-draft.md` draft spec merged；`T-P1A-007` 已通过 PR `#15` 合并入 `main`，含义仅为 `docs/research/**` Explore URL UX decision pack merged；当前只允许 `T-P1A-008` 受控 fixture-only 产品代码
 
 ## 3. 当前红线
 
@@ -42,6 +42,9 @@
 - `docs/specs/contracts-index.md`
 - `AGENTS.md`
 - `README.md`
+- `services/api/scoutflow_api/external_tools/**`
+- `tests/contracts/**`
+- `tests/fixtures/bbdown/**`
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/**` 当前只作 reference；如需继续修改，必须等待新任务显式授权
 
 ## 5. 当前禁止路径
@@ -54,8 +57,8 @@
 - `candidates/`
 - `dispatches/`
 - `audits/`
-- `services/**`（当前 `T-P1A-006` / `T-P1A-007` 不开放）
-- `tests/**`（当前 `T-P1A-006` / `T-P1A-007` 不开放，除非后续任务显式授权）
+- `services/**` 中除 `services/api/scoutflow_api/external_tools/**` 外的路径
+- `tests/**` 中除 `tests/contracts/**` 与 `tests/fixtures/bbdown/**` 外的路径
 
 ## 6. 写回纪律
 
