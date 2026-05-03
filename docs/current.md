@@ -3,11 +3,11 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-001`
-- 主任务：`T-P1A-001`
-- 工作模式：首个 Phase 1A code-bearing task；`metadata_only only`
-- 当前任务状态：`review`
-- 当前结论：`T-P1A-001` metadata-only contract 已完成最小实现并进入 PR review candidate；产品代码仍仅允许出现在批准路径；禁止 `audio_transcript` runtime、禁止 worker runtime、禁止浏览器自动化。
+- Step：`T-P1A-002 / T-P1A-003 / T-P1A-004`
+- 主任务：`T-P1A-002 / T-P1A-003 / T-P1A-004`
+- 工作模式：PR `#7` merged 后的三任务登记；本轮不执行三个 prompt
+- 当前任务状态：`active`
+- 当前结论：`T-P1A-001` metadata-only API-side capture creation baseline 已合并入 `main`（merge commit `d826ce191d71f9ab21d4a45543b980da1d282293`）。当前只登记 `T-P1A-002` / `T-P1A-003` / `T-P1A-004` 三个 active tasks；产品代码仍仅允许出现在对应任务批准路径；禁止 `audio_transcript` runtime、禁止 worker runtime、禁止浏览器自动化。
 
 ## 当前允许
 
@@ -39,16 +39,20 @@
 
 ## 当前候选基准
 
+- `T-P1A-001` = `metadata_only API-side capture creation baseline merged`
 - `POST /captures/discover` = `capture 创建入口（capture creation entrypoint）`
 - `recommendation / keyword / RAW gap` 不直接创建 capture
 - 活动任务上限 `3`
 - 项目根不建立重治理目录
 
-> 上述候选基准已获 user 批准；这只批准 `T-P1A-001` 的最小 `metadata_only` API-side baseline，不等于批准 broader Phase 1A runtime、workers、frontend、`audio_transcript` 或 Phase 2-4 产品代码。
+> `T-P1A-001` 合并只表示最小 `metadata_only` API-side baseline 进入 `main`，不等于批准 broader Phase 1A runtime、workers、frontend、`audio_transcript` 或 Phase 2-4 产品代码。
 
 ## 当前任务
 
-- `T-P1A-001`：Bilibili `manual_url` quick_capture，当前只做 `metadata_only only` 的 API-side contract 与 tests；`artifact_assets` 仅登记 `capture_manifest` 的 API-side ledger stub，worker receipt endpoint 仍属后续任务
+- `T-P1A-002`：API jobs / receipt / artifact ledger foundation；只做 API-side receipt ingestion 与 artifact ledger mapping；不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR
+- `T-P1A-003`：BBDown tool-surface research / adapter contract proposal；只做 public-source research note / draft spec，不实现或调用 runtime capture
+- `T-P1A-004`：Redaction / secret scan / CI hardening；只做未来 tool stdout/stderr/log 的安全 tooling、CI 与 contract tests，不调用外部 capture tools
+- `T-P1A-001`：Bilibili `manual_url` quick_capture metadata contract 已通过 PR `#7` 合并入 `main`；merge commit `d826ce191d71f9ab21d4a45543b980da1d282293`；`artifact_assets` 当前仅为 `capture_manifest` API-side ledger stub，worker receipt endpoint 仍属后续任务
 - `T-P0-002`：入口文档深化 + 并行执行协议固化，已在 PR `#1` 合并后闭合为 `done`
 - `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，已闭合为 `done`
 - `T-P0-004`：通信测试 artifacts 清理与主线恢复，已闭合为 `done`
@@ -58,8 +62,10 @@
 
 ## 下一步候选
 
-- 当前任务完成后，user review `T-P1A-001` tiny implementation PR
-- 若 user 后续批准，可再开 `T-P1A-002` worker-side metadata fetch / artifact writing
+- 按 user 指定从三个 active tasks 中选择执行路线；当前登记不代表三个 prompt 已执行
+- `T-P1A-002` 是 API authority writer 大任务
+- `T-P1A-003` 是 research / draft contract proposal，不能直接升级为 authority
+- `T-P1A-004` 是安全 tooling / CI hardening
 - 当前不自动扩展到 `audio_transcript`
 
 ## 阻塞

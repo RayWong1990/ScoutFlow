@@ -35,10 +35,10 @@ ALLOWED_BANNED_WORD_FILES = {
     "tools/check-docs-redlines.py",
 }
 BANNED_WORD_RE = re.compile(r"\b(crawl|spider|scrape_all|auto_capture|harvest)\b", re.IGNORECASE)
-STATE_RE = re.compile(r"`?(backlog|in_progress|review|done|blocked)`?")
+STATE_RE = re.compile(r"`?(active|backlog|in_progress|review|done|blocked)`?")
 TASK_RE = re.compile(r"T-P(?:0|1A)-\d{3}")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
-TASK_INDEX_SECTIONS = {"Review", "Backlog", "Blocked", "Done"}
+TASK_INDEX_SECTIONS = {"Active", "Review", "Backlog", "Blocked", "Done"}
 HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
 
 
@@ -117,7 +117,7 @@ def parse_task_index_states(task_index: str) -> tuple[dict[str, str], list[str]]
             )
             continue
 
-        if current_section in {"Review", "Backlog"}:
+        if current_section in {"Active", "Review", "Backlog"}:
             if len(cells) < 3 or not cells[2]:
                 errors.append(f"docs/task-index.md 中任务 {task_id} 缺少状态列：第 {line_number} 行")
                 continue
@@ -149,6 +149,13 @@ def check_task_index_parser_self_check(failures: list[str]) -> None:
 |---|---|---|
 | `T-P0-003` | sample | `review` |
 """
+    active_fixture = """
+## Active
+
+| 任务 ID | 标题 | 状态 |
+|---|---|---|
+| `T-P0-003` | sample | `active` |
+"""
     done_fixture = """
 ## Done
 
@@ -159,11 +166,14 @@ def check_task_index_parser_self_check(failures: list[str]) -> None:
     duplicate_fixture = review_fixture + done_fixture
 
     review_states, review_errors = parse_task_index_states(review_fixture)
+    active_states, active_errors = parse_task_index_states(active_fixture)
     done_states, done_errors = parse_task_index_states(done_fixture)
     _, duplicate_errors = parse_task_index_states(duplicate_fixture)
 
     if review_errors or review_states.get("T-P0-003") != "review":
         failures.append("task-index 解析自检失败：Review 表未解析为 review")
+    if active_errors or active_states.get("T-P0-003") != "active":
+        failures.append("task-index 解析自检失败：Active 表未解析为 active")
     if done_errors or done_states.get("T-P0-003") != "done":
         failures.append("task-index 解析自检失败：Done 表未解析为 done")
     if not duplicate_errors:
