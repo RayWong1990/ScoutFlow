@@ -48,7 +48,8 @@ _RESULT_PATTERNS: tuple[tuple[PlatformResult, tuple[re.Pattern[str], ...]], ...]
         PlatformResult.auth_required,
         (
             re.compile(r"\b(login required|not logged in|auth required|credential required)\b", re.IGNORECASE),
-            re.compile(r"(需要登录|未登录|登录态失效|凭据缺失|账号登录)"),
+            re.compile(r"\b(qr code|scan qr|scan to login)\b", re.IGNORECASE),
+            re.compile(r"(需要登录|未登录|登录态失效|凭据缺失|账号登录|扫码|二维码)"),
         ),
     ),
     (
