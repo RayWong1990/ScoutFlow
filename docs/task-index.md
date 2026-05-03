@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`1/3`，Review count=`1`。
+> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`0/3`，Review count=`0`。
 
 ## 规则
 
@@ -19,19 +19,19 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-007` | Explore URL UX / risk / receipt status brainstorm | `active` | `Codex Desktop + user` | 与 user 交互式脑暴 Explore 粘贴 URL、风险提示、receipt 状态展示；只产 discussion / research / candidate notes，不写 frontend | `docs/research/**`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `AGENTS.md`, `README.md` | `apps/**`, `services/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `example/**`, `examples/**`, `candidates/**`, `dispatches/**`, `audits/**` | `docs/PRD-v1.1-amendment-2026-05-02.md` LP-001; `docs/SRD-v1.1-amendment-2026-05-03.md` A010-A012; `docs/specs/worker-receipt-contract.md` | Brainstorm note review; `python tools/check-docs-redlines.py`; `git diff --check`; forbidden path checks | writing frontend; browser automation; changing `/captures/discover` semantics; creating capture from recommendation / keyword / RAW gap | UX decisions require user confirmation before entering contract or implementation task |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Review
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-006` | BBDown adapter contract draft | `review` | `Codex Desktop` | 从 merged PR `#10` research note 提炼 `docs/specs/bbdown-adapter-contract-draft.md`；只做 draft contract，不写 runtime | `docs/specs/bbdown-adapter-contract-draft.md`, `docs/specs/contracts-index.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `AGENTS.md`, `README.md` | `services/**`, `apps/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `example/**`, `examples/**`, `candidates/**`, `dispatches/**`, `audits/**` | `docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md`; `docs/specs/platform-adapter-risk-contract.md`; `docs/specs/worker-receipt-contract.md`; `docs/specs/raw-response-redaction.md`; `docs/specs/bbdown-adapter-contract-draft.md` | `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `git diff --check`; forbidden path checks | running BBDown; media download; ASR; cookies/tokens; workers; runtime code; marking draft as final authority | Review candidate only；draft spec says `draft / not final authority / not runtime approval` |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Backlog
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-008` | BBDown sanitized fixture parser | `backlog/gated` | `TBD` | 在 `T-P1A-006` draft spec 合并后，使用脱敏 fixture 做 parser；不运行 BBDown | `TBD when opened`; expected `tests/**` and bounded parser modules only after explicit dispatch | `apps/**`, `workers/**`, `data/**`, `referencerepo/**`, real BBDown output with secrets, live Bilibili URL runtime | `docs/specs/bbdown-adapter-contract-draft.md` after `T-P1A-006` | Fixture parser tests; secret scan; forbidden path checks | running BBDown; using raw unsafe stdout; parser silently accepting drift | Gate: wait for `T-P1A-006` draft spec merge |
+| `T-P1A-008` | BBDown sanitized fixture parser | `backlog` | `TBD` | `T-P1A-006` 已合入 main，可按 Dispatch 3 打开；使用脱敏 fixture 做 parser；不运行 BBDown | `TBD when opened`; expected `tests/**` and bounded parser modules only after explicit dispatch | `apps/**`, `workers/**`, `data/**`, `referencerepo/**`, real BBDown output with secrets, live Bilibili URL runtime | `docs/specs/bbdown-adapter-contract-draft.md` on `main` | Fixture parser tests; secret scan; forbidden path checks | running BBDown; using raw unsafe stdout; parser silently accepting drift | Gate satisfied for Dispatch 3 opening；仍不等于自动开工 |
 | `T-P1A-009` | BBDown local runtime spike | `backlog/gated` | `TBD` | Local runtime spike only after user re-approval; allowed shape limited to `BBDown --version` and no-auth `-info` metadata probe if later authorized | `TBD when opened`; no runtime path opened now | media download; ASR; workers; frontend; cookies/tokens; browser profile; tracked raw stdout/stderr with secrets | `T-P1A-006`; `T-P1A-008`; future user approval phrase | Explicit runtime-spike validation in later dispatch | treating backlog as approval; downloading media; auth material entering Git/CI/logs | Gate: `T-P1A-006` + `T-P1A-008` + user again explicitly approves runtime spike |
 
 ## Blocked
@@ -55,6 +55,8 @@
 | `T-P1A-004` | Redaction / secret scan / CI hardening | `2026-05-03` | branch=`task/T-P1A-004-redaction-secret-scan-ci`; rebased head=`7c74233095c3c297d4634a7e342547830d77bf32`; PR=`#8`; merge commit=`4f6af1ce3d823c84fc8f38cefee0790ec1830c62`; workflow run=`25279195327`; docs-smoke=`success`; api-contract-tests=`success`; local validation=`25 passed` contracts / `50 passed` api+contracts；no workers / frontend / runtime capture |
 | `T-P1A-003` | BBDown tool-surface research note | `2026-05-03` | PR=`#10`; head=`42baf4165d7bf9022a9e8742d989a7428ae3ee4b`; merge commit=`8328c567e26db118ad456b29f8616066174b3568`; GitHub run=`25280084928`; `docs-smoke=success`; `api-contract-tests=success`; scope=`docs/research/**` research note only；not authority；not implementation approval；no runtime |
 | `T-P1A-005` | Human gate sync and PR #10 research merge | `2026-05-03` | branch=`task/T-P1A-005-human-gate-sync`; head=`e10c9fc3808668fd34b6dc2150db151186640743`; PR=`#12`; merge commit=`419546de000f4a163d4158f2ced9784ba263c09c`; workflow run=`25280435814`; docs-smoke=`success`; api-contract-tests=`success`; scope=`AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/specs/contracts-index.md`; no runtime approval |
+| `T-P1A-006` | BBDown adapter contract draft | `2026-05-03` | PR=`#14`; head=`ef5deba11f12d359bec61564a5bef1c9962037c8`; merge commit=`014e37a11427922c52d35b56c3962110d3711d17`; workflow run=`25280751608`; docs-smoke=`success`; api-contract-tests=`success`; merged draft on `main` only；not final authority；not runtime approval |
+| `T-P1A-007` | Explore URL UX / risk / receipt status brainstorm | `2026-05-03` | PR=`#15`; head=`8271a43e88765f8214a303d98df863e1d7ea7f94`; merge commit=`e9b4d1bb5bae0d79ead0b9bb6f60304f3a560abe`; workflow run=`25282020291`; docs-smoke=`success`; api-contract-tests=`success`; merged research note / decision pack only；no frontend / API / runtime approval |
 
 ## Stop-the-line
 

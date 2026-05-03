@@ -19,7 +19,7 @@
 | `C-WRK-001` | Worker Receipt & Artifact Ledger | `docs/specs/worker-receipt-contract.md` | Codex | Phase 1A |
 | `C-PLT-001` | Platform Adapter Risk Contract | `docs/specs/platform-adapter-risk-contract.md` | Codex | Phase 1A |
 | `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md` | Codex | Phase 1A |
-| `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，当前为 review candidate） | Codex | Phase 1A draft only |
+| `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，已合入 main 但仍是 draft only） | Codex | Phase 1A draft only |
 | `C-NFR-001` | NFR 分级 | `docs/SRD-v1.1-amendment-2026-05-03.md` A007 | user | Step0 |
 | `C-OPS-001` | Parallel Execution Protocol | `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
 | `C-OPS-002` | GitHub External Audit Workflow | `README.md` + `AGENTS.md` + `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
@@ -27,7 +27,7 @@
 
 > `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
 > `C-BBD-001` 当前只是允许提炼 draft spec 的占位 contract；写入后仍必须标记 `draft / not final authority / not runtime approval`。
-> `main` 当前已合入 `T-P1A-001` 的 API-side `capture_manifest` ledger stub、`T-P1A-002` 的 receipt / ledger baseline、`T-P1A-004` 的 secret-scan / text-redaction safety baseline。`T-P1A-003` 已通过 PR `#10` 合入为 research note，但不进入 authority。
+> `main` 当前已合入 `T-P1A-001` 的 API-side `capture_manifest` ledger stub、`T-P1A-002` 的 receipt / ledger baseline、`T-P1A-004` 的 secret-scan / text-redaction safety baseline。`T-P1A-003` 与 `T-P1A-007` 已通过 PR `#10` / `#15` 合入为 research note，`T-P1A-006` 已通过 PR `#14` 合入为 merged draft spec；这些都不进入 authority。
 
 ## 当前实现基线状态
 
@@ -43,7 +43,8 @@
 | Item | 当前状态 | 边界 |
 |---|---|---|
 | `docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md` | PR `#10` 已合入 `main`；merge commit=`8328c567e26db118ad456b29f8616066174b3568`；GitHub run=`25280084928` | Research note only；not authority；not implementation approval；not runtime approval |
-| `docs/specs/bbdown-adapter-contract-draft.md` | `T-P1A-006` review candidate，已从 research note 提炼 | Draft only；not final authority；not runtime approval；不得包含 BBDown / ffmpeg / ASR runtime approval |
+| `docs/specs/bbdown-adapter-contract-draft.md` | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval；不得包含 BBDown / ffmpeg / ASR runtime approval |
+| `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` | `T-P1A-007` merged research note on `main` | Research note only；not authority；not frontend / API / runtime approval |
 
 ## 当前引用但未落地的上游文档
 
