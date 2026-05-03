@@ -18,9 +18,9 @@
 | `C-ART-001` | `artifact_assets` 命名与台账入口 | `docs/SRD-v1.1-amendment-2026-05-03.md` A006 + `docs/specs/worker-receipt-contract.md` | Codex | Phase 1A |
 | `C-WRK-001` | Worker Receipt & Artifact Ledger | `docs/specs/worker-receipt-contract.md` | Codex | Phase 1A |
 | `C-PLT-001` | Platform Adapter Risk Contract | `docs/specs/platform-adapter-risk-contract.md` | Codex | Phase 1A |
-| `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md` | Codex | Phase 1A |
+| `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md`（含 `BBDown.data` / `BBDownTV.data` / `qrcode.png` / local auth path examples） | Codex | Phase 1A |
 | `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，已合入 main 但仍是 draft only） | Codex | Phase 1A draft only |
-| `C-BBD-002` | BBDown Runtime Gate Amendment | `docs/PRD-v1.2-amendment-2026-05-03.md` + `docs/SRD-v1.2-amendment-2026-05-03.md`（`T-P1A-010C` draft；ToolPreflightResult / PlatformResult separation、no-auth gate、manual-auth separation、audio blocker） | Codex | Phase 1A candidate draft only |
+| `C-BBD-002` | BBDown Runtime Gate Amendment | `docs/PRD-v1.2-amendment-2026-05-03.md` + `docs/SRD-v1.2-amendment-2026-05-03.md`（`T-P1A-010C` draft；ToolPreflightResult / PlatformResult separation、no-auth gate、manual-auth separation、`BBDown.data` / `qrcode.png` local-only boundary、audio blocker） | Codex | Phase 1A candidate draft only |
 | `C-NFR-001` | NFR 分级 | `docs/SRD-v1.1-amendment-2026-05-03.md` A007 | user | Step0 |
 | `C-OPS-001` | Parallel Execution Protocol | `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
 | `C-OPS-002` | GitHub External Audit Workflow | `README.md` + `AGENTS.md` + `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
@@ -28,7 +28,7 @@
 
 > `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
 > `C-BBD-001` 当前只是允许提炼 draft spec 的占位 contract；写入后仍必须标记 `draft / not final authority / not runtime approval`。
-> `C-BBD-002` 当前只是 `T-P1A-010C` 的 amendment repair candidate；它不批准 BBDown runtime、QR / manual auth、media download、ffmpeg、ASR、workers、frontend 或 `audio_transcript` runtime。
+> `C-BBD-002` 当前只是 `T-P1A-010C` 的 amendment repair candidate；它不批准 BBDown runtime、QR / manual auth、media download、ffmpeg、ASR、workers、frontend 或 `audio_transcript` runtime。它当前只额外记录 manual-auth 必须把 `BBDown.data` / `qrcode.png` 留在 repo 外的 local-only 边界。
 > `main` 当前已合入 `T-P1A-001` 的 API-side `capture_manifest` ledger stub、`T-P1A-002` 的 receipt / ledger baseline、`T-P1A-004` 的 secret-scan / text-redaction safety baseline。`T-P1A-003` 与 `T-P1A-007` 已通过 PR `#10` / `#15` 合入为 research note，`T-P1A-006` 已通过 PR `#14` 合入为 merged draft spec；这些都不进入 authority。
 
 ## 当前实现基线状态

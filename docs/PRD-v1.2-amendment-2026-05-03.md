@@ -121,6 +121,8 @@ QR login / manual auth 是独立高风险 gate，不属于 no-auth metadata prob
 - QR code image、cookie、token、authorization header、signed URL、browser profile path、本地凭据文件路径都不得进入 Git、PR、CI、logs、DB artifacts、receipt、fixtures 或 tracked files。
 - 浏览器 profile reading 默认禁止，除非未来另有明确 contract 修改。
 - manual auth 失败或缺失只可导向人工动作，不可在同一任务中继续试探凭据。
+- 若工具会把 auth material 写在 executable 同目录，manual auth 只允许在 repo 外 local-only executable/store 上执行。
+- 若工具会把 QR image 写在当前工作目录，manual auth 只允许在 repo 外临时 cwd 上执行，并在完成后清理 QR image。
 
 ### 产品呈现建议
 
@@ -128,7 +130,7 @@ QR login / manual auth 是独立高风险 gate，不属于 no-auth metadata prob
 
 - 本地工具未配置：先解决 `ToolPreflightResult`。
 - no-auth metadata 不可用：停止当前 probe，给出安全摘要。
-- manual auth required：转人工 gate，不自动读取或保存凭据。
+- manual auth required：转人工 gate，不自动读取或保存凭据；终端提示应避免暴露 repo 内 auth store 路径。
 
 ## 6. A038 — Audio Transcript Blocker
 

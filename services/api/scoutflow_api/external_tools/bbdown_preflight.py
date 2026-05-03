@@ -22,6 +22,10 @@ _VERSION_RE = re.compile(
     r"(?:\bBBDown\b[\s:/-]*(?:version\s*)?)?v?(?P<version>\d+(?:\.\d+){1,3}(?:[-+][A-Za-z0-9.-]+)?)",
     re.IGNORECASE,
 )
+_VERSION_HELP_FALLBACK_RE = re.compile(
+    r"(?:Required argument missing for command:\s*'BBDown')|(?:请使用 BBDown --help 查看帮助)",
+    re.IGNORECASE,
+)
 _LOCAL_PATH_RE = re.compile(
     r"(?:(?:/Users|/private|/tmp|/var|/Volumes)/[^\s\"'`<>]+|[A-Za-z]:\\Users\\[^\\\s\"'`<>]+(?:\\[^\\\s\"'`<>]+)*)"
 )
@@ -116,6 +120,33 @@ def preflight_bbdown_tool(
 
     safe_stdout = _safe_excerpt(version_result.stdout)
     safe_stderr = _safe_excerpt(version_result.stderr)
+
+    if version_result.returncode != 0 and _should_retry_with_help(
+        returncode=version_result.returncode,
+        safe_stdout_excerpt=safe_stdout,
+        safe_stderr_excerpt=safe_stderr,
+    ):
+        help_command = [str(executable), "--help"]
+        try:
+            version_result = version_runner(help_command, timeout_seconds=timeout_seconds)
+        except ToolVersionTimeoutError as exc:
+            return _check(
+                result=ToolPreflightResult.version_timeout,
+                safe_diagnostic="BBDown --help timed out during bounded preflight fallback.",
+                safe_stdout_excerpt=_safe_excerpt(exc.stdout),
+                safe_stderr_excerpt=_safe_excerpt(exc.stderr),
+            )
+        except Exception:
+            return _check(
+                result=ToolPreflightResult.subprocess_error,
+                safe_diagnostic="BBDown --help fallback failed before a safe version result could be returned.",
+                safe_stdout_excerpt=safe_stdout,
+                safe_stderr_excerpt=safe_stderr,
+            )
+
+        safe_stdout = _safe_excerpt(version_result.stdout)
+        safe_stderr = _safe_excerpt(version_result.stderr)
+
     if version_result.returncode != 0:
         return _check(
             result=ToolPreflightResult.subprocess_error,
@@ -185,6 +216,18 @@ def _parse_version(text: str) -> str | None:
     if not match:
         return None
     return match.group("version")
+
+
+def _should_retry_with_help(
+    *,
+    returncode: int,
+    safe_stdout_excerpt: str,
+    safe_stderr_excerpt: str,
+) -> bool:
+    if returncode == 0:
+        return False
+    combined = "\n".join(part for part in (safe_stdout_excerpt, safe_stderr_excerpt) if part)
+    return bool(_VERSION_HELP_FALLBACK_RE.search(combined))
 
 
 def _safe_excerpt(text: str) -> str:

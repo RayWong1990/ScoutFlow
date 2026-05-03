@@ -147,9 +147,19 @@ If a later task opens manual auth, it must define all of the following before ex
 6. failure mapping to `auth_required`
 7. explicit ban on browser profile reading unless separately amended
 
+Observed implementation lesson from local BBDown `1.6.3`:
+
+- `BBDown login` may write `qrcode.png` into the current working directory.
+- `BBDown.data` / `BBDownTV.data` may be written next to the executable.
+- Therefore a manual-auth gate must use:
+  - a temp cwd outside the repo
+  - an executable path whose auth-sidecar location is outside tracked repo paths
+  - a report that describes auth storage only in abstract form such as `local BBDown auth store outside Git`
+
 ### Hard bans
 
 - QR code image in Git / PR / CI / logs / fixtures / tracked files
+- `BBDown.data` / `BBDownTV.data` in Git / PR / CI / logs / fixtures / tracked files
 - cookie / token / authorization header in Git / PR / CI / logs / DB artifacts / receipts
 - signed media URL in durable evidence before redaction
 - local browser profile export
@@ -196,7 +206,7 @@ The blocker covers:
 | `SRD12-P003` | `docs/SRD-v1-2026-05-02.md` §7 interface / worker receipt | 在 receipt 之前增加 tool preflight 与 no-auth metadata evidence gate |
 | `SRD12-P004` | `docs/specs/platform-adapter-risk-contract.md` | 补充 `ToolPreflightResult` 与 `PlatformResult` 的分层说明，避免 missing executable 映射进平台 enum |
 | `SRD12-P005` | `docs/specs/bbdown-adapter-contract-draft.md` | 更新 Gate 2 / Gate 3：`T-P1A-009` 已证明 executable missing，后续先开 tool preflight |
-| `SRD12-P006` | `docs/specs/raw-response-redaction.md` | 明确 QR code image、browser profile path、signed media URL、local auth path 不进入 durable evidence |
+| `SRD12-P006` | `docs/specs/raw-response-redaction.md` | 明确 QR code image、`BBDown.data`、browser profile path、signed media URL、local auth path 不进入 durable evidence |
 | `SRD12-P007` | `docs/specs/contracts-index.md` | 登记 v1.2 amendment 为 candidate / draft only |
 
 ### Reference outline only

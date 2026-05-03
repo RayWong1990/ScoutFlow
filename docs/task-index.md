@@ -31,7 +31,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-011B` | Manual-auth QR local-only gate | `gated` | `Codex Desktop` | 仅在 no-auth 不足且 user 再次显式授权时，打开本地 QR scan gate；必须使用 repo 外的 local-only executable/auth store 与临时 cwd；不进入 media / receipt / capture state | `docs/current.md`, `docs/task-index.md`, `docs/specs/contracts-index.md`, `docs/specs/raw-response-redaction.md`, candidate PRD/SRD amendments, external dispatch file in `Downloads` | `apps/`, `workers/`, `packages/`, `data/`, `referencerepo/`, `candidates/`, `dispatches/`, `audits/`, repo 内 auth store, repo 内 QR image, browser profile, command-string credentials, media, ffmpeg, ASR, receipt, capture state | `C-BBD-002`, `C-SEC-001`, `C-PLT-001` | 任务开启前先确认 external executable path / local-only auth store / temp cwd；执行后跑 docs/secret/test validation；不以下载目录文件替代 repo authority | 若 `BBDown.data` 将落在 repo/可跟踪路径；若 QR image 将落在 repo cwd；若需要 cookie/token 粘贴或 browser profile；若 auth/store 路径无法安全抽象化，就停线 | 07 dispatch 已修订，但本 gate 仍未获执行授权 |
 
 ## Blocked
 
@@ -43,6 +43,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-011` | BBDown tool preflight compatibility repair | `2026-05-04` | scope=`bbdown_preflight.py + test_bbdown_tool_preflight_contract.py`; fix=`when BBDown 1.6.3 treats --version as missing root url, preflight may retry with --help and still parse version`; live verification=`ContentFlow local BBDown -> executable_found version=1.6.3`; no `-info`, no `PlatformResult`, no auth/media/receipt/capture state |
 | `T-P0-000` | Step0 Execution Plan + SRD 开工安全补丁（含 audit-fix） | `2026-05-03` | user 已批准作为后续实现候选基准 |
 | `T-P0-001` | GitHub Bootstrap + Initial Repository Baseline | `2026-05-03` | initial=`22c2c2014b9d10f48a6a8fe11fc73f38ba1b0045`; second=`d1c12326450f5a92d8b0b6f32c0cac51f5f5ee5a`; remote=`https://github.com/RayWong1990/ScoutFlow.git`; private repo；无产品代码 |
 | `T-P0-002` | 入口文档深化 + 并行执行协议固化 | `2026-05-03` | branch=`task/T-P0-002-parallel-execution-protocol`; commit=`ee1f4cfd34282e39be74afc20310ef7801ac4b25`; PR=`#1`; merge commit=`bafeb56c79c69a43f2806aaec88ea7014db36815`; workflow run=`25271451489`; docs-check=`success`; GPT Pro external audit=`COMMENT review, no blocking issue`; 无产品代码；未批准 Phase 1A 产品实现 |

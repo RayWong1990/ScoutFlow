@@ -23,9 +23,14 @@
 - `X-API-Key`
 - 完整 cookie jar
 - 凭据文件原文
+- `BBDown.data`
+- `BBDownTV.data`
+- `qrcode.png`
 - 登录页截图
 - 本地浏览器 profile 导出
 - 含敏感 query 参数的原始 URL
+- 可复扫的终端 QR block / ANSI 二维码文本
+- 暴露 auth store 真实落点的本地路径文本
 
 ## 4. 常见敏感字段处理
 
@@ -35,6 +40,8 @@
 | response headers | 仅保留安全字段；`Set-Cookie` 直接移除 |
 | response body | 删除或掩码 `token`、`session_id`、`csrf`、`cookie`、`access_key`、`refresh_key` |
 | 平台字段 | 已知平台凭据如 `SESSDATA`、`bili_jct`、`DedeUserID` 不落盘 |
+| local auth store | `BBDown.data` / `BBDownTV.data` 视为凭据文件，不复制、不落 ledger、不进 repo |
+| QR material | `qrcode.png`、终端二维码块、可复扫 URL 不落盘 |
 | logs / stderr | 做同样的字段级脱敏 |
 
 ## 5. 当前 artifact 约束
@@ -72,6 +79,8 @@ receipt 中必须显式声明：
 - stderr 若包含敏感字段，写盘前先脱敏
 - Tool stdout/stderr redaction applies before logs or receipts are written.
 - Temporary media URLs and signed query parameters are not safe evidence until redacted.
+- 若工具把 auth store 写在 executable 同目录，repo 内 executable 视为不可用于 manual-auth gate。
+- 若工具把 QR image 写在当前 cwd，repo cwd 视为不可用于 manual-auth gate。
 
 ## 8. 当前审查清单
 
@@ -84,6 +93,8 @@ receipt 中必须显式声明：
 ## 9. 当前禁止
 
 - 把本地凭据文件复制进 `bundle/`
+- 把 `BBDown.data` / `BBDownTV.data` 留在 repo 或可跟踪目录
+- 把 `qrcode.png` 留在 repo、日志目录或 PR 附件
 - 为了调试方便直接落完整 response
 - 为了复现问题保存登录页或 authenticated browser state
 - 在 job_events、日志、stderr 中泄露凭据

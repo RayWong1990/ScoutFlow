@@ -127,6 +127,65 @@ def test_version_parse_failure_after_successful_exit(tmp_path: Path) -> None:
     assert result.safe_stdout_excerpt == "BBDown development build"
 
 
+def test_version_help_fallback_parses_version_when_dashdash_version_requires_root_url(tmp_path: Path) -> None:
+    from scoutflow_api.external_tools.bbdown_preflight import (
+        ToolPreflightResult,
+        ToolVersionProcessResult,
+        preflight_bbdown_tool,
+    )
+
+    executable_path = _touch(tmp_path / "BBDown", 0o755)
+    seen_commands: list[object] = []
+
+    def fake_runner(command: list[str], *, timeout_seconds: float) -> ToolVersionProcessResult:
+        seen_commands.append(command)
+        if command == [str(executable_path), "--version"]:
+            return ToolVersionProcessResult(
+                returncode=1,
+                stdout="",
+                stderr="Required argument missing for command: 'BBDown'.\n请使用 BBDown --help 查看帮助\n",
+            )
+        assert command == [str(executable_path), "--help"]
+        assert timeout_seconds == 5.0
+        return ToolVersionProcessResult(
+            returncode=0,
+            stdout="BBDown version 1.6.3, Bilibili Downloader.\nUsage:\n  BBDown <url> [command] [options]\n",
+            stderr="",
+        )
+
+    result = preflight_bbdown_tool(configured_executable=executable_path, runner=fake_runner)
+
+    assert result.result is ToolPreflightResult.executable_found
+    assert result.version == "1.6.3"
+    assert result.safe_stdout_excerpt.startswith("BBDown version 1.6.3")
+    assert result.safe_diagnostic == "BBDown executable found and version parsed."
+    assert seen_commands == [
+        [str(executable_path), "--version"],
+        [str(executable_path), "--help"],
+    ]
+
+
+def test_version_help_fallback_not_used_for_unrelated_nonzero_exit(tmp_path: Path) -> None:
+    from scoutflow_api.external_tools.bbdown_preflight import (
+        ToolPreflightResult,
+        ToolVersionProcessResult,
+        preflight_bbdown_tool,
+    )
+
+    executable_path = _touch(tmp_path / "BBDown", 0o755)
+    seen_commands: list[object] = []
+
+    def fake_runner(command: list[str], *, timeout_seconds: float) -> ToolVersionProcessResult:
+        seen_commands.append(command)
+        return ToolVersionProcessResult(returncode=2, stdout="", stderr="fatal error")
+
+    result = preflight_bbdown_tool(configured_executable=executable_path, runner=fake_runner)
+
+    assert result.result is ToolPreflightResult.subprocess_error
+    assert result.safe_stderr_excerpt == "fatal error"
+    assert seen_commands == [[str(executable_path), "--version"]]
+
+
 def test_subprocess_error_redacts_safe_output_without_raw_fields(tmp_path: Path) -> None:
     from scoutflow_api.external_tools.bbdown_preflight import (
         ToolPreflightCheck,
