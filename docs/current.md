@@ -3,11 +3,11 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-010 wave1 ledger closed / T-P1A-011 gated`
-- 主任务：`T-P1A-010-wave1-ledger-close`
-- 工作模式：Wave 1 已收口；当前无 active product task；后续仍遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
-- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser、通过 PR `#19` 合入 `T-P1A-009` BBDown local runtime spike report、通过 PR `#20` 完成 `T-P1A-009` close hardening，并按 05 red-team `PASS_WITH_FIXES` 后顺序合入 PR `#23` / `#22` / `#24`。`T-P1A-010A` merge commit=`0b5d4350c4dad3ebae3d594245ddfcfb65a22f91`；`T-P1A-010B` merge commit=`b6a23a9d46c94e07974404d7eec19ba2dffe7092`；`T-P1A-010C` merge commit=`297d286a13b8d60d9627db80925289fb85674a8a`。当前 Active count=`0/3`，Review count=`0`；当前不运行真实 BBDown，不执行真实 `BBDown -info`，不创建 workers，不调用 yt-dlp / ffmpeg / ASR，不下载媒体，不读取凭据或 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- Step：`T-P1A-011B manual-auth QR local-only gate done`
+- 主任务：`T-P1A-011B-manual-auth-qr-local-only-gate`
+- 工作模式：当前无 active product task；后续仍遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
+- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser、通过 PR `#19` 合入 `T-P1A-009` BBDown local runtime spike report、通过 PR `#20` 完成 `T-P1A-009` close hardening，并按 05 red-team `PASS_WITH_FIXES` 后顺序合入 PR `#23` / `#22` / `#24`。`T-P1A-011` preflight compatibility repair 已完成；`T-P1A-011B` manual-auth QR local-only gate 现已完成：QR 在 repo 外 temp cwd 本地展示，user 已完成扫码，safe tool output 确认 auth completed，临时 QR cwd 已清空，auth sidecar 留在 repo 外 local-only auth store。当前 Active count=`0/3`，Review count=`0`；本轮仍未执行 `BBDown -info`，未触达 probe 平台边界，未产生 `PlatformResult`，未下载媒体，未运行 ffmpeg / ASR，未读取 browser profile，未写 receipt / artifact ledger / capture state，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -15,7 +15,7 @@
 - 入口同步文件：`AGENTS.md`、`README.md`，仅在状态口径需要时修改
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` 当前只作参考，不自动授权后续代码修改
 - `T-P1A-009` report-only 文件：`docs/research/t-p1a-009-bbdown-local-runtime-spike-report-2026-05-03.md`
-- 当前无 active product task；下一步候选 `T-P1A-011 live no-auth BBDown -info probe` 仍是 `gated / requires explicit user approval`
+- 当前无 active product task；`T-P1A-011B` 已完成
 
 ## 当前禁止
 
@@ -49,6 +49,7 @@
 - `T-P1A-010A` = `ToolPreflightResult code and contract tests merged`; not live BBDown approval
 - `T-P1A-010B` = `injected-runner no-auth -info adapter shell merged`; not live runtime proof
 - `docs/PRD-v1.2-amendment-2026-05-03.md` + `docs/SRD-v1.2-amendment-2026-05-03.md` = `T-P1A-010C` candidate amendment pack；仍是 `candidate / draft / not final authority / not runtime approval`
+- `docs/research/t-p1a-011-bbdown-noauth-info-probe-report-2026-05-03.md` = `T-P1A-011` blocked probe report；是 repair 输入，不是 runtime approval
 - 活动任务上限 `3`；当前 Active count=`0/3`，Review count=`0`
 - 项目根不建立重治理目录
 
@@ -56,6 +57,8 @@
 
 ## 当前任务
 
+- `T-P1A-011`：BBDown tool preflight compatibility repair；状态 `done`；已修复 `BBDown 1.6.3` 对 `--version` 的命令形态兼容问题；contract tests 与 live local preflight verification 已通过；仍未重跑 `-info`
+- `T-P1A-011B`：Manual-auth QR local-only gate；状态 `done`；已使用 repo 外 local-only executable/auth store 与 repo 外 temp cwd 完成 `BBDown login`；QR 已本地展示并完成扫码；临时 QR cwd 已清空；auth sidecar 留在 repo 外 local-only auth store；报告见 `docs/research/t-p1a-011b-bbdown-manual-auth-qr-local-only-report-2026-05-03.md`
 - `T-P1A-010A`：BBDown executable discovery / tool preflight package；状态 `done`；已通过 PR `#23` 合并入 `main`；仅表示 `ToolPreflightResult` package 和 contract tests merged，不批准真实 BBDown 执行、URL、`-info`、auth、media、ffmpeg、ASR、receipt 或 capture state
 - `T-P1A-010B`：BBDown no-auth `-info` adapter shell with injected runner and parser integration；状态 `done`；已通过 PR `#22` 合并入 `main`；仅表示 injected-runner adapter shell merged，不批准真实 BBDown 执行、真实 `BBDown -info`、auth、media、receipt 或 capture state
 - `T-P1A-010C`：PRD/SRD amendment repair pack + next dispatch plan + red-team checklist；状态 `done`；已通过 PR `#24` 合并入 `main`；PRD/SRD v1.2 amendment 仍是 `candidate / draft / not final authority / not runtime approval`
@@ -72,8 +75,9 @@
 
 ## 下一步候选
 
-- `T-P1A-011 live no-auth BBDown -info probe` 是下一步候选，但状态必须保持 `gated / requires explicit user approval`
-- 不自动启动 06；真实 BBDown `-info`、QR/manual auth、media、ffmpeg、ASR、workers、frontend、`audio_transcript` 仍未批准
+- 下一步候选是 user 如需重新打开 06，可基于已修复的 preflight 重新授权一次 no-auth `-info` probe
+- 下一步候选是一个新的 metadata probe gate；若需要使用当前 local-only auth state 执行 `BBDown -info`，必须再获 user 明确授权
+- 不自动执行 `BBDown -info`；未来若要尝试真实 `BBDown -info`，仍需 user 再次显式批准；media、ffmpeg、ASR、workers、frontend、`audio_transcript` 仍未批准
 
 ## 阻塞
 
@@ -82,4 +86,4 @@
 - 不允许把 BBDown research note、draft spec、或“后续希望复用 BBDown”解释为 runtime approval
 - 不允许把 `T-P1A-009` 的 local-only spike 写成媒体下载、ffmpeg、ASR、worker、artifact、receipt、capture 状态变更或 `audio_transcript` approval
 - 不允许把 PR `#23` / `#22` / `#24` 的合并解释为 live BBDown runtime proof
-- 不允许在 user 显式批准前启动 `T-P1A-011` 或 06
+- 不允许把 `T-P1A-011` 的 preflight blocked report 写成 no-auth `-info` 成功或 runtime approval

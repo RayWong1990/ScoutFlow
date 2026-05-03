@@ -43,6 +43,8 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-011B` | Manual-auth QR local-only gate | `2026-05-04` | scope=`repo-external executable/auth store + repo-external temp cwd`; result=`QR displayed locally, user scan completed, auth completed from safe tool output`; evidence=`temp QR cwd cleaned, auth sidecar stayed outside Git`; no `-info`, no media, no `PlatformResult`, no receipt/capture state |
+| `T-P1A-011` | BBDown tool preflight compatibility repair | `2026-05-04` | scope=`bbdown_preflight.py + test_bbdown_tool_preflight_contract.py`; fix=`when BBDown 1.6.3 treats --version as missing root url, preflight may retry with --help and still parse version`; live verification=`ContentFlow local BBDown -> executable_found version=1.6.3`; no `-info`, no `PlatformResult`, no auth/media/receipt/capture state |
 | `T-P0-000` | Step0 Execution Plan + SRD 开工安全补丁（含 audit-fix） | `2026-05-03` | user 已批准作为后续实现候选基准 |
 | `T-P0-001` | GitHub Bootstrap + Initial Repository Baseline | `2026-05-03` | initial=`22c2c2014b9d10f48a6a8fe11fc73f38ba1b0045`; second=`d1c12326450f5a92d8b0b6f32c0cac51f5f5ee5a`; remote=`https://github.com/RayWong1990/ScoutFlow.git`; private repo；无产品代码 |
 | `T-P0-002` | 入口文档深化 + 并行执行协议固化 | `2026-05-03` | branch=`task/T-P0-002-parallel-execution-protocol`; commit=`ee1f4cfd34282e39be74afc20310ef7801ac4b25`; PR=`#1`; merge commit=`bafeb56c79c69a43f2806aaec88ea7014db36815`; workflow run=`25271451489`; docs-check=`success`; GPT Pro external audit=`COMMENT review, no blocking issue`; 无产品代码；未批准 Phase 1A 产品实现 |
