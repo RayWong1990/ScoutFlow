@@ -19,7 +19,17 @@
 - 标出 Phase 2+ outline，不把它们推进当前 backlog
 - 不主导代码主线
 
-## 3. 当前禁止
+## 3. GitHub 外部审计工作流
+
+当 `Claude Code / VSCode` 参与执行或审读 ScoutFlow 任务时，默认按以下链路交接：
+
+1. 在当前允许路径内交付变更，不进入产品实现禁区。
+2. 将变更 push 到 GitHub，保留 commit、分支 / PR 与 workflow run 记录。
+3. user 后续贴 `commit hash + run id + 回写摘要`；若没有 CI run，标 `run id: none`。
+4. 网页版 `GPT Pro` 直接读取 GitHub commit / PR diff / workflow run 做审计。
+5. `GPT Pro` 审计意见不能直接改 authority；如需修订，回到 `docs/task-index.md` / `docs/current.md` 对应任务链路。
+
+## 4. 当前禁止
 
 - 不写 API / worker / Console 产品代码
 - 不修改或创建 `apps/`
@@ -34,7 +44,7 @@
 - 不引入浏览器自动化
 - 不把外部研究直接写成主线事实
 
-## 4. 当前必须遵守
+## 5. 当前必须遵守
 
 - 进入项目时必须先读 `docs/current.md` 与 `docs/task-index.md`
 - 当前任务状态只以 `docs/current.md` / `docs/task-index.md` 为准
@@ -44,7 +54,7 @@
 - 根目录不建立重治理目录
 - 发现 schema / state / FS / LP 冲突先停线
 
-## 5. 输出要求
+## 6. 输出要求
 
 - 全中文
 - 明确标注当前是待拍板基准，不伪装成已锁定 contract

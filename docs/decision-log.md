@@ -35,3 +35,12 @@
 - Decision: `T-P0-001 review-fix` 仅修复文档口径，不批准产品代码。
 - Decision: `d1c12326450f5a92d8b0b6f32c0cac51f5f5ee5a` 是进入 `review` 前的状态同步 commit。
 - Decision: `T-P0-001` 可以从 `review` 闭合为 `done`。
+
+## 2026-05-03 — T-P0-003 docs redline lint stub completed
+
+- Decision: `T-P0-003` completed and closed as done.
+- Commit: `b32ae22edd7e60becc39d5d5d0bca8381b948254`
+- GitHub Actions run: `25270586304`
+- Scope: docs redline lint stub, docs-check workflow, README / AGENTS / CLAUDE / current / task-index synchronization.
+- Not a product-code approval.
+- No API / worker / Console implementation.

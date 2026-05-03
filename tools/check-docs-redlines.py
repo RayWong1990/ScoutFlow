@@ -35,9 +35,11 @@ ALLOWED_BANNED_WORD_FILES = {
     "tools/check-docs-redlines.py",
 }
 BANNED_WORD_RE = re.compile(r"\b(crawl|spider|scrape_all|auto_capture|harvest)\b", re.IGNORECASE)
-STATE_RE = re.compile(r"`?(backlog|in_progress|review|done)`?")
+STATE_RE = re.compile(r"`?(backlog|in_progress|review|done|blocked)`?")
 TASK_RE = re.compile(r"T-P0-\d{3}")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
+TASK_INDEX_SECTIONS = {"Review", "Backlog", "Blocked", "Done"}
+HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
 
 
 def run_git_ls_files(repo: Path) -> list[str]:
@@ -84,14 +86,88 @@ def extract_state(line: str | None) -> str | None:
     return match.group(1) if match else None
 
 
-def task_index_state(task_index: str, task_id: str) -> str | None:
-    for line in task_index.splitlines():
-        if f"`{task_id}`" not in line:
+def parse_task_index_states(task_index: str) -> tuple[dict[str, str], list[str]]:
+    states: dict[str, str] = {}
+    sections: dict[str, str] = {}
+    errors: list[str] = []
+    current_section: str | None = None
+
+    for line_number, line in enumerate(task_index.splitlines(), start=1):
+        heading = HEADING_RE.match(line)
+        if heading:
+            section = heading.group(1).strip()
+            current_section = section if section in TASK_INDEX_SECTIONS else None
             continue
+
+        if current_section is None or not line.lstrip().startswith("|"):
+            continue
+
         cells = [cell.strip().strip("`") for cell in line.strip().strip("|").split("|")]
-        if len(cells) >= 3 and cells[0] == task_id:
-            return cells[2]
-    return None
+        if not cells:
+            continue
+        task_match = TASK_RE.fullmatch(cells[0])
+        if not task_match:
+            continue
+
+        task_id = task_match.group(0)
+        if task_id in states:
+            errors.append(
+                f"docs/task-index.md 中任务 {task_id} 重复出现："
+                f"{sections[task_id]} 与 {current_section}（第 {line_number} 行）"
+            )
+            continue
+
+        if current_section in {"Review", "Backlog"}:
+            if len(cells) < 3 or not cells[2]:
+                errors.append(f"docs/task-index.md 中任务 {task_id} 缺少状态列：第 {line_number} 行")
+                continue
+            state = cells[2]
+        elif current_section == "Done":
+            state = "done"
+        elif current_section == "Blocked":
+            state = "blocked"
+        else:
+            continue
+
+        states[task_id] = state
+        sections[task_id] = current_section
+
+    return states, errors
+
+
+def task_index_state(task_index: str, task_id: str, failures: list[str]) -> str | None:
+    states, errors = parse_task_index_states(task_index)
+    failures.extend(errors)
+    return states.get(task_id)
+
+
+def check_task_index_parser_self_check(failures: list[str]) -> None:
+    review_fixture = """
+## Review
+
+| 任务 ID | 标题 | 状态 |
+|---|---|---|
+| `T-P0-003` | sample | `review` |
+"""
+    done_fixture = """
+## Done
+
+| 任务 ID | 标题 | 完成时间 | 备注 |
+|---|---|---|---|
+| `T-P0-003` | sample | `2026-05-03` | closed |
+"""
+    duplicate_fixture = review_fixture + done_fixture
+
+    review_states, review_errors = parse_task_index_states(review_fixture)
+    done_states, done_errors = parse_task_index_states(done_fixture)
+    _, duplicate_errors = parse_task_index_states(duplicate_fixture)
+
+    if review_errors or review_states.get("T-P0-003") != "review":
+        failures.append("task-index 解析自检失败：Review 表未解析为 review")
+    if done_errors or done_states.get("T-P0-003") != "done":
+        failures.append("task-index 解析自检失败：Done 表未解析为 done")
+    if not duplicate_errors:
+        failures.append("task-index 解析自检失败：重复任务未报错")
 
 
 def is_banned_word_definition(lines: list[str], index: int) -> bool:
@@ -180,7 +256,7 @@ def check_task_state_consistency(repo: Path, failures: list[str]) -> None:
         failures.append(f"当前任务冲突：AGENTS.md={agents_task}，docs/current.md={current_task}")
 
     if current_task:
-        index_state = task_index_state(task_index, current_task)
+        index_state = task_index_state(task_index, current_task, failures)
         if not index_state:
             failures.append(f"docs/task-index.md 未找到当前任务：{current_task}")
         elif current_state and index_state != current_state:
@@ -213,6 +289,7 @@ def main() -> int:
     check_local_only_tracking(tracked, failures)
     check_banned_words(repo, tracked, failures)
     check_old_status(repo, tracked, failures)
+    check_task_index_parser_self_check(failures)
 
     if all((repo / rel).is_file() for rel in ("AGENTS.md", "docs/current.md", "docs/task-index.md")):
         check_task_state_consistency(repo, failures)

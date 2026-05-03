@@ -6,7 +6,7 @@
 - Step：`Step0`
 - 主任务：`T-P0-003`
 - 工作模式：目录骨架 + 文档 lint stub + 入口文档同步
-- 当前任务状态：`review`
+- 当前任务状态：`done`
 - 当前结论：`不进入产品代码`
 
 ## 当前允许
@@ -43,12 +43,12 @@
 - 活动任务上限 `3`
 - 项目根不建立重治理目录
 
-> 上述候选基准已获 user 批准，可作为 `T-P0-001` 的仓库初始化基线；这不等于批准开始产品代码实现。
+> 上述候选基准已获 user 批准，可作为 `Phase 0 / Phase 1A` 的候选实现基线；这不等于批准开始产品代码实现。
 
 ## 当前任务
 
-- `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，当前已进入 review，等待外部审计
-- 本任务只创建最小文档红线 lint stub、接入 GitHub Actions docs-check，并同步 `README.md` / `AGENTS.md` / `CLAUDE.md` 入口口径
+- `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，当前已闭合为 `done`
+- 本任务已创建最小文档红线 lint stub、接入 GitHub Actions docs-check，并同步 `README.md` / `AGENTS.md` / `CLAUDE.md` 入口口径
 
 ## 下一步候选
 

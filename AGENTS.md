@@ -16,9 +16,9 @@
 - 当前 Step：`Step0`
 - 当前活动任务：`T-P0-003`
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：目录骨架、文档 lint stub、入口文档同步
+- 当前只做：Step0 文档、contract、红线 lint stub 已闭合；等待下一任务选择
 - 当前不做：API、worker、Console、真实采集、浏览器自动化
-- 当前状态：`T-P0-001 已闭合；T-P0-003 已进入 review，等待外部审计`
+- 当前状态：`T-P0-001 已闭合；T-P0-003 已闭合 / done，等待 user 选择下一任务`
 
 ## 3. 当前红线
 
@@ -75,7 +75,17 @@
 | `OpenClaw` | 次级 research / scout note | 不直写 authority |
 | `Hermes CLI` | 未来调度与信号源设计参考 | Phase 1A 不抢跑推荐采集 |
 
-## 9. 当前输出要求
+## 9. GitHub 外部审计工作流
+
+当前多工具协作默认采用 GitHub 作为审计真源：
+
+1. `Codex Desktop` / `Claude Code` / `Hermes Agent` / `OpenClaw` 等工具在授权范围内交付任务变更。
+2. 执行工具将变更 push 到 GitHub，保留可审计的 commit / branch / PR / run 记录。
+3. user 在后续会话贴出 `commit hash + run id + 回写摘要`；若没有 CI run，明确写 `run id: none`。
+4. 网页版 `GPT Pro` 直接从 GitHub 的 commit / PR diff / workflow run 审计，不以聊天转述作为事实源。
+5. `GPT Pro` 输出只作为审计意见或下一轮任务输入；不直接改主线文件，不绕过 `docs/task-index.md` 与 `docs/current.md`。
+
+## 10. 当前输出要求
 
 - 中文
 - 引用具体文件
