@@ -253,3 +253,14 @@
 - Observed lesson: with local BBDown `1.6.3`, `qrcode.png` may be written to cwd and `BBDown.data` / `BBDownTV.data` may be written next to the executable, so repo-local executable/cwd are not acceptable for this gate.
 - Result: QR displayed locally, user completed scan, safe tool output confirmed auth completion, temp QR cwd cleaned, auth sidecar stayed outside Git.
 - Boundary: this does not approve no-auth or auth-present `BBDown -info`, does not emit `PlatformResult`, and does not approve broader runtime.
+
+## 2026-05-04 — T-P1A-011C auth-present metadata probe executed with parser repair
+
+- Decision: user explicitly authorized a new metadata probe gate after `T-P1A-011B`.
+- Scope: single authorized sample URL, repo-external local-only executable/auth store, repo-external temp cwd, one `BBDown -info`, redaction, parser classification only.
+- Observed blocker: real `BBDown 1.6.3` output caused two direct parser mismatches:
+  - benign login-status lines triggered false `auth_required`
+  - real Chinese lines such as `获取aid结束`, `视频标题`, `P1: [...] [07m10s]`, and `共计 1 个分P` were not parsed into typed fields
+- Decision: repair `services/api/scoutflow_api/external_tools/bbdown_info_parser.py` and add regression coverage in `tests/contracts/test_bbdown_info_parser_contract.py` within the same task, because parser drift was the immediate blocker to a truthful gate result.
+- Result after repair: `platform_result=ok`; parsed fields include `platform_item_id=116493572377107`, title, duration `430`, page count `1`, selected page `P1`; no media files created in temp tree.
+- Boundary: this still does not approve receipt / artifact ledger / capture state, media download, ffmpeg, ASR, or `audio_transcript`.
