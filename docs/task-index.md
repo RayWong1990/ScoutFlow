@@ -18,7 +18,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P0-007` | Phase 1A Bilibili `manual_url` quick_capture readiness pack | `review` | `Codex Desktop` | docs-only readiness planning；准备 `T-P1A-001` 开工门，不写产品代码 | `docs/plans/**`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `AGENTS.md`, `README.md` | `apps/**`, `services/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `example/**`, `examples/**`, `candidates/**`, `dispatches/**`, `audits/**` | `docs/PRD-v1-2026-05-02.md`; `docs/PRD-v1.1-amendment-2026-05-02.md`; `docs/SRD-v1-2026-05-02.md`; `docs/SRD-v1.1-amendment-2026-05-03.md`; `docs/specs/contracts-index.md`; `docs/specs/locked-principles.md`; `docs/specs/worker-receipt-contract.md`; `docs/specs/platform-adapter-risk-contract.md`; `docs/specs/raw-response-redaction.md` | `python -m py_compile tools/check-docs-redlines.py`; `python tools/check-docs-redlines.py`; forbidden root dir check；tracked forbidden file check；stale communication-test grep | product code touched；Phase 2-4 runtime；`recommendation / keyword / RAW gap` direct capture；browser automation；credential leak；leftover branch unique commits | branch=`task/T-P0-007-phase1a-readiness`; product-code approval=`No`; Phase 1A implementation approval=`No` |
 
 ## Backlog
 

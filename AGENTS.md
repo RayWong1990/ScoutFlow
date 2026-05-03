@@ -14,11 +14,11 @@
 
 - 当前 Phase：`Phase 0`
 - 当前 Step：`Step0`
-- 当前活动任务：`T-P0-004`（communication-test cleanup done；等待 user 选择是否进入 Phase 1A 准备任务）
+- 当前活动任务：`T-P0-007`（Phase 1A Bilibili `manual_url` quick_capture readiness pack；docs-only review candidate）
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：Step0 文档、contract、通信测试清理闭合；等待下一任务
+- 当前只做：Step0 文档、contract、Phase 1A readiness planning；等待 user review 后再决定是否进入 `T-P1A-001`
 - 当前不做：API、worker、Console、真实采集、浏览器自动化
-- 当前状态：`T-P0-002 done`；`T-P0-003 done`；`T-P0-004 done`；`T-P0-005` / `T-P0-006` 视为通信测试并暂停/关闭；不自动进入 Phase 1A 产品代码
+- 当前状态：`T-P0-007 review`；历史：`T-P0-002 done`、`T-P0-003 done`、`T-P0-004 done`；`T-P0-005` / `T-P0-006` 视为通信测试并暂停/关闭；不自动进入 Phase 1A 产品代码
 
 ## 3. 当前红线
 
