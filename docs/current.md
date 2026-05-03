@@ -3,17 +3,18 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-008 done / T-P1A-009 gated`
-- 主任务：`T-P1A-008`
-- 工作模式：PR `#17` 已合入 `main`；当前进入 `T-P1A-008` 小账本同步收口；仍遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-008=done`; `T-P1A-009=backlog/gated`; `T-P1A-006=done`; `T-P1A-007=done`; `T-P1A-005=done`; `T-P1A-003=done`
-- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser。`T-P1A-008` merge commit=`0cfcef58533bba1902eec6ed19a3f7fbed308a64`，GitHub run=`25282572121`，`docs-smoke=success` / `api-contract-tests=success`。`T-P1A-008` 只是 fixture-only parser / classifier baseline，不是 runtime approval。当前 Active count=`0/3`，Review count=`0`；当前不创建 workers，不调用 BBDown / yt-dlp / ffmpeg / ASR，不访问真实 Bilibili URL，不下载媒体，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- Step：`T-P1A-009 review candidate / T-P1A-008 done`
+- 主任务：`T-P1A-009`
+- 工作模式：`task/T-P1A-009-bbdown-local-runtime-spike` report-only spike 已进入 PR review candidate；仍遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-009=review/report-candidate`; `T-P1A-008=done`; `T-P1A-006=done`; `T-P1A-007=done`; `T-P1A-005=done`; `T-P1A-003=done`
+- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser。`T-P1A-008` merge commit=`0cfcef58533bba1902eec6ed19a3f7fbed308a64`，GitHub run=`25282572121`，`docs-smoke=success` / `api-contract-tests=success`。`T-P1A-009` 仅批准 local-only runtime spike：`BBDown --version`，以及当前会话 user 提供公开 Bilibili URL 后的一次 no-auth `BBDown -info` metadata probe。本次结果为 `BBDown` executable 未在当前 PATH 中找到，未执行 `-info`。当前 Active count=`0/3`，Review count=`1`；当前不创建 workers，不调用 yt-dlp / ffmpeg / ASR，不下载媒体，不读取凭据或 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
 - authority 同步文件：`docs/task-index.md`、`docs/current.md`、`docs/decision-log.md`、`docs/specs/contracts-index.md`
 - 入口同步文件：`AGENTS.md`、`README.md`，仅在状态口径需要时修改
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` 当前只作参考，不自动授权后续代码修改
+- `T-P1A-009` report-only 文件：`docs/research/t-p1a-009-bbdown-local-runtime-spike-report-2026-05-03.md`
 
 ## 当前禁止
 
@@ -26,7 +27,8 @@
 - `dispatches/`
 - `audits/`
 - `audio_transcript` runtime
-- 真下载 / ASR / BBDown / yt-dlp / ffmpeg runtime
+- 真下载 / ASR / yt-dlp / ffmpeg runtime
+- 除 `BBDown --version` 与一次已批准 no-auth `BBDown -info` metadata probe 之外的任何 BBDown runtime
 - 浏览器自动化
 - Phase 2-4 真实逻辑
 - 把 BBDown research note 直接写成 final authority
@@ -50,8 +52,8 @@
 
 ## 当前任务
 
-- `T-P1A-008`：BBDown sanitized fixture parser；状态 `done`；已通过 PR `#17` 合并入 `main`，只作为 fixture-only parser / classifier baseline；不批准 runtime
-- `T-P1A-009`：BBDown local runtime spike；状态 `backlog/gated`；前置为 `T-P1A-006` + `T-P1A-008` + user 再次明确批准；不得下载媒体，不跑 ASR
+- `T-P1A-009`：BBDown local runtime spike；状态 `review/report-candidate`；`BBDown --version` availability preflight 未找到 executable，未执行 `-info`；不得下载媒体，不跑 ffmpeg，不跑 ASR，不读凭据，不创建 worker / artifact / receipt / capture
+- `T-P1A-008`：BBDown sanitized fixture parser；状态 `done`；已通过 PR `#17` 合并入 `main`，只作为 fixture-only parser / classifier baseline；不批准 broader runtime
 - `T-P1A-007`：Explore URL UX / risk / receipt status brainstorm；状态 `done`；已通过 PR `#15` 合并入 `main`，只作为 research note / decision pack
 - `T-P1A-006`：BBDown adapter contract draft；状态 `done`；已通过 PR `#14` 合并入 `main`，只作为 merged draft spec，不实现或调用 runtime capture
 - `T-P1A-003`：BBDown tool-surface research note；状态 `done`；已通过 PR `#10` 合并入 `main`，只作为 research note
@@ -62,12 +64,13 @@
 
 ## 下一步候选
 
-- `T-P1A-008` 已完成；当前不自动打开任何 code-bearing task
-- `T-P1A-009` 必须等 `T-P1A-006` + `T-P1A-008` 完成后，并由 user 再次明确批准 runtime spike 后再开
-- 当前不自动开启任何 code-bearing task
+- `T-P1A-009` 当前只产出一个 `docs/research/**` runtime spike report
+- `T-P1A-009` 结果不得写成 final authority、正式 adapter runtime approval 或 `audio_transcript` approval
+- 后续是否进入 BBDown wrapper hardening 或 `T-P1A-010 audio_transcript readiness gate` 需要另开任务
 
 ## 阻塞
 
 - 不允许让 `recommendation / keyword / RAW gap` 直接创建 capture
 - 不允许把 `/captures/discover` 语义写成 source discovery / search / recommendation discovery
 - 不允许把 BBDown research note、draft spec、或“后续希望复用 BBDown”解释为 runtime approval
+- 不允许把 `T-P1A-009` 的 local-only spike 写成媒体下载、ffmpeg、ASR、worker、artifact、receipt、capture 状态变更或 `audio_transcript` approval
