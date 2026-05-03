@@ -20,6 +20,7 @@
 | `C-PLT-001` | Platform Adapter Risk Contract | `docs/specs/platform-adapter-risk-contract.md` | Codex | Phase 1A |
 | `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md` | Codex | Phase 1A |
 | `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，已合入 main 但仍是 draft only） | Codex | Phase 1A draft only |
+| `C-BBD-002` | BBDown Runtime Gate Amendment | `docs/PRD-v1.2-amendment-2026-05-03.md` + `docs/SRD-v1.2-amendment-2026-05-03.md`（`T-P1A-010C` draft；ToolPreflightResult / PlatformResult separation、no-auth gate、manual-auth separation、audio blocker） | Codex | Phase 1A candidate draft only |
 | `C-NFR-001` | NFR 分级 | `docs/SRD-v1.1-amendment-2026-05-03.md` A007 | user | Step0 |
 | `C-OPS-001` | Parallel Execution Protocol | `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
 | `C-OPS-002` | GitHub External Audit Workflow | `README.md` + `AGENTS.md` + `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
@@ -27,6 +28,7 @@
 
 > `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
 > `C-BBD-001` 当前只是允许提炼 draft spec 的占位 contract；写入后仍必须标记 `draft / not final authority / not runtime approval`。
+> `C-BBD-002` 当前只是 `T-P1A-010C` 的 amendment repair candidate；它不批准 BBDown runtime、QR / manual auth、media download、ffmpeg、ASR、workers、frontend 或 `audio_transcript` runtime。
 > `main` 当前已合入 `T-P1A-001` 的 API-side `capture_manifest` ledger stub、`T-P1A-002` 的 receipt / ledger baseline、`T-P1A-004` 的 secret-scan / text-redaction safety baseline。`T-P1A-003` 与 `T-P1A-007` 已通过 PR `#10` / `#15` 合入为 research note，`T-P1A-006` 已通过 PR `#14` 合入为 merged draft spec；这些都不进入 authority。
 
 ## 当前实现基线状态
@@ -45,6 +47,7 @@
 | `docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md` | PR `#10` 已合入 `main`；merge commit=`8328c567e26db118ad456b29f8616066174b3568`；GitHub run=`25280084928` | Research note only；not authority；not implementation approval；not runtime approval |
 | `docs/specs/bbdown-adapter-contract-draft.md` | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval；不得包含 BBDown / ffmpeg / ASR runtime approval |
 | `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` | `T-P1A-007` merged research note on `main` | Research note only；not authority；not frontend / API / runtime approval |
+| `docs/PRD-v1.2-amendment-2026-05-03.md` + `docs/SRD-v1.2-amendment-2026-05-03.md` | `T-P1A-010C` candidate amendment repair draft | Candidate draft only；not final authority；not runtime approval；separates `ToolPreflightResult` from `PlatformResult`; keeps `audio_transcript` blocked |
 
 ## 当前引用但未落地的上游文档
 
@@ -52,7 +55,9 @@
 |---|---|---|
 | `docs/PRD-v1-2026-05-02.md` | 产品叙事与原始 contract 背景 | 仍含旧 `decisions.md` / 顶层 review 队列口径 |
 | `docs/PRD-v1.1-amendment-2026-05-02.md` | LP-001~005、quick_capture、artifact_assets、merger 规则 | Step0 继续引用，但研究 note 口径已改轻 |
+| `docs/PRD-v1.2-amendment-2026-05-03.md` | `T-P1A-010C` PRD 层 runtime gate / manual-auth / audio blocker candidate | Candidate draft only；待 user 拍板 |
 | `docs/SRD-v1-2026-05-02.md` | FR / NFR / IF / DR 主体 | 仍有待 amendment patch 的旧残留 |
+| `docs/SRD-v1.2-amendment-2026-05-03.md` | `T-P1A-010C` SRD 层 ToolPreflightResult / PlatformResult separation candidate | Candidate draft only；待 user 拍板 |
 | `docs/ScoutFlow-project-organization-docs-v0/ScoutFlow-Project-Operating-Model-v0.1.md` | 目录、角色、薄治理原则 | 仍含旧 Claude Design 与重治理想法 |
 
 ## 仅作参考 outline 的内容
