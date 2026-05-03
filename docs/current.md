@@ -28,7 +28,7 @@
 - `audits/`
 - `audio_transcript` runtime
 - 真下载 / ASR / yt-dlp / ffmpeg runtime
-- 除 `BBDown --version` 与一次已批准 no-auth `BBDown -info` metadata probe 之外的任何 BBDown runtime
+- 任何 BBDown runtime，除非后续任务再次显式授权；PR `#19` 中的 `BBDown --version` 尝试和未执行的 `-info` 只作为历史 spike 结果，不构成当前可复用许可
 - 浏览器自动化
 - Phase 2-4 真实逻辑
 - 把 BBDown research note 直接写成 final authority
@@ -65,7 +65,7 @@
 ## 下一步候选
 
 - `T-P1A-009` 已完成，结果不得被回读成 final authority、正式 adapter runtime approval 或 `audio_transcript` approval
-- 后续是否进入 BBDown wrapper hardening 或 `T-P1A-010 audio_transcript readiness gate` 需要另开任务
+- 后续优先候选：BBDown tool path readiness / wrapper hardening；`audio_transcript` readiness gate 仍阻塞，必须等 BBDown tool availability 与一次 no-auth metadata probe 产生 redacted、parser-classified evidence 后再议
 
 ## 阻塞
 
