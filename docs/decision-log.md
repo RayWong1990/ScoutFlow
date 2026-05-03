@@ -112,3 +112,17 @@
 - Not a product-code approval.
 - Not a Phase 1A implementation approval.
 - Next gate: user decides whether to merge PR `#6` and whether to authorize `T-P1A-001`.
+
+## 2026-05-03 — PR #6 merged after readiness approval
+
+- Decision: user approved merge of PR `#6`.
+- Merge commit: `cc649030437dfab1ea52f062d454c1da789703c5`
+- Scope: merge readiness pack and `T-P1A-001` draft dispatch into `main`.
+- Not a direct approval for broader Phase 1A scope beyond the explicit `T-P1A-001` defaults.
+
+## 2026-05-03 — T-P1A-001 authorized as first Phase 1A code-bearing task
+
+- Decision: user approved PR `#6` readiness pack and authorized `T-P1A-001`.
+- Scope: Bilibili `manual_url` quick_capture, `metadata_only only`.
+- Explicit non-goals: `audio_transcript` runtime, workers, browser automation, `recommendation / keyword / RAW gap` direct capture, Phase 2-4 runtime.
+- Required validation: docs-check, API tests, LP-001 rejection tests, redaction tests, platform_result enum tests.

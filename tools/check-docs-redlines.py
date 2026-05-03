@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""ScoutFlow Phase 0 document redline checks."""
+"""ScoutFlow authority and redline checks."""
 
 from __future__ import annotations
 
@@ -22,7 +22,6 @@ REQUIRED_DOCS = [
 
 FORBIDDEN_ROOT_DIRS = [
     "apps",
-    "services",
     "workers",
     "packages",
     "candidates",
@@ -37,7 +36,7 @@ ALLOWED_BANNED_WORD_FILES = {
 }
 BANNED_WORD_RE = re.compile(r"\b(crawl|spider|scrape_all|auto_capture|harvest)\b", re.IGNORECASE)
 STATE_RE = re.compile(r"`?(backlog|in_progress|review|done|blocked)`?")
-TASK_RE = re.compile(r"T-P0-\d{3}")
+TASK_RE = re.compile(r"T-P(?:0|1A)-\d{3}")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
 TASK_INDEX_SECTIONS = {"Review", "Backlog", "Blocked", "Done"}
 HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
@@ -301,7 +300,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("文档红线检查通过：required docs、禁止目录、local-only 跟踪、禁用命名、任务状态一致性均符合当前 Phase 0 边界。")
+    print("文档红线检查通过：required docs、禁止目录、local-only 跟踪、禁用命名、任务状态一致性均符合当前任务边界。")
     return 0
 
 
