@@ -19,7 +19,7 @@
 ## 2026-05-03 — Bootstrap task approval
 
 - Decision: close `T-P0-000` as done.
-- Decision: move `T-P0-001` into `in_progress`.
+- Decision: 启动 `T-P0-001` 执行阶段。
 - Scope: Git initialization, private GitHub repository, root baseline docs/config only.
 
 ## 2026-05-03 — GitHub bootstrap completed
@@ -29,3 +29,9 @@
 - Initial commit: `22c2c2014b9d10f48a6a8fe11fc73f38ba1b0045`
 - Remote URL: `https://github.com/RayWong1990/ScoutFlow.git`
 - Scope: docs, contracts, and repo baseline only.
+
+## 2026-05-03 — T-P0-001 review-fix completed
+
+- Decision: `T-P0-001 review-fix` 仅修复文档口径，不批准产品代码。
+- Decision: `d1c12326450f5a92d8b0b6f32c0cac51f5f5ee5a` 是进入 `review` 前的状态同步 commit。
+- Decision: `T-P0-001` 可以从 `review` 闭合为 `done`。

@@ -18,7 +18,7 @@
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
 - 当前只做：Git 初始化、私有仓库同步、根轻配置、入口文档与 contract
 - 当前不做：API、worker、Console、真实采集、浏览器自动化
-- 当前状态：`T-P0-000 已闭合；T-P0-001 执行中`
+- 当前状态：`T-P0-000 已闭合；T-P0-001 已闭合，等待 user 选择下一任务`
 
 ## 3. 当前红线
 
