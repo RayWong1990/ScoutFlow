@@ -3,11 +3,11 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-009 review candidate / T-P1A-008 done`
+- Step：`T-P1A-009 done / T-P1A-008 done`
 - 主任务：`T-P1A-009`
-- 工作模式：`task/T-P1A-009-bbdown-local-runtime-spike` report-only spike 已进入 PR review candidate；仍遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-009=review/report-candidate`; `T-P1A-008=done`; `T-P1A-006=done`; `T-P1A-007=done`; `T-P1A-005=done`; `T-P1A-003=done`
-- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser。`T-P1A-008` merge commit=`0cfcef58533bba1902eec6ed19a3f7fbed308a64`，GitHub run=`25282572121`，`docs-smoke=success` / `api-contract-tests=success`。`T-P1A-009` 仅批准 local-only runtime spike：`BBDown --version`，以及当前会话 user 提供公开 Bilibili URL 后的一次 no-auth `BBDown -info` metadata probe。本次结果为 `BBDown` executable 未在当前 PATH 中找到，未执行 `-info`。当前 Active count=`0/3`，Review count=`1`；当前不创建 workers，不调用 yt-dlp / ffmpeg / ASR，不下载媒体，不读取凭据或 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- 工作模式：`T-P1A-009` report-only spike 已合入 `main`；当前无 active product task；仍遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-009=done`; `T-P1A-008=done`; `T-P1A-006=done`; `T-P1A-007=done`; `T-P1A-005=done`; `T-P1A-003=done`
+- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser、通过 PR `#19` 合入 `T-P1A-009` BBDown local runtime spike report。`T-P1A-009` merge commit=`af1cbcedf92409e187e77217cc0b39449738d1ba`，GitHub run=`25283202028`，`docs-smoke=success` / `api-contract-tests=success`。结果为 `BBDown` executable 未在当前 PATH 中找到，未执行 `-info`；no `PlatformResult` emitted；`tool_preflight_result=executable_not_found`。当前 Active count=`0/3`，Review count=`0`；当前不创建 workers，不调用 yt-dlp / ffmpeg / ASR，不下载媒体，不读取凭据或 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -45,14 +45,14 @@
 - `POST /captures/discover` = `capture 创建入口（capture creation entrypoint）`
 - `POST /jobs/{job_id}/complete` = `worker receipt API-side validation and ledger entrypoint`; 当前只接收已存在 job 的 receipt，不创建 worker queue runtime
 - `recommendation / keyword / RAW gap` 不直接创建 capture
-- 活动任务上限 `3`；当前 Active count=`0/3`，Review count=`1`
+- 活动任务上限 `3`；当前 Active count=`0/3`，Review count=`0`
 - 项目根不建立重治理目录
 
 > `T-P1A-001` / `T-P1A-002` / `T-P1A-004` 的合并只表示对应 API-side 和安全基线进入 `main`；`T-P1A-003` 的合并只表示 research note 进入 `docs/research/**`。这些都不等于批准 broader Phase 1A runtime、workers、frontend、`audio_transcript` 或 Phase 2-4 产品代码。
 
 ## 当前任务
 
-- `T-P1A-009`：BBDown local runtime spike；状态 `review/report-candidate`；`BBDown --version` availability preflight 未找到 executable，未执行 `-info`；不得下载媒体，不跑 ffmpeg，不跑 ASR，不读凭据，不创建 worker / artifact / receipt / capture
+- `T-P1A-009`：BBDown local runtime spike；状态 `done`；已通过 PR `#19` 合并入 `main`，只产出 report-only runtime spike 文档；`BBDown` executable 未在 PATH 中找到，未执行 `-info`；no `PlatformResult` emitted；`tool_preflight_result=executable_not_found`
 - `T-P1A-008`：BBDown sanitized fixture parser；状态 `done`；已通过 PR `#17` 合并入 `main`，只作为 fixture-only parser / classifier baseline；不批准 broader runtime
 - `T-P1A-007`：Explore URL UX / risk / receipt status brainstorm；状态 `done`；已通过 PR `#15` 合并入 `main`，只作为 research note / decision pack
 - `T-P1A-006`：BBDown adapter contract draft；状态 `done`；已通过 PR `#14` 合并入 `main`，只作为 merged draft spec，不实现或调用 runtime capture
@@ -64,8 +64,7 @@
 
 ## 下一步候选
 
-- `T-P1A-009` 当前只产出一个 `docs/research/**` runtime spike report
-- `T-P1A-009` 结果不得写成 final authority、正式 adapter runtime approval 或 `audio_transcript` approval
+- `T-P1A-009` 已完成，结果不得被回读成 final authority、正式 adapter runtime approval 或 `audio_transcript` approval
 - 后续是否进入 BBDown wrapper hardening 或 `T-P1A-010 audio_transcript readiness gate` 需要另开任务
 
 ## 阻塞
