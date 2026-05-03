@@ -18,13 +18,13 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P0-002` | 入口文档深化 + 并行执行协议固化 | `review` | `Codex Desktop` | Step0 docs + ops contract | `docs/`, `AGENTS.md`, `CLAUDE.md`, `README.md`, `.github/pull_request_template.md`, `tools/check-docs-redlines.py` 仅如需, `.github/workflows/docs-check.yml` 仅如需 | `apps/`, `services/`, `workers/`, `packages/`, `data/`, `referencerepo/`, `candidates/`, `dispatches/`, `audits/` | `C-OPS-001`, `C-OPS-002`, `C-OPS-003`, `LP-006`, `LP-007` | `python tools/check-docs-redlines.py`; `python -m py_compile tools/check-docs-redlines.py`; GitHub Actions docs-check; PR created or branch pushed; docs cross-reference check | 若写入产品代码、创建 forbidden paths、sidecar 直写 authority、或把外部研究直接写成主线事实则停线 | branch=`task/T-P0-002-parallel-execution-protocol`；等待 PR review，不置为 `done` |
 
 ## Backlog
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P0-002` | `decision-log` / `locked-principles` / `project-context` 入口同步 | `backlog` | `Codex Desktop` | 仅 docs | `docs/` | `apps/`, `services/`, `workers/`, `packages/`, `data/`, `referencerepo/`, `candidates/`, `dispatches/`, `audits/` | `PRD-v1`, `SRD-v1`, `A001`, `A011` | 文档交叉引用检查 | 若把草案写成锁定则停线 | 深化现有入口文档 |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Blocked
 

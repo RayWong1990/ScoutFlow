@@ -4,22 +4,20 @@
 
 - Phase：`0`
 - Step：`Step0`
-- 主任务：`T-P0-003`
-- 工作模式：目录骨架 + 文档 lint stub + 入口文档同步
-- 当前任务状态：`done`
+- 主任务：`T-P0-002`
+- 工作模式：入口文档深化 + 并行执行协议固化
+- 当前任务状态：`review`
 - 当前结论：`不进入产品代码`
 
 ## 当前允许
 
-- `.gitignore`
-- `.env.example`
-- `.vscode/`
-- `.github/`
-- `tools/`
-- `README.md`
 - `docs/`
 - `AGENTS.md`
 - `CLAUDE.md`
+- `README.md`
+- `.github/pull_request_template.md`
+- `tools/check-docs-redlines.py` 仅如需
+- `.github/workflows/docs-check.yml` 仅如需
 
 ## 当前禁止
 
@@ -47,14 +45,16 @@
 
 ## 当前任务
 
-- `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，当前已闭合为 `done`
-- 本任务已创建最小文档红线 lint stub、接入 GitHub Actions docs-check，并同步 `README.md` / `AGENTS.md` / `CLAUDE.md` 入口口径
+- `T-P0-002`：入口文档深化 + 并行执行协议固化，当前为 `review`
+- 本任务只固化多工具并行协作、GitHub 外部审计、单一写入者、sidecar / subagent 规则
+- `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，已闭合为 `done`
 
 ## 下一步候选
 
-- `T-P0-002`：`backlog`，`decision-log / locked-principles / project-context` 深化
+- `T-P0-002`：`review-fix / close`
+- `Phase 1A` 准备任务仍需 user 另行选择
 - 不自动进入 `Phase 1A` 产品代码
 
 ## 阻塞
 
-- 不自动进入 `T-P0-002` 或 `Phase 1A`，等待 user 后续选择
+- 不自动进入 `Phase 1A`，等待 user 后续选择

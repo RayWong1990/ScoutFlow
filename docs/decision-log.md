@@ -44,3 +44,18 @@
 - Scope: docs redline lint stub, docs-check workflow, README / AGENTS / CLAUDE / current / task-index synchronization.
 - Not a product-code approval.
 - No API / worker / Console implementation.
+
+## 2026-05-03 — T-P0-003 final close recorded
+
+- Decision: 补记 `T-P0-003 final close`。
+- Close commit: `efe607dbafe3c398d582aaf0a0d5e9521ff2a814`
+- GitHub Actions run: `25270929463`
+- Scope: close review, harden task-index Done state parsing, update entry docs.
+- Not a product-code approval.
+
+## 2026-05-03 — T-P0-002 parallel execution protocol started
+
+- Decision: start `T-P0-002` as entry docs deepening + parallel execution protocol candidate baseline.
+- Scope: docs and lightweight repo coordination files only.
+- Not a product-code approval.
+- Branch mode: `task/T-P0-002-parallel-execution-protocol`

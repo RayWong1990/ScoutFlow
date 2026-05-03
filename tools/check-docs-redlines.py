@@ -17,6 +17,7 @@ REQUIRED_DOCS = [
     "docs/task-index.md",
     "docs/specs/contracts-index.md",
     "docs/specs/locked-principles.md",
+    "docs/specs/parallel-execution-protocol.md",
 ]
 
 FORBIDDEN_ROOT_DIRS = [

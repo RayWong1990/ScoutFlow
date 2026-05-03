@@ -20,6 +20,11 @@
 | `C-PLT-001` | Platform Adapter Risk Contract | `docs/specs/platform-adapter-risk-contract.md` | Codex | Phase 1A |
 | `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md` | Codex | Phase 1A |
 | `C-NFR-001` | NFR 分级 | `docs/SRD-v1.1-amendment-2026-05-03.md` A007 | user | Step0 |
+| `C-OPS-001` | Parallel Execution Protocol | `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
+| `C-OPS-002` | GitHub External Audit Workflow | `README.md` + `AGENTS.md` + `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
+| `C-OPS-003` | Single Writer / Multi Reviewer | `AGENTS.md` + `CLAUDE.md` + `.github/pull_request_template.md` | Codex | Step0 / Phase 0 candidate baseline |
+
+> `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
 
 ## 当前引用但未落地的上游文档
 

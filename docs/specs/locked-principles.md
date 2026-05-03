@@ -41,3 +41,19 @@
 - Enforcement path: `tools/check-banned-words`
 - Test / lint path: 禁用词扫描
 - Current status: `candidate baseline`
+
+## LP-006 — Single Writer / Multi Reviewer
+
+- Principle: 同一任务只能有一个主写入窗口；其他工具只做 read-only review / research / patch suggestion。
+- Phase: `0`
+- Enforcement path: `AGENTS.md`, `docs/specs/parallel-execution-protocol.md`, `.github/pull_request_template.md`
+- Test / lint path: PR 模板人工审查 + docs redline lint
+- Current status: `candidate baseline`
+
+## LP-007 — GitHub Audit Source
+
+- Principle: 跨工具审计以 GitHub commit / PR diff / workflow run 为事实源，不以聊天摘要替代仓库事实。
+- Phase: `0`
+- Enforcement path: `AGENTS.md`, `README.md`, `docs/specs/parallel-execution-protocol.md`
+- Test / lint path: PR 模板人工审查
+- Current status: `candidate baseline`
