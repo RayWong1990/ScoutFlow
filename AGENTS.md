@@ -1,6 +1,6 @@
 # ScoutFlow AGENTS
 
-> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline；当前 active tasks 为 `T-P1A-002` / `T-P1A-003` / `T-P1A-004`，仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
+> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline；当前主焦点为 `T-P1A-002` review，`T-P1A-003` / `T-P1A-004` 仍为 active；仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
 
 ## 1. 进入项目先读
 
@@ -13,12 +13,12 @@
 ## 2. 当前阶段
 
 - 当前 Phase：`Phase 1A`
-- 当前 Step：`T-P1A-002 / T-P1A-003 / T-P1A-004`
-- 当前活动任务：`T-P1A-002` API jobs / receipt / artifact ledger foundation；`T-P1A-003` BBDown tool-surface research / adapter contract proposal；`T-P1A-004` redaction / secret scan / CI hardening
+- 当前 Step：`T-P1A-002 review / T-P1A-003 / T-P1A-004`
+- 当前活动任务：`T-P1A-002` API jobs / receipt / artifact ledger foundation 当前处于 review；`T-P1A-003` BBDown tool-surface research / adapter contract proposal 与 `T-P1A-004` redaction / secret scan / CI hardening 仍为 active
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：三个 active tasks 各自 allowed paths 内的受控执行与账本同步；`T-P1A-003` 只允许 research / draft proposal
+- 当前只做：`T-P1A-002` review 修正与 full validation；`T-P1A-003` / `T-P1A-004` 各自 allowed paths 内的受控执行与账本同步；`T-P1A-003` 只允许 research / draft proposal
 - 当前不做：workers、frontend、真实下载、ASR、浏览器自动化、Phase 2-4 runtime
-- 当前状态：`active`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码
+- 当前状态：`review`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码
 
 ## 3. 当前红线
 
@@ -27,7 +27,7 @@
 - 不在项目根建立重治理目录
 - `recommendation / keyword / RAW gap` 不直接创建 capture
 - `POST /captures/discover` 当前语义是 `capture 创建入口（capture creation entrypoint）`，不是 source discovery
-- `audio_transcript` runtime 不进入当前 active tasks
+- `audio_transcript` runtime 不进入当前 review / active tasks
 - 不创建或修改 `workers/`
 - 不创建或修改 `apps/`
 - Phase 2-4 只作参考 outline，不进入当前实现任务

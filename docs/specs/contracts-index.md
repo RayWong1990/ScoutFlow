@@ -25,7 +25,16 @@
 | `C-OPS-003` | Single Writer / Multi Reviewer | `AGENTS.md` + `CLAUDE.md` + `.github/pull_request_template.md` | Codex | Step0 / Phase 0 candidate baseline |
 
 > `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
-> `T-P1A-001` 当前只实现 API-side `capture_manifest` ledger stub；完整 worker receipt endpoint 与 worker-side artifact writeback 仍属后续任务范围。
+> `T-P1A-001` 实现 API-side `capture_manifest` ledger stub；`T-P1A-002` 在本地 review-candidate 中实现 API-side worker receipt endpoint 与 `artifact_assets` mapping；worker-side runtime 仍不进入当前范围。
+
+## 当前实现候选状态
+
+| Contract ID | 当前代码候选 | 范围声明 |
+|---|---|---|
+| `C-WRK-001` | `T-P1A-002` review-candidate：`POST /jobs/{job_id}/complete`、receipt Pydantic models、`jobs` / `job_events` minimum schema、artifact file sha/bytes validation、idempotent replay | API-side only；不创建 workers；不调用 BBDown / yt-dlp / ffmpeg；不启用 ASR 或 `audio_transcript` runtime |
+| `C-ART-001` | `T-P1A-002` review-candidate：receipt `produced_assets[]` 映射为 `artifact_assets` 行，metadata_json 保留 producer / redaction / idempotency 追溯字段 | 仅登记已存在于 artifacts root 的文件；不定义 Phase 2+ FS 版本化 |
+| `C-PLT-001` | `T-P1A-002` review-candidate：`platform_result` 使用既有 `PlatformResult` enum | 不新增平台状态映射；非 `ok` 的后续状态策略仍按后续任务收敛 |
+| `C-SEC-001` | `T-P1A-002` review-candidate：`raw_api_response` receipt 必须声明 `redaction_applied=true`、`redaction_policy`、非空 `sensitive_fields_removed` | 不替代 `T-P1A-004` 的 secret scan / CI hardening |
 
 ## 当前引用但未落地的上游文档
 

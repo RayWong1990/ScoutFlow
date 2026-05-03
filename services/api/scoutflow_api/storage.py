@@ -8,7 +8,10 @@ import sqlite3
 import time
 from dataclasses import dataclass
 from datetime import UTC, datetime
-from pathlib import Path
+from pathlib import Path, PurePosixPath
+from typing import Any
+
+from scoutflow_api.models import ProducedAsset, WorkerReceipt
 
 
 CROCKFORD32 = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
@@ -35,6 +38,14 @@ class StorageConfig:
     artifact_prefix: Path = Path("data/artifacts")
 
 
+class ReceiptStorageError(Exception):
+    def __init__(self, http_status: int, code: str, message: str) -> None:
+        super().__init__(message)
+        self.http_status = http_status
+        self.code = code
+        self.message = message
+
+
 class Storage:
     def __init__(self, config: StorageConfig) -> None:
         self.config = config
@@ -47,10 +58,10 @@ class Storage:
         return conn
 
     def _init_schema(self) -> None:
-        migration_path = Path(__file__).resolve().parent.parent / "migrations" / "001_phase1a_capture_creation.sql"
-        sql = migration_path.read_text(encoding="utf-8")
+        migrations_dir = Path(__file__).resolve().parent.parent / "migrations"
         with self._connect() as conn:
-            conn.executescript(sql)
+            for migration_path in sorted(migrations_dir.glob("*.sql")):
+                conn.executescript(migration_path.read_text(encoding="utf-8"))
 
     def _find_metadata_capture(self, platform_item_id: str) -> dict[str, str] | None:
         with self._connect() as conn:
@@ -184,4 +195,256 @@ class Storage:
             "status": "discovered",
             "artifact_root_path": artifact_root_path,
             "manifest_path": manifest_path,
+        }
+
+    def _capture_root(self, platform: str, capture_id: str) -> Path:
+        return self.config.artifacts_root / platform / capture_id
+
+    def _artifact_actual_path(self, platform: str, capture_id: str, relative_path: str) -> Path:
+        parts = PurePosixPath(relative_path).parts
+        return self._capture_root(platform, capture_id) / Path(*parts)
+
+    def _artifact_ledger_path(self, platform: str, capture_id: str, relative_path: str) -> str:
+        return str(self.config.artifact_prefix / platform / capture_id / relative_path)
+
+    def _hash_file(self, path: Path) -> str:
+        digest = hashlib.sha256()
+        with path.open("rb") as file:
+            for chunk in iter(lambda: file.read(1024 * 1024), b""):
+                digest.update(chunk)
+        return digest.hexdigest()
+
+    def _verify_asset_file(self, platform: str, capture_id: str, asset: ProducedAsset) -> str:
+        actual_path = self._artifact_actual_path(platform, capture_id, asset.relative_path)
+        capture_root = self._capture_root(platform, capture_id)
+        try:
+            actual_path.resolve().relative_to(capture_root.resolve())
+        except ValueError as exc:
+            raise ReceiptStorageError(422, "artifact_path_outside_root", "Artifact path is outside capture root.") from exc
+
+        if not actual_path.is_file():
+            raise ReceiptStorageError(422, "artifact_file_missing", "Produced asset file must exist before ledger insertion.")
+
+        actual_bytes = actual_path.stat().st_size
+        if actual_bytes != asset.bytes:
+            raise ReceiptStorageError(422, "artifact_bytes_mismatch", "Produced asset bytes do not match actual file size.")
+
+        actual_sha = self._hash_file(actual_path)
+        if actual_sha != asset.sha256:
+            raise ReceiptStorageError(422, "artifact_sha256_mismatch", "Produced asset sha256 does not match actual file.")
+
+        return self._artifact_ledger_path(platform, capture_id, asset.relative_path)
+
+    def _asset_metadata(self, receipt: WorkerReceipt, asset: ProducedAsset) -> dict[str, Any]:
+        return {
+            "is_raw_evidence": asset.is_raw_evidence,
+            "is_derived": asset.is_derived,
+            "redaction_applied": asset.redaction_applied,
+            "redaction_policy": asset.redaction_policy,
+            "sensitive_fields_removed": asset.sensitive_fields_removed or [],
+            "source_url": asset.source_url,
+            "created_by_job": asset.created_by_job,
+            "producer": receipt.producer,
+            "producer_version": receipt.producer_version,
+            "engine": receipt.engine,
+            "engine_version": receipt.engine_version,
+            "job_attempt": receipt.idempotency.job_attempt,
+            "dedupe_key": receipt.idempotency.dedupe_key,
+            "platform_result": receipt.platform_result.value,
+        }
+
+    def _job_event_json(self, receipt: WorkerReceipt, ledger_paths: list[str]) -> str:
+        return json.dumps(
+            {
+                "job_id": receipt.job_id,
+                "capture_id": receipt.capture_id,
+                "job_type": receipt.job_type,
+                "producer": receipt.producer,
+                "producer_version": receipt.producer_version,
+                "engine": receipt.engine,
+                "engine_version": receipt.engine_version,
+                "idempotency": receipt.idempotency.model_dump(mode="json"),
+                "platform_result": receipt.platform_result.value,
+                "next_status": receipt.next_status,
+                "duration_seconds": receipt.duration_seconds,
+                "artifact_paths": ledger_paths,
+            },
+            ensure_ascii=True,
+        )
+
+    def _verify_idempotent_assets(
+        self,
+        conn: sqlite3.Connection,
+        capture_id: str,
+        assets: list[ProducedAsset],
+        ledger_paths: list[str],
+    ) -> None:
+        for asset, ledger_path in zip(assets, ledger_paths, strict=True):
+            row = conn.execute(
+                """
+                SELECT artifact_kind, size_bytes, sha256
+                FROM artifact_assets
+                WHERE capture_id = ? AND file_path = ?
+                """,
+                (capture_id, ledger_path),
+            ).fetchone()
+            if row is None:
+                raise ReceiptStorageError(
+                    409,
+                    "idempotent_ledger_missing",
+                    "Succeeded job receipt replay did not find the expected artifact ledger row.",
+                )
+            if row["artifact_kind"] != asset.artifact_kind or row["size_bytes"] != asset.bytes or row["sha256"] != asset.sha256:
+                raise ReceiptStorageError(
+                    409,
+                    "idempotent_ledger_conflict",
+                    "Succeeded job receipt replay conflicts with existing artifact ledger row.",
+                )
+
+    def complete_job_receipt(self, receipt: WorkerReceipt) -> dict[str, Any]:
+        completed_at = datetime.now(UTC).isoformat()
+
+        with self._connect() as conn:
+            capture = conn.execute(
+                """
+                SELECT capture_id, platform, status
+                FROM captures
+                WHERE capture_id = ?
+                """,
+                (receipt.capture_id,),
+            ).fetchone()
+            if capture is None:
+                raise ReceiptStorageError(404, "capture_not_found", "Receipt capture_id does not exist.")
+
+            platform = capture["platform"]
+            ledger_paths = [
+                self._verify_asset_file(platform, receipt.capture_id, asset) for asset in receipt.produced_assets
+            ]
+
+            job = conn.execute(
+                """
+                SELECT job_id, capture_id, job_type, status, dedupe_key, platform_result
+                FROM jobs
+                WHERE job_id = ?
+                """,
+                (receipt.job_id,),
+            ).fetchone()
+            if job is None:
+                raise ReceiptStorageError(404, "job_not_found", "Receipt job_id does not exist.")
+            if job["capture_id"] != receipt.capture_id:
+                raise ReceiptStorageError(409, "job_capture_mismatch", "Receipt capture_id does not match job record.")
+            if job["job_type"] != receipt.job_type:
+                raise ReceiptStorageError(409, "job_type_mismatch", "Receipt job_type does not match job record.")
+            if job["dedupe_key"] != receipt.idempotency.dedupe_key:
+                raise ReceiptStorageError(409, "job_dedupe_key_mismatch", "Receipt dedupe_key does not match job record.")
+
+            if receipt.next_status != "metadata_fetched":
+                raise ReceiptStorageError(
+                    409,
+                    "next_status_not_supported",
+                    "T-P1A-002 only supports next_status=metadata_fetched.",
+                )
+            if capture["status"] not in {"discovered", "metadata_fetched"}:
+                raise ReceiptStorageError(
+                    409,
+                    "capture_state_conflict",
+                    "next_status=metadata_fetched is only allowed from discovered.",
+                )
+
+            if job["status"] == "succeeded":
+                if job["platform_result"] != receipt.platform_result.value:
+                    raise ReceiptStorageError(
+                        409,
+                        "idempotent_platform_result_conflict",
+                        "Succeeded job receipt replay conflicts with existing platform_result.",
+                    )
+                self._verify_idempotent_assets(conn, receipt.capture_id, receipt.produced_assets, ledger_paths)
+                return {
+                    "job_id": receipt.job_id,
+                    "capture_id": receipt.capture_id,
+                    "job_type": receipt.job_type,
+                    "status": "succeeded",
+                    "platform_result": receipt.platform_result.value,
+                    "artifact_count": len(receipt.produced_assets),
+                    "idempotent": True,
+                }
+
+            inserted_assets = 0
+            for asset, ledger_path in zip(receipt.produced_assets, ledger_paths, strict=True):
+                existing = conn.execute(
+                    """
+                    SELECT artifact_kind, size_bytes, sha256
+                    FROM artifact_assets
+                    WHERE capture_id = ? AND file_path = ?
+                    """,
+                    (receipt.capture_id, ledger_path),
+                ).fetchone()
+                if existing is not None:
+                    if (
+                        existing["artifact_kind"] != asset.artifact_kind
+                        or existing["size_bytes"] != asset.bytes
+                        or existing["sha256"] != asset.sha256
+                    ):
+                        raise ReceiptStorageError(
+                            409,
+                            "artifact_ledger_conflict",
+                            "Produced asset conflicts with an existing artifact ledger row.",
+                        )
+                    continue
+
+                conn.execute(
+                    """
+                    INSERT INTO artifact_assets (
+                        capture_id, artifact_zone, artifact_kind, file_path,
+                        size_bytes, sha256, metadata_json, created_at
+                    ) VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+                    """,
+                    (
+                        receipt.capture_id,
+                        asset.zone.value,
+                        asset.artifact_kind,
+                        ledger_path,
+                        asset.bytes,
+                        asset.sha256,
+                        json.dumps(self._asset_metadata(receipt, asset), ensure_ascii=True),
+                        completed_at,
+                    ),
+                )
+                inserted_assets += 1
+
+            job_status = "succeeded" if receipt.platform_result.value == "ok" else "failed"
+            conn.execute(
+                """
+                UPDATE jobs
+                SET status = ?, completed_at = ?, platform_result = ?
+                WHERE job_id = ?
+                """,
+                (job_status, completed_at, receipt.platform_result.value, receipt.job_id),
+            )
+            if job_status == "succeeded":
+                conn.execute(
+                    """
+                    UPDATE captures
+                    SET status = ?
+                    WHERE capture_id = ?
+                    """,
+                    (receipt.next_status, receipt.capture_id),
+                )
+            conn.execute(
+                """
+                INSERT INTO job_events (job_id, event_type, event_json, created_at)
+                VALUES (?, ?, ?, ?)
+                """,
+                (receipt.job_id, "complete", self._job_event_json(receipt, ledger_paths), completed_at),
+            )
+            conn.commit()
+
+        return {
+            "job_id": receipt.job_id,
+            "capture_id": receipt.capture_id,
+            "job_type": receipt.job_type,
+            "status": job_status,
+            "platform_result": receipt.platform_result.value,
+            "artifact_count": inserted_assets,
+            "idempotent": False,
         }

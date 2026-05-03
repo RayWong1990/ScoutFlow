@@ -126,3 +126,12 @@
 - Scope: Bilibili `manual_url` quick_capture, `metadata_only only`.
 - Explicit non-goals: `audio_transcript` runtime, workers, browser automation, `recommendation / keyword / RAW gap` direct capture, Phase 2-4 runtime.
 - Required validation: docs-check, API tests, LP-001 rejection tests, redaction tests, platform_result enum tests.
+
+## 2026-05-03 — T-P1A-002 dispatch execution authorized
+
+- Decision: user authorized executing `/Users/wanglei/Downloads/dispatch-t-p1a-002-api-jobs-receipt-ledger.md`.
+- Branch: `task/T-P1A-002-api-jobs-receipt-ledger`.
+- Scope: API-side `POST /jobs/{job_id}/complete`, receipt validation, `jobs` / `job_events` minimum schema, and `artifact_assets` ledger mapping.
+- Non-goals: workers, BBDown / yt-dlp / ffmpeg invocation, ASR, `audio_transcript` runtime, browser automation, Phase 2-4 runtime.
+- Local target-test verdict: `verdict=clear` for `python -m pytest tests/api tests/contracts -q` with `46 passed`.
+- Remaining gate: full validation command set plus GitHub PR / Actions audit before merge decision.
