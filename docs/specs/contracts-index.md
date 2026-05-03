@@ -19,7 +19,7 @@
 | `C-WRK-001` | Worker Receipt & Artifact Ledger | `docs/specs/worker-receipt-contract.md` | Codex | Phase 1A |
 | `C-PLT-001` | Platform Adapter Risk Contract | `docs/specs/platform-adapter-risk-contract.md` | Codex | Phase 1A |
 | `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md` | Codex | Phase 1A |
-| `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，尚未写入） | Codex | Phase 1A draft only |
+| `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，当前为 review candidate） | Codex | Phase 1A draft only |
 | `C-NFR-001` | NFR 分级 | `docs/SRD-v1.1-amendment-2026-05-03.md` A007 | user | Step0 |
 | `C-OPS-001` | Parallel Execution Protocol | `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
 | `C-OPS-002` | GitHub External Audit Workflow | `README.md` + `AGENTS.md` + `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
@@ -43,7 +43,7 @@
 | Item | 当前状态 | 边界 |
 |---|---|---|
 | `docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md` | PR `#10` 已合入 `main`；merge commit=`8328c567e26db118ad456b29f8616066174b3568`；GitHub run=`25280084928` | Research note only；not authority；not implementation approval；not runtime approval |
-| `docs/specs/bbdown-adapter-contract-draft.md` | `T-P1A-006` active，可从 research note 提炼 | Draft only；not final authority；not runtime approval；不得包含 BBDown / ffmpeg / ASR runtime approval |
+| `docs/specs/bbdown-adapter-contract-draft.md` | `T-P1A-006` review candidate，已从 research note 提炼 | Draft only；not final authority；not runtime approval；不得包含 BBDown / ffmpeg / ASR runtime approval |
 
 ## 当前引用但未落地的上游文档
 
