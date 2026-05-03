@@ -4,9 +4,9 @@
 
 - Phase：`0`
 - Step：`Step0`
-- 主任务：`T-P0-001`
-- 工作模式：GitHub bootstrap + 根轻配置 + 入口文档
-- 当前任务状态：`done`
+- 主任务：`T-P0-003`
+- 工作模式：目录骨架 + 文档 lint stub + 入口文档同步
+- 当前任务状态：`review`
 - 当前结论：`不进入产品代码`
 
 ## 当前允许
@@ -15,6 +15,7 @@
 - `.env.example`
 - `.vscode/`
 - `.github/`
+- `tools/`
 - `README.md`
 - `docs/`
 - `AGENTS.md`
@@ -46,13 +47,14 @@
 
 ## 当前任务
 
-- `T-P0-001`：Git 初始化、GitHub 私有仓库、根轻配置、入口文档补齐，当前已闭合
+- `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，当前已进入 review，等待外部审计
+- 本任务只创建最小文档红线 lint stub、接入 GitHub Actions docs-check，并同步 `README.md` / `AGENTS.md` / `CLAUDE.md` 入口口径
 
 ## 下一步候选
 
 - `T-P0-002`：`backlog`，`decision-log / locked-principles / project-context` 深化
-- `T-P0-003`：`backlog`，目录骨架 + 文档 lint stub
+- 不自动进入 `Phase 1A` 产品代码
 
 ## 阻塞
 
-- 不自动进入 `T-P0-002` 或 `T-P0-003`，等待 user 选择
+- 不自动进入 `T-P0-002` 或 `Phase 1A`，等待 user 后续选择

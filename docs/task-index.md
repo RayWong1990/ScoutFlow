@@ -18,14 +18,13 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P0-003` | 目录骨架 + 文档 lint stub + 入口文档同步 | `review` | `Codex Desktop` | 仅目录骨架、文档红线 lint stub、入口文档同步 | 项目根轻配置、`tools/`、`.github/workflows/docs-check.yml`、`README.md`、`AGENTS.md`、`CLAUDE.md`、`docs/current.md`、`docs/task-index.md` | `apps/`, `services/`, `workers/`, `packages/`, `data/`, `referencerepo/`, `candidates/`, `dispatches/`, `audits/` | `step0-execution-plan`, `contracts-index`, `locked-principles`, `A010`, `A011` | `python tools/check-docs-redlines.py`; GitHub Actions docs-check; `find`; `git ls-files` | 若引入业务逻辑、产品代码或 Phase 2-4 真逻辑则停线 | 等待外部审计；不直接 done |
 
 ## Backlog
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
 | `T-P0-002` | `decision-log` / `locked-principles` / `project-context` 入口同步 | `backlog` | `Codex Desktop` | 仅 docs | `docs/` | `apps/`, `services/`, `workers/`, `packages/`, `data/`, `referencerepo/`, `candidates/`, `dispatches/`, `audits/` | `PRD-v1`, `SRD-v1`, `A001`, `A011` | 文档交叉引用检查 | 若把草案写成锁定则停线 | 深化现有入口文档 |
-| `T-P0-003` | 目录骨架 + 文档 lint stub | `backlog` | `Codex Desktop` | 仅骨架与 lint stub | 项目根、`tools/` | `apps/`, `services/`, `workers/`, `packages/`, `data/`, `referencerepo/`, `candidates/`, `dispatches/`, `audits/` | `step0-execution-plan`, `contracts-index`, `A010`, `A011` | `find`, stub smoke check | 若引入业务逻辑或 Phase 2-4 真逻辑则停线 | 需 user 批准后再开 |
 
 ## Blocked
 

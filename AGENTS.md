@@ -14,11 +14,11 @@
 
 - 当前 Phase：`Phase 0`
 - 当前 Step：`Step0`
-- 当前活动任务：`T-P0-001`
+- 当前活动任务：`T-P0-003`
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：Git 初始化、私有仓库同步、根轻配置、入口文档与 contract
+- 当前只做：目录骨架、文档 lint stub、入口文档同步
 - 当前不做：API、worker、Console、真实采集、浏览器自动化
-- 当前状态：`T-P0-000 已闭合；T-P0-001 已闭合，等待 user 选择下一任务`
+- 当前状态：`T-P0-001 已闭合；T-P0-003 已进入 review，等待外部审计`
 
 ## 3. 当前红线
 
@@ -32,6 +32,8 @@
 ## 4. 当前允许路径
 
 - 项目根轻配置
+- `.github/workflows/docs-check.yml`
+- `tools/`
 - `docs/`
 - `AGENTS.md`
 - `CLAUDE.md`

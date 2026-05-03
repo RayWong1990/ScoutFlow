@@ -19,3 +19,6 @@ jobs:
           test -f docs/current.md
           test -f docs/task-index.md
           test -f docs/specs/contracts-index.md
+          test -f docs/specs/locked-principles.md
+      - name: Check docs redlines
+        run: python tools/check-docs-redlines.py
