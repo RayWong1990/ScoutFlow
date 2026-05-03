@@ -19,13 +19,15 @@
 | `C-WRK-001` | Worker Receipt & Artifact Ledger | `docs/specs/worker-receipt-contract.md` | Codex | Phase 1A |
 | `C-PLT-001` | Platform Adapter Risk Contract | `docs/specs/platform-adapter-risk-contract.md` | Codex | Phase 1A |
 | `C-SEC-001` | Raw Response Redaction & Credential Safety | `docs/specs/raw-response-redaction.md` | Codex | Phase 1A |
+| `C-BBD-001` | BBDown Adapter Contract Draft | `docs/specs/bbdown-adapter-contract-draft.md`（由 `T-P1A-006` 提炼，尚未写入） | Codex | Phase 1A draft only |
 | `C-NFR-001` | NFR 分级 | `docs/SRD-v1.1-amendment-2026-05-03.md` A007 | user | Step0 |
 | `C-OPS-001` | Parallel Execution Protocol | `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
 | `C-OPS-002` | GitHub External Audit Workflow | `README.md` + `AGENTS.md` + `docs/specs/parallel-execution-protocol.md` | Codex | Step0 / Phase 0 candidate baseline |
 | `C-OPS-003` | Single Writer / Multi Reviewer | `AGENTS.md` + `CLAUDE.md` + `.github/pull_request_template.md` | Codex | Step0 / Phase 0 candidate baseline |
 
 > `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
-> `main` 当前已合入 `T-P1A-001` 的 API-side `capture_manifest` ledger stub、`T-P1A-002` 的 receipt / ledger baseline、`T-P1A-004` 的 secret-scan / text-redaction safety baseline。`T-P1A-003` 的 PR `#10` 仍只算 research note，不进入 authority。
+> `C-BBD-001` 当前只是允许提炼 draft spec 的占位 contract；写入后仍必须标记 `draft / not final authority / not runtime approval`。
+> `main` 当前已合入 `T-P1A-001` 的 API-side `capture_manifest` ledger stub、`T-P1A-002` 的 receipt / ledger baseline、`T-P1A-004` 的 secret-scan / text-redaction safety baseline。`T-P1A-003` 已通过 PR `#10` 合入为 research note，但不进入 authority。
 
 ## 当前实现基线状态
 
@@ -35,6 +37,13 @@
 | `C-ART-001` | `main` baseline via `T-P1A-002`：receipt `produced_assets[]` 映射为 `artifact_assets` 行，`idx_artifact_assets_capture_file` 保护同一 capture 下 file_path 唯一，metadata_json 保留 producer / redaction / idempotency / `source_surface` 追溯字段 | 仅登记已存在于 artifacts root 的文件；不定义 Phase 2+ FS 版本化 |
 | `C-PLT-001` | `main` baseline via `T-P1A-002`：`platform_result` 使用既有 `PlatformResult` enum；非 `ok` receipt 将 job 标记为 `failed`，不推进 capture status，并在 `job_events` 记录 `platform_result` | 不新增平台状态映射；非 `ok` 的更细 operator 策略仍按后续任务收敛 |
 | `C-SEC-001` | `main` baseline via `T-P1A-002` + `T-P1A-004`：`raw_api_response` receipt 仍要求 `redaction_applied=true`、`redaction_policy`、非空 `sensitive_fields_removed`；主线已提供 `redact_sensitive_text`、`check-secrets-redlines.py`、secret scan contract tests 与 CI hardening | 安全基线已进入 `main`；但不替代未来 tool adapter 的更细权限/凭据注入 contract |
+
+## 当前 research note / draft contract 状态
+
+| Item | 当前状态 | 边界 |
+|---|---|---|
+| `docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md` | PR `#10` 已合入 `main`；merge commit=`8328c567e26db118ad456b29f8616066174b3568`；GitHub run=`25280084928` | Research note only；not authority；not implementation approval；not runtime approval |
+| `docs/specs/bbdown-adapter-contract-draft.md` | `T-P1A-006` active，可从 research note 提炼 | Draft only；not final authority；not runtime approval；不得包含 BBDown / ffmpeg / ASR runtime approval |
 
 ## 当前引用但未落地的上游文档
 

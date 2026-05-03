@@ -178,3 +178,22 @@
 - Local validation: `python -m pytest tests/contracts -q` -> `25 passed`; `python -m pytest tests/api tests/contracts -q` -> `50 passed`
 - Scope: text redaction, secret scan, CI hardening, contract tests, and raw-response redaction safety docs.
 - Boundary: no BBDown / yt-dlp / ffmpeg runtime; no workers; no frontend; no downloads; no credentials; no `audio_transcript` runtime.
+
+## 2026-05-03 — Dispatch 0 human-gate sync after PR #10
+
+- Decision: merge PR `#10` as `docs/research/**` research note only.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/10`
+- PR head: `42baf4165d7bf9022a9e8742d989a7428ae3ee4b`
+- Merge commit: `8328c567e26db118ad456b29f8616066174b3568`
+- GitHub Actions run: `25280084928`; `docs-smoke=success`; `api-contract-tests=success`
+- Boundary: PR `#10` is not authority, not implementation approval, and not runtime approval.
+- Decision: user approves extracting `docs/specs/bbdown-adapter-contract-draft.md` from the research note under `T-P1A-006`.
+- Boundary: the draft spec must remain `draft / not final authority / not runtime approval`.
+- Decision: future direction may reuse BBDown and may later consider BBDown / ffmpeg / ASR by staged tasks.
+- Decision: user prefers BBDown as the likely Bilibili main adapter direction, rather than staying indefinitely at abstract research.
+- Decision: this is personal local development, not public SaaS; privacy/compliance risk is treated as low for this project shape.
+- Boundary: cookie / token / secret material must not enter Git, PRs, CI, logs, DB artifacts, or tracked files.
+- Decision: manual-auth / local-only auth design may be considered later, but requires an explicit future contract.
+- Decision: Explore URL paste, risk prompts, and receipt status display require separate user brainstorm under `T-P1A-007`.
+- Task sync: `T-P1A-003=done`; `T-P1A-006=active`; `T-P1A-007=active`; `T-P1A-008=backlog/gated`; `T-P1A-009=backlog/gated`.
+- Non-goals unchanged: no workers, no frontend, no real download, no ASR, no browser automation, no `audio_transcript` runtime, no Phase 2-4 runtime.
