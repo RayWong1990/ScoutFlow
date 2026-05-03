@@ -44,7 +44,7 @@
 - `POST /captures/discover` = `capture 创建入口（capture creation entrypoint）`
 - `POST /jobs/{job_id}/complete` = `worker receipt API-side validation and ledger entrypoint`; 当前只接收已存在 job 的 receipt，不创建 worker queue runtime
 - `recommendation / keyword / RAW gap` 不直接创建 capture
-- 活动任务上限 `3`；当前 Active count=`0/3`，Review count=`0`
+- 活动任务上限 `3`；当前 Active count=`1/3`，Review count=`0`
 - 项目根不建立重治理目录
 
 > `T-P1A-001` / `T-P1A-002` / `T-P1A-004` 的合并只表示对应 API-side 和安全基线进入 `main`；`T-P1A-003` 的合并只表示 research note 进入 `docs/research/**`。这些都不等于批准 broader Phase 1A runtime、workers、frontend、`audio_transcript` 或 Phase 2-4 产品代码。
