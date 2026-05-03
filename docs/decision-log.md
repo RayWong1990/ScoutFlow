@@ -89,3 +89,26 @@
 - Scope: cleanup only; no API / worker / Console implementation.
 - Not a Phase 1A product-code approval.
 - Product direction restored to PRD/SRD authority-first ScoutFlow / 采集线 mainline.
+
+## 2026-05-03 — T-P0-007 Phase 1A readiness planning started
+
+- Decision: start `T-P0-007` as a docs-only Phase 1A Bilibili `manual_url` quick_capture readiness pack.
+- Decision: do not reuse `T-P0-005` / `T-P0-006` for product-mainline work.
+- Decision: delete leftover branch `task/p0-004-repo-hygiene-dispatch` only after confirming it has no unique commits.
+- Scope: readiness planning, task ledger, current-state sync, and implementation gate definition only.
+- Not a product-code approval.
+- Not a Phase 1A implementation approval.
+- Next user gate: whether `docs/plans/phase1a-manual-url-quick-capture-readiness-2026-05-03.md` may become the basis for `T-P1A-001`.
+
+## 2026-05-03 — T-P0-007 readiness pack closed after external audit
+
+- Decision: close `T-P0-007` as docs-only readiness pack after GPT Pro external audit.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/6`
+- Branch: `task/T-P0-007-phase1a-readiness`
+- Reviewed commit: `40aa2f325bf5defe9fad9427fd0c8a006bf84436`
+- GitHub Actions run: `25276308045`; docs-smoke=`success`
+- Audit conclusion: PASS — no blocking issue.
+- Scope: Phase 1A Bilibili `manual_url` quick_capture readiness planning only.
+- Not a product-code approval.
+- Not a Phase 1A implementation approval.
+- Next gate: user decides whether to merge PR `#6` and whether to authorize `T-P1A-001`.

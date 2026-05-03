@@ -4,10 +4,10 @@
 
 - Phase：`0`
 - Step：`Step0`
-- 主任务：`T-P0-004`
-- 工作模式：通信测试 artifacts 清理与 ScoutFlow / 采集线产品主线恢复
-- 当前任务状态：`cleanup complete`
-- 当前结论：通信测试已暂停/关闭；回到 PRD-SRD product mainline；不进入产品代码
+- 主任务：`T-P0-007`
+- 工作模式：Phase 1A readiness merge candidate 收口；补充 `T-P1A-001` dispatch draft 与 user decision matrix
+- 当前任务状态：`done / merge candidate`
+- 当前结论：`T-P0-007` readiness pack 已通过外部审计并进入 PR `#6` merge candidate；这仍不等于产品代码 approval；未获 user 明确批准前，不启动 `T-P1A-001`。
 
 ## 当前允许
 
@@ -49,13 +49,18 @@
 - `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，已闭合为 `done`
 - `T-P0-004`：通信测试 artifacts 清理与主线恢复，已闭合为 `done`
 - `T-P0-005` / `T-P0-006`：按 user 决定视为通信测试，不作为活动产品任务或 Phase 1A approval
+- `T-P0-007`：Phase 1A Bilibili `manual_url` quick_capture readiness pack，当前为 docs-only `done / merge candidate`
 - GitHub queue / Web GPT sync smoke / Codex adapter / MCP communication harness 当前暂停或关闭，不是 ScoutFlow 产品方向
 
 ## 下一步候选
 
-- user 后续可另行选择 `Phase 1A` 准备任务：Bilibili `manual_url` quick_capture preparation
+- user 决定是否 merge PR `#6`
+- user review [phase1a-manual-url-quick-capture-readiness-2026-05-03.md](/Users/wanglei/workspace/ScoutFlow/docs/plans/phase1a-manual-url-quick-capture-readiness-2026-05-03.md)
+- user review [t-p1a-001-manual-url-quick-capture-implementation-dispatch-draft-2026-05-03.md](/Users/wanglei/workspace/ScoutFlow/docs/plans/t-p1a-001-manual-url-quick-capture-implementation-dispatch-draft-2026-05-03.md)
+- user 后续可选择是否批准 `T-P1A-001` 作为第一项 code-bearing Phase 1A 任务
 - 当前不自动进入 `Phase 1A` 产品代码
 
 ## 阻塞
 
-- 不自动进入 `Phase 1A`；等待 user 后续选择
+- 未获 user 明确批准前，不启动 `T-P1A-001`
+- PR `#6` 未 merge 前，不把 readiness pack 当成已并入主线事实
