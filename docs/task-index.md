@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`0/3`，Review count=`0`。
+> 当前限制：活动任务仅允许 `1-3` 条；当前 Active count=`0/3`，Review count=`1`。
 
 ## 规则
 
@@ -25,13 +25,13 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-009` | BBDown local runtime spike | `review` | `Codex Desktop` | Local-only BBDown runtime spike; `BBDown --version` preflight attempted and found executable unavailable; `BBDown -info` not executed | `docs/task-index.md`; `docs/current.md`; `docs/research/t-p1a-009-bbdown-local-runtime-spike-report-2026-05-03.md`; `AGENTS.md`; `README.md` only for minimal status wording | media download; ffmpeg; ASR; workers; frontend; cookies/tokens; browser profile; credential files; tracked raw stdout/stderr; `services/**`; `tests/**`; `data/**`; `referencerepo/**`; root governance dirs | `T-P1A-006`; `T-P1A-008`; `docs/specs/bbdown-adapter-contract-draft.md`; `docs/specs/raw-response-redaction.md`; `docs/specs/platform-adapter-risk-contract.md` | `python tools/check-docs-redlines.py`; `python tools/check-secrets-redlines.py`; `python -m pytest tests/contracts -q`; `python -m pytest tests/api tests/contracts -q`; `git diff --check`; Git path checks | treating report as final authority; retrying with login/auth; downloading media; ffmpeg/ASR; writing raw stdout/stderr; reading credentials/browser profile | Report-only spike result: tool unavailable in PATH; no `-info`; not adapter runtime approval; not `audio_transcript` approval |
 
 ## Backlog
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-009` | BBDown local runtime spike | `backlog/gated` | `TBD` | Local runtime spike only after user re-approval; allowed shape limited to `BBDown --version` and no-auth `-info` metadata probe if later authorized | `TBD when opened`; no runtime path opened now | media download; ASR; workers; frontend; cookies/tokens; browser profile; tracked raw stdout/stderr with secrets | `T-P1A-006`; `T-P1A-008`; future user approval phrase | Explicit runtime-spike validation in later dispatch | treating backlog as approval; downloading media; auth material entering Git/CI/logs | Gate: `T-P1A-006` + `T-P1A-008` + user again explicitly approves runtime spike |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Blocked
 
