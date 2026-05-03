@@ -25,6 +25,7 @@
 | `C-OPS-003` | Single Writer / Multi Reviewer | `AGENTS.md` + `CLAUDE.md` + `.github/pull_request_template.md` | Codex | Step0 / Phase 0 candidate baseline |
 
 > `C-OPS-001` / `C-OPS-002` / `C-OPS-003` 只约束 Step0 / Phase 0 的协作方式，不是产品代码 approval。
+> `T-P1A-001` 当前只实现 API-side `capture_manifest` ledger stub；完整 worker receipt endpoint 与 worker-side artifact writeback 仍属后续任务范围。
 
 ## 当前引用但未落地的上游文档
 

@@ -1,8 +1,7 @@
 from __future__ import annotations
 
 import re
-from pathlib import Path
-from urllib.parse import urlparse
+from urllib.parse import ParseResult, urlparse
 
 from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
@@ -14,6 +13,7 @@ from scoutflow_api.storage import Storage
 BV_ID_RE = re.compile(r"(BV[0-9A-Za-z]{10})")
 LP001_REJECTED_SOURCE_KINDS = {"recommendation", "keyword", "raw_gap"}
 SUPPORTED_PLATFORM = "bilibili"
+SUPPORTED_SCHEMES = {"http", "https"}
 
 router = APIRouter()
 
@@ -23,9 +23,17 @@ def error_response(http_status: int, code: str, message: str) -> JSONResponse:
     return JSONResponse(status_code=http_status, content=body)
 
 
+def is_bilibili_host(parsed: ParseResult) -> bool:
+    host = parsed.hostname
+    if host is None:
+        return False
+    normalized = host.lower().rstrip(".")
+    return normalized == "bilibili.com" or normalized.endswith(".bilibili.com")
+
+
 def extract_bilibili_bv_id(canonical_url: str) -> str | None:
     parsed = urlparse(canonical_url)
-    if "bilibili.com" not in parsed.netloc:
+    if parsed.scheme.lower() not in SUPPORTED_SCHEMES or not is_bilibili_host(parsed):
         return None
     match = BV_ID_RE.search(parsed.path)
     return match.group(1) if match else None
@@ -59,8 +67,10 @@ def create_capture(payload: DiscoverCaptureRequest, request: Request) -> Discove
     platform_item_id = extract_bilibili_bv_id(payload.canonical_url)
     if platform_item_id is None:
         parsed = urlparse(payload.canonical_url)
-        if "bilibili.com" not in parsed.netloc:
+        if not is_bilibili_host(parsed):
             return error_response(422, "unsupported_platform", "canonical_url must be a bilibili URL.")
+        if parsed.scheme.lower() not in SUPPORTED_SCHEMES:
+            return error_response(422, "invalid_bilibili_url", "canonical_url must use http or https.")
         return error_response(422, "invalid_bilibili_url", "canonical_url must contain a BV id.")
 
     storage: Storage = request.app.state.storage

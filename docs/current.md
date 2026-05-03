@@ -44,11 +44,11 @@
 - 活动任务上限 `3`
 - 项目根不建立重治理目录
 
-> 上述候选基准已获 user 批准，可作为 `Phase 0 / Phase 1A` 的候选实现基线；这不等于批准开始产品代码实现。
+> 上述候选基准已获 user 批准；这只批准 `T-P1A-001` 的最小 `metadata_only` API-side baseline，不等于批准 broader Phase 1A runtime、workers、frontend、`audio_transcript` 或 Phase 2-4 产品代码。
 
 ## 当前任务
 
-- `T-P1A-001`：Bilibili `manual_url` quick_capture，当前只做 `metadata_only only` 的 API-side contract 与 tests
+- `T-P1A-001`：Bilibili `manual_url` quick_capture，当前只做 `metadata_only only` 的 API-side contract 与 tests；`artifact_assets` 仅登记 `capture_manifest` 的 API-side ledger stub，worker receipt endpoint 仍属后续任务
 - `T-P0-002`：入口文档深化 + 并行执行协议固化，已在 PR `#1` 合并后闭合为 `done`
 - `T-P0-003`：目录骨架 + 文档 lint stub + 入口文档同步，已闭合为 `done`
 - `T-P0-004`：通信测试 artifacts 清理与主线恢复，已闭合为 `done`

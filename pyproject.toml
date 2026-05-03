@@ -17,5 +17,8 @@ test = [
   "pytest>=9.0",
 ]
 
+[tool.setuptools.packages.find]
+where = ["services/api"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]

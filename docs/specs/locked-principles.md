@@ -6,8 +6,8 @@
 
 - Principle: `recommendation / keyword / RAW gap` 不得直接创建 capture。
 - Phase: `1A`
-- Enforcement path: `services/api/middleware/scope_gate.py`
-- Test / lint path: `tests/api/test_lp001_scope_gate.py`
+- Enforcement path: `services/api/scoutflow_api/captures.py`
+- Test / lint path: `tests/contracts/test_lp001_capture_gate.py`
 - Current status: `candidate baseline`
 
 ## LP-002 — Plan estimate → approve → run

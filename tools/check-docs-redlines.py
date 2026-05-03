@@ -300,7 +300,7 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("文档红线检查通过：required docs、禁止目录、local-only 跟踪、禁用命名、任务状态一致性均符合当前 Phase 0 边界。")
+    print("文档红线检查通过：required docs、禁止目录、local-only 跟踪、禁用命名、任务状态一致性均符合当前任务边界。")
     return 0
 
 

@@ -6,6 +6,7 @@ import sqlite3
 import sys
 from pathlib import Path
 
+import pytest
 from fastapi.testclient import TestClient
 
 
@@ -91,6 +92,51 @@ def test_happy_path_creates_metadata_only_capture(tmp_path: Path) -> None:
         )
 
 
+def test_duplicate_manual_url_is_idempotent_without_orphan_manifest(tmp_path: Path) -> None:
+    client, db_path, artifacts_root = build_client(tmp_path)
+    payload = {
+        "platform": "bilibili",
+        "canonical_url": "https://www.bilibili.com/video/BV1AB411c7mD",
+        "source_kind": "manual_url",
+        "quick_capture_preset": "metadata_only",
+    }
+
+    first_response = client.post("/captures/discover", json=payload)
+    second_response = client.post("/captures/discover", json=payload)
+
+    assert first_response.status_code == 201
+    assert second_response.status_code in {200, 201}
+    first_body = first_response.json()
+    second_body = second_response.json()
+    assert second_body["capture_id"] == first_body["capture_id"]
+
+    with sqlite3.connect(db_path) as conn:
+        capture_count = conn.execute(
+            """
+            SELECT COUNT(*)
+            FROM captures
+            WHERE platform = ? AND platform_item_id = ?
+            """,
+            ("bilibili", "BV1AB411c7mD"),
+        ).fetchone()[0]
+        assert capture_count == 1
+
+        artifact_count = conn.execute(
+            """
+            SELECT COUNT(*)
+            FROM artifact_assets
+            WHERE capture_id = ? AND artifact_kind = ?
+            """,
+            (first_body["capture_id"], "capture_manifest"),
+        ).fetchone()[0]
+        assert artifact_count == 1
+
+    capture_dirs = list((artifacts_root / "bilibili").glob("*"))
+    manifests = list((artifacts_root / "bilibili").glob("*/bundle/capture-manifest.json"))
+    assert len(capture_dirs) == 1
+    assert len(manifests) == 1
+
+
 def test_audio_transcript_is_rejected_for_t_p1a_001(tmp_path: Path) -> None:
     client, _, _ = build_client(tmp_path)
 
@@ -123,6 +169,65 @@ def test_non_bilibili_url_is_rejected(tmp_path: Path) -> None:
 
     assert response.status_code == 422
     assert response.json()["code"] == "unsupported_platform"
+
+
+@pytest.mark.parametrize(
+    "canonical_url",
+    (
+        "https://bilibili.com.evil.example/video/BV1AB411c7mD",
+        "https://evil-bilibili.com/video/BV1AB411c7mD",
+        "https://notbilibili.com/video/BV1AB411c7mD",
+    ),
+)
+def test_bilibili_host_spoof_is_rejected(tmp_path: Path, canonical_url: str) -> None:
+    client, _, _ = build_client(tmp_path)
+
+    response = client.post(
+        "/captures/discover",
+        json={
+            "platform": "bilibili",
+            "canonical_url": canonical_url,
+            "source_kind": "manual_url",
+            "quick_capture_preset": "metadata_only",
+        },
+    )
+
+    assert response.status_code == 422
+    assert response.json()["code"] == "unsupported_platform"
+
+
+def test_bilibili_subdomain_is_accepted(tmp_path: Path) -> None:
+    client, _, _ = build_client(tmp_path)
+
+    response = client.post(
+        "/captures/discover",
+        json={
+            "platform": "bilibili",
+            "canonical_url": "https://m.bilibili.com/video/BV1AB411c7mD",
+            "source_kind": "manual_url",
+            "quick_capture_preset": "metadata_only",
+        },
+    )
+
+    assert response.status_code == 201
+    assert response.json()["platform_item_id"] == "BV1AB411c7mD"
+
+
+def test_non_http_scheme_is_rejected(tmp_path: Path) -> None:
+    client, _, _ = build_client(tmp_path)
+
+    response = client.post(
+        "/captures/discover",
+        json={
+            "platform": "bilibili",
+            "canonical_url": "ftp://www.bilibili.com/video/BV1AB411c7mD",
+            "source_kind": "manual_url",
+            "quick_capture_preset": "metadata_only",
+        },
+    )
+
+    assert response.status_code == 422
+    assert response.json()["code"] == "invalid_bilibili_url"
 
 
 def test_bilibili_url_without_bv_id_is_rejected(tmp_path: Path) -> None:
