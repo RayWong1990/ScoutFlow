@@ -21,3 +21,11 @@
 - Decision: close `T-P0-000` as done.
 - Decision: move `T-P0-001` into `in_progress`.
 - Scope: Git initialization, private GitHub repository, root baseline docs/config only.
+
+## 2026-05-03 — GitHub bootstrap completed
+
+- Decision: initialize local git repository on branch `main`.
+- Decision: create private GitHub repository `RayWong1990/ScoutFlow`.
+- Initial commit: `22c2c2014b9d10f48a6a8fe11fc73f38ba1b0045`
+- Remote URL: `https://github.com/RayWong1990/ScoutFlow.git`
+- Scope: docs, contracts, and repo baseline only.
