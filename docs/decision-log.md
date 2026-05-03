@@ -136,7 +136,6 @@
 - Local validation verdict: `verdict=clear` for the full dispatch command set.
 - PR: `https://github.com/RayWong1990/ScoutFlow/pull/9`
 - Pre-audit GitHub Actions run after PR `#9` head update: `25277857106`; `docs-smoke=pass`; `api-contract-tests=pass`; superseded by Dispatch B audit-fix.
-- Remaining gate: external audit and merge decision.
 
 ## 2026-05-03 — T-P1A-002 Dispatch B audit-fix authorized
 
@@ -144,5 +143,38 @@
 - Scope: clean PR `#9` diff against latest `origin/main`, remove T-P1A-004 pollution from PR `#9`, and add merge-blocking audit fixes for receipt / ledger contracts.
 - PR `#8` status at start: open, not merged; therefore PR `#9` must not carry T-P1A-004 safety files as its own diff.
 - Local audit-fix validation verdict: `verdict=clear`; `python -m pytest tests/api tests/contracts -q` -> `42 passed`.
-- GitHub Actions run: pending after PR `#9` branch update.
+- GitHub Actions run: `25278781456`; `docs-smoke=success`; `api-contract-tests=success`
 - Non-goals unchanged: workers, BBDown / yt-dlp / ffmpeg invocation, ASR, `audio_transcript` runtime, browser automation, frontend, Phase 2-4 runtime.
+
+## 2026-05-03 — T-P1A-003 research note recorded on GitHub
+
+- Record: `T-P1A-003` BBDown tool-surface research note is recorded in draft PR `#10`.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/10`
+- Branch: `task/T-P1A-003-bbdown-tool-surface-research`
+- Head commit: `42baf4165d7bf9022a9e8742d989a7428ae3ee4b`
+- GitHub Actions run: `25278481839`; `docs-smoke=success`; `api-contract-tests=success`
+- Scope: `docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md` only.
+- Boundary: not authority; not implementation approval; no runtime capture; no BBDown execution; no docs/task authority writeback.
+- Remaining gate: keep as draft research note unless user explicitly approves draft spec extraction.
+
+## 2026-05-03 — PR #9 merged after Dispatch B audit-fix
+
+- Decision: merge PR `#9` after audit-fix and verification.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/9`
+- Reviewed head: `7e54ec0d0b1a8aae5fcd041b02a6f1f56ac28e97`
+- Merge commit: `1449f0d753c2da1476178f99934cf66c3add372c`
+- GitHub Actions run: `25278781456`; `docs-smoke=success`; `api-contract-tests=success`
+- Local validation: `python -m pytest tests/api tests/contracts -q` -> `42 passed`
+- Scope: API-side receipt endpoint, receipt validation, `jobs` / `job_events` minimum schema, artifact ledger mapping, idempotency / DB guard hardening.
+- Boundary: no workers; no BBDown / yt-dlp / ffmpeg invocation; no ASR; no `audio_transcript` runtime; no frontend; no Phase 2-4 runtime.
+
+## 2026-05-03 — PR #8 merged after rebased safety baseline
+
+- Decision: rebase PR `#8` onto the new `main`, drop stale authority-ledger sync commit, keep only the safety baseline itself, then merge.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/8`
+- Rebased head: `7c74233095c3c297d4634a7e342547830d77bf32`
+- Merge commit: `4f6af1ce3d823c84fc8f38cefee0790ec1830c62`
+- GitHub Actions run: `25279195327`; `docs-smoke=success`; `api-contract-tests=success`
+- Local validation: `python -m pytest tests/contracts -q` -> `25 passed`; `python -m pytest tests/api tests/contracts -q` -> `50 passed`
+- Scope: text redaction, secret scan, CI hardening, contract tests, and raw-response redaction safety docs.
+- Boundary: no BBDown / yt-dlp / ffmpeg runtime; no workers; no frontend; no downloads; no credentials; no `audio_transcript` runtime.

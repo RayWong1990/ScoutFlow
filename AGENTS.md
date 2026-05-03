@@ -1,6 +1,6 @@
 # ScoutFlow AGENTS
 
-> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline；当前主焦点为 `T-P1A-002` review，`T-P1A-003` / `T-P1A-004` 仍为 active；仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
+> 适用范围：ScoutFlow 项目根目录下的所有 agent 会话。当前阶段已合并 `T-P1A-001` 的 API-side metadata-only baseline、`T-P1A-002` 的 receipt/ledger baseline、`T-P1A-004` 的安全基线；当前仅 `T-P1A-003` 仍为 active，仍不允许 workers、frontend、浏览器自动化或 Phase 2-4 runtime。
 
 ## 1. 进入项目先读
 
@@ -13,12 +13,12 @@
 ## 2. 当前阶段
 
 - 当前 Phase：`Phase 1A`
-- 当前 Step：`T-P1A-002 review / T-P1A-003 / T-P1A-004`
-- 当前活动任务：`T-P1A-002` API jobs / receipt / artifact ledger foundation 当前处于 review；`T-P1A-003` BBDown tool-surface research / adapter contract proposal 与 `T-P1A-004` redaction / secret scan / CI hardening 仍为 active
+- 当前 Step：`T-P1A-003 active`
+- 当前活动任务：`T-P1A-003` BBDown tool-surface research / adapter contract proposal 仍为 active；`T-P1A-002` API jobs / receipt / artifact ledger foundation 与 `T-P1A-004` redaction / secret scan / CI hardening 已 merged to `main`
 - 当前候选基准：`docs/PRD-v1-2026-05-02.md`、`docs/PRD-v1.1-amendment-2026-05-02.md`、`docs/SRD-v1-2026-05-02.md`、`docs/SRD-v1.1-amendment-2026-05-03.md`、`docs/current.md`、`docs/task-index.md`、`docs/specs/*.md`
-- 当前只做：`T-P1A-002` review 修正与 full validation；`T-P1A-003` / `T-P1A-004` 各自 allowed paths 内的受控执行与账本同步；`T-P1A-003` 只允许 research / draft proposal
+- 当前只做：`T-P1A-003` allowed paths 内的受控 research / draft proposal；authority 只允许账本同步，不自动批准新 runtime
 - 当前不做：workers、frontend、真实下载、ASR、浏览器自动化、Phase 2-4 runtime
-- 当前状态：`review`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码
+- 当前状态：`active`；历史：`T-P1A-001` 已通过 PR `#7` 合并入 `main`，含义仅为 `metadata_only API-side capture creation baseline merged`；`T-P1A-002` 已通过 PR `#9` 合并入 `main`；`T-P1A-004` 已通过 PR `#8` 合并入 `main`；`T-P0-005` / `T-P0-006` 仍视为通信测试并关闭；当前只允许受控产品代码
 
 ## 3. 当前红线
 
@@ -27,7 +27,7 @@
 - 不在项目根建立重治理目录
 - `recommendation / keyword / RAW gap` 不直接创建 capture
 - `POST /captures/discover` 当前语义是 `capture 创建入口（capture creation entrypoint）`，不是 source discovery
-- `audio_transcript` runtime 不进入当前 review / active tasks
+- `audio_transcript` runtime 不进入当前 active tasks
 - 不创建或修改 `workers/`
 - 不创建或修改 `apps/`
 - Phase 2-4 只作参考 outline，不进入当前实现任务
@@ -75,7 +75,7 @@
 
 | 工具 | 当前职责 | 当前不应做 |
 |---|---|---|
-| `Codex Desktop` | `T-P1A-002` / `T-P1A-004` 受控实现、任务账本、主写入、commit owner | 不写 workers / frontend；不让 subagent 独立写 authority |
+| `Codex Desktop` | `T-P1A-003` 任务账本、主写入、commit owner；未来新任务仍需显式授权 | 不写 workers / frontend；不让 subagent 独立写 authority |
 | `Codex subagent` | code/doc scan、lint、diff review、风险列举 | 不独立写回 `docs/current.md` / `docs/task-index.md` |
 | `Claude Code / VSCode` | 文档审读、IA/UX 评论、局部文案修订、contract 校对 | 不主导当前代码主线；默认 sidecar read-only |
 | `ChatGPT Pro` | GitHub 外部审计、prompt 派单、PR/commit review | 不直接改 repo；不绕过任务账本 |
