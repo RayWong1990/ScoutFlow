@@ -70,9 +70,11 @@ No BBDown stdout/stderr was produced because the executable did not launch.
 
 Since `-info` was not executed:
 
-- `platform_result`: `not_applicable`
-- parser success: `not_applicable`
-- required fields present: `not_applicable`
+- `PlatformResult`: `not emitted`
+- Reason: `BBDown -info` did not run, so no platform boundary was reached.
+- `tool_preflight_result`: `executable_not_found`
+- parser success: `not assessed`
+- required fields present: `not assessed`
 - `blocks_quick_capture`: `true` by operational policy, because no platform metadata was obtained
 
 ## 6. Redaction Result
