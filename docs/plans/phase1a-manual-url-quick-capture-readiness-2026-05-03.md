@@ -248,3 +248,13 @@ grep -RIn "T-P0-005\|T-P0-006\|github queue\|sync smoke\|Codex adapter\|MCP comm
 - `manual_admin` 是否保留在最小 Step0 / Phase 1A contract
 - `auth_required`、`region_blocked`、`vip_required` 对 `source.status` 的最终映射
 - `T-P1A-001` 是否只做 `metadata_only`，还是同时允许 `audio_transcript`
+
+## 15. User decision matrix for T-P1A-001
+
+| Decision | Options | Recommended default | Blocks T-P1A-001? |
+|---|---|---|---|
+| First implementation mode | `metadata_only only` / `metadata + audio_transcript` | `metadata_only only` | Yes |
+| quick_capture thresholds | `keep 100 MB / 30 min / 50k token` / `change` | `keep current` | Yes |
+| `manual_admin` | `include` / `exclude` | `exclude from first implementation` | Yes |
+| Bilibili `auth_required` handling | `source blocked` / `capture failed typed result` / `manual retry` | `capture failed typed result first` | Yes |
+| PR style | `one implementation PR` / `split API + worker PRs` | `one tiny implementation PR` | Yes |

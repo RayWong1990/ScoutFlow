@@ -18,7 +18,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P0-007` | Phase 1A Bilibili `manual_url` quick_capture readiness pack | `review` | `Codex Desktop` | docs-only readiness planning；准备 `T-P1A-001` 开工门，不写产品代码 | `docs/plans/**`, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `AGENTS.md`, `README.md` | `apps/**`, `services/**`, `workers/**`, `packages/**`, `data/**`, `referencerepo/**`, `example/**`, `examples/**`, `candidates/**`, `dispatches/**`, `audits/**` | `docs/PRD-v1-2026-05-02.md`; `docs/PRD-v1.1-amendment-2026-05-02.md`; `docs/SRD-v1-2026-05-02.md`; `docs/SRD-v1.1-amendment-2026-05-03.md`; `docs/specs/contracts-index.md`; `docs/specs/locked-principles.md`; `docs/specs/worker-receipt-contract.md`; `docs/specs/platform-adapter-risk-contract.md`; `docs/specs/raw-response-redaction.md` | `python -m py_compile tools/check-docs-redlines.py`; `python tools/check-docs-redlines.py`; forbidden root dir check；tracked forbidden file check；stale communication-test grep | product code touched；Phase 2-4 runtime；`recommendation / keyword / RAW gap` direct capture；browser automation；credential leak；leftover branch unique commits | branch=`task/T-P0-007-phase1a-readiness`; product-code approval=`No`; Phase 1A implementation approval=`No` |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Backlog
 
@@ -41,6 +41,7 @@
 | `T-P0-002` | 入口文档深化 + 并行执行协议固化 | `2026-05-03` | branch=`task/T-P0-002-parallel-execution-protocol`; commit=`ee1f4cfd34282e39be74afc20310ef7801ac4b25`; PR=`#1`; merge commit=`bafeb56c79c69a43f2806aaec88ea7014db36815`; workflow run=`25271451489`; docs-check=`success`; GPT Pro external audit=`COMMENT review, no blocking issue`; 无产品代码；未批准 Phase 1A 产品实现 |
 | `T-P0-003` | 目录骨架 + 文档 lint stub + 入口文档同步 | `2026-05-03` | commit=`b32ae22edd7e60becc39d5d5d0bca8381b948254`; final close commit=`efe607dbafe3c398d582aaf0a0d5e9521ff2a814`; docs-check run=`25270586304`; 创建 docs redline lint stub；接入 GitHub Actions docs-check；同步 README / AGENTS / CLAUDE 入口口径；无产品代码 |
 | `T-P0-004` | 通信测试清理与 ScoutFlow 主线恢复 | `2026-05-03` | GitHub queue / sync smoke / Codex adapter 探索按 user 决定暂停或关闭；`T-P0-005` / `T-P0-006` 不列为活动产品任务；`example/` 与 smoke-only `examples/` 移除；PR `#2` 与 Issue `#3/#4/#5` 关闭；无产品代码；未批准 Phase 1A 产品实现 |
+| `T-P0-007` | Phase 1A Bilibili `manual_url` quick_capture readiness pack | `2026-05-03` | branch=`task/T-P0-007-phase1a-readiness`; reviewed commit=`db5f672e296a9474062cc114bf46a52f6197cbb7`; PR=`#6`; workflow run=`25275920728`; docs-check=`success`; GPT Pro external audit=`PASS`; docs-only readiness planning；no product code；no Phase 1A implementation approval；`T-P1A-001` 仍需 user 显式批准 |
 
 ## Stop-the-line
 
