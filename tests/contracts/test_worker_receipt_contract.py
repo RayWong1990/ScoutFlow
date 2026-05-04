@@ -168,3 +168,33 @@ def test_metadata_fetch_rejects_media_artifact_kinds() -> None:
 
     with pytest.raises(ValidationError):
         WorkerReceipt.model_validate(payload)
+
+
+def test_current_phase_metadata_probe_success_evidence_rejects_blocked_task_id() -> None:
+    from scoutflow_api.models import WorkerReceipt
+
+    payload = valid_receipt_payload()
+    asset = payload["produced_assets"][0]  # type: ignore[index]
+    asset["artifact_kind"] = "safe_metadata_evidence"
+    asset["relative_path"] = "bundle/safe-metadata-evidence.json"
+    asset["evidence_source_task_id"] = "T-P1A-011"
+    asset["evidence_source_report_path"] = "docs/research/t-p1a-011-bbdown-noauth-info-probe-report-2026-05-03.md"
+    asset["probe_mode"] = "no-auth"
+
+    with pytest.raises(ValidationError):
+        WorkerReceipt.model_validate(payload)
+
+
+def test_current_phase_metadata_probe_success_evidence_rejects_wrong_report_path() -> None:
+    from scoutflow_api.models import WorkerReceipt
+
+    payload = valid_receipt_payload()
+    asset = payload["produced_assets"][0]  # type: ignore[index]
+    asset["artifact_kind"] = "metadata_probe_summary"
+    asset["relative_path"] = "bundle/metadata-probe-summary.json"
+    asset["evidence_source_task_id"] = "T-P1A-011C"
+    asset["evidence_source_report_path"] = "docs/research/t-p1a-011c-some-other-report.md"
+    asset["probe_mode"] = "auth-present"
+
+    with pytest.raises(ValidationError):
+        WorkerReceipt.model_validate(payload)

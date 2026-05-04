@@ -534,6 +534,96 @@ def test_auth_present_metadata_evidence_receipt_maps_to_safe_artifacts(tmp_path:
         assert "stderr_text" not in event_json
 
 
+def test_generic_receipt_rejects_blocked_t_p1a_011_as_success_evidence(tmp_path: Path) -> None:
+    client, db_path, artifacts_root = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id)
+    sha256, size = write_asset(
+        artifacts_root,
+        capture["capture_id"],
+        "bundle/safe-metadata-evidence.json",
+        b'{"platform_result":"ok"}',
+    )
+
+    payload = receipt_payload(
+        capture["capture_id"],
+        job_id,
+        sha256,
+        size,
+        artifact_kind="safe_metadata_evidence",
+        relative_path="bundle/safe-metadata-evidence.json",
+    )
+    asset = payload["produced_assets"][0]
+    asset["evidence_source_task_id"] = "T-P1A-011"
+    asset["evidence_source_report_path"] = "docs/research/t-p1a-011-bbdown-noauth-info-probe-report-2026-05-03.md"
+    asset["probe_mode"] = "no-auth"
+
+    response = client.post(f"/jobs/{job_id}/complete", json=payload)
+
+    assert response.status_code == 422
+
+
+def test_generic_receipt_rejects_no_auth_probe_mode_for_safe_metadata_evidence(tmp_path: Path) -> None:
+    client, db_path, artifacts_root = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id)
+    sha256, size = write_asset(
+        artifacts_root,
+        capture["capture_id"],
+        "bundle/safe-metadata-evidence.json",
+        b'{"platform_result":"ok"}',
+    )
+
+    payload = receipt_payload(
+        capture["capture_id"],
+        job_id,
+        sha256,
+        size,
+        artifact_kind="safe_metadata_evidence",
+        relative_path="bundle/safe-metadata-evidence.json",
+    )
+    asset = payload["produced_assets"][0]
+    asset["evidence_source_task_id"] = "T-P1A-011C"
+    asset["evidence_source_report_path"] = "docs/research/t-p1a-011c-bbdown-auth-present-info-probe-report-2026-05-04.md"
+    asset["probe_mode"] = "no-auth"
+
+    response = client.post(f"/jobs/{job_id}/complete", json=payload)
+
+    assert response.status_code == 422
+
+
+def test_generic_receipt_rejects_metadata_probe_summary_with_wrong_report_path(tmp_path: Path) -> None:
+    client, db_path, artifacts_root = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id)
+    sha256, size = write_asset(
+        artifacts_root,
+        capture["capture_id"],
+        "bundle/metadata-probe-summary.json",
+        b'{"platform_result":"ok"}',
+    )
+
+    payload = receipt_payload(
+        capture["capture_id"],
+        job_id,
+        sha256,
+        size,
+        artifact_kind="metadata_probe_summary",
+        relative_path="bundle/metadata-probe-summary.json",
+    )
+    asset = payload["produced_assets"][0]
+    asset["evidence_source_task_id"] = "T-P1A-011C"
+    asset["evidence_source_report_path"] = "docs/research/wrong-report.md"
+    asset["probe_mode"] = "auth-present"
+
+    response = client.post(f"/jobs/{job_id}/complete", json=payload)
+
+    assert response.status_code == 422
+
+
 def test_metadata_fetch_receipt_rejects_media_artifact_kind_via_api(tmp_path: Path) -> None:
     client, db_path, artifacts_root = build_client(tmp_path)
     capture = create_capture(client)

@@ -7,6 +7,12 @@ from pydantic import BaseModel, ConfigDict, Field, model_validator
 
 from scoutflow_api.platform_result import PlatformResult
 
+CURRENT_METADATA_EVIDENCE_TASK_ID = "T-P1A-011C"
+CURRENT_METADATA_EVIDENCE_PROBE_MODE = "auth-present"
+CURRENT_METADATA_EVIDENCE_REPORT_PATH = (
+    "docs/research/t-p1a-011c-bbdown-auth-present-info-probe-report-2026-05-04.md"
+)
+
 
 class DiscoverCaptureRequest(BaseModel):
     model_config = ConfigDict(extra="forbid")
@@ -115,6 +121,14 @@ class ProducedAsset(BaseModel):
                 raise ValueError("metadata probe evidence assets require evidence_source_report_path")
             if self.probe_mode not in {"auth-present", "no-auth"}:
                 raise ValueError("metadata probe evidence assets require probe_mode=auth-present|no-auth")
+            if self.evidence_source_task_id != CURRENT_METADATA_EVIDENCE_TASK_ID:
+                raise ValueError("current phase metadata probe success evidence requires evidence_source_task_id=T-P1A-011C")
+            if self.probe_mode != CURRENT_METADATA_EVIDENCE_PROBE_MODE:
+                raise ValueError("current phase metadata probe success evidence requires probe_mode=auth-present")
+            if self.evidence_source_report_path != CURRENT_METADATA_EVIDENCE_REPORT_PATH:
+                raise ValueError(
+                    "current phase metadata probe success evidence requires the T-P1A-011C auth-present report path"
+                )
 
         return self
 
