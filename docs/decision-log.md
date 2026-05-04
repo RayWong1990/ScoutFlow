@@ -238,6 +238,21 @@
 - Boundary: no-auth `-info` adapter shell is not live runtime proof; it uses injected runner / parser contract coverage only.
 - Boundary: PRD/SRD v1.2 amendment remains `candidate / draft / not final authority / not runtime approval`.
 - Boundary: `audio_transcript` remains blocked; no live BBDown, QR/manual auth, media download, ffmpeg, ASR, workers, frontend, or Phase 2-4 runtime approval.
+
+## 2026-05-04 — T-P1A-025 frozen as merged research; research backlog rows synced
+
+- Decision: merge PR `#42` and freeze `docs/research/t-p1a-025-db-ledger-vnext.md` as research input only.
+- PR: `https://github.com/RayWong1990/ScoutFlow/pull/42`
+- Merge commit: `7a120f22efbf4e5455ad96a0c5cffb796c433c31`
+- Scope: `docs/research/t-p1a-025-db-ledger-vnext.md` only.
+- Boundary: not authority; not migration approval; not runtime approval.
+- Rule: no further edits to the frozen research note; any DB decision evolution must land in `docs/specs/db-vnext-design-2026-05-04.md`, the later SRD amendment, or an explicit amendment addendum.
+- Decision: close stale `research/backlog` rows for `T-P1A-022/023/024/025` in `docs/task-index.md`, because all four research notes are already merged on `main` and should now be treated as frozen research inputs rather than mutable backlog.
+- Merge facts:
+  - `T-P1A-022`: PR `#38`, merge commit `ed81b3a066e78dae25f8e4a7ca8dd69c0d08c0d9`
+  - `T-P1A-023`: PR `#45`, follow-up wording fix PR `#46`, final merge commit `d23abee7fc2daac234f2bad69689309ad855bf67`
+  - `T-P1A-024`: PR `#40`, merge commit `05c545a6c17d8006d113f7c39a5179d9c057540c`
+  - `T-P1A-025`: PR `#42`, merge commit `7a120f22efbf4e5455ad96a0c5cffb796c433c31`
 - Next gate: `T-P1A-011 live no-auth BBDown -info probe` remains `gated / requires explicit user approval`; 06 must not auto-start.
 
 ## 2026-05-04 — T-P1A-011B manual-auth QR local-only gate executed
