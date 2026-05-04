@@ -80,7 +80,8 @@ shape:
 | Invariant | SQL expression | Why it must be physical |
 |---|---|---|
 | one current row per logical lineage | partial `UNIQUE INDEX` on `(capture_id, evidence_kind, lineage_variant)` where `superseded_by IS NULL` | Trust Trace cannot guess between multiple current rows |
-| `superseded_by` must reference same `(capture_id, evidence_kind, lineage_variant)` and must not self-reference | SQLite triggers `trg_evidence_supersession_lineage_check_insert` (BEFORE INSERT) + `trg_evidence_supersession_lineage_check_update` (BEFORE UPDATE OF `superseded_by` / `capture_id` / `evidence_kind` / `lineage_variant`) | cross-row equality cannot be expressed via FK or partial unique index alone; SQLite triggers are the lowest-cost physical guard; identity-level invariants must not rely on app write-path discipline alone; INSERT path covers backfill / debug-script / CLI direct writes; UPDATE path also monitors lineage columns to prevent post-supersession lineage swap |
+| `superseded_by` must reference same `(capture_id, evidence_kind, lineage_variant)` and must not self-reference | SQLite triggers `trg_evidence_supersession_lineage_check_insert` (BEFORE INSERT) + `trg_evidence_supersession_lineage_check_update` (BEFORE UPDATE OF `superseded_by`) | cross-row equality cannot be expressed via FK or partial unique index alone; SQLite triggers are the lowest-cost physical guard; identity-level invariants must not rely on app write-path discipline alone; INSERT path covers backfill / debug-script / CLI direct writes; UPDATE path covers outbound supersession rewiring |
+| evidence identity columns are immutable after insert | SQLite trigger `trg_evidence_identity_columns_immutable` (BEFORE UPDATE OF `capture_id` / `evidence_kind` / `lineage_variant`) | closes the inbound target-lineage mutation gap: once a row is referenced by another row's `superseded_by`, its identity tuple must not be mutated into a different lineage; simpler rule is to make the identity tuple immutable for every evidence row |
 | superseded rows are never silently deleted | `ON DELETE RESTRICT` through the evidence chain | audit history must remain anchored |
 | no default cascade or nulling delete behavior in evidence chain | explicit prohibition of `ON DELETE CASCADE` and `ON DELETE SET NULL` | protects against accidental chain collapse |
 
@@ -88,7 +89,8 @@ shape:
 
 ```sql
 -- Candidate DDL only. Not a migration script. Phase 2A migration dispatch must
--- generate BOTH triggers as part of the evidence_ledger creation transaction.
+-- generate ALL THREE triggers as part of the evidence_ledger creation
+-- transaction.
 
 CREATE TRIGGER IF NOT EXISTS trg_evidence_supersession_lineage_check_insert
 BEFORE INSERT ON evidence_ledger
@@ -112,7 +114,7 @@ BEGIN
 END;
 
 CREATE TRIGGER IF NOT EXISTS trg_evidence_supersession_lineage_check_update
-BEFORE UPDATE OF superseded_by, capture_id, evidence_kind, lineage_variant
+BEFORE UPDATE OF superseded_by
 ON evidence_ledger
 WHEN NEW.superseded_by IS NOT NULL
 BEGIN
@@ -132,6 +134,13 @@ BEGIN
         THEN RAISE(ABORT, 'supersession_lineage_mismatch')
     END;
 END;
+
+CREATE TRIGGER IF NOT EXISTS trg_evidence_identity_columns_immutable
+BEFORE UPDATE OF capture_id, evidence_kind, lineage_variant
+ON evidence_ledger
+BEGIN
+    SELECT RAISE(ABORT, 'evidence_identity_columns_immutable');
+END;
 ```
 
 Rationale: Identity invariants (one current row per logical lineage;
@@ -141,9 +150,11 @@ cross-row multi-column equality has no relational primitive in SQLite. The
 triggers are the minimum physical guard.
 
 Coverage: INSERT trigger covers backfill scripts, SQLite CLI direct inserts,
-and migration tooling. UPDATE trigger monitors not only `superseded_by` but
-also `capture_id` / `evidence_kind` / `lineage_variant` to prevent
-post-supersession lineage swap.
+and migration tooling. Supersession UPDATE trigger covers outbound
+`superseded_by` rewiring. Identity immutable trigger covers direct identity
+tuple mutation and the inbound referenced-target gap where row A points to row
+B, then row B's `(capture_id, evidence_kind, lineage_variant)` is mutated
+after the reference exists.
 
 Solo-dev multi-entry-point reality (SQLite CLI / debug script / future worker /
 migration backfill) makes app-only enforcement insufficient for an identity
@@ -289,22 +300,27 @@ def test_supersession_lineage_trigger_rejects_mismatch(storage):
 def test_supersession_lineage_trigger_rejects_self_reference(storage):
     # superseded_by = evidence_id must fail.
     ...
+
+def test_evidence_identity_columns_immutable_after_insert(storage):
+    # UPDATE capture_id / evidence_kind / lineage_variant after insert must
+    # fail, even when the row has no superseded_by value.
+    ...
 ```
 
 #### 1.5.3 Owner
 
-The PRAGMA enabling change belongs to a separate code-bearing task (likely
-T-P1A-029 or first Phase 2A migration prep dispatch). It is NOT addressed in
-this amendment because this PR is docs-only and forbids `services/**` edits.
+The PRAGMA enabling change belongs to a separate code-bearing Phase 2A
+migration-prep dispatch. It is NOT addressed in this amendment because this PR
+is docs-only and forbids `services/**` edits.
 
 #### 1.5.4 Drift Risk
 
-If Phase 2A migration is approved before §1.5.1 lands, all FK / trigger guards
-in this amendment become silently inert. Storage CHECK clauses
-(`PlatformResult` vocabulary) remain enforced because they do not depend on the
-foreign_keys PRAGMA. Triggers also remain enforced (they fire regardless of
-foreign_keys state). Composite and single FKs are silently inert. This is the
-failure mode F-012 prevents.
+If Phase 2A migration is approved before §1.5.1 lands, all FK / `ON DELETE
+RESTRICT` / composite FK guards in this amendment become silently inert.
+Storage CHECK clauses remain enforced because they do not depend on the
+foreign_keys PRAGMA. Triggers also remain enforced because SQLite triggers fire
+independently of foreign-key enforcement. Composite and single FKs are silently
+inert — this is the failure mode F-012 prevents.
 
 ## 2. Purge / Deletion Boundary
 
