@@ -1,7 +1,7 @@
 # Current
 ## 当前状态
-- Phase / Step：`1A` / `Wave 2 ledger open — T-P1A-017 PR pending merge`
-- 主任务：Wave 2 product lanes registered — T-P1A-018/019/020 open；T-P1A-017 ledger-open PR open for user review
+- Phase / Step：`1A` / `Wave 2 ledger opened by T-P1A-017`
+- 主任务：Wave 2 product lanes registered — next executable product lane is `T-P1A-018`
 - 工作模式：Active product lane max=`3`，Authority writer max=`1`；Active count=`3/3`，Review count=`0`
 - 当前结论：Wave 2 product lanes 018/019/020 registered；research backlog 021/022/023/024/025 in backlog；conflict domain table locked in task-index；`PRD-v2-2026-05-04.md` / `SRD-v2-2026-05-04.md` remain base authority；`audio_transcript` runtime still blocked。
 ## 当前允许
@@ -19,5 +19,5 @@
 - 不运行 BBDown / yt-dlp / ffmpeg / ASR / browser automation，不启用 `audio_transcript` runtime。
 - 不把 research note、draft spec、chat summary 写成 final authority；不启动 Phase 2-4 runtime。
 ## 下一步
-- T-P1A-017 PR merge（需要 user Wave 2 lane plan 签字 + conflict domain 浏览授权，见 §4 步骤 10）。
-- 签字后 T-P1A-018 可启动。
+- Start T-P1A-018（018 → 019 → 020 sequencing）。参见 `docs/task-index.md` Wave 2 Conflict Domain 了解各 lane 写入边界。
+- T-P1A-021–025 research lanes 可写 `docs/research/` 研究笔记；非 authority，非 runtime approval。
