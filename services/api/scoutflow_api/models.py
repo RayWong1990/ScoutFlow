@@ -164,3 +164,80 @@ class JobCompleteResponse(BaseModel):
     platform_result: str
     artifact_count: int
     idempotent: bool
+
+
+class TrustTraceCapture(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    capture_id: str
+    platform: str
+    platform_item_id: str
+    source_kind: str
+    capture_mode: str
+    created_by_path: str
+
+
+class TrustTraceCaptureState(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    capture_created: bool
+    status: str
+
+
+class TrustTraceMetadataJob(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    present: bool
+    job_id: str | None = None
+    job_type: str | None = None
+    status: str | None = None
+    platform_result: str | None = None
+
+
+class TrustTraceProbeEvidence(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    present: bool
+    probe_mode: str
+    source_task_id: str | None = None
+    source_report_path: str | None = None
+    platform_result: str | None = None
+
+
+class TrustTraceReceiptLedger(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    present: bool
+    artifact_count: int
+    artifact_kinds: list[str]
+    redaction: str
+
+
+class TrustTraceMediaAudio(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    status: str
+    audio_transcript: str
+
+
+class TrustTraceAuditBlock(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    platform_result: str | None = None
+    evidence_file_path: str | None = None
+    artifact_count: int
+    redaction_policy: str | None = None
+    safe_parsed_fields: dict[str, str | int | None]
+
+
+class TrustTraceResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    label: str
+    capture: TrustTraceCapture
+    capture_state: TrustTraceCaptureState
+    metadata_job: TrustTraceMetadataJob
+    probe_evidence: TrustTraceProbeEvidence
+    receipt_ledger: TrustTraceReceiptLedger
+    media_audio: TrustTraceMediaAudio
+    audit: TrustTraceAuditBlock

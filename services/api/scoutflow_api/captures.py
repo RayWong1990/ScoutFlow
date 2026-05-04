@@ -6,8 +6,8 @@ from urllib.parse import ParseResult, urlparse
 from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 
-from scoutflow_api.models import DiscoverCaptureRequest, DiscoverCaptureResponse, ErrorResponse
-from scoutflow_api.storage import Storage
+from scoutflow_api.models import DiscoverCaptureRequest, DiscoverCaptureResponse, ErrorResponse, TrustTraceResponse
+from scoutflow_api.storage import ReceiptStorageError, Storage
 
 
 BV_ID_RE = re.compile(r"(BV[0-9A-Za-z]{10})")
@@ -76,3 +76,13 @@ def create_capture(payload: DiscoverCaptureRequest, request: Request) -> Discove
     storage: Storage = request.app.state.storage
     created = storage.create_metadata_capture(payload.canonical_url, platform_item_id)
     return DiscoverCaptureResponse(**created)
+
+
+@router.get("/captures/{capture_id}/trust-trace", response_model=TrustTraceResponse)
+def get_capture_trust_trace(capture_id: str, request: Request) -> TrustTraceResponse | JSONResponse:
+    storage: Storage = request.app.state.storage
+    try:
+        trace = storage.get_capture_trust_trace(capture_id)
+    except ReceiptStorageError as exc:
+        return error_response(exc.http_status, exc.code, exc.message)
+    return TrustTraceResponse(**trace)

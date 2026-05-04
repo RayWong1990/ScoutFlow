@@ -301,3 +301,17 @@
 - Contract hardening: `metadata_fetch` receipts now only allow `raw_api_response`, `metadata_probe_summary`, and `safe_metadata_evidence`; safe metadata written to ledger now includes `evidence_source_task_id`, `evidence_source_report_path`, and `probe_mode`.
 - Evidence boundary: success evidence must stay `T-P1A-011C auth-present`; blocked `T-P1A-011` must not be treated as success evidence.
 - Next: `T-P1A-012R` receipt-wiring retro, then patched `T-P1A-013` Trust Trace.
+
+## 2026-05-04 — T-P1A-012R retro completed
+
+- Decision: keep `08.1` for now.
+- Reason: this retro was concrete enough to separate “tests proved receipt mapping” from “runtime readiness”, so the ceremony tax paid for itself in this case.
+- Boundary: `012R` does not change product code, receipt rows, artifact ledger, or runtime approval.
+
+## 2026-05-04 — T-P1A-013 Trust Trace API surface completed
+
+- Decision: execute patched Dispatch `09` in `API/CLI` mode, not frontend mode.
+- Scope: add `GET /captures/{capture_id}/trust-trace` and keep `probe evidence`, `receipt ledger`, `capture state`, and `media/audio readiness` as separate layers.
+- Surface rule: before receipt exists, keep label `Status / Trust Trace / 采集状态`; after receipt ledger exists, allow `Receipt / Ledger Trace`.
+- Boundary: no recommendation semantics, no BBDown runtime, no manual auth, no media / ffmpeg / ASR, no `audio_transcript`, no frontend / workers.
+- Result: Trust Trace now exposes safe summary only, labels `auth-present` evidence correctly, and keeps media/audio as `not_approved`.

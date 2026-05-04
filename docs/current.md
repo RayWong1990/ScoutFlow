@@ -3,11 +3,11 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-012 metadata probe receipt / artifact ledger wiring done`
-- 主任务：`T-P1A-012-metadata-probe-receipt-ledger-wiring`
-- 工作模式：当前无 active product task；继续遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-012=done`; `T-P1A-011G=done`; `T-P1A-011F=done`; `T-P1A-011E=done`; `T-P1A-011D=done`; `T-P1A-011C=done`; `T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
-- 当前结论：`T-P1A-012` 已完成：执行输入采用 patched Dispatch `08`，只消费既有 `T-P1A-011C` auth-present metadata evidence，不重跑 BBDown。主线代码新增了 `metadata_probe_receipt_bridge` helper，把成功 probe 的 safe parsed fields materialize 为 `bundle/safe-metadata-evidence.json` 与 `bundle/metadata-probe-summary.json`，再通过既有 `POST /jobs/{job_id}/complete` / `artifact_assets` baseline 入账。与此同时，`metadata_fetch` receipt 现在只允许 `raw_api_response`、`metadata_probe_summary`、`safe_metadata_evidence` 三类 artifact kinds，并把 `evidence_source_task_id / evidence_source_report_path / probe_mode` 写回 `artifact_assets.metadata_json`。当前 Active count=`0/3`，Review count=`0`；本轮未下载媒体，未运行 BBDown、ffmpeg 或 ASR，未读取 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- Step：`T-P1A-013 Explore Trust Trace minimal surface done`
+- 主任务：`T-P1A-013-explore-trust-trace-minimal-surface`
+- 工作模式：当前无 active product task；本轮选择的是 `API/CLI` mode；继续遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-013=done`; `T-P1A-012R=done`; `T-P1A-012=done`; `T-P1A-011G=done`; `T-P1A-011F=done`; `T-P1A-011E=done`; `T-P1A-011D=done`; `T-P1A-011C=done`; `T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
+- 当前结论：`T-P1A-012R` 已完成并明确了 `012` 只证明 tests 内的 safe evidence-to-receipt mapping，不证明 broader runtime readiness。`T-P1A-013` 也已完成，模式采用 `API/CLI`：主线新增 `GET /captures/{capture_id}/trust-trace`，返回分层的 safe Trust Trace DTO，把 `capture / capture_state / metadata_job / probe_evidence / receipt_ledger / media_audio / audit` 明确分开。该 surface 会在 receipt 不存在时保持 `Status / Trust Trace / 采集状态` 标签，在 receipt ledger 存在后切到 `Receipt / Ledger Trace`，并继续把 `audio_transcript` 固定为 `blocked`、media/audio 固定为 `not_approved`。当前 Active count=`0/3`，Review count=`0`；本轮未下载媒体，未运行 BBDown、ffmpeg 或 ASR，未读取 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -17,7 +17,7 @@
 - `docs/research/t-p1a-011d-second-retro-remediation-triage-2026-05-04.md`、`docs/research/t-p1a-011f-dispatch-08-09-patch-report-2026-05-04.md`、`docs/research/t-p1a-011g-sidecar-review-07x-and-patched-08-09-2026-05-04.md`：当前只作 triage / patch / review reference
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` 当前只作参考，不自动授权后续代码修改
 - `T-P1A-009` report-only 文件：`docs/research/t-p1a-009-bbdown-local-runtime-spike-report-2026-05-03.md`
-- 当前无 active product task；`T-P1A-012` 已完成
+- 当前无 active product task；`T-P1A-013` 已完成
 
 ## 当前禁止
 
@@ -67,6 +67,8 @@
 - `T-P1A-011F`：Dispatch 08/09 prompt patch；状态 `done`；已确认 repo 外 patched Dispatch `08/09` prompts 以 `011C` 为 success evidence source，且保持 no-runtime boundary；repo-side 报告见 `docs/research/t-p1a-011f-dispatch-08-09-patch-report-2026-05-04.md`
 - `T-P1A-011G`：Sidecar review for `07.x` + patched `08/09`；状态 `done`；结论 `PASS_WITH_FIXES`；最小修复是把 repo authority docs 从 `011C` 单点焦点同步到 `07.x remediation complete`；报告见 `docs/research/t-p1a-011g-sidecar-review-07x-and-patched-08-09-2026-05-04.md`
 - `T-P1A-012`：Metadata probe receipt / artifact ledger wiring；状态 `done`；执行输入采用 patched Dispatch `08`；新增 `metadata_probe_receipt_bridge` helper 和围绕 `011C` 的 contract/API tests；safe artifact kinds 为 `metadata_probe_summary` 与 `safe_metadata_evidence`；不允许新 BBDown runtime、media / ffmpeg / ASR、manual auth、frontend / workers
+- `T-P1A-012R`：Receipt-wiring single-point retro；状态 `done`；只补 post-08 retro，不改产品代码；结论是 `012` 的证明范围只到 tests 内的 safe evidence-to-receipt mapping；报告见 `docs/retro/t-p1a-012-receipt-wiring-retro-2026-05-04.md`
+- `T-P1A-013`：Explore Trust Trace minimal surface；状态 `done`；模式=`API/CLI`; 已新增 `GET /captures/{capture_id}/trust-trace`；Trust Trace 会分开返回 `capture / capture_state / metadata_job / probe_evidence / receipt_ledger / media_audio / audit`；不允许 frontend 模式、BBDown runtime、media / ffmpeg / ASR、manual auth、browser profile、`audio_transcript`
 - `T-P1A-010A`：BBDown executable discovery / tool preflight package；状态 `done`；已通过 PR `#23` 合并入 `main`；仅表示 `ToolPreflightResult` package 和 contract tests merged，不批准真实 BBDown 执行、URL、`-info`、auth、media、ffmpeg、ASR、receipt 或 capture state
 - `T-P1A-010B`：BBDown no-auth `-info` adapter shell with injected runner and parser integration；状态 `done`；已通过 PR `#22` 合并入 `main`；仅表示 injected-runner adapter shell merged，不批准真实 BBDown 执行、真实 `BBDown -info`、auth、media、receipt 或 capture state
 - `T-P1A-010C`：PRD/SRD amendment repair pack + next dispatch plan + red-team checklist；状态 `done`；已通过 PR `#24` 合并入 `main`；PRD/SRD v1.2 amendment 仍是 `candidate / draft / not final authority / not runtime approval`
@@ -83,9 +85,8 @@
 
 ## 下一步候选
 
-- 下一步候选是 `T-P1A-012R` receipt-wiring retro，使用真实 `012` 产物做最小复盘
-- 再下一步候选是 patched Dispatch `09`：`T-P1A-013` Trust Trace minimal surface
-- 如 user 先想补外部事实 lane，仍可显式授权 `T-P1A-011H` candidate-only legal/vendor notes；否则不默认执行
+- 下一步候选默认不自动启动；如需继续，要么显式授权更大的 product surface，要么回到 docs-only / candidate-only lane
+- `T-P1A-011H` candidate-only legal/vendor notes 仍需显式授权；frontend mode 也仍需单独授权
 - 不自动执行新的 `BBDown -info`；未来若要尝试新的 URL 或新的 runtime gate，仍需 user 再次显式批准；media、ffmpeg、ASR、workers、frontend、`audio_transcript` 仍未批准
 
 ## 阻塞
