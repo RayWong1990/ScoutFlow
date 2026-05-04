@@ -51,9 +51,9 @@ Not allowed in this amendment:
 | Table | Status | Key change |
 |---|---|---|
 | `captures` | `carried over with a specific change` | downstream evidence-chain FKs must be explicit `ON DELETE RESTRICT`; state vocabulary remains phase-bounded |
-| `evidence_ledger` | `NEW in v3` | materializes evidence-claim identity with `lineage_variant`, `receipt_id`, and `superseded_by` |
-| `artifact_assets` | `carried over with a specific change` | adds nullable `evidence_id` to bind file artifacts to evidence claims; delete semantics tightened |
 | `receipt_ledger` | `NEW in v3` | separates durable receipt identity from `job_events` append log |
+| `artifact_assets` | `carried over with a specific change` | adds nullable `evidence_id` to bind file artifacts to evidence claims; delete semantics tightened |
+| `evidence_ledger` | `NEW in v3` | materializes evidence-claim identity with `lineage_variant`, `receipt_id`, and `superseded_by` |
 | `job_events` | `carried over with a specific change` | becomes self-contained inside the evidence chain via `capture_id` and optional `receipt_id` |
 
 ## 1. Supersession Boundary
@@ -63,6 +63,11 @@ Supersession is split across identity and flow.
 Identity-level truth must be enforced in SQL. Flow-level behavior remains in
 the app layer.
 
+Within this amendment, `superseded_by IS NULL` is the physical representation
+of "current", and non-`NULL` is the physical representation of "superseded".
+That is a design statement about how state is encoded in rows; the SQL-owned
+enforcement lives in the partial unique lineage rule below.
+
 ### 1.1 Enforced In SQL
 
 The following invariants are contract-level and must be enforced by schema
@@ -71,10 +76,13 @@ shape:
 | Invariant | SQL expression | Why it must be physical |
 |---|---|---|
 | one current row per logical lineage | partial `UNIQUE INDEX` on `(capture_id, evidence_kind, lineage_variant)` where `superseded_by IS NULL` | Trust Trace cannot guess between multiple current rows |
-| supersession must stay within the same evidence chain | self-FK `superseded_by -> evidence_id` plus same-lineage uniqueness | prevents cross-entity lineage corruption |
 | superseded rows are never silently deleted | `ON DELETE RESTRICT` through the evidence chain | audit history must remain anchored |
-| current vs superseded is represented physically | `superseded_by NULL` means current; non-`NULL` means superseded | identity cannot depend on renderer-only logic |
 | no default cascade or nulling delete behavior in evidence chain | explicit prohibition of `ON DELETE CASCADE` and `ON DELETE SET NULL` | protects against accidental chain collapse |
+
+> Note: cross-lineage supersession defense relies on app write-path discipline,
+> not SQL. Trigger-level enforcement is deferred to Phase 2A per §1.2 + §1.3.
+> This is the honest cut under current SQLite capability, not a design
+> compromise.
 
 ### 1.2 Enforced In App
 
@@ -82,6 +90,7 @@ The following remain app-layer or reporting-layer concerns:
 
 | Concern | Owner | Why not SQL |
 |---|---|---|
+| supersession links must stay within the same logical lineage | orchestrator / write-path discipline (verifies `A.capture_id`, `evidence_kind`, and `lineage_variant` match `B` before setting `superseded_by`) | SQLite cannot enforce cross-row equality without a trigger; trigger-level enforcement is deferred per §1.3 to Phase 2A first implementation task |
 | which current version Trust Trace shows first | storage / projection layer | display policy, not identity |
 | supersession-triggered events or notifications | service / orchestration layer | procedural behavior |
 | UI treatment of historical versions | reporting / UI | presentation concern |
@@ -237,7 +246,86 @@ CREATE TABLE captures (
 );
 ```
 
-### 4.2 `evidence_ledger` (NEW in v3)
+### 4.2 `receipt_ledger` (NEW in v3)
+
+Source: new in SRD-v3 candidate. This materializes durable receipt identity
+without relying on `job_events.event_json` as the only long-term receipt
+surface.
+
+```sql
+-- ============================================================
+-- CANDIDATE DDL — SRD-v3 shape contract
+-- Table: receipt_ledger
+-- Status: NEW in v3
+-- NOT A MIGRATION. NOT EXECUTABLE AS-IS.
+-- ============================================================
+CREATE TABLE receipt_ledger (
+    receipt_id TEXT PRIMARY KEY,
+    capture_id TEXT NOT NULL
+        REFERENCES captures(capture_id) ON DELETE RESTRICT,
+    job_id TEXT NOT NULL,
+    job_type TEXT NOT NULL,
+    dedupe_key TEXT NOT NULL,
+    producer TEXT NOT NULL,
+    producer_version TEXT NOT NULL,
+    engine TEXT,
+    engine_version TEXT,
+    platform_result TEXT NOT NULL,
+    artifact_count INTEGER NOT NULL CHECK (artifact_count >= 0),
+    duration_seconds REAL CHECK (duration_seconds IS NULL OR duration_seconds >= 0),
+    receipt_json TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    UNIQUE(job_id, dedupe_key)
+);
+```
+
+### 4.3 `artifact_assets` (carried over with a specific change)
+
+Source: carries forward the current file ledger while binding artifacts to
+logical evidence rows through nullable `evidence_id`.
+
+```sql
+-- ============================================================
+-- CANDIDATE DDL — SRD-v3 shape contract
+-- Table: artifact_assets
+-- Status: carried over with a specific change
+-- NOT A MIGRATION. NOT EXECUTABLE AS-IS.
+-- ============================================================
+CREATE TABLE artifact_assets (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    capture_id TEXT NOT NULL
+        REFERENCES captures(capture_id) ON DELETE RESTRICT,
+    evidence_id TEXT
+        REFERENCES evidence_ledger(evidence_id) ON DELETE RESTRICT,
+    artifact_zone TEXT NOT NULL CHECK (
+        artifact_zone IN (
+            'bundle',
+            'media',
+            'transcript',
+            'normalized',
+            'links',
+            'logs'
+        )
+    ),
+    artifact_kind TEXT NOT NULL,
+    file_path TEXT NOT NULL,
+    size_bytes INTEGER NOT NULL CHECK (size_bytes >= 0),
+    sha256 TEXT NOT NULL,
+    metadata_json TEXT NOT NULL,
+    created_at TEXT NOT NULL,
+    UNIQUE(capture_id, file_path)
+);
+```
+
+> Note: `artifact_assets.evidence_id` ↔
+> `evidence_ledger.source_artifact_asset_id` is an intentional bidirectional
+> reference, and both columns are nullable. Phase 2A implementation will need a
+> 2-pass insertion pattern when both rows are created together: insert the
+> artifact with `evidence_id NULL` first, then insert evidence referencing that
+> artifact, then optionally back-fill `artifact_assets.evidence_id`.
+> Transaction sequencing is deferred per §5.
+
+### 4.4 `evidence_ledger` (NEW in v3)
 
 Source: new in SRD-v3 candidate. This table materializes evidence-claim
 identity separately from file storage and receipt accounting.
@@ -296,76 +384,19 @@ CREATE UNIQUE INDEX idx_evidence_current_per_lineage
     WHERE superseded_by IS NULL;
 ```
 
-### 4.3 `artifact_assets` (carried over with a specific change)
+#### 4.4.1 `evidence_kind` Mapping
 
-Source: carries forward the current file ledger while binding artifacts to
-logical evidence rows through nullable `evidence_id`.
+| `evidence_kind` | Primary frozen source | Why it exists now |
+|---|---|---|
+| `metadata_probe` | T-P1A-011C / T-P1A-012 | carries forward the proven metadata evidence lane already wired into receipts |
+| `transcript_segments` | T-P1A-022 | captures the candidate ASR segment layer as future evidence input |
+| `normalized_summary` | T-P1A-023 | summary layer proposed by normalization research; downstream consumer context also appears in T-P1A-024 |
+| `normalized_claims` | T-P1A-023 | structured claim extraction candidate from normalization research |
+| `normalized_quotes` | T-P1A-023 | quote extraction candidate from normalization research |
+| `normalized_topic_candidates` | T-P1A-023 | topic candidate layer from normalization research; downstream Explore consumption context appears in T-P1A-024 |
+| `normalized_structured` | T-P1A-023 | long-form structured synthesis candidate; review/consumption context also appears in T-P1A-024 |
 
-```sql
--- ============================================================
--- CANDIDATE DDL — SRD-v3 shape contract
--- Table: artifact_assets
--- Status: carried over with a specific change
--- NOT A MIGRATION. NOT EXECUTABLE AS-IS.
--- ============================================================
-CREATE TABLE artifact_assets (
-    id INTEGER PRIMARY KEY AUTOINCREMENT,
-    capture_id TEXT NOT NULL
-        REFERENCES captures(capture_id) ON DELETE RESTRICT,
-    evidence_id TEXT
-        REFERENCES evidence_ledger(evidence_id) ON DELETE RESTRICT,
-    artifact_zone TEXT NOT NULL CHECK (
-        artifact_zone IN (
-            'bundle',
-            'media',
-            'transcript',
-            'normalized',
-            'links',
-            'logs'
-        )
-    ),
-    artifact_kind TEXT NOT NULL,
-    file_path TEXT NOT NULL,
-    size_bytes INTEGER NOT NULL CHECK (size_bytes >= 0),
-    sha256 TEXT NOT NULL,
-    metadata_json TEXT NOT NULL,
-    created_at TEXT NOT NULL,
-    UNIQUE(capture_id, file_path)
-);
-```
-
-### 4.4 `receipt_ledger` (NEW in v3)
-
-Source: new in SRD-v3 candidate. This materializes durable receipt identity
-without relying on `job_events.event_json` as the only long-term receipt
-surface.
-
-```sql
--- ============================================================
--- CANDIDATE DDL — SRD-v3 shape contract
--- Table: receipt_ledger
--- Status: NEW in v3
--- NOT A MIGRATION. NOT EXECUTABLE AS-IS.
--- ============================================================
-CREATE TABLE receipt_ledger (
-    receipt_id TEXT PRIMARY KEY,
-    capture_id TEXT NOT NULL
-        REFERENCES captures(capture_id) ON DELETE RESTRICT,
-    job_id TEXT NOT NULL,
-    job_type TEXT NOT NULL,
-    dedupe_key TEXT NOT NULL,
-    producer TEXT NOT NULL,
-    producer_version TEXT NOT NULL,
-    engine TEXT,
-    engine_version TEXT,
-    platform_result TEXT NOT NULL,
-    artifact_count INTEGER NOT NULL CHECK (artifact_count >= 0),
-    duration_seconds REAL CHECK (duration_seconds IS NULL OR duration_seconds >= 0),
-    receipt_json TEXT NOT NULL,
-    created_at TEXT NOT NULL,
-    UNIQUE(job_id, dedupe_key)
-);
-```
+Extending this vocabulary requires an amendment update.
 
 ### 4.5 `job_events` (carried over with a specific change)
 
