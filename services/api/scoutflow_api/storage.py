@@ -11,7 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path, PurePosixPath
 from typing import Any
 
-from scoutflow_api.models import ProducedAsset, WorkerReceipt
+from scoutflow_api.models import ProducedAsset, TrustTraceResponse, WorkerReceipt
 
 
 CROCKFORD32 = "0123456789ABCDEFGHJKMNPQRSTVWXYZ"
@@ -206,6 +206,12 @@ class Storage:
 
     def _artifact_ledger_path(self, platform: str, capture_id: str, relative_path: str) -> str:
         return str(self.config.artifact_prefix / platform / capture_id / relative_path)
+
+    def _ledger_path_to_relative_path(self, platform: str, capture_id: str, ledger_path: str) -> str | None:
+        prefix = str(self.config.artifact_prefix / platform / capture_id) + "/"
+        if not ledger_path.startswith(prefix):
+            return None
+        return ledger_path[len(prefix) :]
 
     def _hash_file(self, path: Path) -> str:
         digest = hashlib.sha256()
@@ -456,3 +462,154 @@ class Storage:
             "artifact_count": inserted_assets,
             "idempotent": False,
         }
+
+    def get_capture_trust_trace(self, capture_id: str) -> dict[str, Any]:
+        with self._connect() as conn:
+            capture = conn.execute(
+                """
+                SELECT capture_id, platform, platform_item_id, source_kind, capture_mode, created_by_path, status
+                FROM captures
+                WHERE capture_id = ?
+                """,
+                (capture_id,),
+            ).fetchone()
+            if capture is None:
+                raise ReceiptStorageError(404, "capture_not_found", "Capture does not exist.")
+            if capture["source_kind"] != "manual_url":
+                raise ReceiptStorageError(
+                    409,
+                    "trust_trace_source_kind_not_allowed",
+                    "Trust Trace only supports manual_url captures.",
+                )
+
+            metadata_job = conn.execute(
+                """
+                SELECT job_id, job_type, status, platform_result
+                FROM jobs
+                WHERE capture_id = ? AND job_type = ?
+                ORDER BY COALESCE(completed_at, started_at, queued_at) DESC, rowid DESC
+                LIMIT 1
+                """,
+                (capture_id, "metadata_fetch"),
+            ).fetchone()
+
+            artifact_rows = conn.execute(
+                """
+                SELECT artifact_kind, file_path, metadata_json
+                FROM artifact_assets
+                WHERE capture_id = ?
+                ORDER BY created_at ASC, file_path ASC
+                """,
+                (capture_id,),
+            ).fetchall()
+
+        metadata_job_id = metadata_job["job_id"] if metadata_job is not None else None
+        receipt_assets: list[dict[str, Any]] = []
+        for row in artifact_rows:
+            metadata_json = json.loads(row["metadata_json"])
+            if metadata_job_id is None:
+                continue
+            if metadata_json.get("created_by_job") != metadata_job_id:
+                continue
+            receipt_assets.append(
+                {
+                    "artifact_kind": row["artifact_kind"],
+                    "file_path": row["file_path"],
+                    "metadata_json": metadata_json,
+                }
+            )
+
+        receipt_present = len(receipt_assets) > 0
+        label = "Receipt / Ledger Trace" if receipt_present else "Status / Trust Trace / 采集状态"
+
+        evidence_asset = next(
+            (asset for asset in receipt_assets if asset["artifact_kind"] == "safe_metadata_evidence"),
+            None,
+        )
+        summary_asset = next(
+            (asset for asset in receipt_assets if asset["artifact_kind"] == "metadata_probe_summary"),
+            None,
+        )
+
+        probe_metadata = evidence_asset["metadata_json"] if evidence_asset is not None else (
+            summary_asset["metadata_json"] if summary_asset is not None else {}
+        )
+        probe_present = bool(probe_metadata.get("evidence_source_task_id"))
+        probe_mode = probe_metadata.get("probe_mode", "not-run")
+
+        safe_parsed_fields: dict[str, str | int | None] = {}
+        evidence_file_path: str | None = None
+        redaction_policy: str | None = None
+        if evidence_asset is not None:
+            evidence_file_path = evidence_asset["file_path"]
+            redaction_policy = evidence_asset["metadata_json"].get("redaction_policy")
+            relative_path = self._ledger_path_to_relative_path(capture["platform"], capture_id, evidence_file_path)
+            if relative_path is not None:
+                actual_path = self._artifact_actual_path(capture["platform"], capture_id, relative_path)
+                if actual_path.is_file():
+                    payload = json.loads(actual_path.read_text(encoding="utf-8"))
+                    safe_parsed_fields = {
+                        "platform_item_id": payload.get("platform_item_id"),
+                        "title": payload.get("title"),
+                        "duration_seconds": payload.get("duration_seconds"),
+                        "page_count": payload.get("page_count"),
+                        "selected_page": payload.get("selected_page"),
+                    }
+
+        artifact_kind_priority = {
+            "safe_metadata_evidence": 0,
+            "metadata_probe_summary": 1,
+            "raw_api_response": 2,
+        }
+        artifact_kinds = sorted(
+            [asset["artifact_kind"] for asset in receipt_assets],
+            key=lambda item: (artifact_kind_priority.get(item, 99), item),
+        )
+
+        response = {
+            "label": label,
+            "capture": {
+                "capture_id": capture["capture_id"],
+                "platform": capture["platform"],
+                "platform_item_id": capture["platform_item_id"],
+                "source_kind": capture["source_kind"],
+                "capture_mode": capture["capture_mode"],
+                "created_by_path": capture["created_by_path"],
+            },
+            "capture_state": {
+                "capture_created": True,
+                "status": capture["status"],
+            },
+            "metadata_job": {
+                "present": metadata_job is not None,
+                "job_id": metadata_job["job_id"] if metadata_job is not None else None,
+                "job_type": metadata_job["job_type"] if metadata_job is not None else None,
+                "status": metadata_job["status"] if metadata_job is not None else None,
+                "platform_result": metadata_job["platform_result"] if metadata_job is not None else None,
+            },
+            "probe_evidence": {
+                "present": probe_present,
+                "probe_mode": probe_mode,
+                "source_task_id": probe_metadata.get("evidence_source_task_id"),
+                "source_report_path": probe_metadata.get("evidence_source_report_path"),
+                "platform_result": probe_metadata.get("platform_result"),
+            },
+            "receipt_ledger": {
+                "present": receipt_present,
+                "artifact_count": len(receipt_assets),
+                "artifact_kinds": artifact_kinds,
+                "redaction": "applied" if receipt_present else "not_applicable",
+            },
+            "media_audio": {
+                "status": "not_approved",
+                "audio_transcript": "blocked",
+            },
+            "audit": {
+                "platform_result": metadata_job["platform_result"] if metadata_job is not None else None,
+                "evidence_file_path": evidence_file_path,
+                "artifact_count": len(receipt_assets),
+                "redaction_policy": redaction_policy,
+                "safe_parsed_fields": safe_parsed_fields,
+            },
+        }
+        return TrustTraceResponse.model_validate(response).model_dump(mode="json")
