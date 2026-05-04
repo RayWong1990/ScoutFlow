@@ -3,11 +3,11 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-013A receipt / trust trace audit hardening done`
-- 主任务：`T-P1A-013A-receipt-trust-trace-audit-hardening`
+- Step：`T-P1A-013B authority sync + docs-check suffix task hardening done`
+- 主任务：`T-P1A-013B-authority-docs-check-hardening`
 - 工作模式：当前无 active product task；继续遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-013A=done`; `T-P1A-013=done`; `T-P1A-012R=done`; `T-P1A-012=done`; `T-P1A-011G=done`; `T-P1A-011F=done`; `T-P1A-011E=done`; `T-P1A-011D=done`; `T-P1A-011C=done`; `T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
-- 当前结论：`T-P1A-013A` 已完成，补了两个 audit gaps。第一，`materialize_metadata_probe_assets()` 现在会在写文件前校验 `relative_path`：拒绝 absolute、`.`/`..`/empty parts、非 `bundle/` 前缀，以及任何 resolve 后落到 capture root 外的目标。第二，generic `/jobs/{job_id}/complete` 现在对当前 phase 的 `safe_metadata_evidence` / `metadata_probe_summary` 成功证据源执行硬校验，只允许 `T-P1A-011C + auth-present + docs/research/t-p1a-011c-bbdown-auth-present-info-probe-report-2026-05-04.md`。因此 blocked `T-P1A-011` 和 `no-auth` 成功证据不再能绕过 bridge helper 直写成功 receipt。Trust Trace layering 保持不变。当前 Active count=`0/3`，Review count=`0`；本轮仍不下载媒体，不运行 BBDown、ffmpeg 或 ASR，未读取 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- 当前任务状态：`T-P1A-013B=done`; `T-P1A-013A=done`; `T-P1A-013=done`; `T-P1A-012R=done`; `T-P1A-012=done`; `T-P1A-011G=done`; `T-P1A-011F=done`; `T-P1A-011E=done`; `T-P1A-011D=done`; `T-P1A-011C=done`; `T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
+- 当前结论：`T-P1A-013B` 已完成，补了 post-013A 的 authority/docs-check gap。第一，`docs/current.md` 中残留的 `T-P1A-013A 状态 active` stale line 已删除，authority state 现在只保留 `013A=done`。第二，`tools/check-docs-redlines.py` 已升级为精确识别带后缀的任务编号，并补了 current-doc 自检，因此 `T-P1A-011D/E/F/G`、`T-P1A-012R`、`T-P1A-013A/B` 不再被截断成三位数字任务，同时 `Active count=0/3` 与后续 `状态 active` 冲突也会被直接拦下。当前 Active count=`0/3`，Review count=`0`；本轮未改任何产品/API/runtime 行为，不下载媒体，不运行 BBDown、ffmpeg 或 ASR，未读取 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -17,7 +17,7 @@
 - `docs/research/t-p1a-011d-second-retro-remediation-triage-2026-05-04.md`、`docs/research/t-p1a-011f-dispatch-08-09-patch-report-2026-05-04.md`、`docs/research/t-p1a-011g-sidecar-review-07x-and-patched-08-09-2026-05-04.md`：当前只作 triage / patch / review reference
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` 当前只作参考，不自动授权后续代码修改
 - `T-P1A-009` report-only 文件：`docs/research/t-p1a-009-bbdown-local-runtime-spike-report-2026-05-03.md`
-- 当前无 active product task；`T-P1A-013A` 已完成
+- 当前无 active product task；`T-P1A-013B` 已完成
 
 ## 当前禁止
 
@@ -70,7 +70,7 @@
 - `T-P1A-012R`：Receipt-wiring single-point retro；状态 `done`；只补 post-08 retro，不改产品代码；结论是 `012` 的证明范围只到 tests 内的 safe evidence-to-receipt mapping；报告见 `docs/retro/t-p1a-012-receipt-wiring-retro-2026-05-04.md`
 - `T-P1A-013`：Explore Trust Trace minimal surface；状态 `done`；模式=`API/CLI`; 已新增 `GET /captures/{capture_id}/trust-trace`；Trust Trace 会分开返回 `capture / capture_state / metadata_job / probe_evidence / receipt_ledger / media_audio / audit`；不允许 frontend 模式、BBDown runtime、media / ffmpeg / ASR、manual auth、browser profile、`audio_transcript`
 - `T-P1A-013A`：Receipt / Trust Trace audit hardening；状态 `done`；已收紧 metadata bridge 的 path containment，并把 generic receipt API 的当前 phase 成功证据源锁死为 `T-P1A-011C + auth-present + exact report path`；Trust Trace layering 维持不变
-- `T-P1A-013A`：Receipt / Trust Trace audit hardening；状态 `active`；只做 `012/012R/013` 后的小范围 code/test hardening；目标是封死 bridge path containment 和 generic receipt evidence-source 漏口；不允许 product expansion
+- `T-P1A-013B`：Authority sync + docs-check suffix task hardening；状态 `done`；已删除 `docs/current.md` 中 `T-P1A-013A 状态 active` stale line；checker 现在精确解析后缀任务 ID，并能拦住 `Active count=0/3` 与后续 `状态 active` 的 current-doc 冲突
 - `T-P1A-010A`：BBDown executable discovery / tool preflight package；状态 `done`；已通过 PR `#23` 合并入 `main`；仅表示 `ToolPreflightResult` package 和 contract tests merged，不批准真实 BBDown 执行、URL、`-info`、auth、media、ffmpeg、ASR、receipt 或 capture state
 - `T-P1A-010B`：BBDown no-auth `-info` adapter shell with injected runner and parser integration；状态 `done`；已通过 PR `#22` 合并入 `main`；仅表示 injected-runner adapter shell merged，不批准真实 BBDown 执行、真实 `BBDown -info`、auth、media、receipt 或 capture state
 - `T-P1A-010C`：PRD/SRD amendment repair pack + next dispatch plan + red-team checklist；状态 `done`；已通过 PR `#24` 合并入 `main`；PRD/SRD v1.2 amendment 仍是 `candidate / draft / not final authority / not runtime approval`

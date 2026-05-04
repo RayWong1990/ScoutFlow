@@ -43,6 +43,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-013B` | Authority sync + docs-check suffix task hardening | `2026-05-04` | scope=`authority drift fix + docs-check suffix task parsing hardening`; fixes=`remove stale T-P1A-013A active line from docs/current.md + parse suffix task ids exactly + current-doc self-check`; result=`authority state and docs-check now agree on 011D/E/F/G, 012R, 013A/B`; no product/runtime change |
 | `T-P1A-013A` | Receipt / Trust Trace audit hardening | `2026-05-04` | scope=`small code/test hardening after merged 012/012R/013`; fixes=`path containment before metadata bridge writes + current-phase success evidence validator on generic receipt API`; result=`blocked T-P1A-011 and no-auth success evidence no longer accepted through generic metadata_fetch receipts`; trust_trace=`layering unchanged`; no runtime |
 | `T-P1A-013` | Explore Trust Trace minimal surface | `2026-05-04` | mode=`API/CLI`; implementation=`GET /captures/{capture_id}/trust-trace`; layering=`capture + capture_state + metadata_job + probe_evidence + receipt_ledger + media_audio + audit`; result=`receipt only appears after receipt ledger exists; auth-present evidence labeled correctly; media/audio stays not approved`; no frontend / no BBDown runtime |
 | `T-P1A-012R` | Receipt-wiring single-point retro | `2026-05-04` | scope=`post-08 docs-only retro`; result=`012 proves safe evidence-to-receipt mapping in tests only`; ceremony_tax=`yes`; readiness=`Dispatch 09 can proceed`; no product-code change |
