@@ -310,19 +310,35 @@ class Storage:
             job_id = f"job_{generate_capture_id()}"
             conn.execute(
                 """
-                INSERT INTO jobs (job_id, capture_id, job_type, status, dedupe_key, queued_at)
+                INSERT OR IGNORE INTO jobs (job_id, capture_id, job_type, status, dedupe_key, queued_at)
                 VALUES (?, ?, ?, ?, ?, ?)
                 """,
                 (job_id, capture_id, "metadata_fetch", "queued", dedupe_key, queued_at),
             )
+            metadata_job = conn.execute(
+                """
+                SELECT job_id, capture_id, job_type, status, dedupe_key
+                FROM jobs
+                WHERE capture_id = ? AND job_type = ? AND dedupe_key = ?
+                ORDER BY queued_at ASC, rowid ASC
+                LIMIT 1
+                """,
+                (capture_id, "metadata_fetch", dedupe_key),
+            ).fetchone()
+            if metadata_job is None:
+                raise ReceiptStorageError(
+                    409,
+                    "metadata_fetch_dedupe_conflict",
+                    "metadata_fetch enqueue could not create or replay the dedupe job.",
+                )
             conn.commit()
 
         return {
-            "job_id": job_id,
-            "capture_id": capture_id,
-            "job_type": "metadata_fetch",
-            "status": "queued",
-            "dedupe_key": dedupe_key,
+            "job_id": metadata_job["job_id"],
+            "capture_id": metadata_job["capture_id"],
+            "job_type": metadata_job["job_type"],
+            "status": metadata_job["status"],
+            "dedupe_key": metadata_job["dedupe_key"],
         }
 
     def _capture_root(self, platform: str, capture_id: str) -> Path:
