@@ -659,7 +659,8 @@ Sections to revisit after those gates:
 | `docs/specs/worker-receipt-contract.md` | current receipt fields, artifact zones, API-side ledger mapping |
 | `docs/specs/platform-adapter-risk-contract.md` | `PlatformResult` boundary and retry categories |
 | `docs/specs/raw-response-redaction.md` | evidence redaction and credential exclusion rules |
-| `services/api/migrations/001_initial.sql` | current SQLite baseline |
+| `services/api/migrations/001_phase1a_capture_creation.sql` | current `captures` and `artifact_assets` SQLite baseline |
+| `services/api/migrations/002_phase1a_jobs_receipt.sql` | current `jobs`, `job_events`, and ledger indexes baseline |
 | `services/api/scoutflow_api/storage.py` | current enqueue, receipt completion, artifact path mapping, Trust Trace projection |
 | `services/api/scoutflow_api/models.py` | current `ArtifactZone`, `WorkerReceipt`, `MetadataFetchJobResponse`, Trust Trace DTOs |
 | `services/api/scoutflow_api/metadata_probe_receipt_bridge.py` | current safe metadata evidence artifact paths and receipt construction |
