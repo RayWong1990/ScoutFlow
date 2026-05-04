@@ -19,7 +19,7 @@
 | `created` | `capture_state.status=discovered`, `metadata_job.present=false`, `receipt_ledger.present=false` | capture shell exists; no metadata job yet | show `Fetch metadata` button | show media/audio readiness |
 | `queued` | `metadata_job.status=queued` | metadata job is queued but has not started | show queued indicator; disable duplicate fetch action | imply platform result exists |
 | `running` | `metadata_job.status=running` | metadata fetch is in progress | show loading state; keep trace card visible | show raw stdout/stderr |
-| `failed` | `metadata_job.status=failed`, `metadata_job.platform_result!=ok`, `receipt_ledger.present=false` | platform/probe failed safely; capture remains discovered | show retry candidate affordance `<TBD future gate>` | move capture to `metadata_fetched` |
+| `failed` | `metadata_job.status=failed`, `metadata_job.platform_result!=ok`, `receipt_ledger.present=false` | platform/probe failed; capture remains discovered | show retry candidate affordance `<TBD future gate>` | move capture to `metadata_fetched` |
 | `metadata_fetched` | `capture_state.status=metadata_fetched`, `metadata_job.status=succeeded`, `receipt_ledger.present=true` | safe metadata evidence is available | show evidence summary and trust trace card | unlock media, ffmpeg, ASR, transcript, comments, danmaku, screenshots |
 
 Post-T-P1A-019 alignment note: T-P1A-019 has merged with its non-ok failure receipt path. In the current Phase 1A contract, `failed` is produced by non-ok failure receipt completion from the dry-run orchestrator; no success evidence artifacts are emitted. This note remains research/candidate for Explore consumption and does not open retry, frontend, worker, BBDown live, ffmpeg, ASR, or audio_transcript runtime.
@@ -88,3 +88,49 @@ Transition gates:
 - No `audio_transcript` runtime is proposed.
 - No cost estimate, token count, comments, danmaku, screenshot, media, ffmpeg, ASR, worker, or frontend implementation is proposed.
 - This table is intended for Explore prototype consumption only after PR review and human check.
+
+## 8. Platform Result Reference and Retry Policy
+
+This table is reference material for downstream UI spec. It interprets `platform_result` enum values and binds the retry policy. The `Retry-allowed?` column is contract-level and constrains auto-retry behavior; user-facing copy is out of scope for this table.
+
+| `platform_result` | Meaning | Retry-allowed? | Next-state hint |
+|---|---|---|---|
+| `ok` | metadata fetched | n/a | `metadata_fetched` |
+| `auth_required` | login-gated content | no auto-retry | `failed`; user action: login or different URL |
+| `vip_required` | premium-only content | no auto-retry | `failed`; user action: different URL |
+| `not_found` | video deleted or private | no | `failed`; terminal |
+| `rate_limited` | Bilibili anti-bot triggered | NO — vendor-risk hard block | `failed`; terminal; do NOT retry |
+| `network_error` | DNS or connection failure | bounded retry | `failed -> created` loop allowed |
+| `timeout` | subprocess wall-clock exceeded | bounded retry | `failed -> created` loop allowed |
+| `parser_drift` | BBDown stdout format changed | NO — code fix needed | `failed`; halt probe queue |
+| `unknown_error` | unrecognized stderr | manual review | `failed`; investigate before retry |
+
+Vendor-risk hard blocks (`rate_limited`, `parser_drift`) are non-negotiable: any auto-retry of these results MUST be rejected at the orchestrator boundary, not relied on at the UI boundary. This table answers the contract questions of meaning and retry permission; it does not prescribe UI affordance, copy, or visual treatment.
+
+## 9. UI Naming Convention Invariants
+
+These are invariants that frontend consumers MUST honor when rendering Trust Trace and Explore state. They constrain the contract surface to prevent ambiguity and demand-creating UI; they are not visual prescriptions.
+
+### 9.1 Scope-prefixed status labels
+
+Four DTO fields carry `status`-typed semantics with completely different meanings: `capture_state.status` (lifecycle), `metadata_job.status` (operation), `media_audio.status` (gate), and `probe_evidence.platform_result` (probe outcome). UI labels MUST carry a scope prefix when displaying any of these fields.
+
+- Allowed: `Capture state: discovered`, `Metadata job: failed`, `Media gate: blocked`, `Platform result: rate_limited`.
+- Forbidden: bare `Status: ...`. Reusable status-badge components MUST require the scope prefix as a non-default prop.
+
+### 9.2 Terminology aliases
+
+- `Trust Trace` = the 7-layer DTO surface returned by `GET /captures/{capture_id}/trust-trace`.
+- `Receipt Ledger` = the `receipt_ledger` DTO row (artifact provenance).
+- `Audit` = the `audit` DTO row (redaction policy + safe parsed fields).
+- The brief term `Ledger Trace` aliases to `Receipt Ledger`. Documentation and UI MUST use `Receipt Ledger` as canonical; `Ledger Trace` MUST NOT appear as a separate concept.
+
+### 9.3 Boundary: no advertisement of undefined runtime
+
+States carrying `<TBD future gate>` MUST NOT advertise undefined runtime in UI affordances. No `coming soon`, no greyed-out `media download (preview)`, no demand-creating placeholders for future dispatches. The disabled boundary extends to implication: the absence of an affordance is itself the contract surface.
+
+## 10. Open Questions for Future Spec
+
+### Open Q1: `metadata_fetched` staleness TTL
+
+The current state map has no `metadata_fetched -> metadata_fetch_running` re-transition. Daily-use will surface stale metadata when creators edit title or description, change publication status, or remove videos. The re-fetch gate is undefined. Future spec MUST address vendor cost, rate-limit risk, and staleness threshold trade-offs before opening this transition. Do not infer auto re-fetch policy from the absence of this transition; absence is intentional research-stage scope.
