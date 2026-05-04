@@ -34,3 +34,15 @@ SRD 同样 promote 成 `docs/SRD-v2-2026-05-04.md`。
 
 - 历史 retro / decision-log / research note 引旧 amendment 时，改指向 archive
 - forward authority 一律指向 v2
+
+## Path-only reference maintenance exceptions
+
+During stale-forward-reference cleanup, this task also updated a few historical reference paths outside the original narrow forward-authority list:
+
+- `docs/plans/**`: old PRD/SRD live-path references were rewritten to `docs/archive/**`
+- `docs/research/**`: old PRD/SRD live-path references were rewritten to `docs/archive/**`
+- `docs/specs/bbdown-adapter-contract-draft.md`: old amendment live-path references were rewritten to `docs/archive/**`
+
+These edits are path-only reference maintenance. They do not change product semantics, runtime approval, BBDown contract meaning, redaction rules, receipt schema, PlatformResult enum, or Trust Trace DTO.
+
+This exception is explicitly recorded because `bbdown-adapter-contract-draft.md` was a forbidden semantic-edit surface in the original dispatch; the audit-fix authorizes only path reference correction, not contract body changes.
