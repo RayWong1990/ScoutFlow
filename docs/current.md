@@ -1,14 +1,14 @@
 # Current
 ## 当前状态
-- Phase / Step：`1A` / `Wave 3A open`
-- 主任务：Wave 3A open（next gate = T-P1A-032 / PR #57 in-flight）
+- Phase / Step：`1A` / `Wave 3A closed`
+- 主任务：`T-P1A-042` 已完成 closeout；next gate = `Wave 3B ledger open / PR #68`（Wave 3B gate=`GO`，待 PR68 正式开账）
 - 工作模式：Active product lane max=`3`，Authority writer max=`1`；Active count=`0/3`，Review count=`0`；Authority writer count=`0/1`
-- 当前结论：Wave 2 closed；Wave 3 reference docs landed（PR #55 / T-P1A-030, merge `395a7e6`）；Wave 3A ledger open 已完成并归档（PR #56 / T-P1A-031）；顺延后 PR56-PR67（12 PR，T-P1A-031 ~ T-P1A-042）维持 open；Wave 3A 不解禁任何 runtime；不修改 `PRD-v2-2026-05-04.md` / `SRD-v2-2026-05-04.md` base authority；SRD-v3 remains candidate-only；`docs/shoulders-index.md` 已就位（19 entries；3 locked / 16 discovered；transition rule per errata P1-10）
+- 当前结论：Wave 2 closed；Wave 3 reference docs landed（PR #55 / T-P1A-030, merge `395a7e6`）；Wave 3A 的 ADR / PRD candidate / SRD candidate / PR Factory protocol candidate / repo 外 OpenDesign probe / 四个 shoulder scan / PR Factory tooling helper 已全部落地（live PR `#57/#58/#64/#59/#62/#65/#60/#61/#63/#66`）；`docs/specs/parallel-execution-protocol.md` 已同步 `Codex Commander Fan-out` 实战硬化，但当前生效基线仍是 `Active product lane max=3` + `Authority writer max=1`；Wave 3A 仍不解禁任何 runtime；不修改 `PRD-v2-2026-05-04.md` / `SRD-v2-2026-05-04.md` base authority；SRD-v3 remains candidate-only；`docs/shoulders-index.md` 已完成 scan-closeout 同步（3 locked / 4 scanning / 12 discovered）
 
 ## 当前允许
-- Wave 3A 12 PR 范围（顺延后 PR56-PR67）：T-P1A-031 ledger open；T-P1A-032 ADR-001 Obsidian PARA Lock；T-P1A-033 PRD v2.1 Strong Visual H5 candidate；T-P1A-034 SRD v3 H5 Bridge PARA vault candidate；T-P1A-035 Parallel Execution Protocol PR factory candidate；T-P1A-036 OpenDesign H5 visual probe（repo 外）；T-P1A-037 ~ T-P1A-040 四个 shoulder scan；T-P1A-041 PR factory V1 tooling plan + scripts；T-P1A-042 Wave 3A closeout
-- `docs/shoulders-index.md` 后续可被 PR62-65 scan 与 PR68-73 probe/decide read/write；任何 status 提升必须有对应 scan/probe/decision artifact
-- 任何 Wave 3A 内 PR 启动都需 user 显式授权 + decision-log 单独 entry
+- `PR #68` 可打开 Wave 3B ledger，并创建 shoulders clone plan / referencerepo tracked mirror；在此之前 PR69+ 不得开跑
+- `docs/shoulders-index.md` 的下一轮状态推进必须基于已落地 scan artifact 或后续 clone/probe/decision artifact；PR67 仅完成 Wave 3A closeout 同步
+- `docs/specs/parallel-execution-protocol.md` 已纳入 `Codex Commander Fan-out` 模式，但仅作为流程硬化；不代表 product lane 上限提升或 authority 多写者放行
 
 ## 当前禁止
 - `services/api/migrations/**` FORBIDDEN — migration dry-run plan / schema 变更 / migration 实施均需另立 dispatch + user 显式授权 + 单独 PR + 外审
@@ -21,6 +21,6 @@
 - `PlatformResult` enum / `WorkerReceipt` schema / Trust Trace DTO 未经新 dispatch + 外审不得改动
 
 ## 下一步
-- 当前 next gate：T-P1A-032 / PR #57（in-flight），主题为 ADR-001 Obsidian PARA Lock；优先锁定 vault 边界且无 product-code path dependency
+- 当前 next gate：`Wave 3B ledger open / PR #68`，主题为 ledger open + shoulders clone plan；仅放行 ledger / clone-plan 层，不放行 runtime / migration / Phase 2+ 实施
 - authority writer 当前空闲 `0/1`；后续并行 lane 仍受 `docs/specs/parallel-execution-protocol.md` 约束
 - 任何 code-bearing migration / runtime / worker / frontend 启动都必须新 dispatch + 外审
