@@ -382,3 +382,13 @@
 - No runtime / worker / frontend / ASR / `audio_transcript` approval granted by this ledger-open PR.
 - Boundary: docs-only authority update; no product code, no schema changes, no migrations, no BBDown execution.
 - Fix: path-only reference maintenance exceptions are formally recorded in `docs/retro/2026-05-04-prd-srd-promote.md`.
+
+## 2026-05-04 — Post-T-P1A-018 merge ledger sync
+
+- Decision: mark T-P1A-018 (metadata_fetch job enqueue API + OpenAPI UX audit-fix) as `done`. PR `#39` merged into `main` as merge commit `a1f965bdf22d027f173683ae324d2b2acd0a9f19`.
+- Decision: T-P1A-019 (metadata probe dry-run orchestrator) is the next executable lane. 018 storage / job layer is contract-frozen for the duration of 019.
+- Decision: T-P1A-021 (BBDown runtime gate matrix research) merged into `main` as commit `1e283457ff55d4e552b317bdfeb4b5a454a098d9` (PR `#37`); recorded in Done as research/candidate.
+- Active count update: `3/3` → `2/3` (018 done; 019 + 020 remain active).
+- Boundary preserved: `migrations/**` remains FORBIDDEN for all lanes; `audio_transcript` runtime remains blocked; `PlatformResult` enum / `WorkerReceipt` schema / Trust Trace data shape unchanged across 017/018/021 closures.
+- During T-P1A-019 execution: `storage.py` / `captures.py` / `jobs.py` / `main.py` are read-only (frozen 018 contract); `test_capture_trust_trace.py` reserved for T-P1A-020.
+- Scope of this entry: docs-only authority sync after merge — no product code, no schema, no migrations, no runtime change.
