@@ -12,6 +12,7 @@
 ## B. 核心原则（修订）
 
 - `Active product lane max = 3`
+- `Active lane max = 3` — compatibility alias for promote / audit gate checks
 - `Authority writer max = 1` — 永远只有一个窗口写 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md`
 - `Single Writer` — `Authority writer max = 1` 的短名；用于兼容既有审计和 PR 模板措辞
 - `Same file group writer max = 1` — 同 conflict domain 单写者

@@ -31,8 +31,8 @@
 - `docs/current.md`
 - `docs/specs/contracts-index.md`
 - `docs/specs/raw-response-redaction.md`
-- `docs/SRD-v1.2-amendment-2026-05-03.md`
-- `docs/PRD-v1.2-amendment-2026-05-03.md`
+- `docs/archive/SRD-v1.2-amendment-2026-05-03.md`
+- `docs/archive/PRD-v1.2-amendment-2026-05-03.md`
 
 写回的核心 lesson：
 

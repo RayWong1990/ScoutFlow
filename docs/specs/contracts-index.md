@@ -7,17 +7,17 @@
 
 | Group | 旧 ID alias | 主文档 | 当前阶段 |
 |---|---|---|---|
-| `Authority` | C-AUTH-001, C-TASK-001, C-SCOPE-001, C-PROC-001 | docs/SRD-v1.1-amendment + AGENTS.md + locked-principles.md | Step0/Phase 1A baseline |
-| `Capture` | C-CAP-001, C-CAP-002, C-CAP-003, LP-001 | docs/SRD-v1.1-amendment A012/A004/A005 + captures.py | Phase 1A baseline (merged) |
+| `Authority` | C-AUTH-001, C-TASK-001, C-SCOPE-001, C-PROC-001 | docs/SRD-v2-2026-05-04.md + AGENTS.md + locked-principles.md | Step0/Phase 1A baseline |
+| `Capture` | C-CAP-001, C-CAP-002, C-CAP-003, LP-001 | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md + captures.py | Phase 1A baseline (merged) |
 | `Receipt-Ledger` | C-WRK-001, C-ART-001 | docs/specs/worker-receipt-contract.md + jobs/complete.py | Phase 1A baseline (merged) |
 | `Platform` | C-PLT-001, C-BBD-001, C-BBD-002 | docs/specs/platform-adapter-risk-contract.md + bbdown-adapter-contract-draft.md | Phase 1A baseline + draft |
 | `Security` | C-SEC-001 | docs/specs/raw-response-redaction.md | Phase 1A baseline (merged) |
-| `State` | state words / audio_transcript blocked / Phase Scope Freeze | PRD §6 + amendments | Phase 1A baseline |
+| `State` | state words / audio_transcript blocked / Phase Scope Freeze | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | Phase 1A baseline |
 | `Process` | C-OPS-001, C-OPS-003, LP-006 | parallel-execution-protocol.md + AGENTS.md | Phase 0 baseline |
 | `Audit` | C-OPS-002, LP-007 | parallel-execution-protocol.md + README.md | Phase 0 baseline (high-risk task only) |
 
-> Former C-TOOL-001 / C-TOOL-002 / C-NFR-001 remain historical amendment references but are not separate active contract groups after T-P1A-014.
-> `C-BBD-001` is still draft only; `C-BBD-002` is still candidate draft only. Neither approves BBDown runtime, QR/manual auth, media download, ffmpeg, ASR, workers, frontend, or `audio_transcript` runtime.
+> Former C-TOOL-001 / C-TOOL-002 / C-NFR-001 remain historical references but are not separate active contract groups after T-P1A-014 and T-P1A-015.
+> `C-BBD-001` is still draft only. `C-BBD-002` stays `candidate draft only`: its gate language is now promoted into PRD/SRD v2 as baseline wording, but BBDown runtime itself is still not approved.
 
 ## 当前实现基线状态
 
@@ -35,17 +35,14 @@
 | docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md | PR #10 merged | Research note only；not authority；not implementation approval；not runtime approval |
 | docs/specs/bbdown-adapter-contract-draft.md | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval |
 | docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md | PR #15 merged research note | Research note only；not authority；not frontend / API / runtime approval |
-| docs/PRD-v1.2-amendment-2026-05-03.md + docs/SRD-v1.2-amendment-2026-05-03.md | `T-P1A-010C` candidate amendment repair draft | Candidate draft only；not final authority；not runtime approval；keeps `audio_transcript` blocked |
+| docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | promoted v2 base | Promoted base；runtime boundaries still gated；keeps `audio_transcript` blocked |
 
 ## 当前引用但未落地的上游文档
 
 | Upstream | 当前用途 | 说明 |
 |---|---|---|
-| docs/PRD-v1-2026-05-02.md | 产品叙事与原始 contract 背景 | 仍含旧 `decisions.md` / 顶层 review 队列口径 |
-| docs/PRD-v1.1-amendment-2026-05-02.md | LP-001~005、quick_capture、artifact_assets、merger 规则 | Step0 继续引用，但当前硬 LP 已收敛到 `docs/specs/locked-principles.md` |
-| docs/PRD-v1.2-amendment-2026-05-03.md | `T-P1A-010C` PRD 层 runtime gate / manual-auth / audio blocker candidate | Candidate draft only；待 user 拍板 |
-| docs/SRD-v1-2026-05-02.md | FR / NFR / IF / DR 主体 | T-P1A-014 只调整 §6 / §7 的 lean constraints，不 promote v2 |
-| docs/SRD-v1.2-amendment-2026-05-03.md | `T-P1A-010C` SRD 层 ToolPreflightResult / PlatformResult separation candidate | Candidate draft only；待 user 拍板 |
+| docs/PRD-v2-2026-05-04.md | promoted PRD base，含 v1 + v1.1 + v1.2 的稳定产品规则 | 当前产品 authority baseline |
+| docs/SRD-v2-2026-05-04.md | promoted SRD base，含 v1 + v1.1 + v1.2 的稳定工程规则 | 当前工程 authority baseline |
 
 ## 仅作参考 outline 的内容
 

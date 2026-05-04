@@ -344,3 +344,30 @@
 - Decision: external audit verdict is `PASS WITH NOTES`; no blocking issue found for scope, CI, hard boundaries, lane protocol, LP reduction, contract groups, or entry slimming.
 - Fix: apply the non-blocking wording repair in `docs/specs/contracts-index.md` so the first-screen summary no longer mixes product architecture with the contract-group authority view.
 - Next gate: merge PR `#33`, then keep `T-P1A-015` / `T-P1A-016` behind explicit user authorization.
+
+## 2026-05-04 — PR #33 merged and T-P1A-015 unlocked
+
+- Decision: merge PR `#33` into `main` as merge commit `f1b4992398d89eb3742a57a585ee9378ad6266b5`.
+- Decision: `T-P1A-015` is now unlocked by merged `T-P1A-014`; `T-P1A-016` still requires an explicit user gate.
+
+## 2026-05-04 — T-P1A-015 PRD/SRD promote completed locally
+
+- Decision: promote PRD/SRD base docs to `docs/PRD-v2-2026-05-04.md` and `docs/SRD-v2-2026-05-04.md`.
+- Decision: move v1 + amendment chain into `docs/archive/` and add `docs/archive/README.md` for mapping stability.
+- Decision: switch forward authority references to v2 and historical trail references to archive paths.
+- Boundary preserved: no product code, no runtime approval, no schema change, no spec contract semantics rewrite.
+
+## 2026-05-04 — T-P1A-016 dispatch template extracted
+
+- Decision: extract shared dispatch boilerplate to `docs/dispatch-template.md`.
+- Decision: add `docs/runbooks/dispatch-authoring-guide.md`.
+- Decision: compress dispatch self-audit from 7-8 segments to 5 segments: Scope / Authority / Safety / Validation / Next gate.
+- Decision: existing user-managed dispatch files under `~/Downloads/` are not retroactively rewritten.
+- Scope: docs-only meta-template extraction.
+- Boundary: no product code, no PRD/SRD/LP/spec contract changes, no runtime approval.
+
+## 2026-05-04 — T-P1A-015 audit-fix after T-P1A-016 merge
+
+- Decision: rebase `T-P1A-015` after PR `#34` merge and absorb the `T-P1A-016` ledger update as the single authority writer.
+- Fix: PRD v2 metadata probe wording now states the current success evidence is `T-P1A-011C auth-present metadata probe`; no-auth live platform success remains not proven.
+- Fix: path-only reference maintenance exceptions are formally recorded in `docs/retro/2026-05-04-prd-srd-promote.md`.

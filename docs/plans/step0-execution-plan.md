@@ -17,7 +17,7 @@
 - 创建 `CLAUDE.md`：Claude Code / VSCode 会话入口
 - 创建 `docs/current.md`：当前活状态、允许区、禁止区、下一步
 - 创建 `docs/task-index.md`：共享薄账本，Active 上限 `3`
-- 创建 `docs/SRD-v1.1-amendment-2026-05-03.md`：A001-A015 开工安全补丁
+- 创建 `docs/archive/SRD-v1.1-amendment-2026-05-03.md`：A001-A015 开工安全补丁
 - 创建 `docs/specs/contracts-index.md`：待拍板候选基准总索引
 - 创建 `docs/specs/worker-receipt-contract.md`：Phase 1A 报账与台账协议
 - 创建 `docs/specs/platform-adapter-risk-contract.md`：平台失败 typed contract
@@ -125,7 +125,7 @@ Expected: 命中当前范围说明；`docs/task-index.md` 中 Active 仅 1 条
 ### Task 2: SRD 开工安全补丁
 
 **Files:**
-- Create: `docs/SRD-v1.1-amendment-2026-05-03.md`
+- Create: `docs/archive/SRD-v1.1-amendment-2026-05-03.md`
 
 - [ ] **Step 1: 写 amendment 头部，明确“这是补充修订，不是主体重写”**
 
@@ -170,7 +170,7 @@ Expected: 命中当前范围说明；`docs/task-index.md` 中 Active 仅 1 条
 
 - [ ] **Step 5: 验证 amendment 同时覆盖 A001 与 A015，且没有把 Phase 2-4 拉进当前实现任务**
 
-Run: `rg -n "A001|A015|Phase Scope Freeze|reference outline" docs/SRD-v1.1-amendment-2026-05-03.md`
+Run: `rg -n "A001|A015|Phase Scope Freeze|reference outline" docs/archive/SRD-v1.1-amendment-2026-05-03.md`
 
 Expected: 命中 A001-A015 与范围冻结内容；只把 Phase 2-4 写成参考 outline
 
@@ -327,24 +327,24 @@ Expected: 两个文件都命中当前边界与安全规则
 - Review: `CLAUDE.md`
 - Review: `docs/current.md`
 - Review: `docs/task-index.md`
-- Review: `docs/SRD-v1.1-amendment-2026-05-03.md`
+- Review: `docs/archive/SRD-v1.1-amendment-2026-05-03.md`
 - Review: `docs/specs/*.md`
 
 - [ ] **Step 1: 复核所有新文档都使用中文，并且只描述当前生效范围**
 
-Run: `rg -n "当前生效|reference outline|Phase 0|Phase 1A" AGENTS.md CLAUDE.md docs/current.md docs/task-index.md docs/SRD-v1.1-amendment-2026-05-03.md docs/specs/*.md`
+Run: `rg -n "当前生效|reference outline|Phase 0|Phase 1A" AGENTS.md CLAUDE.md docs/current.md docs/task-index.md docs/archive/SRD-v1.1-amendment-2026-05-03.md docs/specs/*.md`
 
 Expected: 命中当前范围与 outline 区分
 
 - [ ] **Step 2: 复核 `/captures/discover` 的语义在所有关键文件里一致**
 
-Run: `rg -n "capture creation entrypoint" AGENTS.md docs/current.md docs/SRD-v1.1-amendment-2026-05-03.md docs/specs/contracts-index.md`
+Run: `rg -n "capture creation entrypoint" AGENTS.md docs/current.md docs/archive/SRD-v1.1-amendment-2026-05-03.md docs/specs/contracts-index.md`
 
 Expected: 所有关键文件都把该路由写成 capture 入口，而不是 discovery/search
 
 - [ ] **Step 3: 复核新文档没有引入命名禁区，并且没有新增项目根重治理目录要求**
 
-Run: `rg -n "candidates/|dispatches/|audits/" docs/plans/step0-execution-plan.md docs/SRD-v1.1-amendment-2026-05-03.md docs/task-index.md AGENTS.md CLAUDE.md`
+Run: `rg -n "candidates/|dispatches/|audits/" docs/plans/step0-execution-plan.md docs/archive/SRD-v1.1-amendment-2026-05-03.md docs/task-index.md AGENTS.md CLAUDE.md`
 
 Expected: 只在“不要建立”或“Phase 4 outline”语境中出现，不作为当前目录要求
 
