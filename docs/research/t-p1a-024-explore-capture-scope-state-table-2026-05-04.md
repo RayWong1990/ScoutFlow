@@ -34,11 +34,11 @@ The wireframe uses only placeholder sample data:
 
 Current authority sources used:
 
-- [docs/current.md](/Users/wanglei/workspace/ScoutFlow/docs/current.md)
-- [docs/task-index.md](/Users/wanglei/workspace/ScoutFlow/docs/task-index.md)
-- [docs/PRD-v2-2026-05-04.md](/Users/wanglei/workspace/ScoutFlow/docs/PRD-v2-2026-05-04.md)
-- [docs/SRD-v2-2026-05-04.md](/Users/wanglei/workspace/ScoutFlow/docs/SRD-v2-2026-05-04.md)
-- [docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md](/Users/wanglei/workspace/ScoutFlow/docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md)
+- [docs/current.md](../current.md)
+- [docs/task-index.md](../task-index.md)
+- [docs/PRD-v2-2026-05-04.md](../PRD-v2-2026-05-04.md)
+- [docs/SRD-v2-2026-05-04.md](../SRD-v2-2026-05-04.md)
+- [docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md](./t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md)
 
 # 2. Wireframe Intent
 
