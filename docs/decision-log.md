@@ -438,3 +438,17 @@
 - Known follow-up debt (not addressed by S0/S1):
   - F-010: `WorkerReceipt.next_status="metadata_fetched"` semantics on failure receipts (currently set but ignored when `job_status=failed`) — defer to Phase 2A migration prep.
   - F-012: `PRAGMA foreign_keys=ON` not enabled in `Storage._connect()` — Phase 2A migration approval blocked until enabled (S1 records this as hard gate; not a code change here).
+
+## 2026-05-04 — T-P1A-029 Post-S0/S1 Authority + Candidate Wording Fix
+
+- Decision: close PR #52/#53 merge aftermath before any Phase 2A migration dry-run plan.
+- Scope: authority + candidate wording only; no product code, no schema migration, no runtime, no credentials.
+- Authority sync:
+  - `T-P1A-027` PR `#52` merged as `c2bcac0`; recorded in Done.
+  - `T-P1A-028` PR `#53` merged as `c1c2565`; recorded in Done.
+  - `docs/current.md`, `AGENTS.md`, and `docs/specs/contracts-index.md` now reflect S1 merged state instead of "wait for S1".
+- Candidate fix:
+  - F-012 wording narrowed: SQLite FK / `ON DELETE RESTRICT` / composite FK guards depend on `PRAGMA foreign_keys=ON`; storage CHECK clauses and triggers remain enforced independently.
+  - Evidence identity columns `capture_id` / `evidence_kind` / `lineage_variant` are declared immutable after insert via `trg_evidence_identity_columns_immutable`, closing the inbound supersession target-lineage mutation gap.
+- Boundary preserved: SRD-v3 candidate remains candidate-only; not promoted authority; not migration approval; not runtime approval.
+- Next gate: user explicit authorization required for Phase 2A migration dry-run plan or any Wave 3 candidate.
