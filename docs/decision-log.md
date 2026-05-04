@@ -323,3 +323,10 @@
 - Fix 2: current-phase generic metadata-fetch receipts can no longer treat blocked `T-P1A-011` or `probe_mode=no-auth` as success evidence for `safe_metadata_evidence` / `metadata_probe_summary`.
 - Boundary: no runtime, no media / ffmpeg / ASR, no manual auth, no browser profile, no frontend / workers.
 - Result: Trust Trace layering remains unchanged while the generic API path now matches the bridge-level safety contract.
+
+## 2026-05-04 — T-P1A-013B authority/docs-check hardening completed
+
+- Decision: fix the stale `T-P1A-013A active` line in `docs/current.md` instead of carrying that contradiction into the next lane.
+- Decision: upgrade `tools/check-docs-redlines.py` so suffix task IDs are parsed exactly (`011D/E/F/G`, `012R`, `013A/B`) rather than truncated.
+- Decision: add current-doc self-checks so `Active count=0/3` plus a later concrete `状态 active` line is rejected by docs-check.
+- Boundary: no product code, no API/runtime expansion, no BBDown, no media / ffmpeg / ASR, no frontend / workers.

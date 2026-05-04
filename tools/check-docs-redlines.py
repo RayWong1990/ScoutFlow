@@ -36,7 +36,14 @@ ALLOWED_BANNED_WORD_FILES = {
 }
 BANNED_WORD_RE = re.compile(r"\b(crawl|spider|scrape_all|auto_capture|harvest)\b", re.IGNORECASE)
 STATE_RE = re.compile(r"`?(active|backlog|in_progress|review|done|blocked)`?")
-TASK_RE = re.compile(r"T-P(?:0|1A)-\d{3}")
+TASK_RE = re.compile(r"T-P(?:0|1A)-\d{3}[A-Z]?")
+INLINE_TASK_STATE_RE = re.compile(
+    r"(?P<task>T-P(?:0|1A)-\d{3}[A-Z]?)\s*=\s*(?P<state>active|backlog|in_progress|review|done|blocked)"
+)
+DETAIL_TASK_STATE_RE = re.compile(
+    r"^\s*-\s+`?(?P<task>T-P(?:0|1A)-\d{3}[A-Z]?)`?.*?状态\s+`?(?P<state>active|backlog|in_progress|review|done|blocked)`?"
+)
+ACTIVE_COUNT_RE = re.compile(r"Active count=`?(\d+)/(\d+)`?")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
 TASK_INDEX_SECTIONS = {"Active", "Review", "Backlog", "Blocked", "Done"}
 HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
@@ -142,42 +149,87 @@ def task_index_state(task_index: str, task_id: str, failures: list[str]) -> str 
 
 
 def check_task_index_parser_self_check(failures: list[str]) -> None:
-    review_fixture = """
-## Review
-
-| 任务 ID | 标题 | 状态 |
-|---|---|---|
-| `T-P0-003` | sample | `review` |
-"""
-    active_fixture = """
-## Active
-
-| 任务 ID | 标题 | 状态 |
-|---|---|---|
-| `T-P0-003` | sample | `active` |
-"""
     done_fixture = """
 ## Done
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
-| `T-P0-003` | sample | `2026-05-03` | closed |
+| `T-P1A-013A` | sample | `2026-05-04` | closed |
+| `T-P1A-012R` | sample | `2026-05-04` | closed |
 """
-    duplicate_fixture = review_fixture + done_fixture
+    duplicate_fixture = """
+## Active
 
-    review_states, review_errors = parse_task_index_states(review_fixture)
-    active_states, active_errors = parse_task_index_states(active_fixture)
+| 任务 ID | 标题 | 状态 |
+|---|---|---|
+| `T-P1A-013A` | sample | `active` |
+
+## Done
+
+| 任务 ID | 标题 | 完成时间 | 备注 |
+|---|---|---|---|
+| `T-P1A-013A` | sample | `2026-05-04` | closed |
+"""
+    current_fixture = """
+# Current
+
+## 当前状态
+
+- Active count=`0/3`
+
+## 当前任务
+
+- `T-P1A-013A`：sample；状态 `active`
+"""
+
     done_states, done_errors = parse_task_index_states(done_fixture)
     _, duplicate_errors = parse_task_index_states(duplicate_fixture)
+    current_errors = current_doc_state_failures(current_fixture)
 
-    if review_errors or review_states.get("T-P0-003") != "review":
-        failures.append("task-index 解析自检失败：Review 表未解析为 review")
-    if active_errors or active_states.get("T-P0-003") != "active":
-        failures.append("task-index 解析自检失败：Active 表未解析为 active")
-    if done_errors or done_states.get("T-P0-003") != "done":
-        failures.append("task-index 解析自检失败：Done 表未解析为 done")
+    if done_errors or done_states.get("T-P1A-013A") != "done":
+        failures.append("task-index 解析自检失败：Done 表未解析带后缀任务 T-P1A-013A")
+    if done_errors or done_states.get("T-P1A-012R") != "done":
+        failures.append("task-index 解析自检失败：Done 表未解析带后缀任务 T-P1A-012R")
     if not duplicate_errors:
-        failures.append("task-index 解析自检失败：重复任务未报错")
+        failures.append("task-index 解析自检失败：带后缀重复任务未报错")
+    if not current_errors:
+        failures.append("docs/current 自检失败：Active count=0 但仍有 active 任务时未报错")
+
+
+def current_doc_state_mentions(current: str) -> list[tuple[str, str, int]]:
+    mentions: list[tuple[str, str, int]] = []
+    for line_number, line in enumerate(current.splitlines(), start=1):
+        for match in INLINE_TASK_STATE_RE.finditer(line):
+            mentions.append((match.group("task"), match.group("state"), line_number))
+        detail_match = DETAIL_TASK_STATE_RE.search(line)
+        if detail_match:
+            mentions.append((detail_match.group("task"), detail_match.group("state"), line_number))
+    return mentions
+
+
+def current_doc_state_failures(current: str) -> list[str]:
+    failures: list[str] = []
+    mentions = current_doc_state_mentions(current)
+    task_states: dict[str, list[tuple[str, int]]] = {}
+
+    for task_id, state, line_number in mentions:
+        task_states.setdefault(task_id, []).append((state, line_number))
+
+    for task_id, entries in task_states.items():
+        unique_states = {state for state, _ in entries}
+        if len(unique_states) > 1:
+            details = ", ".join(f"{state}@{line_number}" for state, line_number in entries)
+            failures.append(f"docs/current.md 中任务 {task_id} 状态冲突：{details}")
+
+    active_count_line = extract_line_value(current, "Active count=")
+    active_count_match = ACTIVE_COUNT_RE.search(active_count_line or "")
+    if active_count_match and active_count_match.group(1) == "0":
+        active_mentions = [(task_id, line_number) for task_id, state, line_number in mentions if state == "active"]
+        if active_mentions:
+            details = ", ".join(f"{task_id}@{line_number}" for task_id, line_number in active_mentions)
+            failures.append(f"docs/current.md 声明 Active count=0/3，但仍存在状态 active 任务：{details}")
+
+    return failures
 
 
 def is_banned_word_definition(lines: list[str], index: int) -> bool:
@@ -278,6 +330,8 @@ def check_task_state_consistency(repo: Path, failures: list[str]) -> None:
     agents_status_state = extract_state(agents_status)
     if agents_status_state and current_state and agents_status_state != current_state:
         failures.append(f"当前任务状态冲突：AGENTS.md={agents_status_state}，docs/current.md={current_state}")
+
+    failures.extend(current_doc_state_failures(current))
 
 
 def main() -> int:
