@@ -40,6 +40,8 @@ Current authority sources used:
 - [docs/SRD-v2-2026-05-04.md](../SRD-v2-2026-05-04.md)
 - [docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md](./t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md)
 
+See also: [Explore Preview 视觉候选](./explore-preview-visual-candidate-2026-05-04.md)（candidate / not authority / not implementation gate）。
+
 # 2. Wireframe Intent
 
 The prototype frames Explore as a capture intent confirmation surface:
