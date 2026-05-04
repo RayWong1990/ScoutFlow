@@ -292,3 +292,12 @@
 - Minimal fix: sync `AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, and this log from the stale `011C` end-state to `07.x remediation complete`.
 - Dispatch `08` readiness: `ready`.
 - Dispatch `09` readiness: `ready`.
+
+## 2026-05-04 — T-P1A-012 metadata receipt wiring completed
+
+- Decision: execute patched Dispatch `08` against the existing `T-P1A-011C` auth-present metadata evidence only.
+- Scope: add a `metadata_probe_receipt_bridge` helper, materialize safe evidence files, and bridge them into the existing `/jobs/{job_id}/complete` + `artifact_assets` baseline.
+- Implementation boundary: no BBDown runtime, no new `BBDown -info`, no media download, no ffmpeg, no ASR, no manual auth, no browser profile, no `audio_transcript`, no frontend / workers.
+- Contract hardening: `metadata_fetch` receipts now only allow `raw_api_response`, `metadata_probe_summary`, and `safe_metadata_evidence`; safe metadata written to ledger now includes `evidence_source_task_id`, `evidence_source_report_path`, and `probe_mode`.
+- Evidence boundary: success evidence must stay `T-P1A-011C auth-present`; blocked `T-P1A-011` must not be treated as success evidence.
+- Next: `T-P1A-012R` receipt-wiring retro, then patched `T-P1A-013` Trust Trace.

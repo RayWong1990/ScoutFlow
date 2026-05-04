@@ -437,3 +437,117 @@ def test_path_job_id_mismatch_rejected(tmp_path: Path) -> None:
 
     assert response.status_code == 422
     assert response.json()["code"] == "job_id_mismatch"
+
+
+def test_auth_present_metadata_evidence_receipt_maps_to_safe_artifacts(tmp_path: Path) -> None:
+    from scoutflow_api.external_tools.bbdown_info_parser import parse_bbdown_info_output
+    from scoutflow_api.metadata_probe_receipt_bridge import (
+        MetadataProbeEvidenceSource,
+        build_metadata_fetch_receipt,
+        materialize_metadata_probe_assets,
+        prepare_success_metadata_probe_assets,
+    )
+
+    client, db_path, artifacts_root = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id, dedupe_key="bilibili:BV19D9eB9Etg:metadata_fetch")
+
+    parsed = parse_bbdown_info_output(
+        "\n".join(
+            [
+                "BBDown -info sanitized fixture",
+                "Result: ok",
+                "Platform Item ID: 116493572377107",
+                "Title: Agent orchestration receipt wiring sample",
+                "Duration: 00:07:10",
+                "Page Count: 1",
+                "Selected Page: P1",
+            ]
+        )
+    )
+    source = MetadataProbeEvidenceSource(
+        task_id="T-P1A-011C",
+        report_path="docs/research/t-p1a-011c-bbdown-auth-present-info-probe-report-2026-05-04.md",
+        probe_mode="auth-present",
+    )
+    prepared_assets = prepare_success_metadata_probe_assets(
+        parsed=parsed,
+        source_url="https://www.bilibili.com/video/BV19D9eB9Etg",
+        evidence_source=source,
+    )
+    materialized_assets = materialize_metadata_probe_assets(
+        artifacts_root=artifacts_root,
+        capture_id=capture["capture_id"],
+        assets=list(prepared_assets),
+    )
+    receipt = build_metadata_fetch_receipt(
+        capture_id=capture["capture_id"],
+        job_id=job_id,
+        dedupe_key="bilibili:BV19D9eB9Etg:metadata_fetch",
+        source_url="https://www.bilibili.com/video/BV19D9eB9Etg",
+        evidence_source=source,
+        materialized_assets=materialized_assets,
+    )
+
+    first = client.post(f"/jobs/{job_id}/complete", json=receipt.model_dump(mode="json"))
+    second = client.post(f"/jobs/{job_id}/complete", json=receipt.model_dump(mode="json"))
+
+    assert first.status_code == 200
+    assert second.status_code == 200
+    assert second.json()["idempotent"] is True
+    assert first.json()["artifact_count"] == 2
+    assert first.json()["platform_result"] == "ok"
+
+    with sqlite3.connect(db_path) as conn:
+        conn.row_factory = sqlite3.Row
+        rows = conn.execute(
+            """
+            SELECT artifact_kind, file_path, metadata_json
+            FROM artifact_assets
+            WHERE capture_id = ? AND artifact_kind IN ('safe_metadata_evidence', 'metadata_probe_summary')
+            ORDER BY artifact_kind
+            """,
+            (capture["capture_id"],),
+        ).fetchall()
+        assert len(rows) == 2
+        for row in rows:
+            metadata = json.loads(row["metadata_json"])
+            assert metadata["evidence_source_task_id"] == "T-P1A-011C"
+            assert metadata["probe_mode"] == "auth-present"
+            assert "raw_stdout" not in metadata
+            assert "stdout_text" not in metadata
+            assert "raw_stderr" not in metadata
+            assert "stderr_text" not in metadata
+            assert metadata["platform_result"] == "ok"
+
+        event = conn.execute(
+            "SELECT event_json FROM job_events WHERE job_id = ?",
+            (job_id,),
+        ).fetchone()
+        assert event is not None
+        event_json = json.loads(event["event_json"])
+        assert event_json["platform_result"] == "ok"
+        assert "raw_stdout" not in event_json
+        assert "stdout_text" not in event_json
+        assert "raw_stderr" not in event_json
+        assert "stderr_text" not in event_json
+
+
+def test_metadata_fetch_receipt_rejects_media_artifact_kind_via_api(tmp_path: Path) -> None:
+    client, db_path, artifacts_root = build_client(tmp_path)
+    capture = create_capture(client)
+    job_id = "job-metadata-1"
+    seed_job(db_path, capture["capture_id"], job_id=job_id)
+    sha256, size = write_asset(artifacts_root, capture["capture_id"], "bundle/raw-api-response.json", b"{}")
+
+    payload = receipt_payload(
+        capture["capture_id"],
+        job_id,
+        sha256,
+        size,
+        artifact_kind="video",
+    )
+    response = client.post(f"/jobs/{job_id}/complete", json=payload)
+
+    assert response.status_code == 422

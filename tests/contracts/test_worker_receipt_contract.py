@@ -141,3 +141,30 @@ def test_created_by_job_must_match_receipt_job_id() -> None:
 
     with pytest.raises(ValidationError):
         WorkerReceipt.model_validate(payload)
+
+
+def test_metadata_probe_evidence_asset_requires_evidence_source_fields() -> None:
+    from scoutflow_api.models import WorkerReceipt
+
+    payload = valid_receipt_payload()
+    asset = payload["produced_assets"][0]  # type: ignore[index]
+    asset["artifact_kind"] = "safe_metadata_evidence"
+    asset["relative_path"] = "bundle/safe-metadata-evidence.json"
+    asset["evidence_source_task_id"] = None
+    asset["evidence_source_report_path"] = None
+    asset["probe_mode"] = None
+
+    with pytest.raises(ValidationError):
+        WorkerReceipt.model_validate(payload)
+
+
+def test_metadata_fetch_rejects_media_artifact_kinds() -> None:
+    from scoutflow_api.models import WorkerReceipt
+
+    payload = valid_receipt_payload()
+    asset = payload["produced_assets"][0]  # type: ignore[index]
+    asset["artifact_kind"] = "video"
+    asset["zone"] = "bundle"
+
+    with pytest.raises(ValidationError):
+        WorkerReceipt.model_validate(payload)
