@@ -264,3 +264,31 @@
 - Decision: repair `services/api/scoutflow_api/external_tools/bbdown_info_parser.py` and add regression coverage in `tests/contracts/test_bbdown_info_parser_contract.py` within the same task, because parser drift was the immediate blocker to a truthful gate result.
 - Result after repair: `platform_result=ok`; parsed fields include `platform_item_id=116493572377107`, title, duration `430`, page count `1`, selected page `P1`; no media files created in temp tree.
 - Boundary: this still does not approve receipt / artifact ledger / capture state, media download, ffmpeg, ASR, or `audio_transcript`.
+
+## 2026-05-04 — T-P1A-011D second retro triage recorded
+
+- Decision: pre-08 retro / remediation keeps the `T-P1A-011D/E/F/G/H` namespace; `T-P1A-012` stays Dispatch `08`, `T-P1A-013` stays Dispatch `09`.
+- Decision: the success evidence source for patched Dispatch `08` is `T-P1A-011C`, not blocked `T-P1A-011`.
+- Decision: before `08`, only the minimal retro scaffold, prompt patch, and sidecar review are kept; no 19-file remediation package.
+- Boundary: legal/vendor external facts stay candidate-only unless later verified.
+
+## 2026-05-04 — Minimal retro skeleton added
+
+- Decision: add a minimal `docs/retro/` scaffold after the second deep review.
+- Scope: `README` + three templates + first week retro only.
+- Boundary: not authority, not PRD/SRD amendment, not vendor/legal policy, not runtime approval.
+- Next: patched Dispatch `08` evidence-consumption wiring, then `T-P1A-012R` retro after real `08` work.
+
+## 2026-05-04 — Patched Dispatch 08/09 pack accepted as working input
+
+- Decision: keep the repo-external patched Dispatch `08/09` prompt files as the working input pack.
+- Decision: Dispatch `08` consumes existing `T-P1A-011C` redacted metadata evidence only; it does not re-run BBDown.
+- Decision: Dispatch `09` must preserve the layering `probe evidence != receipt ledger != capture state != media/audio readiness`.
+- Boundary: external patched prompt files are not GitHub authority by themselves; repo authority remains in `docs/current.md`, `docs/task-index.md`, and `docs/decision-log.md`.
+
+## 2026-05-04 — T-P1A-011G sidecar review closed with PASS_WITH_FIXES
+
+- Decision: review verdict is `PASS_WITH_FIXES`.
+- Minimal fix: sync `AGENTS.md`, `README.md`, `docs/current.md`, `docs/task-index.md`, and this log from the stale `011C` end-state to `07.x remediation complete`.
+- Dispatch `08` readiness: `ready`.
+- Dispatch `09` readiness: `ready`.
