@@ -460,7 +460,7 @@
 - 决议: `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md` §1-§20 中列举的 PR55-PR74（T-P1A-030 ~ T-P1A-049）在执行编号上统一顺延 +1，实际为 PR56-PR75（T-P1A-031 ~ T-P1A-050）。
 - 原因: PR #55 已被 T-P1A-030 Wave 3 reference docs landing 占用（merge commit `395a7e6`）；doc3 §1（原 PR55）顺延为本 PR（PR #56）。
 - 适用范围: 后续每个 dispatch header 引用 doc3 §N 时用“顺延后 PR{N+1}（原 doc3 §M PR{N}）”双标记；doc3 文件本身不修订。
-- 引用: `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md`；`/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/PR55-T-P1A-030-wave3-refdocs-landing.md` pr_numbering_note；`/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/PR56-T-P1A-031-wave3a-ledger-open.md`。
+- 引用: `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md`；`${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/PR55-T-P1A-030-wave3-refdocs-landing.md` pr_numbering_note；`${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/PR56-T-P1A-031-wave3a-ledger-open.md`。
 
 ## D-002: Wave 3A open — V3 acceptance + amendments + shoulder scan
 
