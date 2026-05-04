@@ -84,17 +84,28 @@ research artifact.
 ### 4.2 Required Actions
 
 1. Checkout the `#42` branch.
-2. Align the research note filename to the prevailing dated research-note
-   convention used by `021/022/023/024`, with the final name determined by the
-   actual merge-time repository state.
+2. Use the filename already present in `PR #42` at merge time:
+   `docs/research/t-p1a-025-db-ledger-vnext.md`. Do not rename it to add a
+   `-YYYY-MM-DD` suffix. The `021/022/023/024` dated convention is descriptive
+   rather than normative here; `T-P1A-025` intentionally keeps the existing
+   no-suffix form so the frozen research path stays aligned with the task-index
+   backlog row and does not create a second naming fork.
 3. Keep the PR as a research-only PR.
 4. Squash or otherwise tidy the PR history before merge if needed.
 5. Merge `#42`.
-6. Run post-merge ledger sync in the same pattern as the existing post-merge
-   sync chores:
-   `docs/task-index.md`, `docs/current.md`, `docs/decision-log.md`, and
-   `AGENTS.md`.
-7. Treat the merged research path as frozen input from that point onward.
+6. Run post-merge ledger sync in the same shape as
+   `chore/post-T-P1A-019-ledger-sync`:
+   - `docs/task-index.md`: move `T-P1A-025` from `Backlog / Research` to
+     `Done`, mirroring the `T-P1A-021` done-row shape
+   - `docs/current.md`: update the phase summary so `T-P1A-025` is recorded as
+     frozen research rather than a mutable draft
+   - `docs/decision-log.md`: append a `Post-T-P1A-025 frozen as research`
+     entry including the actual merge commit hash and final research path
+   - `AGENTS.md`: sync any entry pointer that still implies `025` is mutable or
+     pending
+   Open this ledger sync as a separate `chore/` PR and merge it after CI is
+   green.
+7. Freeze the merged research path as immutable input from that point onward.
 
 ### 4.3 Stage 1 Constraints
 
@@ -105,6 +116,11 @@ research artifact.
 - The final merged research file path must be the path referenced by the
   amendment's `research_inputs` section. The path must not be invented ahead of
   the merge.
+- After merge, the research note path is frozen. No further commits to
+  `docs/research/t-p1a-025-db-ledger-vnext.md` are permitted, including
+  wording polish, small follow-up edits, or decision addenda. Any DB decision
+  evolution must land in this design spec, the later SRD amendment, or an
+  explicit amendment addendum.
 
 ## 5. Stage 2 - SRD Amendment Shape
 
@@ -352,12 +368,17 @@ For the design to consider Stage 1 complete:
    mutable draft.
 4. The amendment can reference a stable local path rather than a mutable PR URL.
 
+Stage 2 (SRD-amendment writing) shall not begin until all four criteria above
+are satisfied. The Stage 2 dispatch must reference the actual merged research
+path and the post-merge `main` commit hash recorded by the ledger-sync entry.
+
 ## 13. Risks
 
-- The final research filename is not knowable until `#42` is actually merged;
-  the amendment must consume the real merged path, not a guessed name.
-- `PR #42` currently reports `mergeStateStatus=UNKNOWN`; Stage 1 must verify
-  mergeability again immediately before merge.
+- `#42` must be consumed by its actual merged path, not by a guessed or
+  reconstructed filename.
+- Stage 1 must verify mergeability again immediately before merge. This repo
+  has repeatedly observed `mergeStateStatus` flip between `CLEAN` and
+  `UNKNOWN`, so the pre-merge check is procedural rather than hypothetical.
 - `T-P1A-020` is still active. While it is not expected to rewrite schema, any
   mainline drift before amendment writing should be captured by
   `based_on_main_commit` plus `revalidate_before_promote`.
