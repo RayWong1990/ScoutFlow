@@ -79,3 +79,43 @@ Stop-the-line:
 - 高风险或 material task 必须提供 PR diff / workflow run / local validation 摘要。
 - `GPT Pro` 外审只输出审计意见或下一轮任务输入；不直接改 repo。
 - 小 docs-only 任务可由 user 选择轻量审计，但不得绕过 authority writer。
+
+## I. Codex Commander Fan-out 模式（默认 PR 批次 >= 10）
+
+> 适用：研究 / 文档 / prototype 类 dispatch 集合，单批次 PR 数 >= 10。
+> 不适用：单 PR 任务、runtime PR、Phase 2+ migration、authority 单点改写。
+> 来源：2026-05-04 PR57-PR65 Wave 3A canary + fan-out 实战沉淀。
+
+### I.1 模式定义
+
+- **Bundle**：>= 10 个 PR dispatch 一次性投递给单个 Codex commander 窗口（约定命名 `Codex0`），不再按 1-3 PR / 窗口拆派。
+- **Commander 角色**：`Codex0` 作为 commander + auditor，默认不直接写各 PR 内容；负责拆解执行拓扑（串行 / 并行 / canary + fan-out）、派 subagent worker、收 verdict、做统一审计，并给出 merge sequencing 与后续 gate。
+- **执行偏好**：Codex 默认优先选择并行；只有显式软依赖或 same-file conflict domain 才降级为串行或分波。
+- **Worker 子模式**：subagent worker；每个 worker 一个 worktree，单 dispatch / 单文件域 / no cross-worker context。
+
+### I.2 闸门
+
+- **Canary first**：commander 先派 1 个 worker，commander audit 通过后才 fan out 剩余 N-1。canary 由 commander 选（最简文件域或最大风险点）。
+- **Worker 回报压缩**：默认只回结构化 verdict object（`{pr_number, branch, files_touched, loc_changed, validation_passed, gh_pr_url, verdict}`），不带完整 diff。`verdict ∈ {clear, warn, fail}` 决定 commander 是否拉 full diff。
+- **Spot-audit 强制**：软依赖 PR、doc-only candidate PR、最易越界 PR 必须拉 full diff，无视 verdict。
+- **Authority 隔离**：fan-out 期间仍受 `Authority writer max = 1` 约束；只有 commander 显式授权的单一 worker（通常是 canary）可临时触碰 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `AGENTS.md`。
+
+### I.3 提交与外审
+
+- **Branch / PR owner**：worker 默认在各自隔离 branch / worktree 内完成 commit、push、PR create；`Codex0` 负责统一审计、merge sequencing、以及是否进入下一 gate。若 user 另行要求，也可降级为 patch-only handoff，由 commander 统一 push。
+- **多轮 commander audit**：push 前后至少各有一轮 commander 复核；push 前看 write-set / validation / redline，push 后按风险做必要 spot-audit。
+- **外审通道**（commander report 后由 user 选）：
+  - 云端 ChatGPT：粘贴 consolidated diff，跑跨 PR 一致性 + 红线复审
+  - 本地 Opus（Claude Code）：在 worktree / PR diff 上做 sidecar audit
+  - 二选一或叠加
+
+### I.4 降级
+
+- subagent 能力不可用：commander 降级为串行逐 PR，仍保持 canary first + 软依赖延后。
+- bundle < 10：回到 §D 既有模式（串行 / 单主多审 / 多分支并行），除非 user 显式指定 commander mode。
+- canary 不通过：不准 fan-out，先修 commander prompt / worker contract。
+
+### I.5 引用
+
+PR57-PR65 commander prompt 实例：
+`${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/packs/ScoutFlow-PR56-PR65-dispatch-pack-2026-05-05/CODEX-COMMANDER-PR57-PR65-canary-fanout-2026-05-05.md`

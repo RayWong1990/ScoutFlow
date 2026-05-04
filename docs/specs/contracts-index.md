@@ -35,6 +35,11 @@
 | docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md | PR #10 merged | Research note only；not authority；not implementation approval；not runtime approval |
 | docs/specs/bbdown-adapter-contract-draft.md | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval |
 | docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md | PR #15 merged research note | Research note only；not authority；not frontend / API / runtime approval |
+| docs/architecture/ADR-001-obsidian-para-lock-2026-05-04.md | PR #57 merged ADR candidate | Research-only ADR candidate；locks PARA boundary for later bridge/vault work；not base PRD/SRD authority；not runtime approval |
+| docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md | PR #58 merged candidate amendment | Candidate amendment only；not promoted base PRD；not runtime approval |
+| docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | PR #64 merged candidate amendment | Candidate amendment only；not SRD-v3 promoted authority；not runtime approval；not migration approval |
+| docs/architecture/pr-factory-surge-protocol-candidate-2026-05-04.md | PR #59 merged protocol candidate | Candidate only；keeps enforced baseline at product_lane_max=3 and authority_writer_max=1 until explicit closeout approval |
+| docs/architecture/pr-factory-tooling-plan-2026-05-04.md + tools/scoutflow_pr_factory.py | PR #66 merged tooling candidate | Local-only shoulder helper candidate；--dry-run and referencerepo guard landed；future `tools/pr-factory/**` split deferred；not runtime approval |
 | docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md | PR #51 candidate amendment + PR #53 audit-fix merged on main | Candidate amendment only; not SRD-v3 promoted authority; not migration approval; not runtime approval; F-012 wording and evidence identity immutability guard addressed by T-P1A-029 |
 | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | promoted v2 base | Promoted base；runtime boundaries still gated；keeps `audio_transcript` blocked |
 

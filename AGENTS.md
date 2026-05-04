@@ -8,7 +8,7 @@
 5. 当前任务直接引用的 PRD / SRD / spec
 ## 2. 当前 Phase
 - Phase：`1A`；当前指针：`docs/current.md`
-- 当前活动任务：无 active product task；Wave 3A 已 open；next gate = T-P1A-032（PR #57，in-flight）；DB vNext remains candidate-only / not SRD-v3 promoted authority / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
+- 当前活动任务：`T-P1A-042`（已完成 closeout）；Wave 3A 已 closed；Wave 3B gate=`GO` 但 ledger 尚未 open；next gate = Wave 3B ledger open（PR #68，待 PR68 正式开账）；DB vNext remains candidate-only / not SRD-v3 promoted authority / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
 - Active product lane max=`3`; Authority writer max=`1`; review / audit / research lane 不计入 product lane，除非写 authority。
 ## 3. 当前允许路径
 - Quick answer: 可改状态/入口/contract/retro/research 授权路径；不可改 local-only 目录、未授权 runtime、凭据或 final authority 口径。

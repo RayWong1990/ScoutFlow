@@ -472,3 +472,26 @@
 - 引用: `docs/architecture/baseline-roadmap-after-pr54-candidate-2026-05-04.md` §3.2；`docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md` §10；`docs/research/pr55-pr74-worklist-candidate-2026-05-04.md` §1；`docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md`；`docs/research/opus-v3-acceptance-prd-srd-amendment-roadmap-review-2026-05-04.md`。
 - 入口条件: PR54/PR55 merged；user 显式 gate（本 dispatch 即 gate）。
 - 出口条件: 顺延后 PR67（T-P1A-042）Wave 3A closeout PR 完成，含 errata P0-5 contracts-index 登记。
+
+## D-003: Wave 3A closeout + Wave 3B gate
+
+- 日期: 2026-05-05
+- PR: #67（本 PR / T-P1A-042）
+- 决议: Wave 3A 完整收口。live GitHub PR 映射按事实写回：
+  - `T-P1A-032=#57`
+  - `T-P1A-033=#58`
+  - `T-P1A-034=#64`
+  - `T-P1A-035=#59`
+  - `T-P1A-036=#62`
+  - `T-P1A-037=#65`
+  - `T-P1A-038=#60`
+  - `T-P1A-039=#61`
+  - `T-P1A-040=#63`
+  - `T-P1A-041=#66`
+- 决议: `docs/specs/contracts-index.md` 在本 closeout 中登记 Wave 3A 候选工件：ADR-001、PRD v2.1 strong visual H5 candidate、SRD v3 H5 bridge PARA vault candidate、PR Factory surge protocol candidate、PR Factory tooling plan + single-file helper。
+- 决议: `docs/specs/parallel-execution-protocol.md` 同步 `Codex Commander Fan-out` 实战硬化；该同步是流程基线补丁，不代表 lane 上限升级。当前生效口径仍是 `Active product lane max=3` 与 `Authority writer max=1`。
+- Go/No-Go: `GO` for `T-P1A-043 / PR #68` Wave 3B ledger open only。`PR69+` 仍受 PR68 ledger open、clone plan、以及各自前置产物约束。
+- 不解禁: runtime / migration / Phase 2+ promotion 仍未批准；`audio_transcript` / BBDown live / yt-dlp / ffmpeg / ASR / browser automation 继续 blocked。
+- 证据:
+  - `${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/REPORT-PR57-PR65-CODEX0-2026-05-05.md`
+  - `${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/REPORT-PR66-PR75-CODEX0-2026-05-05.md`
