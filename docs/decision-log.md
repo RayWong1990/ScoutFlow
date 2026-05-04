@@ -338,3 +338,9 @@
 - Decision: drop / relax / absorb details are recorded in `docs/retro/2026-05-04-lean-cleanup.md`.
 - Boundary preserved: no product runtime, no schema/state-machine change, no receipt schema change, no PlatformResult enum change, no redaction contract body change, no Trust Trace DTO change.
 - Gate: GPT Pro quick external audit and PR merge are still required before `T-P1A-015` or `T-P1A-016` may start.
+
+## 2026-05-04 — T-P1A-014 GPT Pro external audit accepted
+
+- Decision: external audit verdict is `PASS WITH NOTES`; no blocking issue found for scope, CI, hard boundaries, lane protocol, LP reduction, contract groups, or entry slimming.
+- Fix: apply the non-blocking wording repair in `docs/specs/contracts-index.md` so the first-screen summary no longer mixes product architecture with the contract-group authority view.
+- Next gate: merge PR `#33`, then keep `T-P1A-015` / `T-P1A-016` behind explicit user authorization.

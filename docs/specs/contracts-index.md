@@ -1,7 +1,7 @@
 # ScoutFlow Contracts Index
 
 > 作用：列出当前 Step0 / Phase 0 / Phase 1A 会实际约束实现的 contract。未列入本页 baseline 的内容默认不进入当前 backlog。
-> `Authority-first` 四层仍保留：PRD/SRD -> specs/contracts -> code/tests -> ledger/current docs。
+> `Authority-first` 产品 4 层架构仍以 PRD/SRD 为准；本页只维护当前 contract group 视图、旧 ID alias 与已落地 baseline。
 
 ## 待拍板候选基准（8 group）
 
