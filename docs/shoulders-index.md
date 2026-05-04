@@ -14,12 +14,7 @@ reference: docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.m
 > 状态机: discovered → scanning → integrating → integrated → deprecated
 > 本 PR (PR56 / T-P1A-031) 是 Wave 3A batch 例外，user 已显式批准 19 entries 入 index.
 
-## Schema (10 columns; 字段定义见 doc2 §10)
-
-| id | module | upstream | mode | output_contract | failure_modes | kill_switch | owner_lane | status | next_action |
-|---|---|---|---|---|---|---|---|---|---|
-
-## Entries (19; 3 locked / 16 discovered)
+## Entries (10 列 schema; 字段定义见 doc2 §10; 19 entries; 3 locked / 16 discovered)
 
 | id | module | upstream | mode | output_contract | failure_modes | kill_switch | owner_lane | status | next_action |
 |---|---|---|---|---|---|---|---|---|---|
