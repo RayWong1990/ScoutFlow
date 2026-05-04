@@ -117,3 +117,63 @@ def test_success_bridge_receipt_candidate_labels_auth_present_source(tmp_path: P
     }
     assert all(asset.evidence_source_task_id == "T-P1A-011C" for asset in receipt.produced_assets)
     assert all(asset.probe_mode == "auth-present" for asset in receipt.produced_assets)
+
+
+@pytest.mark.parametrize(
+    "relative_path",
+    (
+        "../outside.json",
+        "/bundle/absolute.json",
+        "bundle/../escape.json",
+        "logs/not-allowed.json",
+    ),
+)
+def test_materialize_metadata_probe_assets_rejects_unsafe_paths(tmp_path: Path, relative_path: str) -> None:
+    from scoutflow_api.metadata_probe_receipt_bridge import (
+        PreparedMetadataProbeAsset,
+        materialize_metadata_probe_assets,
+    )
+
+    asset = PreparedMetadataProbeAsset(
+        artifact_kind="safe_metadata_evidence",
+        relative_path=relative_path,
+        content_bytes=b"{}",
+        mime_type="application/json",
+        is_raw_evidence=True,
+        is_derived=False,
+    )
+
+    with pytest.raises(ValueError):
+        materialize_metadata_probe_assets(
+            artifacts_root=tmp_path,
+            capture_id="capture-1",
+            assets=[asset],
+        )
+
+
+def test_materialize_metadata_probe_assets_does_not_write_outside_capture_root(tmp_path: Path) -> None:
+    from scoutflow_api.metadata_probe_receipt_bridge import (
+        PreparedMetadataProbeAsset,
+        materialize_metadata_probe_assets,
+    )
+
+    capture_root = tmp_path / "bilibili" / "capture-1"
+    outside_target = tmp_path / "escape.json"
+    asset = PreparedMetadataProbeAsset(
+        artifact_kind="safe_metadata_evidence",
+        relative_path="bundle/../../escape.json",
+        content_bytes=b'{"unsafe":true}',
+        mime_type="application/json",
+        is_raw_evidence=True,
+        is_derived=False,
+    )
+
+    with pytest.raises(ValueError):
+        materialize_metadata_probe_assets(
+            artifacts_root=tmp_path,
+            capture_id="capture-1",
+            assets=[asset],
+        )
+
+    assert not outside_target.exists()
+    assert not capture_root.exists()

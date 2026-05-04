@@ -315,3 +315,11 @@
 - Surface rule: before receipt exists, keep label `Status / Trust Trace / 采集状态`; after receipt ledger exists, allow `Receipt / Ledger Trace`.
 - Boundary: no recommendation semantics, no BBDown runtime, no manual auth, no media / ffmpeg / ASR, no `audio_transcript`, no frontend / workers.
 - Result: Trust Trace now exposes safe summary only, labels `auth-present` evidence correctly, and keeps media/audio as `not_approved`.
+
+## 2026-05-04 — T-P1A-013A receipt / trust trace audit hardening completed
+
+- Decision: close the two post-merge audit gaps before any future worker/runtime lane.
+- Fix 1: metadata bridge materialization now validates path containment before writing, so malicious `PreparedMetadataProbeAsset.relative_path` cannot escape capture root.
+- Fix 2: current-phase generic metadata-fetch receipts can no longer treat blocked `T-P1A-011` or `probe_mode=no-auth` as success evidence for `safe_metadata_evidence` / `metadata_probe_summary`.
+- Boundary: no runtime, no media / ffmpeg / ASR, no manual auth, no browser profile, no frontend / workers.
+- Result: Trust Trace layering remains unchanged while the generic API path now matches the bridge-level safety contract.

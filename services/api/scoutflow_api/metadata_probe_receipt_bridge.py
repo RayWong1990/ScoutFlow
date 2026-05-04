@@ -3,10 +3,17 @@ from __future__ import annotations
 import hashlib
 import json
 from dataclasses import dataclass
-from pathlib import Path
+from pathlib import Path, PurePosixPath
 
 from scoutflow_api.external_tools.bbdown_info_parser import BBDownInfoParseResult
-from scoutflow_api.models import ArtifactZone, ReceiptIdempotency, WorkerReceipt
+from scoutflow_api.models import (
+    ArtifactZone,
+    CURRENT_METADATA_EVIDENCE_PROBE_MODE,
+    CURRENT_METADATA_EVIDENCE_REPORT_PATH,
+    CURRENT_METADATA_EVIDENCE_TASK_ID,
+    ReceiptIdempotency,
+    WorkerReceipt,
+)
 from scoutflow_api.platform_result import PlatformResult
 
 
@@ -27,12 +34,12 @@ class MetadataProbeEvidenceSource:
     engine_version: str = "1.6.3"
 
     def validate_for_success_evidence(self) -> None:
-        if self.task_id != "T-P1A-011C":
+        if self.task_id != CURRENT_METADATA_EVIDENCE_TASK_ID:
             raise ValueError("Successful metadata receipt evidence must come from T-P1A-011C.")
-        if self.probe_mode != "auth-present":
+        if self.probe_mode != CURRENT_METADATA_EVIDENCE_PROBE_MODE:
             raise ValueError("Successful metadata receipt evidence must be labeled probe_mode=auth-present.")
-        if not self.report_path:
-            raise ValueError("Evidence source report_path must not be empty.")
+        if self.report_path != CURRENT_METADATA_EVIDENCE_REPORT_PATH:
+            raise ValueError("Successful metadata receipt evidence must use the T-P1A-011C auth-present report path.")
 
 
 @dataclass(frozen=True)
@@ -124,10 +131,10 @@ def materialize_metadata_probe_assets(
     assets: tuple[PreparedMetadataProbeAsset, ...] | list[PreparedMetadataProbeAsset],
 ) -> list[MaterializedMetadataProbeAsset]:
     written_assets: list[MaterializedMetadataProbeAsset] = []
-    capture_root = artifacts_root / "bilibili" / capture_id
+    capture_root = (artifacts_root / "bilibili" / capture_id).resolve()
 
     for asset in assets:
-        target = capture_root / Path(*Path(asset.relative_path).parts)
+        target = _validated_capture_target(capture_root=capture_root, relative_path=asset.relative_path)
         target.parent.mkdir(parents=True, exist_ok=True)
         target.write_bytes(asset.content_bytes)
         written_assets.append(
@@ -202,3 +209,22 @@ def build_metadata_fetch_receipt(
 
 def _to_json_bytes(payload: dict[str, object]) -> bytes:
     return json.dumps(payload, ensure_ascii=True, indent=2, sort_keys=True).encode("utf-8")
+
+
+def _validated_capture_target(*, capture_root: Path, relative_path: str) -> Path:
+    posix_path = PurePosixPath(relative_path)
+    if posix_path.is_absolute():
+        raise ValueError("metadata probe asset relative_path must not be absolute")
+    if not posix_path.parts:
+        raise ValueError("metadata probe asset relative_path must not be empty")
+    if any(part in {"", ".", ".."} for part in posix_path.parts):
+        raise ValueError("metadata probe asset relative_path must not contain empty, dot, or dot-dot parts")
+    if posix_path.parts[0] != ArtifactZone.bundle.value:
+        raise ValueError("metadata probe asset relative_path must stay under bundle/")
+
+    target = (capture_root / Path(*posix_path.parts)).resolve()
+    try:
+        target.relative_to(capture_root)
+    except ValueError as exc:
+        raise ValueError("metadata probe asset relative_path resolves outside capture root") from exc
+    return target
