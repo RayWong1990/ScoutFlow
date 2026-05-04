@@ -6,7 +6,13 @@ from urllib.parse import ParseResult, urlparse
 from fastapi import APIRouter, Request, status
 from fastapi.responses import JSONResponse
 
-from scoutflow_api.models import DiscoverCaptureRequest, DiscoverCaptureResponse, ErrorResponse, TrustTraceResponse
+from scoutflow_api.models import (
+    DiscoverCaptureRequest,
+    DiscoverCaptureResponse,
+    ErrorResponse,
+    MetadataFetchJobResponse,
+    TrustTraceResponse,
+)
 from scoutflow_api.storage import ReceiptStorageError, Storage
 
 
@@ -76,6 +82,16 @@ def create_capture(payload: DiscoverCaptureRequest, request: Request) -> Discove
     storage: Storage = request.app.state.storage
     created = storage.create_metadata_capture(payload.canonical_url, platform_item_id)
     return DiscoverCaptureResponse(**created)
+
+
+@router.post("/captures/{capture_id}/metadata-fetch/jobs", response_model=MetadataFetchJobResponse)
+def enqueue_metadata_fetch_job(capture_id: str, request: Request) -> MetadataFetchJobResponse | JSONResponse:
+    storage: Storage = request.app.state.storage
+    try:
+        enqueued = storage.enqueue_metadata_fetch_job(capture_id)
+    except ReceiptStorageError as exc:
+        return error_response(exc.http_status, exc.code, exc.message)
+    return MetadataFetchJobResponse(**enqueued)
 
 
 @router.get("/captures/{capture_id}/trust-trace", response_model=TrustTraceResponse)

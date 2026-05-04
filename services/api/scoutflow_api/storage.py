@@ -197,6 +197,134 @@ class Storage:
             "manifest_path": manifest_path,
         }
 
+    def _validate_discover_capture_provenance(self, conn: sqlite3.Connection, capture: sqlite3.Row) -> None:
+        expected_artifact_root_path = str(self.config.artifact_prefix / "bilibili" / capture["capture_id"])
+        expected_manifest_path = f"{expected_artifact_root_path}/bundle/capture-manifest.json"
+        if (
+            capture["created_by_path"] != "quick_capture"
+            or capture["artifact_root_path"] != expected_artifact_root_path
+            or capture["manifest_path"] != expected_manifest_path
+        ):
+            raise ReceiptStorageError(
+                409,
+                "capture_not_from_discover",
+                "metadata_fetch enqueue requires a capture created by POST /captures/discover.",
+            )
+
+        manifest_row = conn.execute(
+            """
+            SELECT id
+            FROM artifact_assets
+            WHERE capture_id = ?
+              AND artifact_zone = ?
+              AND artifact_kind = ?
+              AND file_path = ?
+            """,
+            (capture["capture_id"], "bundle", "capture_manifest", capture["manifest_path"]),
+        ).fetchone()
+        if manifest_row is None:
+            raise ReceiptStorageError(
+                409,
+                "capture_not_from_discover",
+                "metadata_fetch enqueue requires the discover capture manifest ledger row.",
+            )
+
+    def enqueue_metadata_fetch_job(self, capture_id: str) -> dict[str, str]:
+        queued_at = datetime.now(UTC).isoformat()
+
+        with self._connect() as conn:
+            capture = conn.execute(
+                """
+                SELECT
+                    capture_id, platform, platform_item_id, source_kind, capture_mode,
+                    created_by_path, status, artifact_root_path, manifest_path
+                FROM captures
+                WHERE capture_id = ?
+                """,
+                (capture_id,),
+            ).fetchone()
+            if capture is None:
+                raise ReceiptStorageError(404, "capture_not_found", "Capture does not exist.")
+
+            if capture["platform"] != "bilibili":
+                raise ReceiptStorageError(
+                    409,
+                    "metadata_fetch_platform_not_allowed",
+                    "metadata_fetch enqueue only supports bilibili captures.",
+                )
+            if capture["source_kind"] != "manual_url":
+                raise ReceiptStorageError(
+                    409,
+                    "metadata_fetch_source_kind_not_allowed",
+                    "metadata_fetch enqueue only supports manual_url captures.",
+                )
+            if capture["capture_mode"] != "metadata_only":
+                raise ReceiptStorageError(
+                    409,
+                    "metadata_fetch_capture_mode_not_allowed",
+                    "metadata_fetch enqueue only supports metadata_only captures.",
+                )
+            self._validate_discover_capture_provenance(conn, capture)
+
+            dedupe_key = f"bilibili:{capture['platform_item_id']}:metadata_fetch"
+            metadata_job = conn.execute(
+                """
+                SELECT job_id, capture_id, job_type, status, dedupe_key
+                FROM jobs
+                WHERE capture_id = ? AND job_type = ?
+                ORDER BY queued_at ASC, rowid ASC
+                LIMIT 1
+                """,
+                (capture_id, "metadata_fetch"),
+            ).fetchone()
+
+            if capture["status"] not in {"discovered", "metadata_fetched"}:
+                raise ReceiptStorageError(
+                    409,
+                    "capture_state_conflict",
+                    "metadata_fetch enqueue requires discovered capture state or an existing same-job replay.",
+                )
+
+            if metadata_job is not None:
+                if metadata_job["dedupe_key"] != dedupe_key:
+                    raise ReceiptStorageError(
+                        409,
+                        "metadata_fetch_dedupe_conflict",
+                        "Existing metadata_fetch job uses a different dedupe_key.",
+                    )
+                return {
+                    "job_id": metadata_job["job_id"],
+                    "capture_id": metadata_job["capture_id"],
+                    "job_type": metadata_job["job_type"],
+                    "status": metadata_job["status"],
+                    "dedupe_key": metadata_job["dedupe_key"],
+                }
+
+            if capture["status"] != "discovered":
+                raise ReceiptStorageError(
+                    409,
+                    "capture_state_conflict",
+                    "metadata_fetch enqueue can only create a new job from discovered capture state.",
+                )
+
+            job_id = f"job_{generate_capture_id()}"
+            conn.execute(
+                """
+                INSERT INTO jobs (job_id, capture_id, job_type, status, dedupe_key, queued_at)
+                VALUES (?, ?, ?, ?, ?, ?)
+                """,
+                (job_id, capture_id, "metadata_fetch", "queued", dedupe_key, queued_at),
+            )
+            conn.commit()
+
+        return {
+            "job_id": job_id,
+            "capture_id": capture_id,
+            "job_type": "metadata_fetch",
+            "status": "queued",
+            "dedupe_key": dedupe_key,
+        }
+
     def _capture_root(self, platform: str, capture_id: str) -> Path:
         return self.config.artifacts_root / platform / capture_id
 

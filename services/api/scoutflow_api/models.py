@@ -180,6 +180,16 @@ class JobCompleteResponse(BaseModel):
     idempotent: bool
 
 
+class MetadataFetchJobResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    job_id: str
+    capture_id: str
+    job_type: str
+    status: str
+    dedupe_key: str
+
+
 class TrustTraceCapture(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
