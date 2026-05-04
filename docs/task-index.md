@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`3/3`，Review count=`0`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`2/3`，Review count=`0`。
 
 ## 规则
 
@@ -20,8 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-018` | metadata_fetch job enqueue API | `open` | Codex Desktop single writer | `services/api` job + storage layer | `storage.py`, `captures.py`, `jobs.py`, `main.py`, `test_jobs_complete.py`, `test_captures_discover.py` | `migrations/**`, `orchestration/**`, `external_tools/**`, `docs/PRD-v2*`, `docs/SRD-v2*`, `docs/specs/**` | PRD-v2 §metadata_fetch; SRD-v2 §job-queue | `pytest tests/api tests/contracts -q` | stop if migrations touched; stop if orchestration/ written | conflict-domain-owner: `storage.py`/`captures.py`/`jobs.py`/`main.py`; 19/20 read-only these files |
-| `T-P1A-019` | metadata probe dry-run orchestrator | `open` | Codex Desktop single writer | `external_tools` + `orchestration` (新建) + bridge | `external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**` (新建) | `storage.py` (read-only), `migrations/**`, `docs/PRD-v2*`, `docs/SRD-v2*`, `docs/specs/**` | SRD-v2 §metadata-probe; SRD-v2 §PlatformResult | `pytest tests/api tests/contracts -q` | stop if storage.py written; stop if migrations touched | conflict-domain-owner: `external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**`; 18 不动 these files; starts after 18 storage layer done |
+| `T-P1A-019` | metadata probe dry-run orchestrator | `executable` | Codex Desktop single writer | `external_tools` + `orchestration` (新建) + bridge | `external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**` (新建) | `storage.py` (read-only), `migrations/**`, `docs/PRD-v2*`, `docs/SRD-v2*`, `docs/specs/**` | SRD-v2 §metadata-probe; SRD-v2 §PlatformResult | `pytest tests/api tests/contracts -q` | stop if storage.py written; stop if migrations touched | conflict-domain-owner: `external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**`; 18 不动 these files; T-P1A-018 已 merged，此 lane 现可启动 |
 | `T-P1A-020` | Trust Trace / Explore contract hardening | `open` | Codex Desktop single writer | Trust Trace + Explore contract tests | `tests/api/test_capture_trust_trace.py`, `tests/contracts/test_trust_trace_contract.py` (新建可) | `storage.py` (read-only), `orchestration/**` (read-only), `migrations/**`, `docs/PRD-v2*`, `docs/SRD-v2*` | SRD-v2 §trust-trace; T-P1A-013/013A contract | `pytest tests/api tests/contracts -q` | stop if storage.py written; stop if runtime gates changed | conflict-domain-owner: `test_capture_trust_trace.py`; 自己的新 contract test 文件; 18/19 不动 these files; starts after 19 orchestration done |
 
 ## Review
@@ -69,6 +68,9 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-018` | metadata_fetch job enqueue API + OpenAPI UX audit-fix | `2026-05-04` | branch=`task/T-P1A-018-metadata-fetch-job-enqueue-api`; PR=`#39`; merge commit=`a1f965bdf22d027f173683ae324d2b2acd0a9f19`; scope=`POST /captures/{capture_id}/metadata-fetch/jobs enqueue endpoint + idempotency hardening + 5-Gate OpenAPI UX polish (P0/P1/P2)`; result=`116 tests passed; tags=captures/jobs/ops; Literal types + dedupe_key pattern; full responses contract; app description + openapi_tags`; conflict-domain-owner=`storage.py/captures.py/jobs.py/main.py`; no migration; PlatformResult enum unchanged; Trust Trace data shape unchanged; no BBDown / ffmpeg / ASR / audio_transcript runtime |
+| `T-P1A-017` | Wave 2 ledger open | `2026-05-04` | branch=`task/T-P1A-017-wave2-ledger-open`; PR=`#36`; merge commit=`ca300659ba74392eb50b210f76d340f0855f706f`; scope=`docs-only authority ledger registration of T-P1A-018/019/020 active lanes + T-P1A-021/022/023/024/025 research lanes + Wave 2 conflict domain table + [L4] authority writer slot`; opened Wave 2 with sequencing 018→019→020; user-approved lane plan recorded; no runtime / worker / frontend / ASR / audio_transcript approval |
+| `T-P1A-021` | BBDown runtime gate matrix research | `2026-05-04` | branch=`task/T-P1A-021-bbdown-runtime-gate-matrix`; PR=`#37`; merge commit=`1e283457ff55d4e552b317bdfeb4b5a454a098d9`; scope=`docs/research/t-p1a-021-bbdown-runtime-gate-matrix-2026-05-04.md only`; status=`research / candidate — not authority; not runtime approval`; covers ToolPreflightResult / PlatformResult states + safe execution preconditions + evidence routing rules + future T-P1A-021A bounded probe proposal; no BBDown execution |
 | `T-P1A-016` | Dispatch template extract | `2026-05-04` | scope=`docs-only meta-template extraction`; result=`docs/dispatch-template.md + dispatch authoring guide + retro added`; self_audit=`7-8 segments compressed to 5`; boundary=`no product code, no PRD/SRD/LP/spec contract changes`; no runtime |
 | `T-P1A-015` | PRD/SRD promote to v2 | `2026-05-04` | scope=`promote PRD/SRD base docs to v2 + archive v1/amendment chain + update forward references`; result=`PRD-v2/SRD-v2 created, 7 historical files archived, forward authority references switched to v2`; audit=`rebased after PR #34 merge + T-P1A-016 ledger absorbed`; no product/runtime/schema change |
 | `T-P1A-014` | Lean constraints cleanup v2 | `2026-05-04` | scope=`docs-only governance slimming`; result=`README/AGENTS/CLAUDE slimmed, SRD §6/§7 lean cleanup, 8 contract groups, 4 hard LP, lane=3+writer=1`; audit=`GPT Pro PASS WITH NOTES`; unlock_condition=`PR #33 merged; T-P1A-015 unlocked`; no product/runtime/schema change |
