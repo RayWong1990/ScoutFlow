@@ -1,0 +1,44 @@
+---
+title: ScoutFlow Shoulders Index
+status: candidate / not-authority
+date: 2026-05-04
+wave: 3A (created)
+reference: docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md §10
+---
+
+# ScoutFlow Shoulders Index
+
+## Transition Rule (per errata P1-10)
+
+> 默认: 仅 stage 2+ shoulder 入 index. 例外: 用户批准的 Wave batch candidates 可 status=discovered 入.
+> 状态机: discovered → scanning → integrating → integrated → deprecated
+> 本 PR (PR56 / T-P1A-031) 是 Wave 3A batch 例外，user 已显式批准 19 entries 入 index.
+
+## Schema (10 columns; 字段定义见 doc2 §10)
+
+| id | module | upstream | mode | output_contract | failure_modes | kill_switch | owner_lane | status | next_action |
+|---|---|---|---|---|---|---|---|---|---|
+
+## Entries (19; 3 locked / 16 discovered)
+
+| id | module | upstream | mode | output_contract | failure_modes | kill_switch | owner_lane | status | next_action |
+|---|---|---|---|---|---|---|---|---|---|
+| BBDOWN | capture | nilaoda/BBDown | subprocess | ToolPreflightResult + BBDownInfoAdapter typed metadata; PlatformResult remains existing enum only after approved platform boundary | executable missing; auth required; parser drift; forbidden; unsafe stdout or stderr residue; ffmpeg failure outside metadata path | keep live runtime blocked unless a later dispatch explicitly approves; reject unsafe output; per-job temp workdir only | capture | locked | Maintain fixtures and parser drift checks; no new live runtime in Wave 3A |
+| WHISPER | media-asr | faster-whisper / CTranslate2 | adapt | AsrSegment candidate contract only; audio_transcript remains blocked in PRD-v2 / SRD-v2 | model missing; device mismatch; segment timing drift; hallucinated transcript; large local model footprint | keep audio_transcript runtime blocked; require separate ASR gate before any execution | media | locked | Keep as locked direction for later Wave 6; no ASR execution in Wave 3A |
+| OBSIDIAN | vault | user existing ~/workspace/raw PARA + Claudian vault | reference_only | vault path schema + raw 4-field frontmatter template; no new vault creation | SCOUTFLOW_VAULT_ROOT unset; wrong vault namespace; frontmatter drift; accidental writes outside 00-Inbox | fail loud if vault root is unset; dry-run first; do not create a new vault | bridge | locked | T-P1A-032 ADR-001 locks PARA boundary before bridge work |
+| YT-DLP | capture | yt-dlp/yt-dlp | reference_only proposed | scan verdict only until stage 2+; no runtime contract | site extractor drift; auth and cookie leakage; media download scope creep | runtime blocked; no media download; no credentials in repo | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| GALLERY-DL | capture | mikf123/gallery-dl | reference_only proposed | scan verdict only until stage 2+; no runtime contract | image-site auth drift; large file output; rate limits; unsafe config | runtime blocked; no file acquisition path approved | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| REDNOTE-XHS | capture | RedNote / XHS reference repos | reference_only proposed | scan verdict for XHS source candidates; no source adapter contract | signing drift; auth expiry; anti-abuse changes; PII leakage | no XHS runtime; no cookies or tokens in git; no direct capture creation | research | discovered | T-P1A-037 XHS RedNote shoulder scan |
+| BILIBILI-COMPARATOR | capture | Nemo2011 bilibili-api and comparator references | reference_only proposed | scan verdict for comparator use only; BBDown remains primary Bilibili direction | license mismatch; stale API behavior; duplicate adapter confusion | do not replace locked BBDown without later decision-log entry | research | discovered | T-P1A-038 Bilibili comparator scan |
+| CONSOLE-CLI | console | LangChain / Claudian console references | reference_only proposed | scan verdict for console interaction patterns; no CLI implementation contract | hidden state; tool permission drift; local port assumptions | reference only until explicit console spec PR | research | discovered | T-P1A-039 Console reference scan |
+| OBSIDIAN-FRONTMATTER | vault | Obsidian frontmatter compatibility references | reference_only proposed | scan verdict for frontmatter compatibility with raw 4-field template | template drift; Dataview incompatibility; path casing mismatch | no vault writes before ADR and bridge gate | research | discovered | T-P1A-040 Obsidian Frontmatter compatibility scan |
+| PYDANTIC-V2 | schema | pydantic/pydantic v2 | python_import proposed | scan verdict for schema validation ergonomics; no new dependency approval | version mismatch; strictness drift; serialization differences | no dependency change without contract PR | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| HTTPX | bridge | encode/httpx | python_import proposed | scan verdict for async HTTP boundary; no runtime adapter contract | timeout defaults; proxy behavior; async lifecycle leaks | no runtime bridge until SRD candidate promoted | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| PLAYWRIGHT | frontend-probe | microsoft/playwright | repo_external_prototype proposed | scan verdict for browser automation and visual probe only | browser install size; flaky selectors; unintended external automation | browser automation remains blocked in main repo; repo-external prototype only | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| DUCKDB | analysis | duckdb/duckdb | python_import proposed | scan verdict for local analysis DB; no migration or storage contract | file lock behavior; extension downloads; schema duplication with SQLite | no storage backend change; migrations remain forbidden | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| LITESTAR | api | litestar-org/litestar | reference_only proposed | scan verdict for API framework comparison; no framework switch | framework churn; FastAPI baseline disruption; dependency cost | no API framework migration without later authority PR | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| TYPER | cli | fastapi/typer | python_import proposed | scan verdict for operator CLI ergonomics; no CLI contract | command surface sprawl; option drift; shell completion noise | no CLI implementation without dispatch | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| RICH | cli | Textualize/rich | python_import proposed | scan verdict for terminal display only; no UI dependency approval | styling hiding raw facts; terminal width drift; log over-formatting | do not replace machine-readable output with rich-only text | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| HISHEL | cache | karpetrosyan/hishel | python_import proposed | scan verdict for HTTP cache policy; no cache contract | stale cache; privacy leakage; cache invalidation drift | no persistent HTTP cache without redaction and retention contract | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| YOUTUBE-COMMENT-DOWNLOADER | capture | egbertbouman/youtube-comment-downloader | reference_only proposed | scan verdict for comment evidence shape; no YouTube runtime approval | rate limits; comment deletion drift; PII in raw comments | YouTube later; no comment ingestion runtime in Wave 3A | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
+| WHISPER-CTRANSLATE2 | media-asr | SYSTRAN/faster-whisper / OpenNMT CTranslate2 | reference_only proposed | scan verdict for quantized ASR performance; AsrSegment remains candidate only | quantization drift; model compatibility; memory pressure | audio_transcript runtime remains blocked | research | discovered | Wave 3A scan (PR62-65) decides stage 2+ entry |
