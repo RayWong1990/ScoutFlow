@@ -21,7 +21,7 @@ LP001_REJECTED_SOURCE_KINDS = {"recommendation", "keyword", "raw_gap"}
 SUPPORTED_PLATFORM = "bilibili"
 SUPPORTED_SCHEMES = {"http", "https"}
 
-router = APIRouter()
+router = APIRouter(tags=["captures"])
 
 
 def error_response(http_status: int, code: str, message: str) -> JSONResponse:
@@ -45,7 +45,29 @@ def extract_bilibili_bv_id(canonical_url: str) -> str | None:
     return match.group(1) if match else None
 
 
-@router.post("/captures/discover", response_model=DiscoverCaptureResponse, status_code=status.HTTP_201_CREATED)
+@router.post(
+    "/captures/discover",
+    response_model=DiscoverCaptureResponse,
+    status_code=status.HTTP_201_CREATED,
+    summary="Discover capture (LP-001 entrypoint)",
+    description=(
+        "Create a new `metadata_only` capture from a `manual_url`. "
+        "LP-001 enforced: only the discover-path can create captures. "
+        "`recommendation`, `keyword`, and `raw_gap` are rejected with "
+        "`lp001_direct_capture_forbidden`. `audio_transcript` runtime is blocked."
+    ),
+    responses={
+        422: {
+            "model": ErrorResponse,
+            "description": (
+                "Rejected with one of: `unsupported_platform`, "
+                "`lp001_direct_capture_forbidden`, `source_kind_not_allowed`, "
+                "`not_implemented_in_T-P1A-001`, `invalid_quick_capture_preset`, "
+                "or `invalid_bilibili_url`."
+            ),
+        },
+    },
+)
 def create_capture(payload: DiscoverCaptureRequest, request: Request) -> DiscoverCaptureResponse | JSONResponse:
     if payload.platform != SUPPORTED_PLATFORM:
         return error_response(422, "unsupported_platform", "T-P1A-001 only supports bilibili.")
@@ -84,7 +106,29 @@ def create_capture(payload: DiscoverCaptureRequest, request: Request) -> Discove
     return DiscoverCaptureResponse(**created)
 
 
-@router.post("/captures/{capture_id}/metadata-fetch/jobs", response_model=MetadataFetchJobResponse)
+@router.post(
+    "/captures/{capture_id}/metadata-fetch/jobs",
+    response_model=MetadataFetchJobResponse,
+    summary="Enqueue metadata_fetch job",
+    description=(
+        "Idempotent enqueue for `metadata_fetch`. The same "
+        "`(capture_id, job_type, dedupe_key)` replays the existing `job_id`. "
+        "This route does not execute BBDown, does not advance capture state, and "
+        "does not write `artifact_assets` or `receipt_ledger`."
+    ),
+    responses={
+        404: {"model": ErrorResponse, "description": "Rejected with `capture_not_found`."},
+        409: {
+            "model": ErrorResponse,
+            "description": (
+                "Rejected with one of: `metadata_fetch_platform_not_allowed`, "
+                "`metadata_fetch_source_kind_not_allowed`, "
+                "`metadata_fetch_capture_mode_not_allowed`, `capture_not_from_discover`, "
+                "`capture_state_conflict`, or `metadata_fetch_dedupe_conflict`."
+            ),
+        },
+    },
+)
 def enqueue_metadata_fetch_job(capture_id: str, request: Request) -> MetadataFetchJobResponse | JSONResponse:
     storage: Storage = request.app.state.storage
     try:
@@ -94,7 +138,20 @@ def enqueue_metadata_fetch_job(capture_id: str, request: Request) -> MetadataFet
     return MetadataFetchJobResponse(**enqueued)
 
 
-@router.get("/captures/{capture_id}/trust-trace", response_model=TrustTraceResponse)
+@router.get(
+    "/captures/{capture_id}/trust-trace",
+    response_model=TrustTraceResponse,
+    summary="Get capture trust-trace (layered receipt)",
+    description=(
+        "Return the authority-first layered trust trace: `capture`, `capture_state`, "
+        "`metadata_job`, `probe_evidence`, `receipt_ledger`, `media_audio`, and `audit`. "
+        "`media_audio` remains gated and `audio_transcript` runtime is blocked."
+    ),
+    responses={
+        404: {"model": ErrorResponse, "description": "Rejected with `capture_not_found`."},
+        409: {"model": ErrorResponse, "description": "Rejected with `trust_trace_source_kind_not_allowed`."},
+    },
+)
 def get_capture_trust_trace(capture_id: str, request: Request) -> TrustTraceResponse | JSONResponse:
     storage: Storage = request.app.state.storage
     try:
