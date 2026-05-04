@@ -452,3 +452,23 @@
   - Evidence identity columns `capture_id` / `evidence_kind` / `lineage_variant` are declared immutable after insert via `trg_evidence_identity_columns_immutable`, closing the inbound supersession target-lineage mutation gap.
 - Boundary preserved: SRD-v3 candidate remains candidate-only; not promoted authority; not migration approval; not runtime approval.
 - Next gate: user explicit authorization required for Phase 2A migration dry-run plan or any Wave 3 candidate.
+
+## D-001: doc3 PR55-PR74 顺延为 PR56-PR75 (T-P1A-031 ~ T-P1A-050)
+
+- 日期: 2026-05-04
+- PR: #56 (本 PR)
+- 决议: `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md` §1-§20 中列举的 PR55-PR74（T-P1A-030 ~ T-P1A-049）在执行编号上统一顺延 +1，实际为 PR56-PR75（T-P1A-031 ~ T-P1A-050）。
+- 原因: PR #55 已被 T-P1A-030 Wave 3 reference docs landing 占用（merge commit `395a7e6`）；doc3 §1（原 PR55）顺延为本 PR（PR #56）。
+- 适用范围: 后续每个 dispatch header 引用 doc3 §N 时用“顺延后 PR{N+1}（原 doc3 §M PR{N}）”双标记；doc3 文件本身不修订。
+- 引用: `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md`；`/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/PR55-T-P1A-030-wave3-refdocs-landing.md` pr_numbering_note；`/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/PR56-T-P1A-031-wave3a-ledger-open.md`。
+
+## D-002: Wave 3A open — V3 acceptance + amendments + shoulder scan
+
+- 日期: 2026-05-04
+- PR: #56 (本 PR / T-P1A-031)
+- 决议: 启动 Wave 3A；范围 = 顺延后 PR56-PR67（12 PR，T-P1A-031 ~ T-P1A-042）；内容 = ledger open + ADR-001 vault lock + PRD/SRD candidate amendments + shoulder scan + PR factory tooling plan + Wave 3A closeout。
+- 不解禁: 任何 runtime（`audio_transcript` / BBDown live / yt-dlp / ffmpeg / ASR / browser automation 全部仍 blocked）。
+- 不修改: `PRD-v2-2026-05-04.md` / `SRD-v2-2026-05-04.md` base authority；`docs/specs/contracts-index.md` / `docs/specs/locked-principles.md` / `docs/specs/parallel-execution-protocol.md` 留给 PR60 surge + PR67 closeout。
+- 引用: `docs/architecture/baseline-roadmap-after-pr54-candidate-2026-05-04.md` §3.2；`docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md` §10；`docs/research/pr55-pr74-worklist-candidate-2026-05-04.md` §1；`docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md`；`docs/research/opus-v3-acceptance-prd-srd-amendment-roadmap-review-2026-05-04.md`。
+- 入口条件: PR54/PR55 merged；user 显式 gate（本 dispatch 即 gate）。
+- 出口条件: 顺延后 PR67（T-P1A-042）Wave 3A closeout PR 完成，含 errata P0-5 contracts-index 登记。

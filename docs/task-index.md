@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`0/3`，Review count=`0`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`；T-P1A-031 占 authority writer `1/1`（merge 后归 `0/1`）。
 
 ## 规则
 
@@ -14,19 +14,29 @@
 
 ## 当前 Phase
 
-`Phase 1A — metadata_only manual_url quick_capture contract`
+`Phase 1A — Wave 3A ledger open`
 
 ## Active
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-031` | Wave 3A ledger open + shoulders-index | `active` | Codex Desktop | authority ledger open + shoulders-index candidate snapshot | `AGENTS.md`; `docs/current.md`; `docs/task-index.md`; `docs/decision-log.md`; `docs/shoulders-index.md` | runtime; migration; product code; `README.md`; `CLAUDE.md`; `docs/specs/**`; `docs/architecture/**`; `docs/research/**`; `data/**`; `referencerepo/**` | PRD-v2 / SRD-v2 base unchanged; doc2 §10 shoulders-index schema; doc3 §1 renumbered to PR56 | docs redline; secrets redline; api/contracts tests; diff scope checks | any forbidden path change or ledger mirror drift | PR #56; scope=AGENTS/current/task-index/decision-log/shoulders-index; no runtime; no migration |
 
 ## Review
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-032` | ADR-001 Obsidian PARA Lock | `backlog` | Codex Desktop | docs research ADR candidate | `docs/architecture/ADR-001-obsidian-para-lock-2026-05-04.md` | runtime; migration; product code; authority ledger files unless separately authorized | doc3 §2; doc2 vault lifecycle references | docs redline; secrets redline; diff scope checks | vault boundary drift or accidental authority promotion | PR #57 候选；顺延后，原 doc3 §2 |
+| `T-P1A-033` | PRD v2.1 Strong Visual H5 candidate | `backlog` | Codex Desktop | PRD amendment candidate | `docs/PRD-amendments/**` | runtime; migration; product code; base PRD/SRD authority | doc3 §3 | docs redline; secrets redline; diff scope checks | final authority drift | PR #58 候选；顺延后，原 doc3 §3 |
+| `T-P1A-034` | SRD v3 H5 Bridge PARA vault candidate | `backlog` | Codex Desktop | SRD amendment candidate | `docs/SRD-amendments/**` | runtime; migration; product code; base PRD/SRD authority | doc3 §4 | docs redline; secrets redline; diff scope checks | runtime or migration approval drift | PR #59 候选；顺延后，原 doc3 §4 |
+| `T-P1A-035` | Parallel Execution Protocol PR factory candidate | `backlog` | Codex Desktop | protocol surge candidate | `docs/architecture/pr-factory-surge-protocol-candidate-2026-05-04.md` | changing enforced lane caps before PR60+PR67 approval; product code | doc3 §5; errata P1-7 | docs redline; secrets redline; diff scope checks | product_lane_max=5 treated as enforced | PR #60 候选；顺延后，原 doc3 §5 |
+| `T-P1A-036` | OpenDesign H5 visual probe (repo 外 prototype) | `backlog` | Codex Desktop | repo-external prototype report | `docs/research/prototypes/**` | ScoutFlow repo apps/services runtime; referencerepo tracked files | doc3 §6; OpenDesign reference note | docs redline; secrets redline; diff scope checks | prototype drifting into implementation | PR #61 候选；顺延后，原 doc3 §6 |
+| `T-P1A-037` | XHS RedNote shoulder scan | `backlog` | Codex Desktop | shoulder scan report | `docs/research/shoulders/**`; `docs/shoulders-index.md` status updates if authorized | runtime; referencerepo tracked files; product code | doc3 §7; doc2 stage 2 scan | docs redline; secrets redline; scan evidence checks | scan promoted to integration without probe | PR #62 候选；顺延后，原 doc3 §7 |
+| `T-P1A-038` | Bilibili comparator scan | `backlog` | Codex Desktop | shoulder scan report | `docs/research/shoulders/**`; `docs/shoulders-index.md` status updates if authorized | BBDown live; yt-dlp runtime; referencerepo tracked files; product code | doc3 §8; doc2 stage 2 scan | docs redline; secrets redline; scan evidence checks | comparator treated as runtime approval | PR #63 候选；顺延后，原 doc3 §8 |
+| `T-P1A-039` | Console reference scan | `backlog` | Codex Desktop | shoulder scan report | `docs/research/shoulders/**`; `docs/shoulders-index.md` status updates if authorized | frontend implementation; product code; referencerepo tracked files | doc3 §9; doc2 stage 2 scan | docs redline; secrets redline; scan evidence checks | reference UI treated as approved app | PR #64 候选；顺延后，原 doc3 §9 |
+| `T-P1A-040` | Obsidian Frontmatter compatibility scan | `backlog` | Codex Desktop | shoulder scan report | `docs/research/shoulders/**`; `docs/shoulders-index.md` status updates if authorized | vault runtime writes; product code; referencerepo tracked files | doc3 §10; doc2 stage 2 scan | docs redline; secrets redline; scan evidence checks | writing to vault without ADR gate | PR #65 候选；顺延后，原 doc3 §10 |
+| `T-P1A-041` | PR factory V1 tooling plan + scripts | `backlog` | Codex Desktop | tooling plan candidate | `docs/research/pr-factory-v1-tooling-plan-2026-05-04.md`; `tools/pr-factory/**` only if dispatch explicitly allows | product code; runtime; scripts without dry-run or macOS checks | doc3 §11; errata P1-5 | docs redline; secrets redline; macOS dry-run checks | unapproved executable tooling | PR #66 候选；顺延后，原 doc3 §11 |
+| `T-P1A-042` | Wave 3A closeout + Go/No-Go for Wave 3B | `backlog` | Codex Desktop | authority closeout | `docs/current.md`; `docs/task-index.md`; `docs/decision-log.md`; `docs/specs/contracts-index.md`; `docs/shoulders-index.md`; entry docs if explicitly scoped | runtime; migration; product code; unscoped authority files | doc3 §12; errata P0-5 | docs redline; secrets redline; full validation bundle | closeout promotes candidate without evidence | PR #67 候选；顺延后，原 doc3 §12 |
 
 ## Backlog / Research
 
@@ -64,6 +74,8 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-030` | Wave 3 reference docs landing | `2026-05-04` | PR=#55; merge commit=395a7e6; scope=docs/architecture/* + docs/research/* + README/AGENTS §3 cascade; result=5 reference docs landed for Wave 3 roadmap, shoulders lifecycle, PR worklist, errata, and Codex review; no runtime / no migration |
+| `T-P1A-029` | Post-S0/S1 authority + candidate wording fix | `2026-05-04` | PR=#54; merge commit=c133e0e; scope=current/AGENTS/task-index/decision-log/contracts-index/SRD-v3 candidate wording; result=post PR52/53 authority sync plus F-012 and evidence identity immutability wording repair; no runtime / no migration |
 | `T-P1A-028` | SRD-v3 candidate + DB design audit-fix | `2026-05-04` | branch=`task/T-P1A-028-srd-v3-candidate-audit-fix`; PR=#53; merge commit=c1c2565; scope=docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md + docs/specs/db-vnext-design-2026-05-04.md; result=SRD-v3 candidate audit-fix covering trigger contract, composite FK, PlatformResult CHECK, cross-capture identity, reachability vocabulary, and F-012 hard gate; status=candidate / not SRD-v3 promoted authority / not migration approval / not runtime approval; post-S0/S1 wording + evidence identity immutability fix=T-P1A-029 |
 | `T-P1A-027` | Wave 2 authority ledger reconciliation | `2026-05-04` | branch=`task/T-P1A-027-wave2-authority-reconciliation`; PR=#52; merge commit=c2bcac0; scope=docs/current.md + AGENTS.md + docs/task-index.md + docs/decision-log.md + docs/specs/contracts-index.md; result=Wave 2 authority surfaces closed, Active count=0/3, T-P1A-020/T-P1A-026 moved to Done, stale T-P1A-021 Backlog/Research row removed, contracts-index PR #51 state refreshed; no product code / schema / migration / runtime |
 | `T-P1A-026` | SRD-v3 candidate amendment for DB vNext | `2026-05-04` | branch=`task/T-P1A-026-srd-v3-db-vnext-candidate`; PR=#51; merge commit=fdf0673; scope=docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md (473 lines) + contracts-index.md (+1); ID-reuse=user-authorized substitution from original Wave 2 close scope; result=Stage 2 SRD-v3 candidate authored covering 5-table evidence-chain DDL + supersession boundary + purge defaults + lineage_variant vocabulary; status=candidate / not SRD-v3 promoted authority / not migration approval / not runtime approval; audit-fix=T-P1A-028 completed via PR #53; post-S0/S1 wording guard=T-P1A-029 |
