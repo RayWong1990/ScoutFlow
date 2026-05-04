@@ -1,8 +1,8 @@
 # T-P1A-023 LLM Normalization Schema
-> Status: **draft / not yet PR-ready** — blocked by T-P1A-022 unmerged; research / candidate only; not authority; not runtime approval; not implementation approval.
+> Status: **research / candidate** — not authority; not runtime approval; not implementation approval.
 > Date: 2026-05-04
-> Depends on: T-P1A-022 merged (hard gate)
-> Dependency snapshot: PR #38 is open draft at head `50c80519e9744c2b4abfe8c57f6da4cd5d6c0799`; this note must be reconciled after that PR merges.
+> Depends on: T-P1A-022 merged (hard gate satisfied by PR #38 merge commit `ed81b3a066e78dae25f8e4a7ca8dd69c0d08c0d9`)
+> Reconciliation: field-level alignment verified against merged T-P1A-022 §4.3 `segments.jsonl` schema.
 
 ---
 
@@ -22,9 +22,8 @@ transcript/raw.json
 ```
 
 It does not run an LLM, install packages, call a vendor API, create a prompt runner, or
-change authority docs. Because T-P1A-022 has not merged, all references to
-`transcript/segments.jsonl` are compatibility assumptions against the current T-P1A-022
-draft, not a final schema.
+change authority docs. References to `transcript/segments.jsonl` mirror the merged
+T-P1A-022 candidate schema; they do not promote that schema to final authority.
 
 Allowed write scope for this task:
 
@@ -406,15 +405,16 @@ Phase 2+ outline:
 
 ## 10. Reconciliation Checklist After T-P1A-022 Merge
 
-Before opening a PR for this task:
+Completed before opening PR #45:
 
-1. Rebase `task/T-P1A-023-llm-normalization-schema` onto updated `origin/main`.
-2. Confirm T-P1A-022 is merged and `docs/research/t-p1a-022-asr-pipeline-prestudy-2026-05-04.md`
-   exists on `main`.
-3. Compare this note's assumed `segments.jsonl` fields with the merged T-P1A-022 schema.
-4. If T-P1A-023 needs additional fields, add a candidate delta section instead of
-   redefining `segments.jsonl`.
-5. Run shared validation and open PR only after the dependency is satisfied.
+1. Rebased `task/T-P1A-023-llm-normalization-schema` onto updated `origin/main` after
+   T-P1A-022 merged.
+2. Confirmed `docs/research/t-p1a-022-asr-pipeline-prestudy-2026-05-04.md` exists on
+   `main`.
+3. Compared this note's assumed `segments.jsonl` fields with the merged T-P1A-022 schema.
+4. No additional fields were needed; no candidate delta section added, and no silent
+   redefinition of `segments.jsonl`.
+5. Shared validation passed before PR #45 was opened.
 
 ---
 
@@ -428,7 +428,7 @@ Before opening a PR for this task:
   or `packages/` path is modified.
 - No authority document is modified.
 - No schema is final authority.
-- PR is intentionally not opened while T-P1A-022 remains unmerged.
+- PR #45 was opened only after T-P1A-022 merged and field-level reconciliation passed.
 
 ---
 
@@ -444,5 +444,6 @@ Before opening a PR for this task:
    `python tools/check-secrets-redlines.py`;
    `python -m pytest tests/api tests/contracts -q` = 116 passed;
    `git diff --check`; forbidden tracked/root directory checks empty.
-5. Next gate - T-P1A-022 must merge first; then rebase, reconcile `segments.jsonl`, run
-   shared validation, push, and open PR.
+5. Next gate - PR #45 review / merge; still unapproved: workers, frontend, BBDown
+   runtime, ffmpeg, ASR, `audio_transcript`, model download, generated transcript
+   artifacts, prompt runner, LLM API client, and Phase 2-4 runtime.
