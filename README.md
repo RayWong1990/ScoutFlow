@@ -5,6 +5,8 @@ ScoutFlow 是个人本地研究工作流的 `Authority-first` 内容采集、转
 - 任务账本：`docs/task-index.md`
 - Agent 边界：`AGENTS.md`；Claude sidecar 差异：`CLAUDE.md`
 - Contract 总索引：`docs/specs/contracts-index.md`；硬原则：`docs/specs/locked-principles.md`
+- 架构记录：`docs/architecture/**` (candidate baseline / shoulders lifecycle handbook; not authority)
+- Wave 3 计划：`docs/research/pr55-pr74-worklist-candidate-2026-05-04.md`、`docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md`、`docs/research/opus-v3-acceptance-prd-srd-amendment-roadmap-review-2026-05-04.md`
 ## 阅读顺序
 1. `docs/current.md`
 2. `AGENTS.md`

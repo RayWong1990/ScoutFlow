@@ -15,7 +15,7 @@
 - 状态写回：`docs/task-index.md` -> `docs/current.md` -> `docs/decision-log.md`
 - Entry / authority：`README.md`、`AGENTS.md`、`CLAUDE.md`
 - Contracts：`docs/specs/contracts-index.md`、`docs/specs/locked-principles.md`、`docs/specs/parallel-execution-protocol.md`
-- Retro / research：`docs/retro/**`、`docs/research/**`；不得自动升级为 authority
+- Retro / research / architecture：`docs/retro/**`、`docs/research/**`、`docs/architecture/**`；不得自动升级为 authority
 ## 4. 当前硬红线
 - Stop-line summary: secrets / local-only dirs / runtime / final-authority drift / schema-state-FS-LP drift 都是立即停线项。
 - 不修改 `data/`、`referencerepo/`，不提交 cookie / token / secret / raw credential material。
