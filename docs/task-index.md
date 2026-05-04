@@ -1,12 +1,13 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：活动任务仅允许 `0-3` 条；当前 Active count=`0/3`，Review count=`0`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`0/3`，Review count=`0`。
 
 ## 规则
 
 - 当前只维护 Step0 / Phase 0 / Phase 1A 开工安全相关任务
 - 任务状态变化时先写本文件，再更新 `docs/current.md`
+- Review / audit / research lanes 不计入 product lane 上限，除非写 authority
 - 外部研究统一落 `docs/research/`，不在项目根建立重治理目录
 - 任何活动任务都必须写明 owner、scope、allowed paths、validation
 - research note 不直接升级为 authority；draft spec 必须显式标记 `draft / not final authority / not runtime approval`
@@ -43,6 +44,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-014` | Lean constraints cleanup v2 | `2026-05-04` | scope=`docs-only governance slimming`; result=`README/AGENTS/CLAUDE slimmed, SRD §6/§7 lean cleanup, 8 contract groups, 4 hard LP, lane=3+writer=1`; audit=`GPT Pro PASS WITH NOTES`; unlock_condition=`PR #33 merged + user gate before T-P1A-015/T-P1A-016`; no product/runtime/schema change |
 | `T-P1A-013B` | Authority sync + docs-check suffix task hardening | `2026-05-04` | scope=`authority drift fix + docs-check suffix task parsing hardening`; fixes=`remove stale T-P1A-013A active line from docs/current.md + parse suffix task ids exactly + current-doc self-check`; result=`authority state and docs-check now agree on 011D/E/F/G, 012R, 013A/B`; no product/runtime change |
 | `T-P1A-013A` | Receipt / Trust Trace audit hardening | `2026-05-04` | scope=`small code/test hardening after merged 012/012R/013`; fixes=`path containment before metadata bridge writes + current-phase success evidence validator on generic receipt API`; result=`blocked T-P1A-011 and no-auth success evidence no longer accepted through generic metadata_fetch receipts`; trust_trace=`layering unchanged`; no runtime |
 | `T-P1A-013` | Explore Trust Trace minimal surface | `2026-05-04` | mode=`API/CLI`; implementation=`GET /captures/{capture_id}/trust-trace`; layering=`capture + capture_state + metadata_job + probe_evidence + receipt_ledger + media_audio + audit`; result=`receipt only appears after receipt ledger exists; auth-present evidence labeled correctly; media/audio stays not approved`; no frontend / no BBDown runtime |

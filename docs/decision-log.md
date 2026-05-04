@@ -330,3 +330,17 @@
 - Decision: upgrade `tools/check-docs-redlines.py` so suffix task IDs are parsed exactly (`011D/E/F/G`, `012R`, `013A/B`) rather than truncated.
 - Decision: add current-doc self-checks so `Active count=0/3` plus a later concrete `状态 active` line is rejected by docs-check.
 - Boundary: no product code, no API/runtime expansion, no BBDown, no media / ffmpeg / ASR, no frontend / workers.
+
+## 2026-05-04 — T-P1A-014 lean constraints cleanup completed locally
+
+- Decision: accept the lean cleanup direction for local PR execution: entry docs are shortened, contracts collapse from 19 separate IDs into 8 groups with old aliases preserved, and hard LPs collapse from 7 to 4.
+- Decision: Active lane wording changes from generic "activity max 3" to `Active product lane max=3 + Authority writer max=1`; review / audit / research lanes do not count as product lanes unless they write authority.
+- Decision: drop / relax / absorb details are recorded in `docs/retro/2026-05-04-lean-cleanup.md`.
+- Boundary preserved: no product runtime, no schema/state-machine change, no receipt schema change, no PlatformResult enum change, no redaction contract body change, no Trust Trace DTO change.
+- Gate: GPT Pro quick external audit and PR merge are still required before `T-P1A-015` or `T-P1A-016` may start.
+
+## 2026-05-04 — T-P1A-014 GPT Pro external audit accepted
+
+- Decision: external audit verdict is `PASS WITH NOTES`; no blocking issue found for scope, CI, hard boundaries, lane protocol, LP reduction, contract groups, or entry slimming.
+- Fix: apply the non-blocking wording repair in `docs/specs/contracts-index.md` so the first-screen summary no longer mixes product architecture with the contract-group authority view.
+- Next gate: merge PR `#33`, then keep `T-P1A-015` / `T-P1A-016` behind explicit user authorization.
