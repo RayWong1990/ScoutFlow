@@ -52,16 +52,23 @@ the relevant runtime gate. This note is only design input.
 
 ## 3. Public Source Snapshot
 
-Checked public primary sources on 2026-05-04 for candidate-engine framing only.
-No package was installed and no ASR command was executed.
+Checked public primary sources and local machine cache state on 2026-05-04 for
+first-gate framing only. No package was installed and no ASR command was executed.
 
 | Source | Evidence used |
 |---|---|
-| [SYSTRAN faster-whisper README](https://github.com/SYSTRAN/faster-whisper/blob/master/README.md) | faster-whisper is a CTranslate2-based Whisper implementation; supports CPU / GPU deployment choices, int8 quantization, batching, and PyAV-based audio decoding. |
-| [modelscope FunASR README](https://github.com/modelscope/FunASR/blob/main/README.md) | FunASR includes offline file transcription releases, timestamp / hotword capability references, Mandarin-oriented Paraformer models, SenseVoice, and multilingual model options. |
-| [FunASR offline file transcription guide](https://github.com/modelscope/FunASR/blob/main/runtime/docs/SDK_advanced_guide_offline_en.md) | FunASR runtime combines VAD, ASR, and punctuation for file transcription and exposes local deployment / hotword configuration surfaces. |
+| [SYSTRAN faster-whisper README](https://github.com/SYSTRAN/faster-whisper/blob/master/README.md) | faster-whisper supports `pip install faster-whisper`, automatic model download from Hugging Face Hub, explicit `language=...`, `word_timestamps=True`, and `vad_filter=True`. |
+| [Anthropic pricing docs](https://platform.claude.com/docs/en/docs/about-claude/pricing) | current Claude pricing is low enough that transcript cleanup can be treated as a cost-aware convenience step, but the runtime task should refresh pricing before execution. |
 
-These sources do not override ScoutFlow authority. They only shape what a later spike
+Local machine observation, not authority:
+
+- Hugging Face cache already contains `models--Systran--faster-whisper-large-v3`
+  with a real snapshot and roughly `1.5G` on disk.
+- Hugging Face cache also contains `models--Systran--faster-whisper-tiny`.
+- No `~/.cache/modelscope` cache directory was found, so FunASR is not currently a
+  cache-first path on this machine.
+
+These inputs do not override ScoutFlow authority. They only shape what a later spike
 should verify with local evidence.
 
 ---
@@ -83,9 +90,14 @@ Input rules:
 - ASR does not own extraction from video. A prior future `audio_extract` job must create
   and receipt the input artifact first.
 - The first ASR spike should prefer `media/audio.wav` as the canonical input because it
-  makes sample rate / channel assumptions explicit.
-- `media/audio.m4a` can remain a tolerated candidate only if the chosen ASR engine can
-  decode it locally without leaking ffmpeg or media extraction into the ASR job boundary.
+  makes sample rate / channel assumptions explicit and removes one class of decode drift.
+- Even though faster-whisper can decode media through PyAV, ScoutFlow should normalize
+  upstream to 16kHz mono wav before ASR. Candidate command shape:
+  `ffmpeg -i in.m4a -ar 16000 -ac 1 out.wav`.
+- `ffmpeg` is therefore an upstream dependency of the future `audio_extract` step, not
+  an ASR-internal fallback.
+- `media/audio.m4a` can remain an upstream artifact candidate, but the first ASR gate
+  should consume normalized `media/audio.wav`.
 - Absolute local paths must never enter receipt payloads.
 
 ### 4.2 `transcript/raw.json`
@@ -100,11 +112,14 @@ Candidate shape:
   "capture_id": "01HXCAP...",
   "job_id": "01HXJOB...",
   "engine": {
-    "name": "faster-whisper | funasr | other",
+    "name": "faster-whisper",
     "version": "candidate-to-record",
-    "model": "candidate-to-record",
+    "model": "large-v3 | medium | small",
     "device": "cpu | gpu | mps | unknown",
-    "compute_type": "int8 | float16 | float32 | unknown"
+    "compute_type": "int8 | float16 | float32 | unknown",
+    "requested_language": "zh",
+    "vad_filter": true,
+    "word_timestamps": true
   },
   "input": {
     "relative_path": "media/audio.wav",
@@ -205,19 +220,17 @@ Rules:
 
 ## 5. Chunking Strategy
 
-Recommended candidate strategy for future spike:
+Recommended first-gate strategy for future spike:
 
 | Layer | Candidate default | Rationale |
 |---|---|---|
-| ASR engine input chunk | 30-60 seconds with 1-2 seconds overlap | Small enough for retry and memory safety; overlap reduces boundary word loss |
+| ASR engine segmentation | faster-whisper default transcription flow with `language="zh"` and `vad_filter=True` | simplest first ship; explicit language avoids misdetect drift; VAD replaces a manual chunk sweep |
 | Postprocess merge window | punctuation / silence / max 12-20 seconds per segment | Keeps citations readable for Bilibili 10-30 minute videos |
-| Long-video batch | deterministic chunk ids: `chunk_000`, `chunk_001` | Allows retrying failed chunks without rerunning the whole file |
+| Long-video batch | deterministic chunk ids: `chunk_000`, `chunk_001` if later postprocess emits them | Allows retrying failed chunks without rerunning the whole file |
 | Boundary repair | trim duplicate overlap text only when confidence and text similarity are clear | Avoids aggressive merge hallucinations |
+| Manual chunk tuning | deferred | do not compare `30s vs 60s vs 5min` in the first gate; reopen only if one real video proves the default path unusable |
 
-Open design question for user review: if the main source corpus is mostly 10-30 minute
-Bilibili videos, the initial spike should compare 30s and 60s chunks before considering
-5-minute chunks. Five-minute chunks are simpler operationally but worse for retry,
-memory spikes, and local progress feedback.
+First-gate non-goal: no multi-sample chunk benchmark and no `30s vs 60s` bakeoff.
 
 ---
 
@@ -246,11 +259,13 @@ Candidate retry policy:
 | Failure class | Retry? | Fallback |
 |---|---|---|
 | `asr_engine_not_found` | no | block until dependency installed / configured |
-| `asr_model_missing` | no automatic network download | block or use pre-approved local model cache |
+| `asr_model_missing` | no automatic network download | block or use existing local Hugging Face cache if present |
 | `input_missing` | no | return to prior `audio_extract` gate |
-| `input_decode_failed` | no automatic ffmpeg conversion | return to prior audio gate; ASR does not own extraction |
-| `chunk_timeout` | yes, bounded retry for same chunk | retry once with smaller chunk size |
+| `ffmpeg_not_found` | no | block until upstream audio normalization dependency is installed |
+| `audio_normalization_failed` | no blind retry | return to prior audio gate; ASR does not own extraction |
+| `chunk_timeout` | yes, bounded retry for same engine | retry once with a smaller model tier, not a new engine |
 | `oom_or_memory_pressure` | yes, bounded | lower batch size / smaller model / CPU int8 fallback |
+| `asr_language_misdetected` | no blind retry | rerun same engine with explicit `language="zh"`; first gate should already set this |
 | `low_confidence` | no runtime retry by default | mark `needs_check`; require human review |
 | `timestamp_unstable` | no blind retry | mark `needs_check`; compare engine settings in spike |
 | `hallucination_suspected` | no blind retry | mark `needs_check`; preserve raw evidence |
@@ -258,46 +273,87 @@ Candidate retry policy:
 
 Fallback priority:
 
-1. Same engine, safer settings: smaller batch, smaller chunk, explicit language.
-2. CPU-safe mode if GPU path fails.
-3. Alternative engine only after the task records why the first engine failed.
-4. Human review marker instead of forcing a second model to agree.
+1. Same engine, same stack: verify normalized wav input, explicit `language="zh"`,
+   and `vad_filter=True`.
+2. Same engine, smaller model tier: `large-v3 -> medium -> small`.
+3. Claude cleanup plus human review before blaming raw ASR quality.
+4. Only if cleaned transcript still cannot support downstream work, evaluate FunASR as a
+   later fallback task.
 
 ---
 
-## 8. Engine Candidates And CPU / GPU Notes
+## 8. First-Gate Engine Selection
 
-This section is spike input only; no engine is selected by this note.
+This section is spike input only, but it does select a first-gate default:
+`faster-whisper` ships first. No parallel bakeoff with FunASR is part of this gate.
 
-| Candidate | Possible strength | Main risk to test |
+First-gate defaults:
+
+- Engine: `faster-whisper`
+- Requested language: explicit `language="zh"`; do not rely on auto-detect for the
+  first gate.
+- VAD: `vad_filter=True` by default.
+- Word timestamps: `word_timestamps=True` for quote provenance and subtitle derivation.
+- Model source: reuse existing local Hugging Face cache when available; do not treat a
+  fresh model download as part of this task.
+
+Candidate model tier triggers:
+
+| Machine profile | Candidate model | Reason |
 |---|---|---|
-| `faster-whisper` | strong general Whisper ecosystem; CPU / GPU / int8 choices; multilingual baseline | Chinese punctuation / segmentation quality; Apple Silicon support path; dependency/version friction |
-| `FunASR` | Chinese-first model ecosystem; timestamp / hotword / punctuation surfaces; offline file service references | packaging weight; model cache policy; English / multilingual tradeoff; Docker/runtime complexity |
-| platform subtitle first | avoids ASR when official subtitles exist | source availability and trust; subtitle drift; platform adapter scope |
+| Apple Silicon / M-series Mac with `>=16GB` RAM | `large-v3` | quality-first default for a solo-dev local workflow |
+| tighter memory but `>=8GB` RAM | `medium` | reduce memory pressure before changing the stack |
+| CPU-only or `<8GB` RAM | `small` | emergency fallback only |
 
-CPU / GPU candidate rules:
+Execution notes:
 
-- The first spike should be CPU-safe and deterministic unless user explicitly approves GPU
-  dependency work.
-- GPU acceleration must be a preflight result, not an assumption.
-- Model download must be pre-approved and should stay outside repo.
+- GPU acceleration is a preflight result, not an assumption.
 - Record `engine`, `engine_version`, `model`, `device`, `compute_type`, `batch_size`,
-  `chunk_seconds`, and wall-clock duration in local spike evidence.
-- Do not treat a successful local transcription as product approval; it only informs the
-  next gate.
-
-Selection questions for user review:
-
-- Is Chinese accuracy more important than broad English / multilingual coverage for the
-  first `audio_transcript` gate?
-- Should the initial comparison be `faster-whisper` vs `FunASR`, or should platform
-  subtitles be the first baseline before any ASR?
-- Is hotword support important for names, project terms, and technical vocabulary, or can
-  it wait until after the first transcript loop exists?
+  and wall-clock duration in local spike evidence.
+- The presence of a local `large-v3` cache makes `large-v3` the practical first try on
+  this machine unless runtime preflight disproves it.
+- FunASR is deferred. It becomes relevant only if `faster-whisper + Claude cleanup`
+  still does not produce usable downstream material.
 
 ---
 
-## 9. Error Classes
+## 9. Claude Cleanup And Acceptance Gate
+
+The first gate is not raw ASR only. It is:
+
+```text
+normalized audio.wav
+  -> faster-whisper
+  -> Claude cleanup
+  -> downstream topic_card / signal usability check
+```
+
+Claude cleanup candidate scope:
+
+- semantic cleanup
+- punctuation repair
+- paragraphing
+- obvious typo correction
+
+Cost discipline:
+
+- Treat cleanup as a cost-aware convenience step, not a blank check.
+- Refresh live Claude pricing at runtime-task time.
+- Solo-dev heuristic: if one video is expected to cost more than `$0.20` for cleanup,
+  re-evaluate prompt shape, segmentation, or whether LLM cleanup is worth it.
+
+Acceptance gate:
+
+- `vibe check, not metric`
+- no CER threshold
+- no WER threshold
+- pass means: one real video goes through `audio.wav -> faster-whisper -> Claude cleanup`,
+  and the cleaned transcript is comfortable enough to support downstream `topic_card` or
+  `signal` work without feeling annoying to use
+
+---
+
+## 10. Error Classes
 
 Candidate error classes, scoped to future ASR chain:
 
@@ -307,9 +363,11 @@ Candidate error classes, scoped to future ASR chain:
 | `audio_input_not_approved` | input artifact has no prior receipt / gate | stop before ASR |
 | `asr_engine_not_found` | configured engine import / executable unavailable | no receipt; dependency blocker |
 | `asr_model_missing` | model not available in approved local cache | no automatic download |
-| `input_decode_failed` | audio artifact cannot be decoded by selected engine | return to audio gate |
+| `ffmpeg_not_found` | upstream normalization tool unavailable | block before ASR |
+| `audio_normalization_failed` | `ffmpeg` did not produce normalized wav | return to audio gate |
 | `chunk_timeout` | one chunk exceeded timeout | bounded retry |
 | `oom_or_memory_pressure` | local memory/device pressure | lower batch / smaller model fallback |
+| `asr_language_misdetected` | language detection drifted away from Chinese | rerun with explicit `language="zh"`; treat auto-detect as a misconfiguration |
 | `timestamp_unstable` | invalid, overlapping, or non-monotonic timestamps | mark output invalid; no SRT |
 | `low_confidence` | confidence below future threshold | mark `needs_check` |
 | `hallucination_suspected` | repeated text / no-speech hallucination pattern | mark `needs_check` |
@@ -320,20 +378,25 @@ state words, or receipt schema.
 
 ---
 
-## 10. Local Spike Plan
+## 11. Local Spike Plan
 
 Future spike must be a separate approved task. Candidate plan:
 
-1. Use a repo-external temp directory and a user-approved short audio artifact.
-2. Verify no raw audio or model cache enters Git.
+1. Use a repo-external temp directory and one real user-approved video or audio artifact.
+2. Verify no raw audio or model cache enters Git; prefer existing local
+   `faster-whisper-large-v3` cache if present.
 3. Run engine preflight only after dependency gate is opened.
-4. Transcribe one short clip with fixed settings.
-5. Emit local-only evidence packet: command shape, engine version, model, device, runtime,
-   candidate artifact hashes, and redacted excerpt.
-6. Generate `raw.json`, `segments.jsonl`, `subtitle.srt`, and `reviewed.md` in a temp
+4. Normalize upstream audio with `ffmpeg -i in.m4a -ar 16000 -ac 1 out.wav`.
+5. Transcribe with fixed settings: `language="zh"`, `vad_filter=True`,
+   `word_timestamps=True`.
+6. Run Claude cleanup for punctuation, paragraphing, and obvious typo repair.
+7. Emit local-only evidence packet: command shape, engine version, model, device,
+   runtime, candidate artifact hashes, and redacted excerpt.
+8. Generate `raw.json`, `segments.jsonl`, `subtitle.srt`, and `reviewed.md` in a temp
    capture root.
-7. Run a schema validator in temp context, then decide whether to promote schema into a
-   later authority task.
+9. Judge pass/fail by downstream usability for `topic_card` / `signal`, not CER/WER.
+10. Run a schema validator in temp context, then decide whether to promote schema into a
+    later authority task.
 
 Not approved in this task:
 
@@ -347,7 +410,7 @@ Not approved in this task:
 
 ---
 
-## 11. T-P1A-023 Reconciliation Rule
+## 12. T-P1A-023 Reconciliation Rule
 
 T-P1A-023 owns LLM normalization schema, but it must not finalize `segments.jsonl` before
 this note lands. Proposed reconciliation order:
@@ -355,33 +418,38 @@ this note lands. Proposed reconciliation order:
 1. Merge T-P1A-022 research note.
 2. T-P1A-023 reads this candidate `segments.jsonl` and decides which fields it needs for
    normalization and quote provenance.
-3. If T-P1A-023 needs different fields, it should write a candidate delta rather than
+3. T-P1A-023 should assume the first gate is `faster-whisper + Claude cleanup`, not a
+   multi-engine benchmark and not a CER-driven bakeoff.
+4. If T-P1A-023 needs different fields, it should write a candidate delta rather than
    silently redefining the ASR segment shape.
-4. A later authority task can promote a combined transcript / normalization contract.
+5. A later authority task can promote a combined transcript / normalization contract.
 
 ---
 
-## 12. Boundary Confirmation
+## 13. Boundary Confirmation
 
 - No ASR runtime is executed in this task.
 - No ffmpeg or audio extraction is executed in this task.
 - No binary / audio sample enters the repository.
 - No `audio_transcript` approval is granted.
 - No schema is final authority.
-- No authority document is modified.
+- No authority document is modified except for the narrow `docs/task-index.md` filename
+  correction that keeps the research ledger aligned with the real note path.
 
 ---
 
-## 13. Shared 5-Part Self-Audit
+## 14. Shared 5-Part Self-Audit
 
-1. Scope check - changed file is limited to this research note under `docs/research/`.
-2. Authority check - PRD / SRD / locked principles / spec contracts remain untouched.
+1. Scope check - primary artifact is this research note under `docs/research/`; branch
+   also carries a narrow `docs/task-index.md` path correction for T-P1A-022.
+2. Authority check - PRD / SRD / locked principles / spec contracts remain untouched;
+   only the T-P1A-022 task-index path string is corrected to match the real filename.
 3. Safety check - `audio_transcript` remains blocked; this note does not create workers,
-   receipt schema, PlatformResult values, model cache, audio files, or runtime gate.
+   receipt schema, PlatformResult values, new model cache, audio files, or runtime gate.
 4. Validation result - local validation clear on 2026-05-04:
    `python tools/check-docs-redlines.py`;
    `python tools/check-secrets-redlines.py`;
-   `python -m pytest tests/api tests/contracts -q` = 109 tests clear;
+   `python -m pytest tests/api tests/contracts -q` = 116 tests clear;
    `git diff --check`; forbidden tracked/root directory checks empty.
 5. Next gate - still unapproved: workers, frontend, BBDown runtime, ffmpeg, ASR,
    `audio_transcript`, model download, generated transcript artifacts, and Phase 2-4
