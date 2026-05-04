@@ -495,3 +495,15 @@
 - 证据:
   - `${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/REPORT-PR57-PR65-CODEX0-2026-05-05.md`
   - `${SCOUTFLOW_VAULT_ROOT}/05-Projects/ScoutFlow/dispatches/REPORT-PR66-PR75-CODEX0-2026-05-05.md`
+
+## D-004: Wave 3B open + shoulders clone plan
+
+- 日期: 2026-05-05
+- PR: #68（本 PR / T-P1A-043）
+- 决议: 正式打开 Wave 3B 账本，登记 `T-P1A-044 ~ T-P1A-050` 为 backlog，并把当前 next gate 切到 `T-P1A-044 / PR #69`。
+- 决议: 当前 Wave 3B clone/probe 优先顺序锁为 4 个 planned clones + 2 个 reserve：
+  - planned clones: `iFurySt/RedNote-MCP`、`ShellyDeng08/rednote-analyzer-mcp`、`satnaing/shadcn-admin`、`yt-dlp/yt-dlp`
+  - reserve only: `Nemo2011/bilibili-api`、`Kiranism/tanstack-start-dashboard`
+- 决议: `docs/research/shoulders/clone-plan-2026-05-05.md` 与 `docs/research/shoulders/referencerepo-index-2026-05-05.md` 是本轮 tracked mirror；`referencerepo/**` 继续 local-only，不得进入 Git tracked diff。
+- 决议: shoulders-index 状态推进到 `3 locked / 5 scanning / 11 discovered`。`REDNOTE-XHS`、`BILIBILI-COMPARATOR`、`CONSOLE-CLI` 继续保持 scanning 但写明 clone/probe 顺序；`YT-DLP` 从 discovered 升到 scanning；`OBSIDIAN-FRONTMATTER` 继续 scanning，等待 vault SPEC。
+- 不解禁: 仍不批准 runtime / migration / apps / frontend implementation / Wave 4。
