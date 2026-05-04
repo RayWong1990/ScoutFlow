@@ -392,3 +392,14 @@
 - Boundary preserved: `migrations/**` remains FORBIDDEN for all lanes; `audio_transcript` runtime remains blocked; `PlatformResult` enum / `WorkerReceipt` schema / Trust Trace data shape unchanged across 017/018/021 closures.
 - During T-P1A-019 execution: `storage.py` / `captures.py` / `jobs.py` / `main.py` are read-only (frozen 018 contract); `test_capture_trust_trace.py` reserved for T-P1A-020.
 - Scope of this entry: docs-only authority sync after merge — no product code, no schema, no migrations, no runtime change.
+
+## 2026-05-04 — Post-T-P1A-019 merge ledger sync
+
+- Decision: mark T-P1A-019 (metadata probe dry-run orchestrator) as `done`. PR `#44` merged into `main` as merge commit `44e87a147ba6ba962731757c9d99baf40fcf0dd3`. Audit-fix commit `6dead72` addressed Opus PR-#44 review (P0-1 provenance gate URL-derived BV id vs probe.platform_item_id; P0-2 failure receipt path for non-ok platform_result).
+- Decision: T-P1A-020 (Trust Trace / Explore contract hardening) is the next executable lane. T-P1A-019 orchestration / external_tools / bridge contract is now frozen for the duration of 020.
+- Active count update: `2/3` → `1/3` (019 done; 020 remains active).
+- Bridge extension: `build_metadata_fetch_failure_receipt` added in `services/api/scoutflow_api/metadata_probe_receipt_bridge.py` within T-P1A-019 allowed paths. Emits `WorkerReceipt` with `produced_assets=[]`, `platform_result=<non-ok>`, `next_status="metadata_fetched"`. Storage gates capture-state advance on `job_status=succeeded`, so failure receipt: job→failed, capture→discovered (unchanged), `receipt_ledger.present=false`.
+- Boundary preserved: `migrations/**` remains FORBIDDEN for all lanes; `audio_transcript` runtime remains blocked; live BBDown / yt-dlp / ffmpeg / ASR / browser automation remain blocked; `subprocess.run` not invoked by orchestrator (tripwire test); `PlatformResult` enum / `WorkerReceipt` schema / Trust Trace DTO shape unchanged across 019 closure.
+- During T-P1A-020 execution: `storage.py` / `captures.py` / `jobs.py` / `main.py` remain read-only (018 contract frozen); `external_tools/**` / `orchestration/**` / `metadata_probe_receipt_bridge.py` remain read-only (019 contract frozen).
+- Ledger note: research lanes T-P1A-022/023/024 produced research notes that landed on main during the 019 cycle; their task-index status currently remains `research/backlog` (status allows research notes; promotion to `done` deferred to a subsequent housekeeping sync to keep this entry scoped to 019/020).
+- Scope of this entry: docs-only authority sync after merge — no product code, no schema, no migrations, no runtime change.
