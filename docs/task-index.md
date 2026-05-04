@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — Wave 3B open`
+`Phase 1A — Wave 3B closed; Wave 4 candidate only / not user-gated`
 
 ## Active
 
@@ -26,13 +26,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-044` | Shoulders Probe Reports (cap 4 shoulders/PR) | `backlog` | Codex Desktop | shoulders probe batch | `docs/research/shoulders/shoulders-probe-batch-1-2026-05-05.md`; `docs/research/shoulders/referencerepo-index-2026-05-05.md`; `docs/shoulders-index.md` | runtime; tracked `referencerepo/**`; product code | doc3 §14; clone-plan-2026-05-05 | docs redline; secrets redline; probe evidence checks | >4 shoulders in one PR or missing >=3 file:line citations | PR #69 |
-| `T-P1A-045` | Bridge Route Group SPEC.md (NOT 实施) | `backlog` | Codex Desktop | bridge spec only | `services/api/scoutflow_api/bridge/SPEC.md` | Python code; runtime; migrations; non-SPEC service files | doc3 §15; PR69 probe outputs | docs redline; secrets redline; spec-only checks | SPEC drifts into code or route registration | PR #70 |
-| `T-P1A-046` | H5 Capture Station Design Brief + 5 Gate | `backlog` | Codex Desktop | design-only brief package | `docs/visual/h5-capture-station/**` | frontend implementation; apps/packages/services runtime | doc3 §16; PR70 bridge SPEC | docs redline; secrets redline; 5-Gate grep checks | design brief promoted to implementation approval | PR #71 |
-| `T-P1A-047` | VaultWriter Contract SPEC.md (NOT 实施) | `backlog` | Codex Desktop | vault spec only | `services/api/scoutflow_api/vault/SPEC.md` | Python code; runtime write; migrations; non-SPEC service files | doc3 §17; PR71 design brief | docs redline; secrets redline; spec-only checks | vault write implied before approval | PR #72 |
-| `T-P1A-048` | H5 Prototype Mock (repo 外) | `backlog` | Codex Desktop | repo-external prototype + tracked pointer | `docs/research/h5-prototype-mock-pointer-2026-05-05.md` | apps/**; services/api/web/**; tracked prototype code; runtime approval | doc3 §18; PR72 vault SPEC | docs redline; secrets redline; tracked-diff single-file check | prototype code enters ScoutFlow git | PR #73 |
-| `T-P1A-049` | Shoulders Adapt Decision Table | `backlog` | Codex Desktop | decision candidate | `docs/research/shoulders/adapt-decision-table-2026-05-05.md`; `docs/shoulders-index.md` | adapters/forks/runtime; tracked `referencerepo/**` | doc3 §19; PR69 probe + PR73 prototype pointer | docs redline; secrets redline; decision-table checks | decision candidate promoted to implementation approval | PR #74 |
-| `T-P1A-050` | Wave 3B closeout + Wave 4 ledger candidate | `backlog` | Codex Desktop | authority closeout | `AGENTS.md`; `docs/current.md`; `docs/task-index.md`; `docs/decision-log.md`; `docs/shoulders-index.md`; `docs/specs/contracts-index.md` | runtime; migration; apps/services/workers/packages | doc3 §20; PR68-74 merged outputs | docs redline; secrets redline; full validation bundle | Wave 4 or runtime implied without new gate | PR #75 |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Backlog
 
@@ -71,6 +65,13 @@
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
 | `T-P1A-043` | Wave 3B ledger open + shoulders clone plan | `2026-05-05` | PR=#68; scope=AGENTS/current/task-index/decision-log/shoulders-index/clone-plan/referencerepo-index; result=Wave 3B opened, clone/probe plan registered, referencerepo tracked mirror created, no tracked clone or runtime approval |
+| `T-P1A-050` | Wave 3B closeout + Wave 4 ledger candidate | `2026-05-05` | PR=#75; scope=AGENTS/current/task-index/decision-log/shoulders-index/contracts-index; result=Wave 3B closed; Wave 4 not yet user-gated; ledger candidate only |
+| `T-P1A-049` | Shoulders Adapt Decision Table | `2026-05-05` | PR=#74; merge commit=673d588; scope=docs/research/shoulders/adapt-decision-table-2026-05-05.md + docs/shoulders-index.md; result=probe results narrowed to adapt/reference_only candidate decisions; no runtime approval |
+| `T-P1A-048` | H5 Prototype Mock (repo 外) | `2026-05-05` | PR=#73; merge commit=37e7090; scope=docs/research/h5-prototype-mock-pointer-2026-05-05.md only; result=repo-external Vite/React mock built successfully while ScoutFlow tracked diff stayed pointer-only |
+| `T-P1A-047` | VaultWriter Contract SPEC.md (NOT 实施) | `2026-05-05` | PR=#72; merge commit=4dbe68c; scope=services/api/scoutflow_api/vault/SPEC.md; result=SCOUTFLOW_VAULT_ROOT fail-loud, raw 4-field frontmatter, path containment, and idempotency locked as spec-only |
+| `T-P1A-046` | H5 Capture Station Design Brief + 5 Gate | `2026-05-05` | PR=#71; merge commit=86a2121; scope=docs/visual/h5-capture-station/**; result=4-panel design package and 5-Gate visual checklist landed; no frontend approval |
+| `T-P1A-045` | Bridge Route Group SPEC.md (NOT 实施) | `2026-05-05` | PR=#70; merge commit=f1c7c55; scope=services/api/scoutflow_api/bridge/SPEC.md; result=thin route-group surface, BridgeErrorCode, and test matrix locked as spec-only |
+| `T-P1A-044` | Shoulders Probe Reports (cap 4 shoulders/PR) | `2026-05-05` | PR=#69; merge commit=768f933; scope=docs/research/shoulders/shoulders-probe-batch-1-2026-05-05.md + docs/research/shoulders/referencerepo-index-2026-05-05.md + docs/shoulders-index.md; result=4 local-only clones probed with >=3 file:line citations per shoulder |
 | `T-P1A-031` | Wave 3A ledger open + shoulders-index | `2026-05-05` | PR=#56; merge commit=554f497; scope=AGENTS/current/task-index/decision-log/shoulders-index; result=Wave 3A ledger opened, shoulders-index landed, and next gate shifted to T-P1A-032 / PR #57; no runtime / no migration |
 | `T-P1A-042` | Wave 3A closeout + Go/No-Go for Wave 3B | `2026-05-05` | PR=#67; scope=AGENTS/current/task-index/decision-log/contracts-index/shoulders-index/parallel-execution-protocol; result=Wave 3A closed, Wave 3B gate=GO, protocol sync landed, enforced baseline remains product_lane_max=3 / authority_writer_max=1; no runtime / no migration |
 | `T-P1A-041` | PR Factory V1 tooling plan + scripts | `2026-05-05` | PR=#66; merge commit=d7fd774; scope=docs/architecture/pr-factory-tooling-plan-2026-05-04.md + tools/scoutflow_pr_factory.py; result=single-file local helper with --dry-run, .git suffix stripping, and referencerepo local-only guard; no runtime / no migration |
