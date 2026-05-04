@@ -507,3 +507,19 @@
 - 决议: `docs/research/shoulders/clone-plan-2026-05-05.md` 与 `docs/research/shoulders/referencerepo-index-2026-05-05.md` 是本轮 tracked mirror；`referencerepo/**` 继续 local-only，不得进入 Git tracked diff。
 - 决议: shoulders-index 状态推进到 `3 locked / 5 scanning / 11 discovered`。`REDNOTE-XHS`、`BILIBILI-COMPARATOR`、`CONSOLE-CLI` 继续保持 scanning 但写明 clone/probe 顺序；`YT-DLP` 从 discovered 升到 scanning；`OBSIDIAN-FRONTMATTER` 继续 scanning，等待 vault SPEC。
 - 不解禁: 仍不批准 runtime / migration / apps / frontend implementation / Wave 4。
+
+## D-005: Wave 3B closeout + Wave 4 candidate
+
+- 日期: 2026-05-05
+- PR: #75（本 PR / T-P1A-050）
+- 决议: Wave 3B 完整收口。live GitHub PR 映射按事实写回：
+  - `T-P1A-044=#69`
+  - `T-P1A-045=#70`
+  - `T-P1A-046=#71`
+  - `T-P1A-047=#72`
+  - `T-P1A-048=#73`
+  - `T-P1A-049=#74`
+- 决议: `docs/specs/contracts-index.md` 在本 closeout 中登记 Wave 3B 候选工件：Bridge route-group SPEC、H5 design package、VaultWriter SPEC、repo 外 prototype pointer、adapt decision table。
+- 决议: `docs/shoulders-index.md` 状态推进到 `3 locked / 5 integrated / 11 discovered`，表示 Wave 3B 的 clone/probe/spec/design/decision 已被当前主线吸收为 candidate truth，不代表 runtime 或 code approval。
+- 决议: Wave 4 not yet user-gated; ledger candidate only。
+- 不解禁: runtime / migration / apps / workers / packages / Phase 2+ promotion 仍未批准。

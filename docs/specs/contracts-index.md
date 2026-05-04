@@ -40,6 +40,11 @@
 | docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | PR #64 merged candidate amendment | Candidate amendment only；not SRD-v3 promoted authority；not runtime approval；not migration approval |
 | docs/architecture/pr-factory-surge-protocol-candidate-2026-05-04.md | PR #59 merged protocol candidate | Candidate only；keeps enforced baseline at product_lane_max=3 and authority_writer_max=1 until explicit closeout approval |
 | docs/architecture/pr-factory-tooling-plan-2026-05-04.md + tools/scoutflow_pr_factory.py | PR #66 merged tooling candidate | Local-only shoulder helper candidate；--dry-run and referencerepo guard landed；future `tools/pr-factory/**` split deferred；not runtime approval |
+| services/api/scoutflow_api/bridge/SPEC.md | PR #70 merged spec candidate | spec only；locks thin route-group shape and BridgeErrorCode；not runtime approval |
+| docs/visual/h5-capture-station/** | PR #71 merged design candidate | design-only package；locks 4-panel H5 station and 5-Gate audit；not frontend implementation approval |
+| services/api/scoutflow_api/vault/SPEC.md | PR #72 merged spec candidate | spec only；locks SCOUTFLOW_VAULT_ROOT fail-loud, raw 4-field frontmatter, path containment, idempotency；not runtime approval |
+| docs/research/h5-prototype-mock-pointer-2026-05-05.md | PR #73 merged prototype pointer | repo-external prototype pointer only；ScoutFlow tracked diff stayed pointer-only；not frontend implementation approval |
+| docs/research/shoulders/adapt-decision-table-2026-05-05.md | PR #74 merged decision candidate | candidate-only shoulder decision table；narrows adapt/reference_only route without approving implementation |
 | docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md | PR #51 candidate amendment + PR #53 audit-fix merged on main | Candidate amendment only; not SRD-v3 promoted authority; not migration approval; not runtime approval; F-012 wording and evidence identity immutability guard addressed by T-P1A-029 |
 | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | promoted v2 base | Promoted base；runtime boundaries still gated；keeps `audio_transcript` blocked |
 
