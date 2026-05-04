@@ -67,8 +67,9 @@ It is an untrusted draft and must not enter future `artifact_assets` as reviewed
 
 ## 3. Input Assumptions From ASR Segments
 
-These fields mirror the current T-P1A-022 draft. They remain provisional until PR #38
-merges and this note is rebased.
+These fields mirror the merged T-P1A-022 §4.3 candidate `segments.jsonl` schema
+(`scoutflow.asr.segment.v0.candidate`). Reconciliation §10 step 3 verified field-level
+alignment after T-P1A-022 merged.
 
 Candidate input line from `transcript/segments.jsonl`:
 
@@ -92,6 +93,12 @@ Required downstream assumptions:
 Prompt payload should include `segment_id`, timestamps, text, speaker if present, and
 confidence. It should not include absolute local paths, raw ASR JSON, cookies, URLs with
 tracking params, or hidden operator notes.
+
+> Engine note (informational): Per merged T-P1A-022 §8, the first-gate ASR engine is
+> `faster-whisper` with Claude cleanup. This schema remains engine-agnostic by design;
+> downstream normalization does not depend on engine identity. The engine note is
+> informational only and does not constrain future engine swaps as long as
+> `scoutflow.asr.segment.v0.candidate` is honored.
 
 ---
 
