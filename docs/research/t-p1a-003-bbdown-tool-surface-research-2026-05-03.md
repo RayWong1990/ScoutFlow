@@ -34,7 +34,7 @@ recommendation: Phase 1A should not run BBDown next; build the API receipt endpo
 | `docs/specs/platform-adapter-risk-contract.md` | 复用 `platform_result` 分类口径 |
 | `docs/specs/worker-receipt-contract.md` | 未来 BBDown 只能经 receipt / artifact ledger 报账 |
 | `docs/specs/raw-response-redaction.md` | 凭据不是 evidence，raw output 必须先脱敏 |
-| `docs/SRD-v1.1-amendment-2026-05-03.md` | 对齐 A009 research note protocol、A010 scope freeze、A013-A015 安全补丁 |
+| `docs/archive/SRD-v1.1-amendment-2026-05-03.md` | 对齐 A009 research note protocol、A010 scope freeze、A013-A015 安全补丁 |
 
 ## 1. Public Primary Sources
 

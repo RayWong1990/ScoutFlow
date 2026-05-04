@@ -26,8 +26,8 @@
 | `docs/specs/platform-adapter-risk-contract.md` | 复用现有 `PlatformResult` enum 与 retry 口径 |
 | `docs/specs/worker-receipt-contract.md` | 将未来 adapter 输出映射到 receipt / artifact ledger |
 | `docs/specs/raw-response-redaction.md` | 继承凭据与 raw response 安全规则 |
-| `docs/PRD-v1.1-amendment-2026-05-02.md` | 对齐 LP-001 quick_capture 边界 |
-| `docs/SRD-v1.1-amendment-2026-05-03.md` | 对齐 Phase scope freeze、`source_kind`、`artifact_assets` 与 `POST /captures/discover` 语义 |
+| `docs/archive/PRD-v1.1-amendment-2026-05-02.md` | 对齐 LP-001 quick_capture 边界 |
+| `docs/archive/SRD-v1.1-amendment-2026-05-03.md` | 对齐 Phase scope freeze、`source_kind`、`artifact_assets` 与 `POST /captures/discover` 语义 |
 
 已吸收的用户口径：
 

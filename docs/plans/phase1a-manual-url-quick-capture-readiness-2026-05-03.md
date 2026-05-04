@@ -18,10 +18,10 @@ Bilibili manual_url quick_capture preparation
 
 本文件只引用仓库文件，不引用聊天摘要作为 authority：
 
-- `docs/PRD-v1-2026-05-02.md`
-- `docs/PRD-v1.1-amendment-2026-05-02.md`
-- `docs/SRD-v1-2026-05-02.md`
-- `docs/SRD-v1.1-amendment-2026-05-03.md`
+- `docs/archive/PRD-v1-2026-05-02.md`
+- `docs/archive/PRD-v1.1-amendment-2026-05-02.md`
+- `docs/archive/SRD-v1-2026-05-02.md`
+- `docs/archive/SRD-v1.1-amendment-2026-05-03.md`
 - `docs/specs/contracts-index.md`
 - `docs/specs/locked-principles.md`
 - `docs/specs/worker-receipt-contract.md`
@@ -30,7 +30,7 @@ Bilibili manual_url quick_capture preparation
 - `docs/current.md`
 - `docs/task-index.md`
 
-当前 authority chain 以 `docs/SRD-v1.1-amendment-2026-05-03.md` A001 为准：user 最新拍板 > locked principles > decision log > PRD + amendment > SRD > operating model > 历史对话 / agent 记忆。
+当前 authority chain 以 `docs/archive/SRD-v1.1-amendment-2026-05-03.md` A001 为准：user 最新拍板 > locked principles > decision log > PRD + amendment > SRD > operating model > 历史对话 / agent 记忆。
 
 ## 3. What Phase 1A is allowed to implement
 

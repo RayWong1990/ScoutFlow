@@ -110,7 +110,7 @@ examples/**
 - `docs/specs/platform-adapter-risk-contract.md`
 - `docs/specs/raw-response-redaction.md`
 - `docs/specs/parallel-execution-protocol.md`
-- `docs/SRD-v1.1-amendment-2026-05-03.md`
+- `docs/archive/SRD-v1.1-amendment-2026-05-03.md`
 
 实现中至少要满足：
 

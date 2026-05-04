@@ -344,3 +344,15 @@
 - Decision: external audit verdict is `PASS WITH NOTES`; no blocking issue found for scope, CI, hard boundaries, lane protocol, LP reduction, contract groups, or entry slimming.
 - Fix: apply the non-blocking wording repair in `docs/specs/contracts-index.md` so the first-screen summary no longer mixes product architecture with the contract-group authority view.
 - Next gate: merge PR `#33`, then keep `T-P1A-015` / `T-P1A-016` behind explicit user authorization.
+
+## 2026-05-04 — PR #33 merged and T-P1A-015 unlocked
+
+- Decision: merge PR `#33` into `main` as merge commit `f1b4992398d89eb3742a57a585ee9378ad6266b5`.
+- Decision: `T-P1A-015` is now unlocked by merged `T-P1A-014`; `T-P1A-016` still requires an explicit user gate.
+
+## 2026-05-04 — T-P1A-015 PRD/SRD promote completed locally
+
+- Decision: promote PRD/SRD base docs to `docs/PRD-v2-2026-05-04.md` and `docs/SRD-v2-2026-05-04.md`.
+- Decision: move v1 + amendment chain into `docs/archive/` and add `docs/archive/README.md` for mapping stability.
+- Decision: switch forward authority references to v2 and historical trail references to archive paths.
+- Boundary preserved: no product code, no runtime approval, no schema change, no spec contract semantics rewrite.
