@@ -1,7 +1,20 @@
+"""ScoutFlow API Pydantic models.
+
+The `TrustTrace*` sub-models intentionally mirror the authority-first layered
+receipt structure so each layer remains independently observable in OpenAPI:
+
+    capture / capture_state / metadata_job / probe_evidence /
+    receipt_ledger / media_audio / audit
+
+This is by design, not a flattening artifact. Do not collapse these sub-models
+into a single trust-trace object without a separate dispatch and audit.
+"""
+
 from __future__ import annotations
 
 from enum import StrEnum
 from pathlib import PurePosixPath
+from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, model_validator
 
@@ -36,8 +49,8 @@ class DiscoverCaptureResponse(BaseModel):
 
 
 class ErrorResponse(BaseModel):
-    code: str
-    message: str
+    code: str = Field(description="Machine-readable error code returned by the API route.")
+    message: str = Field(description="Human-readable explanation for the rejected request.")
 
 
 class ArtifactZone(StrEnum):
@@ -171,13 +184,29 @@ class WorkerReceipt(BaseModel):
 
 
 class JobCompleteResponse(BaseModel):
-    job_id: str
-    capture_id: str
-    job_type: str
-    status: str
-    platform_result: str
-    artifact_count: int
-    idempotent: bool
+    job_id: str = Field(description="Job identifier supplied by the worker callback.")
+    capture_id: str = Field(description="Capture identifier linked to the completed job.")
+    job_type: Literal["metadata_fetch"] = Field(description="Current Phase 1A only supports metadata_fetch jobs.")
+    status: Literal["succeeded", "failed"] = Field(description="Persisted terminal job status after completion.")
+    platform_result: PlatformResult = Field(description="Platform-facing result reported by the completed worker receipt.")
+    artifact_count: int = Field(ge=0, description="Number of artifact ledger rows inserted by this completion call.")
+    idempotent: bool = Field(description="True when the completion request replayed an existing succeeded receipt.")
+
+
+class MetadataFetchJobResponse(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    job_id: str = Field(description="Stable job identifier returned by the enqueue path.")
+    capture_id: str = Field(description="Capture identifier associated with the queued metadata job.")
+    job_type: Literal["metadata_fetch"] = Field(description="Only metadata_fetch jobs are enqueueable from this route.")
+    status: Literal["queued", "running", "succeeded", "failed"] = Field(
+        description="Current job status returned by the dedupe replay or fresh enqueue path."
+    )
+    dedupe_key: str = Field(
+        description="Idempotency contract for metadata_fetch enqueue.",
+        pattern=r"^bilibili:[A-Za-z0-9]+:metadata_fetch$",
+        examples=["bilibili:BV1xx411c7mD:metadata_fetch"],
+    )
 
 
 class TrustTraceCapture(BaseModel):
