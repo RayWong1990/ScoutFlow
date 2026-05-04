@@ -35,6 +35,7 @@
 | docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md | PR #10 merged | Research note only；not authority；not implementation approval；not runtime approval |
 | docs/specs/bbdown-adapter-contract-draft.md | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval |
 | docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md | PR #15 merged research note | Research note only；not authority；not frontend / API / runtime approval |
+| docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md | `T-P1A-026` candidate amendment on branch / PR | Candidate amendment only；not final authority；not migration approval；not runtime approval |
 | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | promoted v2 base | Promoted base；runtime boundaries still gated；keeps `audio_transcript` blocked |
 
 ## 当前引用但未落地的上游文档
