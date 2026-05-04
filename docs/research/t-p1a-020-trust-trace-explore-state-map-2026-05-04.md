@@ -22,6 +22,8 @@
 | `failed` | `metadata_job.status=failed`, `metadata_job.platform_result!=ok`, `receipt_ledger.present=false` | platform/probe failed safely; capture remains discovered | show retry candidate affordance `<TBD future gate>` | move capture to `metadata_fetched` |
 | `metadata_fetched` | `capture_state.status=metadata_fetched`, `metadata_job.status=succeeded`, `receipt_ledger.present=true` | safe metadata evidence is available | show evidence summary and trust trace card | unlock media, ffmpeg, ASR, transcript, comments, danmaku, screenshots |
 
+Merge-gated alignment note: after T-P1A-019 merges with its current non-ok failure receipt path, `failed` is produced by non-ok failure receipt completion from the dry-run orchestrator; no success evidence artifacts are emitted. Until T-P1A-019 is merged and #43 is rebased, this remains a sequencing gate, not independent authority.
+
 ## 3. Button State Table
 
 | Explore state | `Fetch metadata` | `Open Trust Trace` | `Use in topic work` | Media / transcript buttons |
