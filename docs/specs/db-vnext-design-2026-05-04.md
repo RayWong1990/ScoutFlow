@@ -6,7 +6,8 @@ topic: db-vnext
 date: 2026-05-04
 scope: ScoutFlow Phase 1A closeout to Phase 2A pre-migration DB vNext design
 source_pr: PR #42
-source_pr_status: draft research input, not merged at spec write time
+source_pr_status: merged frozen research input (PR #42 merged 2026-05-04, commit 7a120f2)
+audit_fix_pr: T-P1A-028 (S1) — header refreshed and freshness invariants applied post-PR #42 merge
 authority_base:
   - docs/PRD-v2-2026-05-04.md
   - docs/SRD-v2-2026-05-04.md
