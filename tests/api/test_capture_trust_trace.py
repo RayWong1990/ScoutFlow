@@ -84,6 +84,51 @@ def test_trust_trace_without_receipt_uses_status_label(tmp_path: Path) -> None:
     assert "stderr" not in json.dumps(body)
 
 
+def test_trust_trace_metadata_fetch_queued_and_running_are_status_trace(tmp_path: Path) -> None:
+    client, db_path, _ = build_client(tmp_path)
+    capture = create_capture(client)
+
+    enqueue = client.post(f"/captures/{capture['capture_id']}/metadata-fetch/jobs")
+    assert enqueue.status_code == 200
+    queued_trace = client.get(f"/captures/{capture['capture_id']}/trust-trace")
+    assert queued_trace.status_code == 200
+
+    queued_body = queued_trace.json()
+    assert queued_body["label"] == "Status / Trust Trace / 采集状态"
+    assert queued_body["capture_state"]["status"] == "discovered"
+    assert queued_body["metadata_job"]["present"] is True
+    assert queued_body["metadata_job"]["job_type"] == "metadata_fetch"
+    assert queued_body["metadata_job"]["status"] == "queued"
+    assert queued_body["metadata_job"]["platform_result"] is None
+    assert queued_body["probe_evidence"]["present"] is False
+    assert queued_body["receipt_ledger"]["present"] is False
+    assert queued_body["media_audio"] == {"status": "not_approved", "audio_transcript": "blocked"}
+
+    with sqlite3.connect(db_path) as conn:
+        conn.execute(
+            """
+            UPDATE jobs
+            SET status = ?, started_at = datetime('now')
+            WHERE job_id = ?
+            """,
+            ("running", enqueue.json()["job_id"]),
+        )
+        conn.commit()
+
+    running_trace = client.get(f"/captures/{capture['capture_id']}/trust-trace")
+    assert running_trace.status_code == 200
+    running_body = running_trace.json()
+    assert running_body["label"] == "Status / Trust Trace / 采集状态"
+    assert running_body["capture_state"]["status"] == "discovered"
+    assert running_body["metadata_job"]["present"] is True
+    assert running_body["metadata_job"]["job_type"] == "metadata_fetch"
+    assert running_body["metadata_job"]["status"] == "running"
+    assert running_body["metadata_job"]["platform_result"] is None
+    assert running_body["probe_evidence"]["present"] is False
+    assert running_body["receipt_ledger"]["present"] is False
+    assert running_body["media_audio"] == {"status": "not_approved", "audio_transcript": "blocked"}
+
+
 def test_trust_trace_with_auth_present_receipt_uses_receipt_label(tmp_path: Path) -> None:
     from scoutflow_api.external_tools.bbdown_info_parser import parse_bbdown_info_output
     from scoutflow_api.metadata_probe_receipt_bridge import (
