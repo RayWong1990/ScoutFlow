@@ -418,3 +418,23 @@
 - During T-P1A-020 execution: `storage.py` / `captures.py` / `jobs.py` / `main.py` remain read-only (018 contract frozen); `external_tools/**` / `orchestration/**` / `metadata_probe_receipt_bridge.py` remain read-only (019 contract frozen).
 - Ledger note: research lanes T-P1A-022/023/024 produced research notes that landed on main during the 019 cycle; their task-index status currently remains `research/backlog` (status allows research notes; promotion to `done` deferred to a subsequent housekeeping sync to keep this entry scoped to 019/020).
 - Scope of this entry: docs-only authority sync after merge — no product code, no schema, no migrations, no runtime change.
+
+## 2026-05-04 — T-P1A-027 Wave 2 Authority Ledger Reconciliation
+
+- Decision: close Wave 2 in authority surfaces after PR #51 merged.
+- Scope: ledger-only authority reconciliation; no product code, no schema, no migration, no runtime.
+- Closed lanes:
+  - `T-P1A-020` Trust Trace / Explore contract hardening — main PR `#43` (merge commit `6d959ab`), follow-up invariants PR `#49` (merge commit `8694c06`); PR `#48` superseded by PR `#49` with no semantic delta (stacked-base squash artifact); 5-state Trust Trace snapshot contract frozen; no `storage.py` change.
+  - `T-P1A-026` SRD-v3 candidate amendment for DB vNext — PR `#51` (merge commit `fdf0673`); ID-reuse user-authorized: original dispatch 26 "Wave 2 ledger close" scope substituted with Stage 2 SRD-v3 candidate authoring at user direction; ledger-close functionality fulfilled by T-P1A-027 (this PR).
+- Cleanup: removed stale `T-P1A-021` Backlog/Research row (was dual-registered against Done; closeout drift).
+- Reset: Active count `1/3` → `0/3`; Wave 2 Conflict Domain table retained as historical reference only.
+- Parallel Lane Identity:
+  - `T-P1A-027` (S0, this PR) = sole ledger authority writer; occupies Authority writer slot 1/1; writes `docs/current.md` / `AGENTS.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/specs/contracts-index.md`.
+  - `T-P1A-028` (S1) = candidate-contract writer; does NOT occupy ledger authority writer slot; does NOT write any of the five ledger authority files; touches only `docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md` and `docs/specs/db-vnext-design-2026-05-04.md`.
+  - File-domain zero overlap → S0/S1 真并行 OK.
+- Boundary: `audio_transcript` runtime / BBDown live / ffmpeg / ASR / `migrations/**` / workers / frontend remain blocked; `PlatformResult` enum / `WorkerReceipt` schema / Trust Trace DTO unchanged.
+- Sequencing gate: a third execution window that reads current state from main must NOT start until S0 merges (avoid stale `current.md` propagation).
+- Next gate: after S0 + S1 both merge, user explicit gate required for Phase 2A migration dry-run plan or any Wave 3 candidate.
+- Known follow-up debt (not addressed by S0/S1):
+  - F-010: `WorkerReceipt.next_status="metadata_fetched"` semantics on failure receipts (currently set but ignored when `job_status=failed`) — defer to Phase 2A migration prep.
+  - F-012: `PRAGMA foreign_keys=ON` not enabled in `Storage._connect()` — Phase 2A migration approval blocked until enabled (S1 records this as hard gate; not a code change here).

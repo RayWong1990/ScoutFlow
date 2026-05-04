@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`1/3`，Review count=`0`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`0/3`，Review count=`0`。
 
 ## 规则
 
@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-020` | Trust Trace / Explore contract hardening | `executable` | Codex Desktop single writer | Trust Trace + Explore contract tests | `tests/api/test_capture_trust_trace.py`, `tests/contracts/test_trust_trace_contract.py` (新建可) | `storage.py` (read-only), `orchestration/**` (read-only), `migrations/**`, `docs/PRD-v2*`, `docs/SRD-v2*` | SRD-v2 §trust-trace; T-P1A-013/013A contract | `pytest tests/api tests/contracts -q` | stop if storage.py written; stop if runtime gates changed | conflict-domain-owner: `test_capture_trust_trace.py`; 自己的新 contract test 文件; 18/19 不动 these files; T-P1A-019 已 merged，此 lane 现可启动 |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Review
 
@@ -32,11 +32,12 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-021` | BBDown runtime gate matrix | `research/backlog` | — | research note | `docs/research/t-p1a-021-bbdown-runtime-gate-matrix-2026-05-04.md` | `services/**`, `migrations/**`, BBDown runtime | — | docs-check | not runtime approval | research lane; not product active; not runtime approval |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Wave 2 Conflict Domain (T-P1A-018/019/020)
 
 > Registered 2026-05-04 by T-P1A-017 ledger-open. 18/19/20 must not collide on the domains below.
+> Wave 2 closed 2026-05-04 by T-P1A-027. Table retained as historical reference only — Wave 2 lanes (T-P1A-018/019/020) all merged and frozen. Future waves register their own conflict domains.
 
 | Conflict Domain | Owner Lane | Other lanes |
 |---|---|---|
@@ -63,6 +64,8 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-026` | SRD-v3 candidate amendment for DB vNext | `2026-05-04` | branch=`task/T-P1A-026-srd-v3-db-vnext-candidate`; PR=#51; merge commit=fdf0673; scope=docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md (473 lines) + contracts-index.md (+1); ID-reuse=user-authorized substitution from original Wave 2 close scope; result=Stage 2 SRD-v3 candidate authored covering 5-table evidence-chain DDL + supersession boundary + purge defaults + lineage_variant vocabulary; status=candidate / not SRD-v3 promoted authority / not migration approval / not runtime approval; audit-fix follow-up = T-P1A-028 (S1) |
+| `T-P1A-020` | Trust Trace / Explore contract hardening | `2026-05-04` | branch=`task/T-P1A-020-trust-trace-explore-contract-hardening`; main PR=#43; follow-up invariants PR=#49 (PR #48 stacked-base superseded by #49, no semantic delta); merge commits=6d959ab + 8694c06; scope=tests/api/test_capture_trust_trace.py (+45) + new tests/contracts/test_trust_trace_dto_snapshot_contract.py (327 lines) + new docs/research/t-p1a-020-trust-trace-explore-state-map-2026-05-04.md (90+47 lines); 5-state snapshot frozen=created/queued/running/failed/metadata_fetched; UI naming invariants + retry policy + open-question on metadata_fetched staleness TTL added in #49; no storage.py / captures.py / jobs.py changes (18-owned read-only honored); no PlatformResult / WorkerReceipt / Trust Trace DTO change; no audio_transcript runtime |
 | `T-P1A-019` | metadata probe dry-run orchestrator | `2026-05-04` | branch=`task/T-P1A-019-metadata-probe-dry-run-orchestrator`; PR=`#44`; merge commit=`44e87a147ba6ba962731757c9d99baf40fcf0dd3`; audit-fix commit=`6dead72`; scope=`new services/api/scoutflow_api/orchestration/ package + dry_run_metadata_probe + bridge build_metadata_fetch_failure_receipt extension`; result=`135 tests passed (15 contract + 4 e2e new); provenance gate (URL-derived BV vs probe.platform_item_id); failure receipt path for non-ok platform_result; success evidence still gated on T-P1A-011C auth-present source`; conflict-domain-owner=`external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**`; T-P1A-018 owned files (storage/jobs/captures/main) untouched; no subprocess.run; no live BBDown; no migration; no PlatformResult / WorkerReceipt schema / Trust Trace DTO change; no audio_transcript runtime |
 | `T-P1A-018` | metadata_fetch job enqueue API + OpenAPI UX audit-fix | `2026-05-04` | branch=`task/T-P1A-018-metadata-fetch-job-enqueue-api`; PR=`#39`; merge commit=`a1f965bdf22d027f173683ae324d2b2acd0a9f19`; scope=`POST /captures/{capture_id}/metadata-fetch/jobs enqueue endpoint + idempotency hardening + 5-Gate OpenAPI UX polish (P0/P1/P2)`; result=`116 tests passed; tags=captures/jobs/ops; Literal types + dedupe_key pattern; full responses contract; app description + openapi_tags`; conflict-domain-owner=`storage.py/captures.py/jobs.py/main.py`; no migration; PlatformResult enum unchanged; Trust Trace data shape unchanged; no BBDown / ffmpeg / ASR / audio_transcript runtime |
 | `T-P1A-017` | Wave 2 ledger open | `2026-05-04` | branch=`task/T-P1A-017-wave2-ledger-open`; PR=`#36`; merge commit=`ca300659ba74392eb50b210f76d340f0855f706f`; scope=`docs-only authority ledger registration of T-P1A-018/019/020 active lanes + T-P1A-021/022/023/024/025 research lanes + Wave 2 conflict domain table + [L4] authority writer slot`; opened Wave 2 with sequencing 018→019→020; user-approved lane plan recorded; no runtime / worker / frontend / ASR / audio_transcript approval |
