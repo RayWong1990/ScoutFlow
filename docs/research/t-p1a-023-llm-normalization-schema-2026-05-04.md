@@ -444,6 +444,7 @@ Completed before opening PR #45:
    `python tools/check-secrets-redlines.py`;
    `python -m pytest tests/api tests/contracts -q` = 116 passed;
    `git diff --check`; forbidden tracked/root directory checks empty.
-5. Next gate - PR #45 review / merge; still unapproved: workers, frontend, BBDown
+5. Next gate - merge this wording fix into main; T-P1A-023 research note then reflects
+   the merged PR #38 / PR #45 state. Still unapproved: workers, frontend, BBDown
    runtime, ffmpeg, ASR, `audio_transcript`, model download, generated transcript
    artifacts, prompt runner, LLM API client, and Phase 2-4 runtime.
