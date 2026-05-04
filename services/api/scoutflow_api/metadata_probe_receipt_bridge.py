@@ -207,6 +207,55 @@ def build_metadata_fetch_receipt(
     )
 
 
+def build_metadata_fetch_failure_receipt(
+    *,
+    capture_id: str,
+    job_id: str,
+    dedupe_key: str,
+    platform_result: PlatformResult,
+    producer: str = "scoutflow.metadata_probe_bridge",
+    producer_version: str = "0.1.0",
+    engine: str = "BBDown",
+    engine_version: str = "1.6.3",
+) -> WorkerReceipt:
+    """Build a metadata_fetch failure receipt with no produced assets.
+
+    Emitted when a dry-run probe observes a non-ok ``platform_result``. The
+    receipt deliberately carries:
+
+    * ``produced_assets=[]`` — no success evidence is written;
+    * ``platform_result=<non-ok>`` — the actual probe verdict;
+    * ``next_status="metadata_fetched"`` — required by the storage contract
+      for any metadata_fetch receipt; storage gates capture-state advance on
+      ``job_status=succeeded``, so a failure receipt leaves the capture in
+      ``discovered`` while moving the job to ``failed``.
+    """
+
+    if platform_result is PlatformResult.ok:
+        raise ValueError("Failure receipt requires platform_result != ok; use build_metadata_fetch_receipt for ok.")
+
+    return WorkerReceipt.model_validate(
+        {
+            "job_id": job_id,
+            "capture_id": capture_id,
+            "job_type": "metadata_fetch",
+            "producer": producer,
+            "producer_version": producer_version,
+            "engine": engine,
+            "engine_version": engine_version,
+            "idempotency": ReceiptIdempotency(job_attempt=1, dedupe_key=dedupe_key).model_dump(mode="json"),
+            "platform_result": platform_result.value,
+            "produced_assets": [],
+            "logs": {
+                "job_log_path": "logs/jobs/metadata-receipt-bridge.log",
+                "stderr_path": None,
+            },
+            "duration_seconds": 0.0,
+            "next_status": "metadata_fetched",
+        }
+    )
+
+
 def _to_json_bytes(payload: dict[str, object]) -> bytes:
     return json.dumps(payload, ensure_ascii=True, indent=2, sort_keys=True).encode("utf-8")
 

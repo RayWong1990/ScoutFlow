@@ -27,7 +27,7 @@ if str(API_ROOT) not in sys.path:
     sys.path.insert(0, str(API_ROOT))
 
 
-SAMPLE_URL = "https://www.bilibili.com/video/BV1AB411c7mD"
+SAMPLE_URL = "https://www.bilibili.com/video/BVSCOUTFLOW1"
 
 
 def _read_fixture(name: str) -> str:
@@ -148,8 +148,16 @@ def test_replayed_completion_remains_idempotent_through_the_same_flow(tmp_path: 
     assert second.json()["idempotent"] is True
 
 
-@pytest.mark.parametrize("fixture", ["info_auth_required_sanitized.txt", "info_parser_drift_sanitized.txt"])
-def test_non_ok_outcome_does_not_produce_receipt_to_post(tmp_path: Path, fixture: str) -> None:
+@pytest.mark.parametrize(
+    ("fixture", "expected_platform_result"),
+    [
+        ("info_auth_required_sanitized.txt", "auth_required"),
+        ("info_parser_drift_sanitized.txt", "parser_drift"),
+    ],
+)
+def test_non_ok_outcome_emits_failure_receipt_then_complete_marks_job_failed(
+    tmp_path: Path, fixture: str, expected_platform_result: str
+) -> None:
     from scoutflow_api.external_tools.bbdown_info_adapter import BBDownInfoCommand, BBDownInfoRunnerOutput
     from scoutflow_api.orchestration import dry_run_metadata_probe
 
@@ -157,13 +165,14 @@ def test_non_ok_outcome_does_not_produce_receipt_to_post(tmp_path: Path, fixture
     capture = _discover_capture(client)
     capture_id = capture["capture_id"]
     enqueue = _enqueue_job(client, capture_id)
+    job_id = enqueue["job_id"]
 
     def runner(_: BBDownInfoCommand) -> BBDownInfoRunnerOutput:
         return BBDownInfoRunnerOutput(exit_code=1, stdout_text=_read_fixture(fixture))
 
     outcome = dry_run_metadata_probe(
         capture_id=capture_id,
-        job_id=enqueue["job_id"],
+        job_id=job_id,
         dedupe_key=enqueue["dedupe_key"],
         manual_url=SAMPLE_URL,
         job_temp_dir=tmp_path / "bbdown-info-job",
@@ -172,9 +181,21 @@ def test_non_ok_outcome_does_not_produce_receipt_to_post(tmp_path: Path, fixture
     )
 
     assert outcome.success_evidence_emitted is False
-    assert outcome.receipt_candidate is None
+    assert outcome.receipt_candidate is not None
+    assert outcome.receipt_candidate.platform_result.value == expected_platform_result
+    assert outcome.receipt_candidate.produced_assets == []
+
+    receipt_payload = outcome.receipt_candidate.model_dump(mode="json")
+    response = client.post(f"/jobs/{job_id}/complete", json=receipt_payload)
+    assert response.status_code == 200, response.text
+    body = response.json()
+    assert body["status"] == "failed"
+    assert body["platform_result"] == expected_platform_result
+    assert body["artifact_count"] == 0
 
     trust = client.get(f"/captures/{capture_id}/trust-trace").json()
-    assert trust["metadata_job"]["status"] == "queued"
+    assert trust["metadata_job"]["status"] == "failed"
+    assert trust["metadata_job"]["platform_result"] == expected_platform_result
     assert trust["receipt_ledger"]["present"] is False
+    assert trust["capture_state"]["status"] == "discovered"
     assert trust["media_audio"]["audio_transcript"] == "blocked"

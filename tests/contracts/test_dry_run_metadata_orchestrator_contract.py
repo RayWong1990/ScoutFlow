@@ -31,7 +31,8 @@ if str(API_ROOT) not in sys.path:
     sys.path.insert(0, str(API_ROOT))
 
 
-SAMPLE_URL = "https://www.bilibili.com/video/BV19D9eB9Etg/?spm_id_from=333.1007.tianma.3-1-7.click"
+SAMPLE_URL = "https://www.bilibili.com/video/BVSCOUTFLOW1"
+SAMPLE_URL_MISMATCH = "https://www.bilibili.com/video/BV19D9eB9Etg"
 SAMPLE_CAPTURE_ID = "01CAPTUREDRYRUN0000000019"
 SAMPLE_JOB_ID = "01JOBDRYRUN0000000000019"
 SAMPLE_DEDUPE_KEY = "bilibili:BVSCOUTFLOW1:metadata_fetch"
@@ -121,10 +122,11 @@ def test_materialized_assets_stay_inside_capture_bundle(tmp_path: Path) -> None:
         ("info_forbidden_sanitized.txt", 1, "forbidden"),
     ],
 )
-def test_non_ok_platform_results_do_not_emit_success_evidence(
+def test_non_ok_platform_results_emit_failure_receipt_with_empty_assets(
     tmp_path: Path, fixture: str, exit_code: int, expected_blocker_token: str
 ) -> None:
     from scoutflow_api.orchestration import dry_run_metadata_probe
+    from scoutflow_api.platform_result import PlatformResult
 
     runner, _ = _build_runner(fixture, exit_code=exit_code)
 
@@ -140,10 +142,50 @@ def test_non_ok_platform_results_do_not_emit_success_evidence(
 
     assert outcome.success_evidence_emitted is False
     assert outcome.materialized_assets == ()
-    assert outcome.receipt_candidate is None
     assert outcome.success_blocker is not None
     assert outcome.success_blocker.startswith("platform_result_not_ok:")
     assert expected_blocker_token in outcome.success_blocker
+
+    receipt = outcome.receipt_candidate
+    assert receipt is not None, "non-ok probe must still emit a failure receipt candidate"
+    assert receipt.job_id == SAMPLE_JOB_ID
+    assert receipt.capture_id == SAMPLE_CAPTURE_ID
+    assert receipt.idempotency.dedupe_key == SAMPLE_DEDUPE_KEY
+    assert receipt.platform_result is not PlatformResult.ok
+    assert receipt.produced_assets == []
+    assert receipt.next_status == "metadata_fetched"
+    assert receipt.job_type == "metadata_fetch"
+
+    capture_root = tmp_path / "artifacts" / "bilibili" / SAMPLE_CAPTURE_ID
+    assert not capture_root.exists() or not any(capture_root.rglob("*.json"))
+
+
+def test_ok_probe_with_mismatched_platform_item_id_does_not_emit_receipt(tmp_path: Path) -> None:
+    """Provenance gate: probe stdout's BV id must equal URL-derived BV id."""
+
+    from scoutflow_api.orchestration import dry_run_metadata_probe
+    from scoutflow_api.platform_result import PlatformResult
+
+    runner, _ = _build_runner("info_public_ok_sanitized.txt")
+
+    outcome = dry_run_metadata_probe(
+        capture_id=SAMPLE_CAPTURE_ID,
+        job_id=SAMPLE_JOB_ID,
+        dedupe_key=SAMPLE_DEDUPE_KEY,
+        manual_url=SAMPLE_URL_MISMATCH,
+        job_temp_dir=tmp_path / "bbdown-info-job",
+        artifacts_root=tmp_path / "artifacts",
+        runner=runner,
+    )
+
+    assert outcome.platform_result is PlatformResult.ok
+    assert outcome.success_evidence_emitted is False
+    assert outcome.materialized_assets == ()
+    assert outcome.receipt_candidate is None
+    assert outcome.success_blocker is not None
+    assert outcome.success_blocker.startswith("platform_item_id_mismatch:")
+    assert "expected=BV19D9eB9Etg" in outcome.success_blocker
+    assert "actual=BVSCOUTFLOW1" in outcome.success_blocker
 
     capture_root = tmp_path / "artifacts" / "bilibili" / SAMPLE_CAPTURE_ID
     assert not capture_root.exists() or not any(capture_root.rglob("*.json"))
