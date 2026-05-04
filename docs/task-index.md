@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`0/3`，Review count=`0`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active count=`3/3`，Review count=`0`。
 
 ## 规则
 
@@ -20,7 +20,9 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-018` | metadata_fetch job enqueue API | `open` | Codex Desktop single writer | `services/api` job + storage layer | `storage.py`, `captures.py`, `jobs.py`, `main.py`, `test_jobs_complete.py`, `test_captures_discover.py` | `migrations/**`, `orchestration/**`, `external_tools/**`, `docs/PRD-v2*`, `docs/SRD-v2*`, `docs/specs/**` | PRD-v2 §metadata_fetch; SRD-v2 §job-queue | `pytest tests/api tests/contracts -q` | stop if migrations touched; stop if orchestration/ written | conflict-domain-owner: `storage.py`/`captures.py`/`jobs.py`/`main.py`; 19/20 read-only these files |
+| `T-P1A-019` | metadata probe dry-run orchestrator | `open` | Codex Desktop single writer | `external_tools` + `orchestration` (新建) + bridge | `external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**` (新建) | `storage.py` (read-only), `migrations/**`, `docs/PRD-v2*`, `docs/SRD-v2*`, `docs/specs/**` | SRD-v2 §metadata-probe; SRD-v2 §PlatformResult | `pytest tests/api tests/contracts -q` | stop if storage.py written; stop if migrations touched | conflict-domain-owner: `external_tools/**`, `metadata_probe_receipt_bridge.py`, `orchestration/**`; 18 不动 these files; starts after 18 storage layer done |
+| `T-P1A-020` | Trust Trace / Explore contract hardening | `open` | Codex Desktop single writer | Trust Trace + Explore contract tests | `tests/api/test_capture_trust_trace.py`, `tests/contracts/test_trust_trace_contract.py` (新建可) | `storage.py` (read-only), `orchestration/**` (read-only), `migrations/**`, `docs/PRD-v2*`, `docs/SRD-v2*` | SRD-v2 §trust-trace; T-P1A-013/013A contract | `pytest tests/api tests/contracts -q` | stop if storage.py written; stop if runtime gates changed | conflict-domain-owner: `test_capture_trust_trace.py`; 自己的新 contract test 文件; 18/19 不动 these files; starts after 19 orchestration done |
 
 ## Review
 
@@ -28,11 +30,34 @@
 |---|---|---|---|---|---|---|---|---|---|---|
 | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
-## Backlog
+## Backlog / Research
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-021` | BBDown runtime gate matrix | `research/backlog` | — | research note | `docs/research/t-p1a-021-bbdown-gate-matrix.md` | `services/**`, `migrations/**`, BBDown runtime | — | docs-check | not runtime approval | research lane; not product active; not runtime approval |
+| `T-P1A-022` | ASR pipeline prestudy | `research/backlog` | — | research note | `docs/research/t-p1a-022-asr-prestudy.md` | `services/**`, `migrations/**`, `audio_transcript` runtime | — | docs-check | `audio_transcript` runtime remains blocked | research lane; not product active; not runtime approval |
+| `T-P1A-023` | LLM normalization schema | `research/backlog` | — | research note | `docs/research/t-p1a-023-llm-normalization-schema.md` | `services/**`, `migrations/**`, any runtime | — | docs-check | not schema authority | research lane; not product active; not runtime approval |
+| `T-P1A-024` | Explore wireframe + state table | `research/backlog` | — | research note | `docs/research/t-p1a-024-explore-wireframe.md` | `services/**`, `migrations/**`, frontend runtime | — | docs-check | not frontend approval | research lane; not product active; not runtime approval |
+| `T-P1A-025` | DB / evidence ledger vNext proposal | `research/backlog` | — | research note | `docs/research/t-p1a-025-db-ledger-vnext.md` | `services/**`, `migrations/**`, schema changes | — | docs-check | not schema/migration approval | research lane; not product active; not runtime approval |
+
+## Wave 2 Conflict Domain (T-P1A-018/019/020)
+
+> Registered 2026-05-04 by T-P1A-017 ledger-open. 18/19/20 must not collide on the domains below.
+
+| Conflict Domain | Owner Lane | Other lanes |
+|---|---|---|
+| `services/api/scoutflow_api/storage.py` | T-P1A-018 | 19/20 read-only |
+| `services/api/scoutflow_api/captures.py` + `jobs.py` + `main.py` | T-P1A-018 | 19/20 read-only |
+| `services/api/scoutflow_api/external_tools/**` | T-P1A-019 | 18 不动 |
+| `services/api/scoutflow_api/metadata_probe_receipt_bridge.py` | T-P1A-019 | 18 不动 |
+| `services/api/scoutflow_api/orchestration/**` (新建) | T-P1A-019 | 18/20 不动 |
+| `tests/api/test_capture_trust_trace.py` | T-P1A-020 | 18/19 不动 |
+| `tests/api/test_jobs_complete.py` + `test_captures_discover.py` | T-P1A-018 | 19/20 read-only |
+| `tests/contracts/test_*_contract.py` | 各 lane 可加自己的新 contract test 文件，但同一文件单写者 | — |
+| `docs/research/t-p1a-02X-*.md` | 各对应 task；别人不动 | — |
+| `services/api/migrations/**` | FORBIDDEN | 任何 lane 不得动 |
+
+**Authority writer slot [L4]**: T-P1A-017 / T-P1A-026 各自占用 Authority writer slot 1/1，跑期间禁止任何其他 authority writer 同时改 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md`。
 
 ## Blocked
 

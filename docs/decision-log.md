@@ -370,4 +370,15 @@
 
 - Decision: rebase `T-P1A-015` after PR `#34` merge and absorb the `T-P1A-016` ledger update as the single authority writer.
 - Fix: PRD v2 metadata probe wording now states the current success evidence is `T-P1A-011C auth-present metadata probe`; no-auth live platform success remains not proven.
+
+## 2026-05-04 — T-P1A-017 Wave 2 ledger open
+
+- Decision: open Wave 2 by registering three product lanes and five research/backlog lanes.
+- Product lanes (Active count `3/3`): T-P1A-018 `metadata_fetch job enqueue API`; T-P1A-019 `metadata probe dry-run orchestrator`; T-P1A-020 `Trust Trace / Explore contract hardening`. Sequencing: 018 → 019 → 020 (storage layer first, then orchestration, then contract hardening).
+- Research/backlog lanes (not product active; not runtime approval): T-P1A-021 BBDown runtime gate matrix; T-P1A-022 ASR pipeline prestudy; T-P1A-023 LLM normalization schema; T-P1A-024 Explore wireframe + state table; T-P1A-025 DB / evidence ledger vNext proposal.
+- Conflict domain table locked in `docs/task-index.md` Wave 2 section: T-P1A-018 owns `storage.py`/`captures.py`/`jobs.py`/`main.py`/`test_jobs_complete.py`/`test_captures_discover.py`; T-P1A-019 owns `external_tools/**`/`orchestration/**`/`metadata_probe_receipt_bridge.py`; T-P1A-020 owns `test_capture_trust_trace.py`; `migrations/**` FORBIDDEN for all lanes.
+- Authority writer slot [L4]: T-P1A-017 / T-P1A-026 each occupy Authority writer slot 1/1 during execution; no concurrent authority writer permitted on `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md`.
+- Merge gate: PR must include user-approved lane plan sign-off before merge; T-P1A-018/019/020/021/022/023/024/025 must not start writing files before T-P1A-017 PR merges.
+- No runtime / worker / frontend / ASR / `audio_transcript` approval granted by this ledger-open PR.
+- Boundary: docs-only authority update; no product code, no schema changes, no migrations, no BBDown execution.
 - Fix: path-only reference maintenance exceptions are formally recorded in `docs/retro/2026-05-04-prd-srd-promote.md`.

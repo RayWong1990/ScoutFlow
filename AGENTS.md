@@ -8,7 +8,7 @@
 5. 当前任务直接引用的 PRD / SRD / spec
 ## 2. 当前 Phase
 - Phase：`1A`；当前指针：`docs/current.md`
-- 当前活动任务：无 active product task；`T-P1A-015` / `T-P1A-016` 已完成，等待 user 授权下一 lane。
+- 当前活动任务：Wave 2 ledger opened — Active count=`3/3`；next executable lane: T-P1A-018；sequencing 018→019→020；详见 `docs/current.md` / `docs/task-index.md`。
 - Active product lane max=`3`; Authority writer max=`1`; review / audit / research lane 不计入 product lane，除非写 authority。
 ## 3. 当前允许路径
 - Quick answer: 可改状态/入口/contract/retro/research 授权路径；不可改 local-only 目录、未授权 runtime、凭据或 final authority 口径。
