@@ -22,7 +22,7 @@
 | `failed` | `metadata_job.status=failed`, `metadata_job.platform_result!=ok`, `receipt_ledger.present=false` | platform/probe failed safely; capture remains discovered | show retry candidate affordance `<TBD future gate>` | move capture to `metadata_fetched` |
 | `metadata_fetched` | `capture_state.status=metadata_fetched`, `metadata_job.status=succeeded`, `receipt_ledger.present=true` | safe metadata evidence is available | show evidence summary and trust trace card | unlock media, ffmpeg, ASR, transcript, comments, danmaku, screenshots |
 
-Merge-gated alignment note: after T-P1A-019 merges with its current non-ok failure receipt path, `failed` is produced by non-ok failure receipt completion from the dry-run orchestrator; no success evidence artifacts are emitted. Until T-P1A-019 is merged and #43 is rebased, this remains a sequencing gate, not independent authority.
+Post-T-P1A-019 alignment note: T-P1A-019 has merged with its non-ok failure receipt path. In the current Phase 1A contract, `failed` is produced by non-ok failure receipt completion from the dry-run orchestrator; no success evidence artifacts are emitted. This note remains research/candidate for Explore consumption and does not open retry, frontend, worker, BBDown live, ffmpeg, ASR, or audio_transcript runtime.
 
 ## 3. Button State Table
 
