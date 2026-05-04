@@ -72,6 +72,9 @@ class ProducedAsset(BaseModel):
     redaction_policy: str | None = None
     sensitive_fields_removed: list[str] | None = None
     source_url: str | None = None
+    evidence_source_task_id: str | None = None
+    evidence_source_report_path: str | None = None
+    probe_mode: str | None = None
     created_by_job: str = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -97,6 +100,22 @@ class ProducedAsset(BaseModel):
             if not self.sensitive_fields_removed:
                 raise ValueError("raw_api_response requires non-empty sensitive_fields_removed")
 
+        if self.artifact_kind in {"metadata_probe_summary", "safe_metadata_evidence"}:
+            if self.zone is not ArtifactZone.bundle:
+                raise ValueError("metadata probe evidence assets must stay in zone=bundle")
+            if not self.redaction_applied:
+                raise ValueError("metadata probe evidence assets require redaction_applied=true")
+            if not self.redaction_policy:
+                raise ValueError("metadata probe evidence assets require redaction_policy")
+            if not self.sensitive_fields_removed:
+                raise ValueError("metadata probe evidence assets require non-empty sensitive_fields_removed")
+            if not self.evidence_source_task_id:
+                raise ValueError("metadata probe evidence assets require evidence_source_task_id")
+            if not self.evidence_source_report_path:
+                raise ValueError("metadata probe evidence assets require evidence_source_report_path")
+            if self.probe_mode not in {"auth-present", "no-auth"}:
+                raise ValueError("metadata probe evidence assets require probe_mode=auth-present|no-auth")
+
         return self
 
 
@@ -119,6 +138,18 @@ class WorkerReceipt(BaseModel):
 
     @model_validator(mode="after")
     def validate_receipt_contract(self) -> "WorkerReceipt":
+        if self.job_type == "metadata_fetch":
+            allowed_artifact_kinds = {
+                "raw_api_response",
+                "metadata_probe_summary",
+                "safe_metadata_evidence",
+            }
+            for asset in self.produced_assets:
+                if asset.artifact_kind not in allowed_artifact_kinds:
+                    raise ValueError(
+                        "metadata_fetch only allows artifact_kind raw_api_response, metadata_probe_summary, or safe_metadata_evidence"
+                    )
+
         for asset in self.produced_assets:
             if asset.created_by_job != self.job_id:
                 raise ValueError("produced_assets[].created_by_job must match receipt job_id")

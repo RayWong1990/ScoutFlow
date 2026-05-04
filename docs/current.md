@@ -3,11 +3,11 @@
 ## 当前状态
 
 - Phase：`1A`
-- Step：`T-P1A-011G sidecar review for 07.x + patched 08/09 complete`
-- 主任务：`T-P1A-011G-sidecar-review-for-07x-and-patched-08-09`
-- 工作模式：当前无 active product task；`07.x` remediation pack 已完成；后续仍遵守 `Single Writer / Multi Reviewer`
-- 当前任务状态：`T-P1A-011G=done`; `T-P1A-011F=done`; `T-P1A-011E=done`; `T-P1A-011D=done`; `T-P1A-011C=done`; `T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
-- 当前结论：`main` 当前已合入 `T-P1A-001` metadata-only API-side baseline、`T-P1A-002` receipt / artifact ledger baseline、`T-P1A-004` text redaction / secret scan safety baseline，并已通过 PR `#10` 合入 `T-P1A-003` BBDown research note、通过 PR `#14` 合入 `T-P1A-006` BBDown adapter draft spec、通过 PR `#15` 合入 `T-P1A-007` Explore URL UX research note、通过 PR `#17` 合入 `T-P1A-008` BBDown sanitized fixture parser、通过 PR `#19` 合入 `T-P1A-009` BBDown local runtime spike report、通过 PR `#20` 完成 `T-P1A-009` close hardening，并按 05 red-team `PASS_WITH_FIXES` 后顺序合入 PR `#23` / `#22` / `#24`。`T-P1A-011` preflight compatibility repair 已完成；`T-P1A-011B` manual-auth QR local-only gate 已完成；`T-P1A-011C` auth-present metadata probe 已完成并给出 `platform_result=ok` 的 redacted metadata evidence。随后 `T-P1A-011D` 已固定 GitHub truth、编号修复与 pre-08 repair plan；`T-P1A-011E` 已加入最小 `docs/retro/` scaffold；`T-P1A-011F` 已确认外部 patched Dispatch `08/09` prompts 以 `011C` 为 success evidence source；`T-P1A-011G` sidecar review 结论为 `PASS_WITH_FIXES`，并已修复 repo 入口文档仍停在 `011C` 的 authority drift。当前 Active count=`0/3`，Review count=`0`；本轮未下载媒体，未运行 BBDown、ffmpeg 或 ASR，未读取 browser profile，未写 receipt / artifact ledger / capture state，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
+- Step：`T-P1A-012 metadata probe receipt / artifact ledger wiring done`
+- 主任务：`T-P1A-012-metadata-probe-receipt-ledger-wiring`
+- 工作模式：当前无 active product task；继续遵守 `Single Writer / Multi Reviewer`
+- 当前任务状态：`T-P1A-012=done`; `T-P1A-011G=done`; `T-P1A-011F=done`; `T-P1A-011E=done`; `T-P1A-011D=done`; `T-P1A-011C=done`; `T-P1A-011B=done`; `T-P1A-011=done`; `T-P1A-010=done`; `T-P1A-010A=done`; `T-P1A-010B=done`; `T-P1A-010C=done`; `T-P1A-009=done`; `T-P1A-008=done`
+- 当前结论：`T-P1A-012` 已完成：执行输入采用 patched Dispatch `08`，只消费既有 `T-P1A-011C` auth-present metadata evidence，不重跑 BBDown。主线代码新增了 `metadata_probe_receipt_bridge` helper，把成功 probe 的 safe parsed fields materialize 为 `bundle/safe-metadata-evidence.json` 与 `bundle/metadata-probe-summary.json`，再通过既有 `POST /jobs/{job_id}/complete` / `artifact_assets` baseline 入账。与此同时，`metadata_fetch` receipt 现在只允许 `raw_api_response`、`metadata_probe_summary`、`safe_metadata_evidence` 三类 artifact kinds，并把 `evidence_source_task_id / evidence_source_report_path / probe_mode` 写回 `artifact_assets.metadata_json`。当前 Active count=`0/3`，Review count=`0`；本轮未下载媒体，未运行 BBDown、ffmpeg 或 ASR，未读取 browser profile，不启用 `audio_transcript` runtime，不进入 Phase 2-4。
 
 ## 当前允许
 
@@ -17,7 +17,7 @@
 - `docs/research/t-p1a-011d-second-retro-remediation-triage-2026-05-04.md`、`docs/research/t-p1a-011f-dispatch-08-09-patch-report-2026-05-04.md`、`docs/research/t-p1a-011g-sidecar-review-07x-and-patched-08-09-2026-05-04.md`：当前只作 triage / patch / review reference
 - 已合入主线的 `docs/specs/bbdown-adapter-contract-draft.md` 与 `docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md` 当前只作参考，不自动授权后续代码修改
 - `T-P1A-009` report-only 文件：`docs/research/t-p1a-009-bbdown-local-runtime-spike-report-2026-05-03.md`
-- 当前无 active product task；`07.x` remediation pack 已完成
+- 当前无 active product task；`T-P1A-012` 已完成
 
 ## 当前禁止
 
@@ -66,6 +66,7 @@
 - `T-P1A-011E`：Minimal retro skeleton；状态 `done`；已创建最小 `docs/retro/` scaffold 与 first-week retro；不是 authority、不是 PRD/SRD amendment、不是 product scope 扩张
 - `T-P1A-011F`：Dispatch 08/09 prompt patch；状态 `done`；已确认 repo 外 patched Dispatch `08/09` prompts 以 `011C` 为 success evidence source，且保持 no-runtime boundary；repo-side 报告见 `docs/research/t-p1a-011f-dispatch-08-09-patch-report-2026-05-04.md`
 - `T-P1A-011G`：Sidecar review for `07.x` + patched `08/09`；状态 `done`；结论 `PASS_WITH_FIXES`；最小修复是把 repo authority docs 从 `011C` 单点焦点同步到 `07.x remediation complete`；报告见 `docs/research/t-p1a-011g-sidecar-review-07x-and-patched-08-09-2026-05-04.md`
+- `T-P1A-012`：Metadata probe receipt / artifact ledger wiring；状态 `done`；执行输入采用 patched Dispatch `08`；新增 `metadata_probe_receipt_bridge` helper 和围绕 `011C` 的 contract/API tests；safe artifact kinds 为 `metadata_probe_summary` 与 `safe_metadata_evidence`；不允许新 BBDown runtime、media / ffmpeg / ASR、manual auth、frontend / workers
 - `T-P1A-010A`：BBDown executable discovery / tool preflight package；状态 `done`；已通过 PR `#23` 合并入 `main`；仅表示 `ToolPreflightResult` package 和 contract tests merged，不批准真实 BBDown 执行、URL、`-info`、auth、media、ffmpeg、ASR、receipt 或 capture state
 - `T-P1A-010B`：BBDown no-auth `-info` adapter shell with injected runner and parser integration；状态 `done`；已通过 PR `#22` 合并入 `main`；仅表示 injected-runner adapter shell merged，不批准真实 BBDown 执行、真实 `BBDown -info`、auth、media、receipt 或 capture state
 - `T-P1A-010C`：PRD/SRD amendment repair pack + next dispatch plan + red-team checklist；状态 `done`；已通过 PR `#24` 合并入 `main`；PRD/SRD v1.2 amendment 仍是 `candidate / draft / not final authority / not runtime approval`
@@ -82,9 +83,9 @@
 
 ## 下一步候选
 
-- 下一步候选是 patched Dispatch `08`：`T-P1A-012` evidence-consumption receipt wiring，只消费既有 `T-P1A-011C` auth-present metadata evidence，不重跑 BBDown
-- user 如需在 `08` 之前补一条外部事实 lane，可显式授权 `T-P1A-011H` candidate-only legal/vendor notes；否则不默认执行
-- `08` 完成后的下一候选是 `T-P1A-012R` receipt-wiring retro，再之后才是 patched Dispatch `09`：`T-P1A-013` Trust Trace minimal surface
+- 下一步候选是 `T-P1A-012R` receipt-wiring retro，使用真实 `012` 产物做最小复盘
+- 再下一步候选是 patched Dispatch `09`：`T-P1A-013` Trust Trace minimal surface
+- 如 user 先想补外部事实 lane，仍可显式授权 `T-P1A-011H` candidate-only legal/vendor notes；否则不默认执行
 - 不自动执行新的 `BBDown -info`；未来若要尝试新的 URL 或新的 runtime gate，仍需 user 再次显式批准；media、ffmpeg、ASR、workers、frontend、`audio_transcript` 仍未批准
 
 ## 阻塞

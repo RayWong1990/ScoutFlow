@@ -43,6 +43,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-012` | Metadata probe receipt / artifact ledger wiring | `2026-05-04` | scope=`consume existing T-P1A-011C auth-present metadata evidence into POST /jobs/{job_id}/complete baseline`; implementation=`metadata_probe_receipt_bridge helper + metadata_fetch artifact-kind gate + evidence-source metadata writeback`; artifact_kinds=`safe_metadata_evidence + metadata_probe_summary`; result=`011C auth-present evidence maps into artifact_assets/job_events without new BBDown runtime`; no media / ffmpeg / ASR / manual auth / audio_transcript / frontend / workers |
 | `T-P1A-011G` | Sidecar review for `07.x` + patched `08/09` | `2026-05-04` | verdict=`PASS_WITH_FIXES`; scope=`read-only review criteria + repo authority-doc sync repair`; fix=`remove stale 011C-only focus from AGENTS/current/task-index/decision-log/README`; readiness=`Dispatch 08 ready; Dispatch 09 ready`; no runtime |
 | `T-P1A-011F` | Dispatch 08/09 prompt patch | `2026-05-04` | scope=`repo-side patch report + external patched prompt verification`; corrected=`08 depends on 011C evidence, not blocked 011`; preserved=`T-P1A-012/013 numbering`; external patched files stayed outside GitHub PR; no runtime |
 | `T-P1A-011E` | Minimal retro skeleton | `2026-05-04` | scope=`docs/retro/README.md + three templates + 2026-05-04 week-1 retro`; boundary=`not authority, not PRD/SRD amendment, not product scope`; no runtime |

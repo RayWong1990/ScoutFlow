@@ -236,7 +236,7 @@ class Storage:
         return self._artifact_ledger_path(platform, capture_id, asset.relative_path)
 
     def _asset_metadata(self, receipt: WorkerReceipt, asset: ProducedAsset) -> dict[str, Any]:
-        return {
+        metadata = {
             "is_raw_evidence": asset.is_raw_evidence,
             "is_derived": asset.is_derived,
             "redaction_applied": asset.redaction_applied,
@@ -253,6 +253,13 @@ class Storage:
             "dedupe_key": receipt.idempotency.dedupe_key,
             "platform_result": receipt.platform_result.value,
         }
+        if asset.evidence_source_task_id is not None:
+            metadata["evidence_source_task_id"] = asset.evidence_source_task_id
+        if asset.evidence_source_report_path is not None:
+            metadata["evidence_source_report_path"] = asset.evidence_source_report_path
+        if asset.probe_mode is not None:
+            metadata["probe_mode"] = asset.probe_mode
+        return metadata
 
     def _job_event_json(self, receipt: WorkerReceipt, ledger_paths: list[str]) -> str:
         return json.dumps(
