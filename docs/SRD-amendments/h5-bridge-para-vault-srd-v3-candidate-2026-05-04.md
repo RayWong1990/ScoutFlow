@@ -1,15 +1,18 @@
-# SRD-v3 Candidate Amendment - H5 Bridge PARA Vault
+# SRD-v3 Addendum - H5 Bridge PARA Vault
 
 ---
-title: H5 Bridge PARA Vault SRD v3 Candidate
-status: amendment / candidate
+title: H5 Bridge PARA Vault SRD v3 Addendum
+status: amendment / promoted
 task_id: T-P1A-034
-pr_number: PR #59
-candidate: true
-not_authority: true
+promotion_task_id: T-P1A-103
+pr_number: PR #64
+candidate: false
+not_authority: false
+promotion_basis: user_override_for_B2_preflight
 not_runtime_approval: true
 not_frontend_approval: true
 not_migration_approval: true
+walking_skeleton_evidence: future_gated
 authority_base: docs/SRD-v2-2026-05-04.md
 based_on_main_commit: 554f497feb31e60022542eb06bf21a74487e4e09
 related_inputs:
@@ -19,13 +22,14 @@ related_inputs:
   - docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md
   - docs/research/opus-v3-acceptance-prd-srd-amendment-roadmap-review-2026-05-04.md
   - docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md
-  - /Users/wanglei/workspace/ScoutFlow-PR58/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md
-sunset_trigger: Deprecated when equivalent sections are promoted into a later SRD base after Wave 3A closeout, Wave 4 walking skeleton evidence, and explicit user promotion gate.
-revalidate_before_promote: true
+  - docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md
+  - /Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md
+sunset_trigger: Deprecated when equivalent sections are absorbed into a later SRD base after future implementation evidence is reviewed.
+revalidate_before_runtime_or_base_absorption: true
 ---
 
-> Status: `candidate / not authority / not runtime approval / not frontend approval / not migration approval`.
-> This amendment extends `docs/SRD-v2-2026-05-04.md` as a read-only base reference. It does not modify the promoted SRD baseline.
+> Status: `promoted addendum / not runtime approval / not frontend approval / not migration approval`.
+> Promotion basis: `user_override_for_B2_preflight` recorded by `T-P1A-103`. This addendum extends `docs/SRD-v2-2026-05-04.md` for B2 planning and contract baseline while leaving the base file unchanged.
 
 ## 0. Boundary
 
@@ -54,10 +58,11 @@ Not allowed in this amendment:
 - remote vault sync or cross-vault replication
 
 Dependency note: section shape is intentionally aligned to the stable six-section
-candidate skeleton already landed in the parallel PR58 worktree at
+PRD-v2.1 addendum already landed at
 `docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md`.
-That file is a candidate reference, not a promoted authority input inside this
-branch.
+That file is now promoted for B2 planning through the same
+`user_override_for_B2_preflight` basis. It still does not unlock frontend
+implementation or runtime work.
 
 ### §17.1 H5 Capture Station
 
@@ -309,7 +314,7 @@ constraint authored by this file.
 
 ### §17.5 Out of Scope
 
-Out of scope for this candidate amendment:
+Out of scope for this promoted addendum:
 
 - remote vault sync
 - multi-vault replication
@@ -325,40 +330,44 @@ Out of scope for this candidate amendment:
 - migration scripts
 - direct BBDown / Whisper / ffmpeg execution from the H5 layer
 
-This file therefore narrows the candidate surface instead of expanding the
+This file therefore narrows the addendum surface instead of expanding the
 runtime promise.
 
-### §17.6 Acceptance Criteria for Promotion
+### §17.6 Promotion basis and future evidence gates
 
-This amendment may only be promoted when engineering evidence, visual evidence,
-and vault-boundary evidence converge.
+This addendum is promoted by user override for B2 preflight, not by claiming
+that engineering, visual, or vault-boundary evidence already converged.
 
-Required promotion gates:
+Promotion basis:
 
-1. Wave 3A closeout records this candidate without changing the base SRD early.
-2. A later Wave 4 walking skeleton proves the future H5 -> Bridge -> authority -> vault path coheres end to end.
-3. The H5 direction passes the five-check visual gate in the relevant prototype or implementation review.
-4. Vault preview / commit behavior proves the four-field frontmatter and four-section body shape without drifting from the upstream template family.
-5. Placeholder or bounded export trials demonstrate stable write-path behavior before any broader runtime claim.
-6. The user gives an explicit promotion gate.
+1. Wave 3A and Wave 3B closeout records landed on main.
+2. Wave 4 B1 PR body/diff layer reached `verdict=clear`.
+3. RAW control-plane defects were repaired by `T-P1A-103`.
+4. User authorized `user_override_for_B2_preflight` for this H5/Bridge SRD addendum.
 
-Promotion state machine:
+Future evidence gates:
+
+1. a future walking skeleton must still prove the H5 -> Bridge -> authority -> vault path coheres end to end
+2. the H5 direction must still pass the five-check visual gate in the relevant prototype or implementation review
+3. Vault preview / commit behavior must still prove the four-field frontmatter and four-section body shape without drifting from the upstream template family
+4. placeholder or bounded export trials must still demonstrate stable write-path behavior before any broader runtime claim
+5. Bridge/VaultWriter runtime remains separately gated
+6. migration remains separately gated
+
+State machine:
 
 ```text
-candidate_written
-  -> wave_3a_closed
-  -> walking_skeleton_clear
-  -> visual_gate_clear
-  -> vault_contract_clear
-  -> user_gate_granted
-  -> promoted_or_deprecated
+promoted_addendum_for_b2_preflight
+  -> b2_commander_ready
+  -> future_walking_skeleton_dispatch
+  -> future_visual_gate_review
+  -> future_vault_contract_review
+  -> future_runtime_or_migration_gate
 ```
 
-Failure interpretation:
+Interpretation:
 
-- if the walking skeleton is technically valid but the visual gate fails, this file stays candidate
-- if the vault write path works but drifts from the frontmatter / section contract, this file stays candidate
-- if later SRD authority text supersedes these sections, this file becomes deprecated per `sunset_trigger`
-
-Until those gates are satisfied, this file remains a stable candidate reference
-for later spec-only work and future implementation dispatches.
+- `promoted_addendum_for_b2_preflight` means B2 planning may use this engineering shape.
+- It does not mean a walking skeleton exists.
+- It does not unlock Bridge/VaultWriter runtime, vault commit, migrations, frontend implementation, BBDown live runtime, ffmpeg, ASR, browser automation, or `audio_transcript`.
+- If later SRD authority text supersedes these sections, this file becomes deprecated per `sunset_trigger`.

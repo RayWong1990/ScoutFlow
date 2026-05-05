@@ -1,26 +1,30 @@
 ---
-title: PRD v2.1 Strong Visual H5 PARA PR Factory Candidate
-status: amendment / candidate
+title: PRD v2.1 Strong Visual H5 PARA PR Factory Addendum
+status: amendment / promoted
 task_id: T-P1A-033
+promotion_task_id: T-P1A-103
 pr_number: PR #58
-candidate: true
-not_authority: true
+candidate: false
+not_authority: false
+promotion_basis: user_override_for_B2_preflight
 not_runtime_approval: true
 not_frontend_implementation_approval: true
+walking_skeleton_evidence: future_gated
 base_prd: docs/PRD-v2-2026-05-04.md
-sunset_trigger: Deprecated when equivalent sections are promoted into PRD-v3 or a later promoted base PRD after Wave 3A closeout, Wave 4 walking skeleton, and user explicit promotion gate.
+sunset_trigger: Deprecated when equivalent sections are absorbed into PRD-v3 or a later promoted base PRD after future implementation evidence is reviewed.
 related_inputs:
   - docs/research/pr55-pr74-worklist-candidate-2026-05-04.md
   - docs/architecture/baseline-roadmap-after-pr54-candidate-2026-05-04.md
   - docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md
   - docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md
   - docs/research/opus-v3-acceptance-prd-srd-amendment-roadmap-review-2026-05-04.md
+  - /Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md
 ---
 
-> Status: `candidate / not authority / not runtime approval / not frontend implementation approval`.
-> This amendment extends `docs/PRD-v2-2026-05-04.md` as a read-only base reference. It does not modify the promoted PRD baseline.
+> Status: `promoted addendum / not runtime approval / not frontend implementation approval`.
+> Promotion basis: `user_override_for_B2_preflight` recorded by `T-P1A-103`. This addendum extends `docs/PRD-v2-2026-05-04.md` for B2 planning and contract baseline while leaving the base file unchanged.
 
-This file narrows the accepted product direction for the next wave of candidate work:
+This file narrows the accepted product direction for the next wave of B2 planning work:
 
 - strong visual happens at capture time in an H5 surface, not inside wiki reading surfaces
 - the existing PARA / Claudian vault remains the downstream knowledge system
@@ -157,32 +161,38 @@ Also out of scope:
 - claiming surge parallelism is already enforced
 - treating any mirror under `05-Projects/ScoutFlow/` as a replacement for repo authority
 
-## §X.6 Acceptance criteria for promotion
+## §X.6 Promotion basis and future evidence gates
 
-This candidate may only be promoted after both product direction and execution evidence converge. Promotion is not triggered by authoring the document itself.
+This addendum is promoted by user override for B2 preflight, not by claiming that the old walking-skeleton criteria already happened.
 
-Required acceptance:
+Promotion basis:
 
-1. Wave 3A closeout is complete and records this candidate in the appropriate closeout path
-2. a Wave 4 walking skeleton proves the H5 surface, API boundary, and downstream vault boundary cohere at a minimal end-to-end level
-3. the H5 direction passes the five-check visual gate as part of that walking skeleton review
-4. no base PRD authority drift is introduced during candidate execution
-5. the user gives an explicit promotion gate
+1. Wave 3A and Wave 3B closeout records landed on main.
+2. Wave 4 B1 PR body/diff layer reached `verdict=clear`.
+3. RAW control-plane defects were repaired by `T-P1A-103`.
+4. User authorized `user_override_for_B2_preflight` for this PRD-v2.1 addendum.
 
-Promotion state machine:
+Future evidence gates:
+
+1. a future walking skeleton must still prove the H5 surface, API boundary, and downstream vault boundary cohere at a minimal end-to-end level
+2. the H5 direction must still pass the five-check visual gate in that future review
+3. no base PRD authority drift may be introduced during implementation
+4. frontend implementation remains separately gated
+5. runtime and media-tool execution remain separately gated
+
+State machine:
 
 ```text
-candidate_written
-  -> wave_3a_closed
-  -> walking_skeleton_clear
-  -> user_gate_granted
-  -> promoted_or_deprecated
+promoted_addendum_for_b2_preflight
+  -> b2_commander_ready
+  -> future_walking_skeleton_dispatch
+  -> future_visual_gate_review
+  -> future_runtime_or_frontend_gate
 ```
 
 Interpretation:
 
-- if Wave 3A closes but the walking skeleton is weak, this file stays candidate
-- if the walking skeleton is technically valid but fails visual gate, this file stays candidate
-- if later authority text supersedes these sections, this file becomes deprecated per `sunset_trigger`
-
-Until those gates are met, this amendment remains a stable candidate reference for follow-on SRD and research work, while `docs/PRD-v2-2026-05-04.md` remains the only promoted PRD baseline.
+- `promoted_addendum_for_b2_preflight` means B2 planning may use this product direction.
+- It does not mean a walking skeleton exists.
+- It does not unlock frontend implementation, BBDown live runtime, media download, ffmpeg, ASR, browser automation, or `audio_transcript`.
+- If later authority text supersedes these sections, this file becomes deprecated per `sunset_trigger`.

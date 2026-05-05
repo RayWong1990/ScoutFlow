@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 4 B2 preflight state=`B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`。
 
 ## 规则
 
@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — Wave 3B closed; Wave 4 candidate only / not user-gated`
+`Phase 1A — B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`
 
 ## Active
 
@@ -64,6 +64,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-103` | Wave 4 B1 control-plane repair + B2 preflight authority closure | `2026-05-05` | state=`closed`; scope=RAW checkpoint/report/diff bundle/local evidence manifest + docs/current/task-index/decision-log/contracts-index/PRD-v2.1/SRD-v3 H5-Bridge readback; result=PR #93 superseded and must not merge as-is; PRD-v2.1 + SRD-v3 H5/Bridge promoted as B2 planning/contract addenda via `user_override_for_B2_preflight`; `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`; no runtime/frontend/migration/BBDown live/ffmpeg/ASR/browser automation approval |
 | `T-P1A-043` | Wave 3B ledger open + shoulders clone plan | `2026-05-05` | PR=#68; scope=AGENTS/current/task-index/decision-log/shoulders-index/clone-plan/referencerepo-index; result=Wave 3B opened, clone/probe plan registered, referencerepo tracked mirror created, no tracked clone or runtime approval |
 | `T-P1A-050` | Wave 3B closeout + Wave 4 ledger candidate | `2026-05-05` | PR=#75; scope=AGENTS/current/task-index/decision-log/shoulders-index/contracts-index; result=Wave 3B closed; Wave 4 not yet user-gated; ledger candidate only |
 | `T-P1A-049` | Shoulders Adapt Decision Table | `2026-05-05` | PR=#74; merge commit=673d588; scope=docs/research/shoulders/adapt-decision-table-2026-05-05.md + docs/shoulders-index.md; result=probe results narrowed to adapt/reference_only candidate decisions; no runtime approval |
