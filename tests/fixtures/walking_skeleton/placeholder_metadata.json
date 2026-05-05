@@ -1,0 +1,11 @@
+{
+  "capture_id": "cap_placeholder",
+  "platform": "bilibili",
+  "platform_item_id": "BV1PLACEHOLDER",
+  "canonical_url": "https://www.bilibili.com/video/BV1PLACEHOLDER",
+  "source_kind": "manual_url",
+  "capture_mode": "metadata_only",
+  "status": "metadata_fetched",
+  "created_at": "2026-05-05T08:30:00+00:00",
+  "frontmatter_mode": "raw_4_field"
+}
