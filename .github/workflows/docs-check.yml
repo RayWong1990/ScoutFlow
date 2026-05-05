@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: Check required docs
         run: |
           test -f README.md
@@ -35,8 +37,8 @@ jobs:
           python-version: "3.11"
       - name: Install API test dependencies
         run: python -m pip install -e ".[test]"
-      - name: Run API and contract tests
-        run: python -m pytest tests/api tests/contracts -q
+      - name: Run tools, API, and contract tests
+        run: python -m pytest tests/tools tests/api tests/contracts -q
 
   capture-station-node:
     runs-on: ubuntu-latest
