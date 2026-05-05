@@ -569,3 +569,16 @@
 - 决议: `batch2-audit-summary-2026-05-05.md` 在保留 historical body 的前提下补充局部旁注，明确 Stage A Node validation later repaired by PR `#119`，slot98 repair scope later narrowed by correction note。
 - 决议: `tools/check-docs-redlines.py` 的 apps diff guard 从“known app path may auto-pass”收紧为“当前 `apps/**` diff 必须被 tracked dispatch/repair scope note 明确点名”；历史存在的 app surface 不再自动构成当前 PR 授权。
 - 边界: 本次 authority/guard 收口不解禁 bridge runtime、vault true write、migration、BBDown live、yt-dlp、ffmpeg、ASR、browser automation 或 `audio_transcript` runtime。
+
+## D-011: Wave 4 mid checkpoint after T-P1A-086 ~ T-P1A-099
+
+- 日期: 2026-05-05
+- PR: slot-label `PR #125 / T-P1A-100`
+- 决议: `T-P1A-086 ~ T-P1A-099` 已通过 Wave 4 Batch 3 live PR chain landed；其中 `T-P1A-099` 完成 visual reporting truth，当前 authority 状态提升为 `WAVE_4_MID_CHECKPOINT / NOT_CLOSEOUT`。
+- 决议: Batch 3 landed surfaces now include:
+  - vault helper stack: `T-P1A-086 ~ T-P1A-090`
+  - placeholder/e2e baseline: `T-P1A-091 ~ T-P1A-095`
+  - visual/CI/tooling/reporting baseline: `T-P1A-096 ~ T-P1A-099`
+- 决议: `PR127 / T-P1A-101` 被记录为下一轮 continuation handoff，仅作 named next-hop；它不是已打开的 code-bearing next gate。
+- 决议: same-PR scope-note repair pattern is now proven for app-diff slots; `T-P1A-092` and later `apps/**` slots required tracked repair notes to satisfy `tools/check-docs-redlines.py`.
+- 不解禁: 当前仍无 screenshot evidence、无本轮 Playwright execution evidence、无人类视觉终判；bridge runtime、vault true write、migration、BBDown live、yt-dlp、ffmpeg、ASR、browser automation、`audio_transcript` runtime 继续 gated。

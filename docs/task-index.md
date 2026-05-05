@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 4 B2 state=`B2_COMPLETE_PENDING_REVIEW`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 4 state=`WAVE_4_MID_CHECKPOINT / NOT_CLOSEOUT`。
 
 ## 规则
 
@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — WAVE_4_LEDGER_OPEN`
+`Phase 1A — WAVE_4_MID_CHECKPOINT`
 
 ## Active
 
@@ -64,6 +64,20 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-099` | Visual Regression Reporting | `2026-05-05` | PR=#139; merge commit=`80b4a93`; scope=`docs/research/prototypes/visual-regression-reporting-2026-05-05.md` + `tests/visual/reporting.md`; result=visual reporting truth separates static readiness / automated execution / screenshot evidence / human verdict; no screenshot bundle or visual approval claim |
+| `T-P1A-098` | Playwright Visual Regression Smoke | `2026-05-05` | PR=#138; merge commit=`bdd2250`; scope=`apps/capture-station/playwright.config.ts` + `tests/visual/h5_visual_smoke.spec.ts` + tracked scope note; result=static Playwright smoke harness landed; local browser automation not executed in this batch |
+| `T-P1A-097` | Frontend Lint and Typecheck Baseline | `2026-05-05` | PR=#137; merge commit=`34efe46`; scope=`apps/capture-station/eslint.config.js` + `tsconfig.json` + `package.json` + tracked scope note; result=`npm test/build/lint/typecheck` baseline landed; no runtime approval |
+| `T-P1A-096` | 5 Gate CI Visual Audit Harness | `2026-05-05` | PR=#136; merge commit=`1b2b67f`; scope=`.github/workflows/h5-five-gate.yml` + `tests/visual/five_gate_checklist.md`; result=5 Gate checklist and `tests/e2e` baseline now have dedicated CI surface |
+| `T-P1A-095` | Vault 00-Inbox Fixture E2E | `2026-05-05` | PR=#135; merge commit=`58009c8`; scope=`tests/e2e/test_vault_inbox_fixture_dry_run.py` + `tests/fixtures/vault_inbox/expected_scoutflow_note.md`; result=raw 4-field inbox note fixture locked against current vault helper stack |
+| `T-P1A-094` | SQLite Receipt Trust Trace Placeholder E2E | `2026-05-05` | PR=#134; merge commit=`b85ec15`; scope=`tests/e2e/test_sqlite_receipt_trust_trace_placeholder.py` + `tests/fixtures/walking_skeleton/trust_trace_placeholder.json`; result=SQLite-backed trust-trace placeholder e2e landed without live BBDown |
+| `T-P1A-093` | H5 to Bridge Commit Dry-run Integration | `2026-05-05` | PR=#133; merge commit=`ad7c849`; scope=`apps/capture-station/src/features/vault-commit/VaultCommitDryRunButton.tsx` + `tests/e2e/test_h5_bridge_commit_dry_run_placeholder.py` + tracked scope note; result=placeholder-only dry-run commit surface landed; no live bridge request wiring |
+| `T-P1A-092` | H5 to Bridge Preview Integration | `2026-05-05` | PR=#131; merge commit=`f175a0f`; scope=`apps/capture-station/src/features/vault-preview/VaultPreviewPanel.tsx` + `tests/e2e/test_h5_bridge_preview_placeholder.py` + tracked scope note; result=placeholder-only preview surface landed after same-PR scope-note repair; no registry wiring |
+| `T-P1A-091` | Walking Skeleton Placeholder Fixtures | `2026-05-05` | PR=#130; merge commit=`98fb686`; scope=`tests/fixtures/walking_skeleton/placeholder_metadata.json` + `tests/e2e/test_walking_skeleton_placeholder_fixture.py`; result=placeholder metadata can feed current vault preview helper stack |
+| `T-P1A-090` | Vault Dry-run Commit Ledger | `2026-05-05` | PR=#129; merge commit=`cd58462`; scope=`services/api/scoutflow_api/vault/commit.py` + contract tests; result=dry-run commit helper reuses preview draft and keeps write-disabled semantics |
+| `T-P1A-089` | Vault Preview Markdown Renderer | `2026-05-05` | PR=#128; merge commit=`81c79e2`; scope=`services/api/scoutflow_api/vault/renderer.py` + contract tests; result=preview draft uses capture truth + deterministic created_at date |
+| `T-P1A-088` | Vault Frontmatter Renderer and Validator | `2026-05-05` | PR=#127; merge commit=`6ee32ee`; scope=`services/api/scoutflow_api/vault/frontmatter.py` + contract tests; result=raw 4-field frontmatter locked with explicit `YYYY-MM-DD` validation |
+| `T-P1A-087` | Vault Path Containment and Config Policy | `2026-05-05` | PR=#126; merge commit=`43bdb85`; scope=`services/api/scoutflow_api/vault/path_policy.py` + contract tests; result=`00-Inbox` containment and path-unsafe fragment blocking landed |
+| `T-P1A-086` | Vault Writer Package Scaffold | `2026-05-05` | PR=#125; merge commit=`bb5a518`; scope=`services/api/scoutflow_api/vault/__init__.py` + `writer.py` + `schemas.py` + contract test; result=vault helper package scaffold landed with fail-loud root + dry-run defaults |
 | `T-P1A-105` | Commander-mode dispatch template extension + local `plan/` gitignore | `2026-05-05` | state=`closed`; scope=`docs/dispatch-template.md` + `.gitignore` + AGENTS/current/task-index/decision-log/contracts-index; result=commander-mode dispatch header fields and `manual_gates_required` format promoted into tracked template; `plan/` defined as gitignored local handoff workspace; no runtime/frontend/migration approval |
 | `T-P1A-085` | Bridge OpenAPI Contract Hardening | `2026-05-05` | PR=#115; merge commit=`3f29fe3`; scope=`docs/research/bridge-openapi-2026-05-05.md` + `tests/contracts/test_bridge_openapi_snapshot_contract.py`; result=Batch2 terminal effective slot landed; no bridge runtime unlock |
 | `T-P1A-084` | Bridge Error Handling Contract | `2026-05-05` | PR=#114; merge commit=`9b43802`; scope=`services/api/scoutflow_api/bridge/errors.py` + contract test updates; result=Bridge error helper landed as tracked code, still unmounted from `main.py` |
