@@ -73,7 +73,7 @@ Target: do these now, before Batch2 terminal.
 
 Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub merge latency.
 
-### [ ] 2A-1a T-P1A-105 verification closure
+### [x] 2A-1a T-P1A-105 verification closure
 
 - execution_mode: `main_window_sequential`
 - blocking_dependency: `none`
@@ -93,7 +93,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - no mixed state where `task-index/current` implies done but tracked files or local worktree disagree with `origin/main`
 
-### [ ] 2A-1b `plan/` gitignore decision
+### [x] 2A-1b `plan/` gitignore decision
 
 - execution_mode: `main_window_sequential`
 - blocking_dependency: `2A-1a`
@@ -107,7 +107,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - no STEP2/STEP3 dependency relies on `.gitignore`d-only files
 
-### [ ] 2A-1c local tools/tests cleanup + `ff-only` sync
+### [x] 2A-1c local tools/tests cleanup + `ff-only` sync
 
 - execution_mode: `main_window_sequential`
 - blocking_dependency: `2A-1a`
@@ -123,7 +123,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
   - repo state is understandable
   - no misleading stale local branch state contaminates readback
 
-### [ ] 2A-2 Codex local mode verification
+### [x] 2A-2 Codex local mode verification
 
 - execution_mode: `subagent_parallel`
 - blocking_dependency: `2A-1c`
@@ -139,7 +139,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - STEP3 prompt author has an exact local-mode run assumption
 
-### [ ] 2A-3 `pack_lint v2.5` upgrade surface note
+### [x] 2A-3 `pack_lint v2.5` upgrade surface note
 
 - execution_mode: `subagent_parallel`
 - blocking_dependency: `2A-1c`
@@ -159,7 +159,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - this can later become an early Dispatch127 item without re-thinking scope
 
-### [ ] 2A-4 raw runs directory scaffold
+### [x] 2A-4 raw runs directory scaffold
 
 - execution_mode: `subagent_parallel`
 - blocking_dependency: `2A-1c`
@@ -175,7 +175,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - STEP3 prompt author can reference stable output locations
 
-### [ ] 2A-5 Playwright / screenshot / localhost readiness note
+### [x] 2A-5 Playwright / screenshot / localhost readiness note
 
 - execution_mode: `subagent_parallel`
 - blocking_dependency: `2A-1c`
@@ -192,7 +192,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - no false assumption that visual automation is fully runnable now if product code is not present yet
 
-### [ ] 2A-6 GitHub plan / runner / API / disk verification
+### [x] 2A-6 GitHub plan / runner / API / disk verification
 
 - execution_mode: `subagent_parallel`
 - blocking_dependency: `2A-1c`
@@ -211,7 +211,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - STEP3 prompt author knows whether `20` remains realistic or must be capped
 
-### [ ] 2A-7 GitHub access prep
+### [x] 2A-7 GitHub access prep
 
 - execution_mode: `main_window_sequential`
 - blocking_dependency: `2A-1a 2A-8 branch_protection_user_merge`
@@ -228,7 +228,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
 - Success condition:
   - Cloud ChatGPT Pro can read the canonical spec and the STEP2 checklist from `origin/main`
 
-### [ ] 2A-8 repo state cleanup
+### [x] 2A-8 repo state cleanup
 
 - execution_mode: `main_window_sequential`
 - blocking_dependency: `2A-1c`
@@ -246,7 +246,7 @@ Estimated wall time: about 2-4 hours depending `T-P1A-105` cleanup and GitHub me
   - repo only carries the canonical candidate docs needed for cloud access
   - raw retains audit trail for V1/V2
 
-### [ ] 2A-9 PRD/SRD Wave 5 scope review + batch1 worklist template extraction
+### [x] 2A-9 PRD/SRD Wave 5 scope review + batch1 worklist template extraction
 
 - execution_mode: `subagent_parallel`
 - blocking_dependency: `2A-1c`
