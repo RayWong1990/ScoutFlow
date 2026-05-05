@@ -64,6 +64,9 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-155` | STEP3 cold-start handoff packet contract | `2026-05-05` | PR=#192; merge commit=`0eb29eb`; candidate-only handoff surface; not authority; not execution approval; not runtime approval |
+| `T-P1A-154` | Overflow candidate registry for DB vNext and blocked runtime lanes | `2026-05-05` | PR=#191; merge commit=`f8347b4`; Wave 6 overflow candidate surface; not migration approval; not runtime approval |
+| `T-P1A-153` | `Wave 6 ledger-open candidate` | `2026-05-05` | PR=#190; merge commit=`ad9f38d`; authority-only ledger writeback; state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`; no code-bearing next gate opened |
 | `T-P1A-152` | `Wave 5 closeout template` | `2026-05-05` | PR=#189; merge commit=`b80e5b1`; authority-only closeout writeback; Wave 5 candidate chain closed without opening execution gate |
 | `T-P1A-151` | Branch protection and merge policy note | `2026-05-05` | PR=#188; merge commit=`af7999c`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-150` | Global pool staging health-check contract | `2026-05-05` | PR=#187; merge commit=`8043684`; candidate-only docs/spec/visual surface; no runtime approval |
@@ -103,7 +106,7 @@
 | `T-P1A-116` | Manual-url continuity constraints for Wave 5 | `2026-05-05` | PR=#153; merge commit=`0b0169f`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-115` | Signal workbench boundary note | `2026-05-05` | PR=#152; merge commit=`eabed7f`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-114` | Topic card entity surface candidate | `2026-05-05` | PR=#151; merge commit=`5a7f42b`; candidate-only docs/spec/visual surface; no runtime approval |
-| `T-P1A-113` | Capture plan entity surface candidate | `2026-05-05` | PR=#149; merge commit=`680268d`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-113` | Capture plan entity surface candidate | `2026-05-05` | PR=#149 + fix #150; merge commits=`bde1fc0` + `680268d`; terminal=`FIXED_AND_MERGED`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-112` | Hypothesis lifecycle candidate | `2026-05-05` | PR=#148; merge commit=`ec9b36c`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-111` | Signal state map candidate | `2026-05-05` | PR=#147; merge commit=`30d15b0`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-110` | Signal entity glossary candidate | `2026-05-05` | PR=#146; merge commit=`1b520e2`; candidate-only docs/spec/visual surface; no runtime approval |

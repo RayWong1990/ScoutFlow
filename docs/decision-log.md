@@ -615,3 +615,11 @@
 - 决议: authority 状态从 `WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED` 推进到 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 - 决议: 这只表示 Wave 6 candidate planning / overflow / handoff lane 可以继续收口 `Dispatch175 / T-P1A-154` 与 `Dispatch176 / T-P1A-155`；不构成 code-bearing gate，不构成 runtime、migration、browser automation、BBDown live、yt-dlp、ffmpeg、ASR、`audio_transcript` runtime 或 vault true write approval。
 - 决议: `T-P1A-152` 关闭的 Wave 5 candidate chain 继续保留为历史 landed truth；Wave 6 仍需后续 dispatch 明确各自范围和证据。
+
+## D-016: Wave 6 overflow and handoff candidate landing
+
+- 日期: 2026-05-05
+- PR: `T-P1A-154` + `T-P1A-155`
+- 决议: `Dispatch175 / T-P1A-154` 与 `Dispatch176 / T-P1A-155` 已 landed on `main`，分别收口 Wave 6 overflow candidate registry 与 STEP3 cold-start handoff packet contract。
+- 决议: 当前 authority 继续保持 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`；`Dispatch175/176` 的 landed truth 不构成 code-bearing next gate，也不构成 runtime、migration、browser automation、BBDown live、yt-dlp、ffmpeg、ASR、`audio_transcript` runtime 或 vault true write approval。
+- 决议: 当前 Wave 6 仅保留 candidate planning / overflow / handoff continuation truth；任何后续 code-bearing、runtime-bearing 或 migration-bearing 动作都必须走新 dispatch + 外审。
