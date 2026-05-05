@@ -558,3 +558,14 @@
 - 决议: 当前 next gate 切到 `T-P1A-073 / slot-label PR #98`，用于进入 `apps/capture-station` scaffold；这表示可以按 dispatch 进入 bounded execution，不表示 unscoped frontend/runtime approval。
 - 决议: `apps/**` 与 `services/**` 从 blanket forbid 调整为 `只有当前 dispatch 明确授权路径时才可动`；`workers/**`、`packages/**`、`migrations/**`、`data/**`、`referencerepo/**`、BBDown live、ffmpeg、ASR、browser automation 仍继续 gated。
 - 决议: `user_override_for_B2_preflight` 仍只代表 B2 planning/contract addenda promotion；walking skeleton、vault commit、migration、runtime 和 visual final approval 依然需要未来证据。
+
+## D-010: Wave 4 Batch2 execution closure and post-PR123 authority cleanup
+
+- 日期: 2026-05-05
+- PR: Batch2 closeout authority/scope hardening PR
+- 决议: `T-P1A-073 ~ T-P1A-085` 已通过 PR `#103 ~ #115` landed on `main`，当前 authority 不再将 `T-P1A-073 / slot-label PR #98` 视为未来 next gate。
+- 决议: 当前 authority 状态更新为 `WAVE_4_LEDGER_OPEN / B2_COMPLETE_PENDING_REVIEW`；这表示 Batch2 execution chain 已 terminal enough to close the stale next-gate pointer，但不自动打开 STEP3 / Wave 5 的 code-bearing gate。
+- 决议: 当前 authority 未登记新的 code-bearing next gate；任何后续 Wave 4 / STEP3 continuation 必须基于 post-`PR #123` mainline 与新 dispatch + user 显式 gate。
+- 决议: `batch2-audit-summary-2026-05-05.md` 在保留 historical body 的前提下补充局部旁注，明确 Stage A Node validation later repaired by PR `#119`，slot98 repair scope later narrowed by correction note。
+- 决议: `tools/check-docs-redlines.py` 的 apps diff guard 从“known app path may auto-pass”收紧为“当前 `apps/**` diff 必须被 tracked dispatch/repair scope note 明确点名”；历史存在的 app surface 不再自动构成当前 PR 授权。
+- 边界: 本次 authority/guard 收口不解禁 bridge runtime、vault true write、migration、BBDown live、yt-dlp、ffmpeg、ASR、browser automation 或 `audio_transcript` runtime。

@@ -31,13 +31,34 @@ def test_app_diff_guard_ignores_existing_app_tree_without_app_diff(tmp_path: Pat
     assert failures == []
 
 
-def test_app_diff_guard_allows_known_app_surface(tmp_path: Path) -> None:
+def test_app_diff_guard_requires_scope_note_for_known_app_surface(tmp_path: Path) -> None:
     checker = load_checker()
     failures: list[str] = []
 
     checker.check_app_diff_scope_guard(
         tmp_path,
         [],
+        failures,
+        changed_paths=["apps/capture-station/src/App.tsx"],
+    )
+
+    assert len(failures) == 1
+    assert "apps/capture-station/src/App.tsx" in failures[0]
+
+
+def test_app_diff_guard_allows_known_app_surface_when_exact_path_is_named(tmp_path: Path) -> None:
+    checker = load_checker()
+    note = tmp_path / "docs/research/repairs/capture-station-scope-2026-05-05.md"
+    note.parent.mkdir(parents=True)
+    note.write_text(
+        "- allowed path: `apps/capture-station/src/App.tsx`\n",
+        encoding="utf-8",
+    )
+    failures: list[str] = []
+
+    checker.check_app_diff_scope_guard(
+        tmp_path,
+        ["docs/research/repairs/capture-station-scope-2026-05-05.md"],
         failures,
         changed_paths=["apps/capture-station/src/App.tsx"],
     )

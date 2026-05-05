@@ -46,27 +46,6 @@ ACTIVE_COUNT_RE = re.compile(r"Active count=`?(\d+)/(\d+)`?")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
 TASK_INDEX_SECTIONS = {"Active", "Review", "Backlog", "Blocked", "Done"}
 HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
-KNOWN_APP_DIFF_ALLOWLIST = {
-    "apps/capture-station/index.html",
-    "apps/capture-station/package.json",
-    "apps/capture-station/src/App.tsx",
-    "apps/capture-station/src/features/capture-scope/CaptureScopePanel.test.tsx",
-    "apps/capture-station/src/features/capture-scope/CaptureScopePanel.tsx",
-    "apps/capture-station/src/features/live-metadata/LiveMetadataPanel.test.tsx",
-    "apps/capture-station/src/features/live-metadata/LiveMetadataPanel.tsx",
-    "apps/capture-station/src/features/trust-trace/TrustTraceGraph.test.tsx",
-    "apps/capture-station/src/features/trust-trace/TrustTraceGraph.tsx",
-    "apps/capture-station/src/features/url-bar/UrlBar.test.tsx",
-    "apps/capture-station/src/features/url-bar/UrlBar.tsx",
-    "apps/capture-station/src/layout/FourPanelShell.test.tsx",
-    "apps/capture-station/src/layout/FourPanelShell.tsx",
-    "apps/capture-station/src/layout/panels.ts",
-    "apps/capture-station/src/lib/api-client.test.ts",
-    "apps/capture-station/src/lib/api-client.ts",
-    "apps/capture-station/src/lib/query-client.ts",
-    "apps/capture-station/src/main.tsx",
-    "apps/capture-station/vite.config.ts",
-}
 SCOPE_NOTE_ROOTS = (
     "docs/research/repairs/",
     "docs/plans/",
@@ -373,16 +352,12 @@ def check_app_diff_scope_guard(
     if not changed_app_paths:
         return
 
-    unexplained_paths = [
-        path
-        for path in changed_app_paths
-        if path not in KNOWN_APP_DIFF_ALLOWLIST and not app_path_is_named_in_scope_note(repo, tracked, path)
-    ]
+    unexplained_paths = [path for path in changed_app_paths if not app_path_is_named_in_scope_note(repo, tracked, path)]
     if unexplained_paths:
         failures.append(
             "apps/** diff 缺少显式 dispatch/repair scope 说明："
             + ", ".join(unexplained_paths[:20])
-            + "；请在 tracked repair/dispatch note 中逐路径点名，或经单独审计更新 checker allowlist。"
+            + "；历史 tracked app surface 不构成当前 PR 授权，请在 tracked dispatch/repair note 中逐路径点名。"
         )
 
 
