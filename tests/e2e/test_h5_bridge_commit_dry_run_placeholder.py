@@ -28,6 +28,9 @@ def test_vault_commit_placeholder_surface_tracks_dry_run_contract(tmp_path: Path
     assert "data-testid=\"panel-vault-commit\"" in component_source
     assert "dry-run only" in component_source
     assert "Commit to vault (disabled)" in component_source
+    assert "dry_run: true" in component_source
+    assert "commit.dry_run" in component_source
+    assert "committed" in component_source
     assert "write_disabled" in component_source
     assert commit.dry_run is True
     assert commit.committed is False
