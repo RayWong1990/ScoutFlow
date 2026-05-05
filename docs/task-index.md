@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`
+`Phase 1A — WAVE_4_LEDGER_OPEN`
 
 ## Active
 
@@ -65,6 +65,7 @@
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
 | `T-P1A-105` | Commander-mode dispatch template extension + local `plan/` gitignore | `2026-05-05` | state=`closed`; scope=`docs/dispatch-template.md` + `.gitignore` + AGENTS/current/task-index/decision-log/contracts-index; result=commander-mode dispatch header fields and `manual_gates_required` format promoted into tracked template; `plan/` defined as gitignored local handoff workspace; no runtime/frontend/migration approval |
+| `T-P1A-072` | Wave 4 ledger open | `2026-05-05` | state=`closed`; scope=`AGENTS.md` + `docs/current.md` + `docs/task-index.md` + `docs/decision-log.md` + `docs/research/wave4-entry-gate-2026-05-05.md`; result=Wave 4 ledger opened on top of `T-P1A-103` truth, next gate moved to `T-P1A-073 / slot-label PR #98`, apps/services remain explicit-dispatch-only, runtime/frontend/migration still gated |
 | `T-P1A-104` | RAW control-plane hash manifest + historical candidate-readback note | `2026-05-05` | state=`closed`; scope=docs/research/repairs/t-p1a-104-control-plane-hash-manifest-2026-05-05.md + AGENTS/current/task-index/decision-log/contracts-index; result=tracked manifest records RAW report/diff/checkpoint/local-evidence/archived-partial absolute paths, bytes, sha256, structure counts, and T-P1A-103 local cleanup checks without copying RAW bodies or credentials; old T-P1A-033/T-P1A-034 Done rows now note superseded_for_B2_planning_by T-P1A-103; no runtime/frontend/migration approval |
 | `T-P1A-103` | Wave 4 B1 control-plane repair + B2 preflight authority closure | `2026-05-05` | state=`closed`; scope=RAW checkpoint/report/diff bundle/local evidence manifest + docs/current/task-index/decision-log/contracts-index/PRD-v2.1/SRD-v3 H5-Bridge readback; result=PR #93 superseded and must not merge as-is; PRD-v2.1 + SRD-v3 H5/Bridge promoted as B2 planning/contract addenda via `user_override_for_B2_preflight`; `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`; no runtime/frontend/migration/BBDown live/ffmpeg/ASR/browser automation approval |
 | `T-P1A-043` | Wave 3B ledger open + shoulders clone plan | `2026-05-05` | PR=#68; scope=AGENTS/current/task-index/decision-log/shoulders-index/clone-plan/referencerepo-index; result=Wave 3B opened, clone/probe plan registered, referencerepo tracked mirror created, no tracked clone or runtime approval |

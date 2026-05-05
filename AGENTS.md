@@ -8,7 +8,7 @@
 5. 当前任务直接引用的 PRD / SRD / spec
 ## 2. 当前 Phase
 - Phase：`1A`；当前指针：`docs/current.md`
-- 当前活动任务：`T-P1A-105`（commander-mode dispatch template extension + local `plan/` gitignore）；状态=`B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`；PR #93 已由 T-P1A-103 supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；DB vNext remains candidate-only / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
+- 当前活动任务：无 active product task；`T-P1A-072` 已将 Wave 4 ledger open 写回 authority；状态=`WAVE_4_LEDGER_OPEN / B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`；PR #93 已由 T-P1A-103 supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；next gate=`T-P1A-073 / slot-label PR #98`；DB vNext remains candidate-only / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
 - Active product lane max=`3`; Authority writer max=`1`; review / audit / research lane 不计入 product lane，除非写 authority。
 ## 3. 当前允许路径
 - Quick answer: 可改状态/入口/contract/retro/research 授权路径；不可改 local-only 目录、未授权 runtime、凭据或 final authority 口径。
@@ -19,7 +19,7 @@
 ## 4. 当前硬红线
 - Stop-line summary: secrets / local-only dirs / runtime / final-authority drift / schema-state-FS-LP drift 都是立即停线项。
 - 不修改 `data/`、`referencerepo/`，不提交 cookie / token / secret / raw credential material。
-- 不创建或修改 `apps/`、`workers/`、`packages/`；`services/**` 只有任务明确授权才可动。
+- 不创建或修改 `workers/`、`packages/`；`apps/**`、`services/**` 只有当前 dispatch 明确授权路径时才可动。
 - 不自动运行 BBDown / yt-dlp / ffmpeg / ASR / browser automation。
 - `recommendation / keyword / RAW gap` 不直接创建 capture。
 - `POST /captures/discover` 是 capture creation entrypoint，不是 source discovery。
