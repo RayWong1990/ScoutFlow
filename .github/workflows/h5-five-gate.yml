@@ -1,0 +1,29 @@
+name: h5-five-gate
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  five-gate-checklist:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Validate 5 Gate checklist structure
+        run: |
+          test -f tests/visual/five_gate_checklist.md
+          grep -c "^## Gate " tests/visual/five_gate_checklist.md | grep -qx "5"
+
+  e2e-placeholder-baseline:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - name: Install API test dependencies
+        run: python -m pip install -e ".[test]"
+      - name: Run placeholder E2E baseline
+        env:
+          SCOUTFLOW_VAULT_ROOT: /tmp/scoutflow-vault
+        run: python -m pytest tests/e2e -q
