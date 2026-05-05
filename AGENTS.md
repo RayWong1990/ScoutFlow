@@ -8,7 +8,7 @@
 5. 当前任务直接引用的 PRD / SRD / spec
 ## 2. 当前 Phase
 - Phase：`1A`；当前指针：`docs/current.md`
-- 当前活动任务：无 active product task；`T-P1A-072` 已将 Wave 4 ledger open 写回 authority；`T-P1A-073 ~ T-P1A-099` 已通过 Wave 4 Batch 2 + Batch 3 live PR chain 落地并写入 shared truth；当前状态=`WAVE_4_MID_CHECKPOINT / NOT_CLOSEOUT`；`PR #93` 已由 `T-P1A-103` supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；`PR127 / T-P1A-101` 只是 continuation handoff，不构成已打开的 code-bearing next gate；DB vNext remains candidate-only / not migration approval / not runtime approval；详见 `docs/current.md` / `docs/task-index.md`。
+- 当前活动任务：无 active product task；`T-P1A-072` 仅作为 authority ledger-open anchor 保留；`T-P1A-073 ~ T-P1A-099` 已通过 Wave 4 Batch 2 + Batch 3 live PR chain 落地；`Dispatch131 ~ Dispatch172 / T-P1A-110 ~ T-P1A-151` 已作为 Wave 5 candidate docs/spec/visual/audit chain landed；`Dispatch173 ~ Dispatch176 / T-P1A-152 ~ T-P1A-155` 已完成 Wave 5 closeout、Wave 6 candidate open 与 overflow/handoff candidate 落地；当前状态=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`；当前仍无已打开的 code-bearing next gate；`PR #93` 已由 `T-P1A-103` supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；`PR127 / T-P1A-101` 仅保留为历史 handoff 命名；DB vNext remains candidate-only / not migration approval / not runtime approval；详见 `docs/current.md` / `docs/task-index.md`。
 - Active product lane max=`3`; Authority writer max=`1`; review / audit / research lane 不计入 product lane，除非写 authority。
 ## 3. 当前允许路径
 - Quick answer: 可改状态/入口/contract/retro/research 授权路径；不可改 local-only 目录、未授权 runtime、凭据或 final authority 口径。
