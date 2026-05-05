@@ -523,3 +523,13 @@
 - 决议: `docs/shoulders-index.md` 状态推进到 `3 locked / 5 integrated / 11 discovered`，表示 Wave 3B 的 clone/probe/spec/design/decision 已被当前主线吸收为 candidate truth，不代表 runtime 或 code approval。
 - 决议: Wave 4 not yet user-gated; ledger candidate only。
 - 不解禁: runtime / migration / apps / workers / packages / Phase 2+ promotion 仍未批准。
+
+## D-006: T-P1A-103 Wave 4 B1 control-plane repair + B2 preflight override
+
+- 日期: 2026-05-05
+- PR: T-P1A-103 repair PR（supersedes PR #93）
+- 决议: user 已授权新修复 PR、最终 merge，并推进到 Wave 4 Batch 2 启动临界点；PR #93 不得原样合并，需由 T-P1A-103 supersede。
+- 决议: Wave 4 B1 PR body/diff layer `verdict=clear` 保留；RAW control-plane checkpoint/report/diff bundle/local evidence manifest 由 `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPAIR-Wave4-B1-control-plane-and-B2-preflight-2026-05-05.md` 修复为 B2 preflight 的输入证据。
+- 决议: PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；这是 user-authorized planning/contract promotion override，不是 walking skeleton、frontend implementation、Bridge/VaultWriter runtime、vault commit、migration 或 visual gate 已满足的证据。
+- 边界: DB vNext SRD-v3 继续 candidate-only；runtime / frontend / migration / BBDown live / yt-dlp / ffmpeg / ASR / browser automation 均仍 gated。
+- 出口状态: `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`；下一步只能进入 commander prompt 准备，不自动启动 code-bearing runtime lane。

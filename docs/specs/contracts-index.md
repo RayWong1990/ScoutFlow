@@ -28,6 +28,13 @@
 | C-PLT-001 | `main` baseline via `T-P1A-002`：`platform_result` 使用既有 `PlatformResult` enum；非 `ok` receipt 将 job 标记为 `failed`，不推进 capture status，并在 `job_events` 记录 `platform_result` | 不新增平台状态映射；非 `ok` 的 operator 策略仍按后续任务收敛 |
 | C-SEC-001 | `main` baseline via `T-P1A-002` + `T-P1A-004`：`raw_api_response` receipt 仍要求 `redaction_applied=true`、`redaction_policy`、非空 `sensitive_fields_removed`；主线已提供 `redact_sensitive_text`、`check-secrets-redlines.py`、secret scan contract tests 与 CI hardening | 安全基线已进入 `main`；但不替代未来 tool adapter 的更细权限/凭据注入 contract |
 
+## Promoted Amendments
+
+| Item | Promotion basis | 当前状态 | 边界 |
+|---|---|---|---|
+| docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md | `T-P1A-103` + `user_override_for_B2_preflight` + repaired RAW control-plane package `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md` | Promoted addendum to `docs/PRD-v2-2026-05-04.md` for B2 planning/contract baseline | No walking-skeleton evidence claim；no frontend implementation approval；no runtime approval |
+| docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | `T-P1A-103` + `user_override_for_B2_preflight` + repaired RAW control-plane package `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md` | Promoted addendum to `docs/SRD-v2-2026-05-04.md` for B2 planning/contract baseline | No Bridge/VaultWriter runtime approval；no vault commit approval；no migration approval |
+
 ## 当前 research note / draft contract 状态
 
 | Item | 当前状态 | 边界 |
@@ -36,8 +43,6 @@
 | docs/specs/bbdown-adapter-contract-draft.md | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval |
 | docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md | PR #15 merged research note | Research note only；not authority；not frontend / API / runtime approval |
 | docs/architecture/ADR-001-obsidian-para-lock-2026-05-04.md | PR #57 merged ADR candidate | Research-only ADR candidate；locks PARA boundary for later bridge/vault work；not base PRD/SRD authority；not runtime approval |
-| docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md | PR #58 merged candidate amendment | Candidate amendment only；not promoted base PRD；not runtime approval |
-| docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | PR #64 merged candidate amendment | Candidate amendment only；not SRD-v3 promoted authority；not runtime approval；not migration approval |
 | docs/architecture/pr-factory-surge-protocol-candidate-2026-05-04.md | PR #59 merged protocol candidate | Candidate only；keeps enforced baseline at product_lane_max=3 and authority_writer_max=1 until explicit closeout approval |
 | docs/architecture/pr-factory-tooling-plan-2026-05-04.md + tools/scoutflow_pr_factory.py | PR #66 merged tooling candidate | Local-only shoulder helper candidate；--dry-run and referencerepo guard landed；future `tools/pr-factory/**` split deferred；not runtime approval |
 | services/api/scoutflow_api/bridge/SPEC.md | PR #70 merged spec candidate | spec only；locks thin route-group shape and BridgeErrorCode；not runtime approval |
@@ -45,7 +50,7 @@
 | services/api/scoutflow_api/vault/SPEC.md | PR #72 merged spec candidate | spec only；locks SCOUTFLOW_VAULT_ROOT fail-loud, raw 4-field frontmatter, path containment, idempotency；not runtime approval |
 | docs/research/h5-prototype-mock-pointer-2026-05-05.md | PR #73 merged prototype pointer | repo-external prototype pointer only；ScoutFlow tracked diff stayed pointer-only；not frontend implementation approval |
 | docs/research/shoulders/adapt-decision-table-2026-05-05.md | PR #74 merged decision candidate | candidate-only shoulder decision table；narrows adapt/reference_only route without approving implementation |
-| docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md | PR #51 candidate amendment + PR #53 audit-fix merged on main | Candidate amendment only; not SRD-v3 promoted authority; not migration approval; not runtime approval; F-012 wording and evidence identity immutability guard addressed by T-P1A-029 |
+| docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md | PR #51 candidate amendment + PR #53 audit-fix merged on main | DB vNext remains candidate-only; not promoted DB authority; not migration approval; not runtime approval; F-012 wording and evidence identity immutability guard addressed by T-P1A-029 |
 | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | promoted v2 base | Promoted base；runtime boundaries still gated；keeps `audio_transcript` blocked |
 
 ## 当前引用但未落地的上游文档

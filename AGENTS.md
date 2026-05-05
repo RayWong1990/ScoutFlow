@@ -8,7 +8,7 @@
 5. 当前任务直接引用的 PRD / SRD / spec
 ## 2. 当前 Phase
 - Phase：`1A`；当前指针：`docs/current.md`
-- 当前活动任务：`T-P1A-050`（已完成 Wave 3B closeout）；Wave 3B 已 closed；Wave 4 not yet user-gated; ledger candidate only；DB vNext remains candidate-only / not SRD-v3 promoted authority / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
+- 当前活动任务：`T-P1A-103`（Wave 4 B1 control-plane repair + B2 preflight authority closure）；状态=`B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`；PR #93 已由新修复 PR supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；DB vNext remains candidate-only / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
 - Active product lane max=`3`; Authority writer max=`1`; review / audit / research lane 不计入 product lane，除非写 authority。
 ## 3. 当前允许路径
 - Quick answer: 可改状态/入口/contract/retro/research 授权路径；不可改 local-only 目录、未授权 runtime、凭据或 final authority 口径。
