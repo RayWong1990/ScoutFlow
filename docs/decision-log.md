@@ -533,3 +533,11 @@
 - 决议: PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；这是 user-authorized planning/contract promotion override，不是 walking skeleton、frontend implementation、Bridge/VaultWriter runtime、vault commit、migration 或 visual gate 已满足的证据。
 - 边界: DB vNext SRD-v3 继续 candidate-only；runtime / frontend / migration / BBDown live / yt-dlp / ffmpeg / ASR / browser automation 均仍 gated。
 - 出口状态: `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`；下一步只能进入 commander prompt 准备，不自动启动 code-bearing runtime lane。
+
+## D-007: T-P1A-104 RAW control-plane hash manifest
+
+- 日期: 2026-05-05
+- 决议: 针对 T-P1A-103 外审 residual risk，新增 tracked repair evidence manifest：`docs/research/repairs/t-p1a-104-control-plane-hash-manifest-2026-05-05.md`。
+- 决议: manifest 只记录 RAW final report / full diff bundle / local evidence manifest / archived partial report / checkpoint 的绝对路径、bytes、SHA-256、结构计数和本地清理核验，不复制 RAW 正文、Hermes 配置、cookies、tokens、credential material 或 local-only clone 内容。
+- 决议: T-P1A-033 / T-P1A-034 Done 历史行保留原始 candidate landing 事实，同时追加 `superseded_for_B2_planning_by=T-P1A-103`，避免后续 agent 只搜旧行时误读当前状态。
+- 边界: T-P1A-104 是可审计性补丁，不改变 `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY` 状态，不解禁 runtime / frontend / migration / vault commit / BBDown live / yt-dlp / ffmpeg / ASR / browser automation。
