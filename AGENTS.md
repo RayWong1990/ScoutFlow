@@ -8,7 +8,7 @@
 5. 当前任务直接引用的 PRD / SRD / spec
 ## 2. 当前 Phase
 - Phase：`1A`；当前指针：`docs/current.md`
-- 当前活动任务：无 active product task；`T-P1A-072` 已将 Wave 4 ledger open 写回 authority；状态=`WAVE_4_LEDGER_OPEN / B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`；PR #93 已由 T-P1A-103 supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；next gate=`T-P1A-073 / slot-label PR #98`；DB vNext remains candidate-only / not migration approval / not runtime approval；Phase 2A migration dry-run plan 仍需 user 显式 gate；详见 `docs/current.md` / `docs/task-index.md`。
+- 当前活动任务：无 active product task；`T-P1A-072` 已将 Wave 4 ledger open 写回 authority；`T-P1A-073 ~ T-P1A-085` 已通过 PR `#103 ~ #115` 落地并闭环；状态=`WAVE_4_LEDGER_OPEN / B2_COMPLETE_PENDING_REVIEW`；PR #93 已由 T-P1A-103 supersede，不能原样合并；PRD-v2.1 + SRD-v3 H5/Bridge 通过 `user_override_for_B2_preflight` promoted 为 B2 planning/contract addenda；当前 authority 未登记新的 code-bearing next gate；未来 continuation 需新 dispatch + user 显式 gate；DB vNext remains candidate-only / not migration approval / not runtime approval；详见 `docs/current.md` / `docs/task-index.md`。
 - Active product lane max=`3`; Authority writer max=`1`; review / audit / research lane 不计入 product lane，除非写 authority。
 ## 3. 当前允许路径
 - Quick answer: 可改状态/入口/contract/retro/research 授权路径；不可改 local-only 目录、未授权 runtime、凭据或 final authority 口径。

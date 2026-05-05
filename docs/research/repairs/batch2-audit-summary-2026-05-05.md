@@ -66,7 +66,7 @@ Pending effective slots:
 
 - `T-P1A-072 / Wave 4 ledger open` has been written back to authority.
 - current authority now points next gate to `T-P1A-073 / slot-label PR #98`.
-- Stage A (`slot98-104`) merged clear through live PR `#103-#109`.
+- Stage A (`slot98-104`) merged clear through live PR `#103-#109`. Historical read narrowed: Stage A Node validation itself was repaired later by PR `#119`; this summary remains a historical run-state note.
 - Stage B (`slot105-110`) merged clear through live PR `#110-#115`.
 - final `origin/main` at report close was `3f29fe3a1853bc6c6233a71904416349f3c98292`.
 - the bridge implementation chain passed increasing test ladders from `142` to `162 passed`.
@@ -78,7 +78,7 @@ Batch2 did not end as a naive pass-through of the original pack.
 Important repaired truth:
 
 - the working `b2v4` pack was minimally repaired in place
-- the critical slot98 blocker was the missing tracked `apps/capture-station/index.html`
+- the critical slot98 blocker was the missing tracked `apps/capture-station/index.html`; later correction note narrows this reading by adding `tools/check-docs-redlines.py` to the actual repaired scope
 - the user explicitly authorized the minimal control-plane repair needed to continue Batch2 to terminal state
 
 This matters for STEP3 because:
