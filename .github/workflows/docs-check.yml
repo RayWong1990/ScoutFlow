@@ -37,3 +37,27 @@ jobs:
         run: python -m pip install -e ".[test]"
       - name: Run API and contract tests
         run: python -m pytest tests/api tests/contracts -q
+
+  capture-station-node:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Install capture station dependencies
+        working-directory: apps/capture-station
+        run: npm install --no-package-lock
+      - name: Run capture station tests
+        working-directory: apps/capture-station
+        run: npm test
+      - name: Build capture station
+        working-directory: apps/capture-station
+        run: npm run build
+      - name: Check production bundle excludes tests and Vitest runtime
+        working-directory: apps/capture-station
+        run: |
+          if find dist/assets -maxdepth 1 -type f | grep -E '\.test-|(^|/)vi\.'; then
+            echo "Production bundle contains test or Vitest runtime assets"
+            exit 1
+          fi
