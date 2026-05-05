@@ -598,3 +598,12 @@
 - 决议: `Dispatch128 / T-P1A-107` 与 `Dispatch129 / T-P1A-108` 已作为 repo-visible candidate surfaces landed；前者负责 Wave 4 visual touchpoint roster / localhost manual-review plan，后者负责 bridge-vault continuation gap matrix；二者都不构成 runtime、browser automation 或 vault true write approval。
 - 决议: authority 状态从 `WAVE_4_MID_CHECKPOINT / NOT_CLOSEOUT` 切到 `WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`；这表示 Wave 4 closeout wording 已写回，Wave 5 candidate docs/spec lane 可以继续，但仍没有已打开的 code-bearing next gate。
 - 决议: 当前 Wave 5 candidate continuation 以 `Dispatch131-144 / T-P1A-110 ~ T-P1A-123` 为 docs/spec 主链；更晚的 bounded app rows、runtime-gate rows 和 authority rows仍需各自按 dispatch 执行，不得由当前 authority 自动放行。
+
+## D-014: Wave 5 candidate closeout
+
+- 日期: 2026-05-05
+- PR: authority-only `T-P1A-152`
+- 决议: `Dispatch131-172 / T-P1A-110 ~ T-P1A-151` 已全部以 candidate docs/spec/visual/audit lanes landed on `main`，当前 authority 状态从 `WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED` 收口为 `WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED`。
+- 决议: `T-P1A-124 / T-P1A-125` 两个 bounded frontend candidate surface 已 landed，但仍保持 `deferred_visual_evidence`，不构成 screenshot evidence、human visual verdict、runtime approval 或 frontend execution gate。
+- 决议: `T-P1A-126 ~ T-P1A-151` 的 docs/spec/visual/audit candidate pack 只形成 repo-visible planning / contract / audit surfaces；不解禁 runtime、browser automation、migration、vault true write、BBDown live、yt-dlp、ffmpeg、ASR 或 `audio_transcript` runtime。
+- 决议: 当前仍没有已打开的 code-bearing next gate；后续若进入 Wave 6，仍需通过新的 authority dispatch 和显式 gate。
