@@ -38,7 +38,13 @@ Bounded Capture Station candidate for rendering a topic-card-shaped markdown bun
 - Evidence and counter-evidence must stay on screen at the same time so the card does not overclaim confidence.
 - Screenshot evidence remains deferred; manual visual review is still required before treating the surface as visually clear.
 
-## 5. Boundaries
+## 5. Tracked Scope Note
+
+- allowed app path: `apps/capture-station/src/features/topic-card-vault/TopicCardVaultCandidate.tsx`
+- allowed app path: `apps/capture-station/src/features/topic-card-vault/TopicCardVaultCandidate.test.tsx`
+- this note is the tracked dispatch scope note for the current app diff; historical app surfaces do not expand scope beyond the two files above
+
+## 6. Boundaries
 
 - This candidate does not approve runtime, migration, package adoption, browser automation, ASR, `audio_transcript`, or vault true write.
 - The component is intentionally unmounted from the current four-panel shell and exists as a bounded feature candidate only.
