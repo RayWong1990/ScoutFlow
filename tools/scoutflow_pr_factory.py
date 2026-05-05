@@ -8,7 +8,6 @@ from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 import shlex
-import shutil
 import subprocess
 import sys
 
@@ -44,6 +43,37 @@ def ensure_repo_layout(root: Path) -> None:
     gitignore = (root / ".gitignore").read_text(encoding="utf-8")
     if LOCAL_ONLY_ENTRY not in gitignore.splitlines():
         raise RuntimeError("referencerepo/ is not declared as local-only in .gitignore")
+
+
+def validate_path_segment(label: str, value: str) -> str:
+    if (
+        value == ""
+        or value in {".", ".."}
+        or "/" in value
+        or "\\" in value
+        or Path(value).is_absolute()
+        or len(Path(value).parts) != 1
+    ):
+        raise RuntimeError(f"invalid {label} path segment: {value!r}")
+    return value
+
+
+def get_referencerepo_root(root: Path) -> Path:
+    return (root / "referencerepo").resolve()
+
+
+def ensure_under_referencerepo(root: Path, path: Path, label: str) -> Path:
+    referencerepo_root = get_referencerepo_root(root)
+    candidate = path.expanduser().resolve()
+    if candidate == referencerepo_root:
+        raise RuntimeError(f"{label} must be below referencerepo root, not the root itself: {candidate}")
+    try:
+        candidate.relative_to(referencerepo_root)
+    except ValueError as exc:
+        raise RuntimeError(
+            f"{label} escapes referencerepo root: {candidate} is not under {referencerepo_root}"
+        ) from exc
+    return candidate
 
 
 def normalize_upstream_url(url: str) -> str:
@@ -90,10 +120,12 @@ def run_steps(steps: list[Step], dry_run: bool) -> None:
 
 
 def build_fork_steps(args: argparse.Namespace, root: Path) -> list[Step]:
+    category = validate_path_segment("category", args.category)
+    shoulder_id = validate_path_segment("shoulder_id", args.shoulder_id)
     normalized_url = normalize_upstream_url(args.upstream_url)
     repo_name = repo_name_from_url(normalized_url)
-    reference_dir = root / "referencerepo" / args.category
-    shoulder_dir = reference_dir / args.shoulder_id
+    reference_dir = ensure_under_referencerepo(root, root / "referencerepo" / category, "reference_dir")
+    shoulder_dir = ensure_under_referencerepo(root, reference_dir / shoulder_id, "shoulder_dir")
     fork_url = f"git@github.com:{args.github_user}/{repo_name}.git"
 
     if shoulder_dir.exists():
@@ -102,8 +134,8 @@ def build_fork_steps(args: argparse.Namespace, root: Path) -> list[Step]:
     timestamp = utc_now()
     meta_body = (
         "---\n"
-        f"shoulder_id: {args.shoulder_id}\n"
-        f"category: {args.category}\n"
+        f"shoulder_id: {shoulder_id}\n"
+        f"category: {category}\n"
         f"upstream_url: {normalized_url}\n"
         f"fork_url: {fork_url}\n"
         f"forked_at: {timestamp}\n"
@@ -111,7 +143,7 @@ def build_fork_steps(args: argparse.Namespace, root: Path) -> list[Step]:
         "---\n"
     )
     fork_body = (
-        f"# {args.shoulder_id} Fork Patch List\n\n"
+        f"# {shoulder_id} Fork Patch List\n\n"
         "## ScoutFlow local patches\n"
         "- TODO: record branch-local commits and why they exist.\n\n"
         "## Upstream sync history\n"
@@ -124,7 +156,7 @@ def build_fork_steps(args: argparse.Namespace, root: Path) -> list[Step]:
         Step("create reference category directory", command=["mkdir", "-p", str(reference_dir)]),
         Step(
             "clone upstream into local-only referencerepo",
-            command=["git", "clone", "--depth", "1", normalized_url, args.shoulder_id],
+            command=["git", "clone", "--depth", "1", normalized_url, shoulder_id],
             cwd=reference_dir,
         ),
         Step("rename origin to upstream", command=["git", "remote", "rename", "origin", "upstream"], cwd=shoulder_dir),
@@ -146,7 +178,7 @@ def build_sync_steps(args: argparse.Namespace, root: Path) -> list[Step]:
     shoulder_dir = Path(args.shoulder_path).expanduser()
     if not shoulder_dir.is_absolute():
         shoulder_dir = root / shoulder_dir
-    shoulder_dir = shoulder_dir.resolve()
+    shoulder_dir = ensure_under_referencerepo(root, shoulder_dir, "shoulder_path")
     if not shoulder_dir.exists():
         raise RuntimeError(f"shoulder path does not exist: {shoulder_dir}")
     return [
@@ -159,15 +191,21 @@ def build_sync_steps(args: argparse.Namespace, root: Path) -> list[Step]:
 
 
 def build_archive_steps(args: argparse.Namespace, root: Path) -> list[Step]:
-    source_dir = root / "referencerepo" / args.category / args.shoulder_id
-    archive_dir = root / "referencerepo" / "_archived" / args.category / args.shoulder_id
+    category = validate_path_segment("category", args.category)
+    shoulder_id = validate_path_segment("shoulder_id", args.shoulder_id)
+    source_dir = ensure_under_referencerepo(root, root / "referencerepo" / category / shoulder_id, "source_dir")
+    archive_dir = ensure_under_referencerepo(
+        root,
+        root / "referencerepo" / "_archived" / category / shoulder_id,
+        "archive_dir",
+    )
     if not source_dir.exists():
         raise RuntimeError(f"shoulder path does not exist: {source_dir}")
     timestamp = utc_now()
     archive_body = (
         "---\n"
-        f"shoulder_id: {args.shoulder_id}\n"
-        f"category: {args.category}\n"
+        f"shoulder_id: {shoulder_id}\n"
+        f"category: {category}\n"
         f"archived_at: {timestamp}\n"
         f"reason: {args.reason}\n"
         "---\n"
@@ -179,13 +217,30 @@ def build_archive_steps(args: argparse.Namespace, root: Path) -> list[Step]:
     ]
 
 
+def add_execution_flags(parser: argparse.ArgumentParser) -> None:
+    group = parser.add_mutually_exclusive_group()
+    group.add_argument(
+        "--dry-run",
+        dest="execute",
+        action="store_false",
+        default=False,
+        help="Print planned steps without executing them (default).",
+    )
+    group.add_argument(
+        "--execute",
+        dest="execute",
+        action="store_true",
+        help="Execute planned side-effect steps after validation.",
+    )
+
+
 def parse_args(argv: list[str]) -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--workspace-root", help="Override the ScoutFlow repository root.")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
     fork = subparsers.add_parser("fork-shoulder", help="Prepare a local-only shoulder clone/fork workflow.")
-    fork.add_argument("--dry-run", action="store_true", help="Print planned steps without executing them.")
+    add_execution_flags(fork)
     fork.add_argument("--default-branch", default=DEFAULT_BRANCH, help="Upstream default branch name.")
     fork.add_argument("--sync-cadence", default="monthly", help="Metadata sync cadence label.")
     fork.add_argument("shoulder_id")
@@ -194,11 +249,11 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     fork.add_argument("github_user")
 
     sync = subparsers.add_parser("sync-shoulder", help="Show upstream drift for a local-only shoulder clone.")
-    sync.add_argument("--dry-run", action="store_true", help="Print planned steps without executing them.")
+    add_execution_flags(sync)
     sync.add_argument("shoulder_path")
 
     archive = subparsers.add_parser("archive-shoulder", help="Archive a local-only shoulder clone.")
-    archive.add_argument("--dry-run", action="store_true", help="Print planned steps without executing them.")
+    add_execution_flags(archive)
     archive.add_argument("shoulder_id")
     archive.add_argument("category")
     archive.add_argument("reason")
@@ -209,19 +264,20 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
 def main(argv: list[str] | None = None) -> int:
     args = parse_args(argv or sys.argv[1:])
     root = repo_root(args.workspace_root)
-    ensure_repo_layout(root)
-
-    if args.command == "fork-shoulder":
-        steps = build_fork_steps(args, root)
-    elif args.command == "sync-shoulder":
-        steps = build_sync_steps(args, root)
-    elif args.command == "archive-shoulder":
-        steps = build_archive_steps(args, root)
-    else:
-        raise RuntimeError(f"unsupported command: {args.command}")
 
     try:
-        run_steps(steps, dry_run=getattr(args, "dry_run", False))
+        ensure_repo_layout(root)
+
+        if args.command == "fork-shoulder":
+            steps = build_fork_steps(args, root)
+        elif args.command == "sync-shoulder":
+            steps = build_sync_steps(args, root)
+        elif args.command == "archive-shoulder":
+            steps = build_archive_steps(args, root)
+        else:
+            raise RuntimeError(f"unsupported command: {args.command}")
+
+        run_steps(steps, dry_run=not getattr(args, "execute", False))
     except subprocess.CalledProcessError as exc:
         print(f"command failed with exit code {exc.returncode}: {quote_command(exc.cmd)}", file=sys.stderr)
         return exc.returncode or 1
