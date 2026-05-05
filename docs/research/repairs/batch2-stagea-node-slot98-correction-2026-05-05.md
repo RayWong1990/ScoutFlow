@@ -62,9 +62,9 @@ Therefore this correction does not unlock:
 
 ## Evidence Pointers
 
-- [batch2-audit-summary-2026-05-05.md](/Users/wanglei/workspace/ScoutFlow-PR121-batch2-correction/docs/research/repairs/batch2-audit-summary-2026-05-05.md:1)
-- [wave4-batch2-stageA-node-and-slot98-fixup-2026-05-05.md](/Users/wanglei/workspace/ScoutFlow-PR121-batch2-correction/docs/research/repairs/wave4-batch2-stageA-node-and-slot98-fixup-2026-05-05.md:1)
-- [main.py](/Users/wanglei/workspace/ScoutFlow-PR121-batch2-correction/services/api/scoutflow_api/main.py:1)
+- `docs/research/repairs/batch2-audit-summary-2026-05-05.md`
+- `docs/research/repairs/wave4-batch2-stageA-node-and-slot98-fixup-2026-05-05.md`
+- `services/api/scoutflow_api/main.py`
 
 ## Practical Consequence
 
