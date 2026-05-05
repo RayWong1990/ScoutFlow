@@ -22,6 +22,7 @@ Canonical:
 4. [readback-manifest-2026-05-05.md](/Users/wanglei/workspace/ScoutFlow/docs/research/repairs/readback-manifest-2026-05-05.md:1)
 5. [backbone-taxonomy-2026-05-05.md](/Users/wanglei/workspace/ScoutFlow/docs/research/repairs/backbone-taxonomy-2026-05-05.md:1)
 6. [cloud-input-package-inventory-2026-05-05.md](/Users/wanglei/workspace/ScoutFlow/docs/research/repairs/cloud-input-package-inventory-2026-05-05.md:1)
+7. [opendesign-reuse-strategy-candidate-2026-05-05.md](/Users/wanglei/workspace/ScoutFlow/docs/research/repairs/opendesign-reuse-strategy-candidate-2026-05-05.md:1)
 
 Supporting:
 
@@ -41,6 +42,7 @@ Supporting:
 - `pack_lint v2.5` is still a defined upgrade surface, not yet implemented
 - `product_lane_max=5` is a run-only override candidate, not a global default
 - current runner/API evidence supports `10`, maybe `12` after health checks, not a proven `20`
+- OpenDesign/shadcn-admin frontend reuse policy is a candidate input only: L1 H5 IA remains ScoutFlow-owned, L2 structure may adapt shadcn-admin patterns, and L3 visual mood may reference OpenDesign without approving package, runtime, transplant, or React upgrade.
 
 ## 3. What STEP3 Author Must Not Do
 
