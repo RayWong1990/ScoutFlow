@@ -2,7 +2,7 @@ const metadataRows = [
   { label: "Platform", value: "bilibili" },
   { label: "Probe mode", value: "auth-present fixture" },
   { label: "Evidence task", value: "T-P1A-011C" },
-  { label: "Audio transcript", value: "blocked" }
+  { label: "audio_transcript", value: "blocked" }
 ];
 
 export default function LiveMetadataPanel() {
