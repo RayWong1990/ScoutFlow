@@ -28,7 +28,7 @@ Future-facing entity surface for capture-plan docs without opening runtime or mi
 | Field | Candidate Meaning | Source | Non-goal |
 | --- | --- | --- | --- |
 | plan_id | stable plan handle for later review surfaces | PRD Phase 2 outline | not a current DB key |
-| scope | what sources or entities the plan covers | manual-url continuity + signal chain | not an auto-crawl request |
+| scope | what sources or entities the plan covers | manual-url continuity + signal chain | not an automatic source-expansion request |
 | budget note | qualitative cost/scope warning | future planning layer | not a billing engine |
 | review outcome | manual accept / defer / revise signal | operator review lane | not a background worker action |
 
