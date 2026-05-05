@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 4 state=`WAVE_4_MID_CHECKPOINT / NOT_CLOSEOUT`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 5 candidate state=`WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — WAVE_4_MID_CHECKPOINT`
+`Phase 1A — WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 
 ## Active
 
@@ -32,7 +32,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-P1A-106` | `Wave 4 post-mid-checkpoint continuation map` | `candidate / authority-only` | `Codex Desktop (commander self)` | `记录 post-mid-checkpoint continuation map、依赖、redlines、next-gate wording；不打开 code-bearing gate` | `docs/task-index.md; docs/current.md; docs/decision-log.md; docs/specs/contracts-index.md` | `data/; referencerepo/; workers/; packages/; services/api/migrations/; apps/**; services/** unless later dispatch explicitly allows them` | `AGENTS.md; docs/current.md; docs/specs/contracts-index.md; docs/research/repairs/step3-handoff-packet-2026-05-05.md` | `python tools/check-docs-redlines.py; python tools/check-secrets-redlines.py; git diff --check; manual readback` | `authority_scope_expansion` | `downstream candidate chain=Dispatch128/129/130; no runtime/package/migration/browser/ASR/audio approval` |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Wave 2 Conflict Domain (T-P1A-018/019/020)
 
@@ -64,6 +64,8 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-109` | `Wave 4 closeout and Wave 5 opening candidate` | `2026-05-05` | state=`closed`; scope=`docs/current.md + docs/task-index.md + docs/decision-log.md + docs/specs/contracts-index.md`; result=`Wave 4 closeout recorded; Wave 5 candidate docs/spec lane opened; no execution/runtime/package/migration/browser approval` |
+| `T-P1A-106` | `Wave 4 post-mid-checkpoint continuation map` | `2026-05-05` | state=`closed`; scope=`docs/current.md + docs/task-index.md + docs/decision-log.md`; result=`historical PR127 handoff replaced by Dispatch127-130 candidate chain; no code-bearing gate opened` |
 | `T-P1A-099` | Visual Regression Reporting | `2026-05-05` | PR=#139; merge commit=`80b4a93`; scope=`docs/research/prototypes/visual-regression-reporting-2026-05-05.md` + `tests/visual/reporting.md`; result=visual reporting truth separates static readiness / automated execution / screenshot evidence / human verdict; no screenshot bundle or visual approval claim |
 | `T-P1A-098` | Playwright Visual Regression Smoke | `2026-05-05` | PR=#138; merge commit=`bdd2250`; scope=`apps/capture-station/playwright.config.ts` + `tests/visual/h5_visual_smoke.spec.ts` + tracked scope note; result=static Playwright smoke harness landed; local browser automation not executed in this batch |
 | `T-P1A-097` | Frontend Lint and Typecheck Baseline | `2026-05-05` | PR=#137; merge commit=`34efe46`; scope=`apps/capture-station/eslint.config.js` + `tsconfig.json` + `package.json` + tracked scope note; result=`npm test/build/lint/typecheck` baseline landed; no runtime approval |

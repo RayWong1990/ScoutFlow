@@ -42,6 +42,8 @@
 | docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md | PR #10 merged | Research note only；not authority；not implementation approval；not runtime approval |
 | docs/specs/bbdown-adapter-contract-draft.md | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval |
 | docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md | PR #15 merged research note | Research note only；not authority；not frontend / API / runtime approval |
+| docs/visual/h5-capture-station/wave4-final/wave4-visual-touchpoint-roster-and-localhost-plan-candidate-2026-05-05.md | Dispatch128 merged candidate visual roster | manual-review-first visual roster only；no browser automation approval；no screenshot-evidence claim |
+| docs/specs/wave5/wave4-bridge-vault-continuation-gap-matrix-candidate-2026-05-05.md | Dispatch129 merged candidate gap matrix | docs-only continuation matrix；no bridge runtime mount；no vault true write approval |
 | docs/architecture/ADR-001-obsidian-para-lock-2026-05-04.md | PR #57 merged ADR candidate | Research-only ADR candidate；locks PARA boundary for later bridge/vault work；not base PRD/SRD authority；not runtime approval |
 | docs/architecture/pr-factory-surge-protocol-candidate-2026-05-04.md | PR #59 merged protocol candidate | Candidate only；keeps enforced baseline at product_lane_max=3 and authority_writer_max=1 until explicit closeout approval |
 | docs/architecture/pr-factory-tooling-plan-2026-05-04.md + tools/scoutflow_pr_factory.py | PR #66 merged tooling candidate | Local-only shoulder helper candidate；--dry-run and referencerepo guard landed；future `tools/pr-factory/**` split deferred；not runtime approval |
