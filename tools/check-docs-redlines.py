@@ -21,7 +21,6 @@ REQUIRED_DOCS = [
 ]
 
 FORBIDDEN_ROOT_DIRS = [
-    "apps",
     "workers",
     "packages",
     "candidates",
@@ -257,6 +256,25 @@ def check_required_docs(repo: Path, failures: list[str]) -> None:
 
 
 def check_forbidden_dirs(repo: Path, failures: list[str]) -> None:
+    apps_dispatch_only_enabled = False
+    authority_files = [repo / "AGENTS.md", repo / "docs/current.md"]
+    apps_markers = (
+        "apps/**`、`services/**` 只有当前 dispatch 明确授权路径时可动",
+        "apps/**`、`services/**` 仅当前 dispatch 明确授权路径时可动",
+        "apps/services remain explicit-dispatch-only",
+    )
+
+    for path in authority_files:
+        if not path.is_file():
+            continue
+        text = path.read_text(encoding="utf-8")
+        if any(marker in text for marker in apps_markers):
+            apps_dispatch_only_enabled = True
+            break
+
+    if (repo / "apps").exists() and not apps_dispatch_only_enabled:
+        failures.append("根目录禁止存在：apps/")
+
     for name in FORBIDDEN_ROOT_DIRS:
         if (repo / name).exists():
             failures.append(f"根目录禁止存在：{name}/")
