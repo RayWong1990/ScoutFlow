@@ -607,3 +607,11 @@
 - 决议: `T-P1A-124 / T-P1A-125` 两个 bounded frontend candidate surface 已 landed，但仍保持 `deferred_visual_evidence`，不构成 screenshot evidence、human visual verdict、runtime approval 或 frontend execution gate。
 - 决议: `T-P1A-126 ~ T-P1A-151` 的 docs/spec/visual/audit candidate pack 只形成 repo-visible planning / contract / audit surfaces；不解禁 runtime、browser automation、migration、vault true write、BBDown live、yt-dlp、ffmpeg、ASR 或 `audio_transcript` runtime。
 - 决议: 当前仍没有已打开的 code-bearing next gate；后续若进入 Wave 6，仍需通过新的 authority dispatch 和显式 gate。
+
+## D-015: Wave 6 candidate ledger open
+
+- 日期: 2026-05-05
+- PR: authority-only `T-P1A-153`
+- 决议: authority 状态从 `WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED` 推进到 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
+- 决议: 这只表示 Wave 6 candidate planning / overflow / handoff lane 可以继续收口 `Dispatch175 / T-P1A-154` 与 `Dispatch176 / T-P1A-155`；不构成 code-bearing gate，不构成 runtime、migration、browser automation、BBDown live、yt-dlp、ffmpeg、ASR、`audio_transcript` runtime 或 vault true write approval。
+- 决议: `T-P1A-152` 关闭的 Wave 5 candidate chain 继续保留为历史 landed truth；Wave 6 仍需后续 dispatch 明确各自范围和证据。

@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 5 candidate state=`WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED`
+`Phase 1A — WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 
 ## Active
 
@@ -64,6 +64,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-152` | `Wave 5 closeout template` | `2026-05-05` | PR=#189; merge commit=`b80e5b1`; authority-only closeout writeback; Wave 5 candidate chain closed without opening execution gate |
 | `T-P1A-151` | Branch protection and merge policy note | `2026-05-05` | PR=#188; merge commit=`af7999c`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-150` | Global pool staging health-check contract | `2026-05-05` | PR=#187; merge commit=`8043684`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-149` | Product-lane override evidence packet | `2026-05-05` | PR=#186; merge commit=`1edd985`; candidate-only docs/spec/visual surface; no runtime approval |
