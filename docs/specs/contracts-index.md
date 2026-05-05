@@ -32,8 +32,8 @@
 
 | Item | Promotion basis | 当前状态 | 边界 |
 |---|---|---|---|
-| docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md | `T-P1A-103` + `user_override_for_B2_preflight` + repaired RAW control-plane package `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md` | Promoted addendum to `docs/PRD-v2-2026-05-04.md` for B2 planning/contract baseline | No walking-skeleton evidence claim；no frontend implementation approval；no runtime approval |
-| docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | `T-P1A-103` + `user_override_for_B2_preflight` + repaired RAW control-plane package `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md` | Promoted addendum to `docs/SRD-v2-2026-05-04.md` for B2 planning/contract baseline | No Bridge/VaultWriter runtime approval；no vault commit approval；no migration approval |
+| docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md | `T-P1A-103` + `user_override_for_B2_preflight` + repaired RAW control-plane package `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md` + tracked hash manifest `docs/research/repairs/t-p1a-104-control-plane-hash-manifest-2026-05-05.md` | Promoted addendum to `docs/PRD-v2-2026-05-04.md` for B2 planning/contract baseline | No walking-skeleton evidence claim；no frontend implementation approval；no runtime approval |
+| docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | `T-P1A-103` + `user_override_for_B2_preflight` + repaired RAW control-plane package `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPORT-Wave4-Batch1-Dispatch76-90-CODEX0-2026-05-05.md` + tracked hash manifest `docs/research/repairs/t-p1a-104-control-plane-hash-manifest-2026-05-05.md` | Promoted addendum to `docs/SRD-v2-2026-05-04.md` for B2 planning/contract baseline | No Bridge/VaultWriter runtime approval；no vault commit approval；no migration approval |
 
 ## 当前 research note / draft contract 状态
 
