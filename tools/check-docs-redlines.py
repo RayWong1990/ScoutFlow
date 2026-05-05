@@ -46,6 +46,32 @@ ACTIVE_COUNT_RE = re.compile(r"Active count=`?(\d+)/(\d+)`?")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
 TASK_INDEX_SECTIONS = {"Active", "Review", "Backlog", "Blocked", "Done"}
 HEADING_RE = re.compile(r"^##\s+(.+?)\s*$")
+KNOWN_APP_DIFF_ALLOWLIST = {
+    "apps/capture-station/index.html",
+    "apps/capture-station/package.json",
+    "apps/capture-station/src/App.tsx",
+    "apps/capture-station/src/features/capture-scope/CaptureScopePanel.test.tsx",
+    "apps/capture-station/src/features/capture-scope/CaptureScopePanel.tsx",
+    "apps/capture-station/src/features/live-metadata/LiveMetadataPanel.test.tsx",
+    "apps/capture-station/src/features/live-metadata/LiveMetadataPanel.tsx",
+    "apps/capture-station/src/features/trust-trace/TrustTraceGraph.test.tsx",
+    "apps/capture-station/src/features/trust-trace/TrustTraceGraph.tsx",
+    "apps/capture-station/src/features/url-bar/UrlBar.test.tsx",
+    "apps/capture-station/src/features/url-bar/UrlBar.tsx",
+    "apps/capture-station/src/layout/FourPanelShell.test.tsx",
+    "apps/capture-station/src/layout/FourPanelShell.tsx",
+    "apps/capture-station/src/layout/panels.ts",
+    "apps/capture-station/src/lib/api-client.test.ts",
+    "apps/capture-station/src/lib/api-client.ts",
+    "apps/capture-station/src/lib/query-client.ts",
+    "apps/capture-station/src/main.tsx",
+    "apps/capture-station/vite.config.ts",
+}
+SCOPE_NOTE_ROOTS = (
+    "docs/research/repairs/",
+    "docs/plans/",
+)
+SCOPE_NOTE_NAME_TOKENS = ("dispatch", "fixup", "repair", "worklist")
 
 
 def run_git_ls_files(repo: Path) -> list[str]:
@@ -59,6 +85,31 @@ def run_git_ls_files(repo: Path) -> list[str]:
     if result.returncode != 0:
         raise RuntimeError(f"git ls-files 执行失败：{result.stderr.strip()}")
     return [line.strip() for line in result.stdout.splitlines() if line.strip()]
+
+
+def run_git_name_only(repo: Path, args: list[str]) -> list[str] | None:
+    result = subprocess.run(
+        ["git", "diff", "--name-only", *args],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if result.returncode != 0:
+        return None
+    return [line.strip() for line in result.stdout.splitlines() if line.strip()]
+
+
+def run_git_changed_paths(repo: Path) -> list[str]:
+    base_paths = run_git_name_only(repo, ["origin/main...HEAD"])
+    if base_paths is None:
+        fallback_paths = run_git_name_only(repo, []) or []
+        staged_paths = run_git_name_only(repo, ["--cached"]) or []
+        return sorted(set(fallback_paths + staged_paths))
+
+    unstaged_paths = run_git_name_only(repo, []) or []
+    staged_paths = run_git_name_only(repo, ["--cached"]) or []
+    return sorted(set(base_paths + unstaged_paths + staged_paths))
 
 
 def read_text_if_text(path: Path) -> str | None:
@@ -280,6 +331,61 @@ def check_forbidden_dirs(repo: Path, failures: list[str]) -> None:
             failures.append(f"根目录禁止存在：{name}/")
 
 
+def is_scope_note_path(rel: str) -> bool:
+    if not rel.endswith(".md"):
+        return False
+    if any(rel.startswith(root) for root in SCOPE_NOTE_ROOTS):
+        return True
+    lowered_name = Path(rel).name.lower()
+    return any(token in lowered_name for token in SCOPE_NOTE_NAME_TOKENS)
+
+
+def app_path_is_named_in_scope_note(repo: Path, tracked: list[str], app_path: str) -> bool:
+    exact_path_re = re.compile(r"(?<![A-Za-z0-9_./-])" + re.escape(app_path) + r"(?![A-Za-z0-9_./-])")
+    for rel in tracked:
+        if not is_scope_note_path(rel):
+            continue
+        path = repo / rel
+        if not path.is_file():
+            continue
+        text = read_text_if_text(path)
+        if text is not None and exact_path_re.search(text):
+            return True
+    return False
+
+
+def check_app_diff_scope_guard(
+    repo: Path,
+    tracked: list[str],
+    failures: list[str],
+    changed_paths: list[str] | None = None,
+) -> None:
+    if changed_paths is None:
+        changed_paths = run_git_changed_paths(repo)
+
+    changed_app_paths = sorted(
+        {
+            path.replace("\\", "/")
+            for path in changed_paths
+            if path.replace("\\", "/").startswith("apps/")
+        }
+    )
+    if not changed_app_paths:
+        return
+
+    unexplained_paths = [
+        path
+        for path in changed_app_paths
+        if path not in KNOWN_APP_DIFF_ALLOWLIST and not app_path_is_named_in_scope_note(repo, tracked, path)
+    ]
+    if unexplained_paths:
+        failures.append(
+            "apps/** diff 缺少显式 dispatch/repair scope 说明："
+            + ", ".join(unexplained_paths[:20])
+            + "；请在 tracked repair/dispatch note 中逐路径点名，或经单独审计更新 checker allowlist。"
+        )
+
+
 def check_local_only_tracking(tracked: list[str], failures: list[str]) -> None:
     tracked_local = [
         path
@@ -369,6 +475,7 @@ def main() -> int:
         tracked = []
 
     check_local_only_tracking(tracked, failures)
+    check_app_diff_scope_guard(repo, tracked, failures)
     check_banned_words(repo, tracked, failures)
     check_old_status(repo, tracked, failures)
     check_task_index_parser_self_check(failures)
