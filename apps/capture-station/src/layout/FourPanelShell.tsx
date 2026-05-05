@@ -4,7 +4,7 @@ import { PANEL_SPECS, type CaptureStationPanelSpec } from "./panels";
 
 type PanelModule = { default: ComponentType };
 
-const panelModules = import.meta.glob<PanelModule>("../features/**/*.tsx");
+const panelModules = import.meta.glob<PanelModule>(["../features/**/*.tsx", "!../features/**/*.test.tsx"]);
 
 function FallbackPanel({ panel }: { panel: CaptureStationPanelSpec }) {
   return (
