@@ -278,7 +278,7 @@ Target: do these after Batch2 / Dispatch91-110 reaches terminal state.
 
 Estimated wall time: about 1 hour if STEP2A is already clean.
 
-### [ ] 2B-1 Batch2 one-page audit/repair summary
+### [x] 2B-1 Batch2 one-page audit/repair summary
 
 - execution_mode: `wait_then_main`
 - blocking_dependency: `Batch2_terminal`
@@ -293,7 +293,7 @@ Estimated wall time: about 1 hour if STEP2A is already clean.
 - Success condition:
   - a short current-fact layer exists for STEP3 input packaging
 
-### [ ] 2B-2 Cloud input package inventory with tier and visibility state
+### [x] 2B-2 Cloud input package inventory with tier and visibility state
 
 - execution_mode: `wait_then_main`
 - blocking_dependency: `2B-1`
@@ -321,7 +321,7 @@ Estimated wall time: about 1 hour if STEP2A is already clean.
 | `optional` | existing runtime-log / RUN-SUMMARY samples if present | post-run format hints |
 | `forbidden` | `migrations/**` / `.env` / raw credentials / raw stdout with tokens | never expose to cloud |
 
-### [ ] 2B-3 `READBACK-MANIFEST.md` generation + GitHub visibility
+### [x] 2B-3 `READBACK-MANIFEST.md` generation + GitHub visibility
 
 - execution_mode: `wait_then_main`
 - blocking_dependency: `2B-1 branch_protection_user_merge`
@@ -335,7 +335,7 @@ Estimated wall time: about 1 hour if STEP2A is already clean.
 - Success condition:
   - cloud can read the final readback contract through GitHub
 
-### [ ] 2B-4 handoff to STEP3 prompt author
+### [x] 2B-4 handoff to STEP3 prompt author
 
 - execution_mode: `wait_then_main`
 - blocking_dependency: `2B-2 2B-3 2B-5`
@@ -352,7 +352,7 @@ Estimated wall time: about 1 hour if STEP2A is already clean.
 - Success condition:
   - STEP3 prompt author can write a cold-start prompt without further repo archaeology
 
-### [ ] 2B-5 `BACKBONE-TAXONOMY.md` anchored contract generation + GitHub visibility
+### [x] 2B-5 `BACKBONE-TAXONOMY.md` anchored contract generation + GitHub visibility
 
 - execution_mode: `wait_then_subagent`
 - blocking_dependency: `2A-9 2B-3 Batch2_terminal`
