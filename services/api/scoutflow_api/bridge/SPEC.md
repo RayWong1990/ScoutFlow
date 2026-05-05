@@ -1,9 +1,15 @@
-# ScoutFlow Bridge Route Group SPEC
+# ScoutFlow Bridge Route Group SPEC v2
 
-> Status: candidate / spec only, no Python code
-> Task: `T-P1A-045`
-> PR slot: `PR #70`
+> Status: candidate / spec only, no Python code / v2 consolidation
+> Task: `T-P1A-066`
+> PR slot: `PR #91`
 > Scope: route-group specification only; no route registration, no handler code, no runtime approval
+
+## Revision Note
+
+This v2 pass carries forward the original spec candidate from `T-P1A-045 / PR #70`.
+It keeps the same boundary: spec-only, no Python code, no route registration, no runtime approval.
+The only semantic tightening in this pass is to align the preview target identity placeholder with the vault contract on `capture_id`.
 
 ## 1. Purpose
 
@@ -97,7 +103,7 @@ The bridge must stay thin. It reuses the existing capture / job / receipt / trus
 ```json
 {
   "capture_id": "cap_xxx",
-  "target_path": "${SCOUTFLOW_VAULT_ROOT}/00-Inbox/scoutflow-{id}-{slug}.md",
+  "target_path": "${SCOUTFLOW_VAULT_ROOT}/00-Inbox/scoutflow-{capture_id}-{slug}.md",
   "frontmatter": {
     "title": "Human readable title",
     "date": "2026-05-05",
