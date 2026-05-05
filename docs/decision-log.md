@@ -549,3 +549,12 @@
 - 决议: `manual_gates_required` 采用可 grep / 可执行验证的文本格式，避免 pack 内不存在的前置条件被混写进 `Depends On` 后只能靠人工脑补。
 - 决议: `plan/` 定义为 gitignored local handoff workspace，用于保留本机 handoff/dispatch 草稿，但不进入 repo authority truth，也不再污染根 worktree `git status`。
 - 边界: T-P1A-105 是 process/template 补丁，不解禁 runtime / frontend / migration，不改变 `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY` 状态。
+
+## D-009: T-P1A-072 Wave 4 ledger open
+
+- 日期: 2026-05-05
+- PR: T-P1A-072 authority PR
+- 决议: 在 `T-P1A-103` 已写回的 `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY` 真相之上，正式将 Wave 4 ledger open 写回 authority。
+- 决议: 当前 next gate 切到 `T-P1A-073 / slot-label PR #98`，用于进入 `apps/capture-station` scaffold；这表示可以按 dispatch 进入 bounded execution，不表示 unscoped frontend/runtime approval。
+- 决议: `apps/**` 与 `services/**` 从 blanket forbid 调整为 `只有当前 dispatch 明确授权路径时才可动`；`workers/**`、`packages/**`、`migrations/**`、`data/**`、`referencerepo/**`、BBDown live、ffmpeg、ASR、browser automation 仍继续 gated。
+- 决议: `user_override_for_B2_preflight` 仍只代表 B2 planning/contract addenda promotion；walking skeleton、vault commit、migration、runtime 和 visual final approval 依然需要未来证据。
