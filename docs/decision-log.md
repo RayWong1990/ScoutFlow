@@ -541,3 +541,11 @@
 - 决议: manifest 只记录 RAW final report / full diff bundle / local evidence manifest / archived partial report / checkpoint 的绝对路径、bytes、SHA-256、结构计数和本地清理核验，不复制 RAW 正文、Hermes 配置、cookies、tokens、credential material 或 local-only clone 内容。
 - 决议: T-P1A-033 / T-P1A-034 Done 历史行保留原始 candidate landing 事实，同时追加 `superseded_for_B2_planning_by=T-P1A-103`，避免后续 agent 只搜旧行时误读当前状态。
 - 边界: T-P1A-104 是可审计性补丁，不改变 `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY` 状态，不解禁 runtime / frontend / migration / vault commit / BBDown live / yt-dlp / ffmpeg / ASR / browser automation。
+
+## D-008: T-P1A-105 commander-mode template extension + local plan workspace
+
+- 日期: 2026-05-05
+- 决议: 将 commander-mode dispatch header 扩展固化进 `docs/dispatch-template.md`，包括 `Expected Baseline`、`Authority Writer`、`External Audit`、`Worker Topology`、`Live PR Number` 和 `Manual Gates Required`。
+- 决议: `manual_gates_required` 采用可 grep / 可执行验证的文本格式，避免 pack 内不存在的前置条件被混写进 `Depends On` 后只能靠人工脑补。
+- 决议: `plan/` 定义为 gitignored local handoff workspace，用于保留本机 handoff/dispatch 草稿，但不进入 repo authority truth，也不再污染根 worktree `git status`。
+- 边界: T-P1A-105 是 process/template 补丁，不解禁 runtime / frontend / migration，不改变 `B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY` 状态。

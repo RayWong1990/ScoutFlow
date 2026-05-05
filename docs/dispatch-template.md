@@ -66,3 +66,36 @@ Docs cleanup, retro, and template-only tasks do not require external audit unles
 - Local-only storage audit except for manual-auth tasks
 ## Template Maintenance
 Template changes require a separate dispatch-template-revise task. Existing dispatch files are not retroactively rewritten.
+
+## Commander Mode Extensions
+> Added 2026-05-05 per user authorization. Required when dispatch is part of a pack consumed by `long-running-pack-commander` skill (>=10 PRs or >=3 PRs with high-blast-radius). Optional otherwise.
+
+When dispatch is pack-member for commander-mode execution, add these fields to the Shared Header block:
+
+```text
+> Expected Baseline: <commit-ish>          # main commit hash at dispatch-author time; commander hard-gates on this
+> Authority Writer: <yes | no>             # if yes, dispatch is single-writer-serialized at pack level
+> External Audit: <required | optional | skip>  # `required` = commander pauses after pushing this PR and awaits user merge before continuing; `optional` = audit recommended but commander auto-merges; `skip` = no audit
+> Worker Topology: <solo | commander-subagent | preread-then-exec>
+> Live PR Number: <conceptual PR# only; live GitHub PR# resolved at create-time via gh pr create>
+> Manual Gates Required: <list of gates that must be satisfied externally before commander Step 0 launches workers>
+```
+
+When a dispatch's `Depends On` includes prereqs that no dispatch in the pack writes, separate those into a `manual_gates_required` block. Format:
+
+```yaml
+manual_gates_required:
+  - <human-readable gate description> -- <verification command for commander Step 0>
+  - example: 'PRD-v2.1 amendment promoted (entry in docs/specs/contracts-index.md)' -- 'rg -n "PRD-v2.1" docs/specs/contracts-index.md'
+```
+
+Rationale:
+
+- `Expected Baseline` prevents pack execution from assuming a stale `main` commit.
+- `Authority Writer` lets commander serialize authority-file writes at pack level.
+- `External Audit` encodes per-PR pause vs auto-merge behavior.
+- `Worker Topology` distinguishes solo workers from subagents under a commander.
+- `Live PR Number` prevents hardcoding conceptual PR numbers as GitHub truth.
+- `Manual Gates Required` forces external preconditions to be machine-checkable before worker launch.
+
+Existing dispatches without these fields default to `Authority Writer: no`, `External Audit: optional`, and `Worker Topology: solo`.
