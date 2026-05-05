@@ -32,7 +32,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-106` | `Wave 4 post-mid-checkpoint continuation map` | `candidate / authority-only` | `Codex Desktop (commander self)` | `记录 post-mid-checkpoint continuation map、依赖、redlines、next-gate wording；不打开 code-bearing gate` | `docs/task-index.md; docs/current.md; docs/decision-log.md; docs/specs/contracts-index.md` | `data/; referencerepo/; workers/; packages/; services/api/migrations/; apps/**; services/** unless later dispatch explicitly allows them` | `AGENTS.md; docs/current.md; docs/specs/contracts-index.md; docs/research/repairs/step3-handoff-packet-2026-05-05.md` | `python tools/check-docs-redlines.py; python tools/check-secrets-redlines.py; git diff --check; manual readback` | `authority_scope_expansion` | `downstream candidate chain=Dispatch128/129/130; no runtime/package/migration/browser/ASR/audio approval` |
 
 ## Wave 2 Conflict Domain (T-P1A-018/019/020)
 

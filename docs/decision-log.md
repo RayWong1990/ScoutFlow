@@ -582,3 +582,11 @@
 - 决议: `PR127 / T-P1A-101` 被记录为下一轮 continuation handoff，仅作 named next-hop；它不是已打开的 code-bearing next gate。
 - 决议: same-PR scope-note repair pattern is now proven for app-diff slots; `T-P1A-092` and later `apps/**` slots required tracked repair notes to satisfy `tools/check-docs-redlines.py`.
 - 不解禁: 当前仍无 screenshot evidence、无本轮 Playwright execution evidence、无人类视觉终判；bridge runtime、vault true write、migration、BBDown live、yt-dlp、ffmpeg、ASR、browser automation、`audio_transcript` runtime 继续 gated。
+
+## D-012: T-P1A-106 post-mid-checkpoint continuation map
+
+- 日期: 2026-05-05
+- PR: authority-only continuation-map dispatch
+- 决议: `Dispatch127 / T-P1A-106` 被登记为 post-mid-checkpoint continuation map；它只负责把 continuation candidate chain 写回 authority，不构成 code-bearing next gate。
+- 决议: 当前 candidate 下游链固定为 `Dispatch128 / T-P1A-107`、`Dispatch129 / T-P1A-108`、`Dispatch130 / T-P1A-109`；后续 handoff 与依赖默认使用 dispatch slot + task ID，不再把历史 handoff 名称当作执行许可。
+- 决议: `Dispatch127-130` 当前都属于 continuation candidate chain；它们可以收口 Wave 4 closeout / Wave 5 opening wording，但不自动解禁 runtime、migration、frontend implementation、browser automation、vault true write、BBDown live、yt-dlp、ffmpeg、ASR 或 `audio_transcript` runtime。
