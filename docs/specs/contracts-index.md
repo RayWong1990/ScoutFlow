@@ -13,7 +13,7 @@
 | `Platform` | C-PLT-001, C-BBD-001, C-BBD-002 | docs/specs/platform-adapter-risk-contract.md + bbdown-adapter-contract-draft.md | Phase 1A baseline + draft |
 | `Security` | C-SEC-001 | docs/specs/raw-response-redaction.md | Phase 1A baseline (merged) |
 | `State` | state words / audio_transcript blocked / Phase Scope Freeze | docs/PRD-v2-2026-05-04.md + docs/SRD-v2-2026-05-04.md | Phase 1A baseline |
-| `Process` | C-OPS-001, C-OPS-003, LP-006 | parallel-execution-protocol.md + AGENTS.md | Phase 0 baseline |
+| `Process` | C-OPS-001, C-OPS-003, LP-006 | parallel-execution-protocol.md + docs/dispatch-template.md + AGENTS.md | Phase 0 baseline |
 | `Audit` | C-OPS-002, LP-007 | parallel-execution-protocol.md + README.md | Phase 0 baseline (high-risk task only) |
 
 > Former C-TOOL-001 / C-TOOL-002 / C-NFR-001 remain historical references but are not separate active contract groups after T-P1A-014 and T-P1A-015.
@@ -75,3 +75,4 @@
 - Contract 若仍是 outline，必须明确标 `reference only`。
 - 当前阶段不把外部 research note 直接升级为主线事实。
 - User 未拍板前，本表不代表已锁定未来 Phase 2+ contract。
+- `docs/dispatch-template.md` 的 commander-mode header fields 属于 process baseline；`plan/` 仍是 gitignored local workspace，不进入 tracked authority。

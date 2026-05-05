@@ -43,6 +43,9 @@ referencerepo/
 .playwright-mcp/
 .superpowers/
 
+# local handoff workspace
+plan/
+
 # editor
 .vscode/*
 !.vscode/extensions.json
