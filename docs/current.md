@@ -1,7 +1,7 @@
 # Current
 ## 当前状态
 - Phase / Step：`1A` / `WAVE_4_LEDGER_OPEN / B2_PREFLIGHT_CLOSED / B2_COMMANDER_READY`
-- 主任务：`T-P1A-072` 正在写回 Wave 4 ledger open；next gate=`T-P1A-073 / slot-label PR #98`；PR #93 已由 T-P1A-103 supersede，PR #93 不得原样合并
+- 主任务：无 active product task；last authority writeback `T-P1A-072` 已关闭 Wave 4 ledger open；next gate=`T-P1A-073 / slot-label PR #98`；PR #93 已由 T-P1A-103 supersede，PR #93 不得原样合并
 - 工作模式：Active product lane max=`3`，Authority writer max=`1`；Active count=`0/3`，Review count=`0`；Authority writer count=`0/1`
 - 当前结论：Wave 2 closed；Wave 3A closeout 已在 PR #67 记录完成；Wave 3B 的 bridge SPEC、H5 design package、vault SPEC、repo 外 prototype pointer、adapt decision table 已全部 landed（live PR `#70/#71/#72/#73/#74`）；Wave 4 B1 PR body/diff layer `verdict=clear`；Wave 4 B1 RAW control-plane 已由 `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REPAIR-Wave4-B1-control-plane-and-B2-preflight-2026-05-05.md` 和 `T-P1A-103` 修复；T-P1A-104 新增 tracked hash manifest `docs/research/repairs/t-p1a-104-control-plane-hash-manifest-2026-05-05.md` 供外审复核 RAW 文件 hash；T-P1A-105 将 commander-mode header fields 固化到 `docs/dispatch-template.md`，并把 `plan/` 定义为 gitignored local handoff workspace；`T-P1A-072` 已将 Wave 4 ledger open 写回 authority；PRD-v2.1 + SRD-v3 H5/Bridge 作为 B2 planning/contract addenda 通过 `user_override_for_B2_preflight` promoted；当前生效基线仍是 `Active product lane max=3` + `Authority writer max=1`
 
