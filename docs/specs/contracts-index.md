@@ -41,6 +41,8 @@
 |---|---|---|
 | docs/research/t-p1a-003-bbdown-tool-surface-research-2026-05-03.md | PR #10 merged | Research note only；not authority；not implementation approval；not runtime approval |
 | docs/specs/bbdown-adapter-contract-draft.md | `T-P1A-006` merged draft on `main` | Draft only；not final authority；not runtime approval |
+| docs/research/wave5/** + docs/specs/wave5/** + docs/visual/h5-capture-station/wave5/** | Dispatch131-172 landed candidate bundle on `main` | candidate docs/spec/visual surfaces only；not runtime approval；not migration approval；not browser-automation approval |
+| apps/capture-station/src/features/topic-card-vault/** + apps/capture-station/src/features/topic-card-preview/** | PR #161 / #162 bounded frontend candidates | unmounted candidate surfaces；local frontend executables unavailable in fresh worktree；`deferred_visual_evidence` remains explicit；not runtime or vault-write approval |
 | docs/research/t-p1a-007-explore-url-ux-brainstorm-2026-05-03.md | PR #15 merged research note | Research note only；not authority；not frontend / API / runtime approval |
 | docs/visual/h5-capture-station/wave4-final/wave4-visual-touchpoint-roster-and-localhost-plan-candidate-2026-05-05.md | Dispatch128 merged candidate visual roster | manual-review-first visual roster only；no browser automation approval；no screenshot-evidence claim |
 | docs/specs/wave5/wave4-bridge-vault-continuation-gap-matrix-candidate-2026-05-05.md | Dispatch129 merged candidate gap matrix | docs-only continuation matrix；no bridge runtime mount；no vault true write approval |

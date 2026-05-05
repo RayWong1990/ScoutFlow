@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 5 candidate state=`WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 5 candidate state=`WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -14,7 +14,7 @@
 
 ## 当前 Phase
 
-`Phase 1A — WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
+`Phase 1A — WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED`
 
 ## Active
 
@@ -64,6 +64,48 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-P1A-151` | Branch protection and merge policy note | `2026-05-05` | PR=#188; merge commit=`af7999c`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-150` | Global pool staging health-check contract | `2026-05-05` | PR=#187; merge commit=`8043684`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-149` | Product-lane override evidence packet | `2026-05-05` | PR=#186; merge commit=`1edd985`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-148` | RUN-SUMMARY schema for Dispatch127-176 run | `2026-05-05` | PR=#185; merge commit=`bc49d14`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-147` | Runtime-log schema for Dispatch127-176 run | `2026-05-05` | PR=#184; merge commit=`c5e91b5`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-146` | Visual regression reporting continuation | `2026-05-05` | PR=#183; merge commit=`a14d1ee`; required-runtime-gate docs-only candidate; runtime remained blocked |
+| `T-P1A-145` | Playwright smoke extension candidate | `2026-05-05` | PR=#182; merge commit=`eced620`; required-runtime-gate docs-only candidate; runtime remained blocked |
+| `T-P1A-144` | 5 Gate CI continuation note | `2026-05-05` | PR=#181; merge commit=`32a282b`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-143` | Vault dry-run continuation candidate | `2026-05-05` | PR=#180; merge commit=`affca48`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-142` | Vault preview continuation candidate | `2026-05-05` | PR=#179; merge commit=`1264a20`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-141` | Bridge hardening post-110 continuation | `2026-05-05` | PR=#178; merge commit=`914d98a`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-140` | Deferred and overflow registry candidate | `2026-05-05` | PR=#177; merge commit=`23b4a40`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-139` | Readback delta application rules | `2026-05-05` | PR=#176; merge commit=`317f2dc`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-138` | Cloud draft resume and packaging rules | `2026-05-05` | PR=#175; merge commit=`462fd0e`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-137` | STEP3 commander prompt contract note | `2026-05-05` | PR=#174; merge commit=`7c3795a`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-136` | Localhost review roster for Wave 5 surfaces | `2026-05-05` | PR=#173; merge commit=`bf7070a`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-135` | Wave 5 visual reporting candidate | `2026-05-05` | PR=#172; merge commit=`0bff256`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-134` | Signal ingestion audit lane candidate | `2026-05-05` | PR=#171; merge commit=`f576fe5`; signal-ingestion audit lane candidate; post-merge GitHub readback repaired in run ledger |
+| `T-P1A-133` | Hypothesis comparison UX candidate | `2026-05-05` | PR=#170; merge commit=`320d07c`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-132` | Capture plan frontend IA candidate | `2026-05-05` | PR=#169; merge commit=`180d31a`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-131` | Topic card frontend IA candidate | `2026-05-05` | PR=#168; merge commit=`252a47a`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-130` | Signal workbench API placeholder contract | `2026-05-05` | PR=#167; merge commit=`1ba3d37`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-129` | Wave 5 dependency graph draft | `2026-05-05` | PR=#166; merge commit=`7a556b1`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-128` | Wave 5 file-domain matrix draft | `2026-05-05` | PR=#165; merge commit=`ac12065`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-127` | Wave 5 docs-pack PR factory packaging | `2026-05-05` | PR=#164; merge commit=`aa4752c`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-126` | Capture plan dry-run note shape | `2026-05-05` | PR=#163; merge commit=`d263f53`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-125` | Topic card preview shape candidate | `2026-05-05` | PR=#162; merge commit=`fd69c78`; bounded frontend candidate; deferred visual evidence; local vitest/vite unavailable in fresh worktree; CI passed |
+| `T-P1A-124` | Topic card vault rendering candidate | `2026-05-05` | PR=#161; merge commit=`4853d7a`; bounded frontend candidate; scope-note repair landed; deferred visual evidence; local vitest/vite unavailable in fresh worktree; CI passed |
+| `T-P1A-123` | Hypothesis evidence-source matrix | `2026-05-05` | PR=#160; merge commit=`89b30eb`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-122` | Signal scoring vocabulary candidate | `2026-05-05` | PR=#159; merge commit=`83b63ad`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-121` | Capture plan input-output contract candidate | `2026-05-05` | PR=#158; merge commit=`ca20f29`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-120` | Topic card review flow candidate | `2026-05-05` | PR=#157; merge commit=`114c811`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-119` | H5 panel to signal-hypothesis mapping | `2026-05-05` | PR=#156; merge commit=`2edb854`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-118` | Metadata evidence normalization continuation | `2026-05-05` | PR=#155; merge commit=`721b4f9`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-117` | Trust-trace to topic-card mapping candidate | `2026-05-05` | PR=#154; merge commit=`ce80401`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-116` | Manual-url continuity constraints for Wave 5 | `2026-05-05` | PR=#153; merge commit=`0b0169f`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-115` | Signal workbench boundary note | `2026-05-05` | PR=#152; merge commit=`eabed7f`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-114` | Topic card entity surface candidate | `2026-05-05` | PR=#151; merge commit=`5a7f42b`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-113` | Capture plan entity surface candidate | `2026-05-05` | PR=#149; merge commit=`680268d`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-112` | Hypothesis lifecycle candidate | `2026-05-05` | PR=#148; merge commit=`ec9b36c`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-111` | Signal state map candidate | `2026-05-05` | PR=#147; merge commit=`30d15b0`; candidate-only docs/spec/visual surface; no runtime approval |
+| `T-P1A-110` | Signal entity glossary candidate | `2026-05-05` | PR=#146; merge commit=`1b520e2`; candidate-only docs/spec/visual surface; no runtime approval |
 | `T-P1A-109` | `Wave 4 closeout and Wave 5 opening candidate` | `2026-05-05` | state=`closed`; scope=`docs/current.md + docs/task-index.md + docs/decision-log.md + docs/specs/contracts-index.md`; result=`Wave 4 closeout recorded; Wave 5 candidate docs/spec lane opened; no execution/runtime/package/migration/browser approval` |
 | `T-P1A-106` | `Wave 4 post-mid-checkpoint continuation map` | `2026-05-05` | state=`closed`; scope=`docs/current.md + docs/task-index.md + docs/decision-log.md`; result=`historical PR127 handoff replaced by Dispatch127-130 candidate chain; no code-bearing gate opened` |
 | `T-P1A-099` | Visual Regression Reporting | `2026-05-05` | PR=#139; merge commit=`80b4a93`; scope=`docs/research/prototypes/visual-regression-reporting-2026-05-05.md` + `tests/visual/reporting.md`; result=visual reporting truth separates static readiness / automated execution / screenshot evidence / human verdict; no screenshot bundle or visual approval claim |
