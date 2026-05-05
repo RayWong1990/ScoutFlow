@@ -13,6 +13,8 @@ source_report: /Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/REP
 
 > State: candidate / not authority / not execution approval.
 
+Correction backlink: later note `docs/research/repairs/batch2-stagea-node-slot98-correction-2026-05-05.md` narrows the historical reading of Stage A Node validation and slot98 repair scope. This summary remains historical and is not rewritten in place.
+
 ## 1. Terminal Verdict
 
 `Wave B Batch2 / Dispatch91-110` has reached a terminal run-report state.
