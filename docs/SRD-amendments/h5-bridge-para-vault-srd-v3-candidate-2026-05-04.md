@@ -2,14 +2,16 @@
 
 ---
 title: H5 Bridge PARA Vault SRD v3 Candidate
-status: amendment / candidate
+status: amendment / promoted
 task_id: T-P1A-034
 pr_number: PR #59
-candidate: true
-not_authority: true
+candidate: false
+not_authority: false
 not_runtime_approval: true
 not_frontend_approval: true
 not_migration_approval: true
+promoted_at: 2026-05-05
+promoted_via: T-P1A-102
 authority_base: docs/SRD-v2-2026-05-04.md
 based_on_main_commit: 554f497feb31e60022542eb06bf21a74487e4e09
 related_inputs:
@@ -21,10 +23,10 @@ related_inputs:
   - docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md
   - /Users/wanglei/workspace/ScoutFlow-PR58/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md
 sunset_trigger: Deprecated when equivalent sections are promoted into a later SRD base after Wave 3A closeout, Wave 4 walking skeleton evidence, and explicit user promotion gate.
-revalidate_before_promote: true
+revalidate_before_promote: false
 ---
 
-> Status: `candidate / not authority / not runtime approval / not frontend approval / not migration approval`.
+> Status: `promoted / not runtime approval / not frontend approval / not migration approval` (promoted at T-P1A-102, 2026-05-05; runtime + frontend + migration approval still gated; revalidation folded into promotion gate).
 > This amendment extends `docs/SRD-v2-2026-05-04.md` as a read-only base reference. It does not modify the promoted SRD baseline.
 
 ## 0. Boundary

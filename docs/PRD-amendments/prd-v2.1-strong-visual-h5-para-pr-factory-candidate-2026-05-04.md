@@ -1,12 +1,14 @@
 ---
 title: PRD v2.1 Strong Visual H5 PARA PR Factory Candidate
-status: amendment / candidate
+status: amendment / promoted
 task_id: T-P1A-033
 pr_number: PR #58
-candidate: true
-not_authority: true
+candidate: false
+not_authority: false
 not_runtime_approval: true
 not_frontend_implementation_approval: true
+promoted_at: 2026-05-05
+promoted_via: T-P1A-102
 base_prd: docs/PRD-v2-2026-05-04.md
 sunset_trigger: Deprecated when equivalent sections are promoted into PRD-v3 or a later promoted base PRD after Wave 3A closeout, Wave 4 walking skeleton, and user explicit promotion gate.
 related_inputs:
@@ -17,7 +19,7 @@ related_inputs:
   - docs/research/opus-v3-acceptance-prd-srd-amendment-roadmap-review-2026-05-04.md
 ---
 
-> Status: `candidate / not authority / not runtime approval / not frontend implementation approval`.
+> Status: `promoted / not runtime approval / not frontend implementation approval` (promoted at T-P1A-102, 2026-05-05; runtime + frontend implementation approval still gated).
 > This amendment extends `docs/PRD-v2-2026-05-04.md` as a read-only base reference. It does not modify the promoted PRD baseline.
 
 This file narrows the accepted product direction for the next wave of candidate work:

@@ -55,6 +55,17 @@
 | docs/PRD-v2-2026-05-04.md | promoted PRD base，含 v1 + v1.1 + v1.2 的稳定产品规则 | 当前产品 authority baseline |
 | docs/SRD-v2-2026-05-04.md | promoted SRD base，含 v1 + v1.1 + v1.2 的稳定工程规则 | 当前工程 authority baseline |
 
+## Promoted Amendments
+
+| Amendment | Promoted scope | Promotion gate evidence | Still-gated boundary |
+|---|---|---|---|
+| docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md | extends `docs/PRD-v2-2026-05-04.md`：H5 Capture Station product surface + PARA vault knowledge layer + PR factory surge product direction | T-P1A-102, 2026-05-05; gates: Wave 3A closeout (T-P1A-031~042 merged), PR #77 pack-lint durability gate (T-P1A-101) | runtime approval still gated; frontend implementation approval still gated; sunset when PRD-v3 base supersedes |
+| docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md | extends `docs/SRD-v2-2026-05-04.md`：L3 H5 projection shape + L2 Bridge route group + VaultWriter contract on PARA vault | T-P1A-102, 2026-05-05; gates: Wave 3A closeout, PR #77 pack-lint durability gate; revalidation folded into this gate | runtime approval still gated; frontend approval still gated; migration approval still gated; sunset when SRD-v3 base supersedes |
+
+> Promoted Amendments 与 PRD-v2 / SRD-v2 base 同等参与 contract group 决策；但运行时、前端实装、migration 仍受各自独立 gate 约束，不因 promotion 自动解禁。
+> Filenames retain "-candidate-2026-05-04" suffix for path stability; YAML frontmatter `status: amendment / promoted` 是真源。
+> Distinct from the separate DB-schema SRD-v3 candidate (an independent amendment tracked in the research/draft contract section above; **未** promote at T-P1A-102).
+
 ## 仅作参考 outline 的内容
 
 | Outline | 当前不进入实现 | 主要来源 |
