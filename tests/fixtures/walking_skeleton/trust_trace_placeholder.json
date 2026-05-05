@@ -1,0 +1,29 @@
+{
+  "label": "Status / Trust Trace / 采集状态",
+  "capture": {
+    "source_kind": "manual_url",
+    "capture_mode": "metadata_only"
+  },
+  "capture_state": {
+    "status": "discovered"
+  },
+  "metadata_job": {
+    "present": true,
+    "job_type": "metadata_fetch",
+    "status": "queued",
+    "platform_result": null
+  },
+  "probe_evidence": {
+    "present": false,
+    "probe_mode": "not-run"
+  },
+  "receipt_ledger": {
+    "present": false,
+    "artifact_count": 0,
+    "redaction": "not_applicable"
+  },
+  "media_audio": {
+    "status": "not_approved",
+    "audio_transcript": "blocked"
+  }
+}
