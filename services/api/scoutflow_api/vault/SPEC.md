@@ -1,9 +1,15 @@
-# ScoutFlow VaultWriter Contract SPEC
+# ScoutFlow VaultWriter Contract SPEC v2
 
-> Status: candidate / spec only, no Python code
-> Task: `T-P1A-047`
-> PR slot: `PR #72`
+> Status: candidate / spec only, no Python code / v2 consolidation
+> Task: `T-P1A-067`
+> PR slot: `PR #92`
 > Scope: vault contract only; no runtime write, no handler code, no migration
+
+## Revision Note
+
+This v2 pass carries forward the original spec candidate from `T-P1A-047 / PR #72`.
+It keeps the same boundary: spec-only, no Python code, no runtime write, no migration.
+The semantic tightening in this pass is to align the write-disabled error name with the bridge route-group contract.
 
 ## 1. Purpose
 
@@ -124,7 +130,7 @@ Recommended literals:
 | Code | Meaning |
 |---|---|
 | `vault_root_unset` | missing `SCOUTFLOW_VAULT_ROOT` |
-| `vault_target_blocked` | write path disabled in current phase |
+| `write_disabled` | write path disabled in current phase |
 | `frontmatter_invalid` | raw 4-field contract cannot be rendered safely |
 | `path_escape_blocked` | resolved path escapes the allowed inbox subtree |
 | `vault_conflict` | idempotency/file conflict detected |
@@ -141,7 +147,7 @@ Future implementation must cover:
 | target path escapes inbox | `path_escape_blocked` |
 | invalid date/tags/status render | `frontmatter_invalid` |
 | duplicate same-file commit | explicit idempotent result or `vault_conflict` |
-| commit while write lane still gated | `vault_target_blocked` |
+| commit while write lane still gated | `write_disabled` |
 
 ## 10. Carry-forward
 
