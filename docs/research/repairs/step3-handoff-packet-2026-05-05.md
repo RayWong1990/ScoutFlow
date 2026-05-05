@@ -60,6 +60,7 @@ Cloud draft should eventually produce:
 - `manifest.jsonl`
 - `worklist-amendment.md`
 - `COMMANDER-RUN-PROMPT.md`
+- archived candidate pack at `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/packs/ScoutFlow-Dispatch127-176-candidate-pack/`
 - optional packaging/continuation artifacts
 
 ## 5. Current Status
