@@ -30,6 +30,7 @@ export type BridgeVaultPreviewResponse = {
 export type BridgeVaultCommitResponse = {
   capture_id: string;
   committed: boolean;
+  dry_run: boolean;
   target_path: string | null;
   error: BridgeError | null;
 };

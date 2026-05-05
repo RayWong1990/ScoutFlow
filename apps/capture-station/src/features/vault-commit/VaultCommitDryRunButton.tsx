@@ -3,6 +3,7 @@ import type { BridgeVaultCommitResponse } from "../../lib/api-client";
 const placeholderCommit: BridgeVaultCommitResponse = {
   capture_id: "cap_placeholder",
   committed: false,
+  dry_run: true,
   target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_placeholder-bv1placeholder.md",
   error: {
     code: "write_disabled",
@@ -65,6 +66,14 @@ export default function VaultCommitDryRunButton({ commit = placeholderCommit }: 
         <div style={{ display: "flex", justifyContent: "space-between", gap: "12px" }}>
           <span style={{ color: "#6d8099", fontSize: "12px" }}>capture_id</span>
           <span style={{ color: "#eef4ff", fontSize: "14px" }}>{commit.capture_id}</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "12px" }}>
+          <span style={{ color: "#6d8099", fontSize: "12px" }}>dry_run</span>
+          <span style={{ color: "#eef4ff", fontSize: "14px" }}>{String(commit.dry_run)}</span>
+        </div>
+        <div style={{ display: "flex", justifyContent: "space-between", gap: "12px" }}>
+          <span style={{ color: "#6d8099", fontSize: "12px" }}>committed</span>
+          <span style={{ color: "#eef4ff", fontSize: "14px" }}>{String(commit.committed)}</span>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", gap: "12px" }}>
           <span style={{ color: "#6d8099", fontSize: "12px" }}>target_path</span>

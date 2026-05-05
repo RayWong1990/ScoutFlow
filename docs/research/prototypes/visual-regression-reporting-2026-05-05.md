@@ -49,4 +49,4 @@ Do not collapse these into a single "pass".
 
 ## Suggested Reporting Shape
 
-Use [tests/visual/reporting.md](/Users/wanglei/workspace/ScoutFlow-W124/tests/visual/reporting.md) as the lightweight template.
+Use the repo-relative `tests/visual/reporting.md` as the lightweight template.
