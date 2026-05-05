@@ -1,7 +1,7 @@
 # Current
 ## 当前状态
 - Phase / Step：`1A` / `WAVE_4_MID_CHECKPOINT / NOT_CLOSEOUT`
-- 主任务：无 active product task；last authority writeback 从 `T-P1A-072` 进展到本次 mid checkpoint truth；`T-P1A-073 ~ T-P1A-099` 已通过 Wave 4 Batch 2 + Batch 3 live PR chain 落地并闭环；当前 authority 仅记录 continuation handoff=`PR127 / T-P1A-101`，未登记新的 code-bearing next gate；`PR #93` 已由 `T-P1A-103` supersede，`PR #93` 不得原样合并
+- 主任务：无 active product task；last authority writeback 从 `T-P1A-072` 进展到本次 mid checkpoint truth；`T-P1A-073 ~ T-P1A-099` 已通过 Wave 4 Batch 2 + Batch 3 live PR chain 落地并闭环；当前 authority 已登记 `Dispatch127 / T-P1A-106` 作为 post-mid-checkpoint continuation map，候选下游链为 `Dispatch128 / T-P1A-107`、`Dispatch129 / T-P1A-108`、`Dispatch130 / T-P1A-109`；但仍未打开新的 code-bearing next gate；`PR #93` 已由 `T-P1A-103` supersede，`PR #93` 不得原样合并
 - 工作模式：Active product lane max=`3`，Authority writer max=`1`；Active count=`0/3`，Review count=`0`；Authority writer count=`0/1`
 - 当前结论：Wave 2 closed；Wave 3A closeout 已在 PR #67 记录完成；Wave 3B 的 bridge SPEC、H5 design package、vault SPEC、repo 外 prototype pointer、adapt decision table 已全部 landed（live PR `#70/#71/#72/#73/#74`）；Wave 4 B1 control-plane repair / B2 preflight closure 已由 `T-P1A-103` + `T-P1A-104` 收口；Wave 4 Batch 3 将 vault helper stack、placeholder e2e baseline、5 Gate workflow、frontend lint/typecheck baseline、static Playwright harness、visual reporting template 全部 landed；但当前仍无 screenshot evidence、无本轮 Playwright execution evidence、无人类视觉终判；PRD-v2.1 + SRD-v3 H5/Bridge 继续仅作为 planning/contract addenda；当前生效基线仍是 `Active product lane max=3` + `Authority writer max=1`
 
@@ -11,8 +11,9 @@
 - `plan/` 是 gitignored local handoff workspace，不是 authority surface，不进入 tracked truth
 - B2 preflight 已关闭；B2 execution 可以进入 commander prompt 准备，但仍需按 normal validation 执行，不得把 preflight closure 当作 runtime/frontend/migration approval
 - Wave 4 mid checkpoint 已形成；`T-P1A-073 ~ T-P1A-099` 已全部 landed；后续 continuation 必须从 post-`PR #139` mainline 和新 dispatch 出发
+- `Dispatch127 / T-P1A-106` 已作为 authority-only continuation map 登记；`Dispatch128-130` 当前都只是 candidate continuation chain，不构成 runtime / migration / frontend implementation / browser automation / package approval
 - PRD-v2.1 + SRD-v3 H5/Bridge promoted addenda 仅作为 B2 planning/contract baseline；walking skeleton、visual gate、Bridge/VaultWriter runtime、vault commit 均仍需未来证据
-- `PR127 / T-P1A-101` 仅作为下一轮 overnight continuation handoff 候选；未自动提升为 active gate
+- `PR127 / T-P1A-101` 仍只保留为历史 handoff 命名；当前 continuation 以 `Dispatch127-130 / T-P1A-106 ~ T-P1A-109` 为准，不自动提升为 active gate
 - 外审可用 `docs/research/repairs/t-p1a-104-control-plane-hash-manifest-2026-05-05.md` 对本机 RAW 修复包做 hash/size/structure 复核；该 manifest 不复制 RAW 文件正文或 credential material
 
 ## 当前禁止
@@ -27,7 +28,7 @@
 - 不因 `user_override_for_B2_preflight` 推断 walking skeleton 已发生；不因 B2 preflight closure 解禁 frontend implementation、runtime、migration、vault commit、BBDown live、ffmpeg、ASR 或 browser automation
 
 ## 下一步
-- 当前 authority 没有已登记的 code-bearing next gate；未来 Wave 4 / STEP3 continuation 必须基于 post-`PR #139` truth 新开 dispatch
-- 命名 handoff=`PR127 / T-P1A-101`；它只表示下一轮 continuation 的对接目标，不表示自动开工
+- 当前 authority 已登记 `Dispatch127-130 / T-P1A-106 ~ T-P1A-109` 作为 continuation candidate chain；但仍没有已打开的 code-bearing next gate
+- continuation handoff 以 `Dispatch127 / T-P1A-106` 为 authority-first map；下游执行必须继续使用 dispatch slot + task ID，而不是把历史 handoff 名称当作开工许可
 - authority writer 当前空闲 `0/1`；后续并行 lane 仍受 `docs/specs/parallel-execution-protocol.md` 约束
 - 任何 code-bearing migration / runtime / worker / frontend 启动都必须新 dispatch + 外审
