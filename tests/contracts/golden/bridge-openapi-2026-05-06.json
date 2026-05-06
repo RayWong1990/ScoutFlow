@@ -1,0 +1,115 @@
+{
+  "paths": {
+    "/bridge/health": {
+      "get": {
+        "status_200": "BridgeHealthResponse"
+      }
+    },
+    "/bridge/vault/config": {
+      "get": {
+        "status_200": "BridgeVaultConfigResponse"
+      }
+    },
+    "/captures/{capture_id}/vault-preview": {
+      "get": {
+        "status_200": "BridgeVaultPreviewResponse",
+        "status_404": "ErrorResponse",
+        "status_409": "ErrorResponse"
+      }
+    },
+    "/captures/{capture_id}/vault-commit": {
+      "post": {
+        "status_200": "BridgeVaultCommitResponse",
+        "status_404": "ErrorResponse",
+        "status_409": "ErrorResponse"
+      }
+    }
+  },
+  "schemas": {
+    "BridgeHealthResponse": {
+      "required": [
+        "blocked_by",
+        "bridge_available",
+        "spec_version",
+        "write_enabled"
+      ],
+      "properties": [
+        "blocked_by",
+        "bridge_available",
+        "spec_version",
+        "write_enabled"
+      ]
+    },
+    "BridgeVaultConfigResponse": {
+      "required": [
+        "frontmatter_mode",
+        "preview_enabled",
+        "vault_root_resolved",
+        "write_enabled"
+      ],
+      "properties": [
+        "error",
+        "frontmatter_mode",
+        "preview_enabled",
+        "vault_root",
+        "vault_root_resolved",
+        "write_enabled"
+      ]
+    },
+    "BridgeVaultPreviewResponse": {
+      "required": [
+        "body_markdown",
+        "capture_id",
+        "frontmatter",
+        "target_path",
+        "warnings"
+      ],
+      "properties": [
+        "body_markdown",
+        "capture_id",
+        "frontmatter",
+        "target_path",
+        "warnings"
+      ]
+    },
+    "BridgeVaultCommitResponse": {
+      "required": [
+        "capture_id",
+        "committed",
+        "dry_run",
+        "write_enabled"
+      ],
+      "properties": [
+        "capture_id",
+        "committed",
+        "dry_run",
+        "error",
+        "target_path",
+        "write_enabled"
+      ],
+      "write_enabled_const": false
+    },
+    "BridgeErrorCode": {
+      "enum": [
+        "bridge_not_implemented",
+        "vault_root_unset",
+        "capture_not_found",
+        "capture_state_blocked",
+        "metadata_missing",
+        "frontmatter_invalid",
+        "path_escape_blocked",
+        "write_disabled"
+      ]
+    },
+    "ErrorResponse": {
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": [
+        "code",
+        "message"
+      ]
+    }
+  }
+}
