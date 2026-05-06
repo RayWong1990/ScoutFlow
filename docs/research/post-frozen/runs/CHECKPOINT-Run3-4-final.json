@@ -1,0 +1,167 @@
+{
+  "run_id": "Run3-4-2026-05-06",
+  "baseline_origin_main": "2dbf2c19ae7c93f626929191bc9d0d4e3979958f",
+  "status": "completed_local_worktree_only_until_merge",
+  "execution_mode": "local_worktree_only_until_merge",
+  "execution_mode_rationale": "Run-3+4 held all 24 dispatch in one worktree and did not per-dispatch PR; instead the user authorized single-shot direct-merge after informal audit, sympathetic to the Run-2 amendment pattern.",
+  "run_complete": true,
+  "dispatches_total": 24,
+  "final_origin_main": "pending_post_merge",
+  "worktree": "/tmp/scoutflow-run3-4-1778080188",
+  "dispatches_merged": [
+    {
+      "code": "PF-C1-01",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/c1-canary-url-pack.md"
+    },
+    {
+      "code": "PF-C1-02",
+      "verdict": "T-PASS",
+      "output_path": "docs/specs/post-frozen/topic-card-lite-contract-v0.md"
+    },
+    {
+      "code": "PF-C1-03",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/topic-card-preview-vault-historical-asset-extraction.md"
+    },
+    {
+      "code": "PF-C1-04",
+      "verdict": "T-PASS",
+      "output_path": "apps/capture-station/src/features/topic-card-preview/**"
+    },
+    {
+      "code": "PF-C1-05",
+      "verdict": "T-PASS",
+      "output_path": "apps/capture-station/src/features/topic-card-vault/**"
+    },
+    {
+      "code": "PF-C1-06",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/c1-human-usefulness-rubric.md"
+    },
+    {
+      "code": "PF-C1-07",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/c1-three-url-preview-proof-set.md"
+    },
+    {
+      "code": "PF-C1-08",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/evidence/PF-C1-08-human-verdict-2026-05-06.md"
+    },
+    {
+      "code": "PF-C1-09",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/c1-false-positive-edit-cost-log.md"
+    },
+    {
+      "code": "PF-C1-10",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/c1-proof-readback.md"
+    },
+    {
+      "code": "PF-C1-11",
+      "verdict": "skipped",
+      "output_path": "docs/research/post-frozen/c1-second-canary-iteration.md"
+    },
+    {
+      "code": "PF-C1-12",
+      "verdict": "partial",
+      "output_path": "no_authority_writeback_by_user_choice"
+    },
+    {
+      "code": "PF-C2-01",
+      "verdict": "T-PASS",
+      "output_path": "docs/specs/post-frozen/raw-note-candidate-contract-v0.md"
+    },
+    {
+      "code": "PF-C2-02",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/raw-frontmatter-compatibility-check.md"
+    },
+    {
+      "code": "PF-C2-03",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/manual-raw-handoff-runbook.md"
+    },
+    {
+      "code": "PF-C2-04",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/raw-intake-acceptance-rubric.md"
+    },
+    {
+      "code": "PF-C2-05",
+      "verdict": "T-PASS",
+      "output_path": "docs/specs/post-frozen/script-seed-proof-contract.md"
+    },
+    {
+      "code": "PF-C2-06",
+      "verdict": "partial",
+      "output_path": "docs/research/post-frozen/c2-two-note-manual-raw-handoff-run.md"
+    },
+    {
+      "code": "PF-C2-07",
+      "verdict": "partial",
+      "output_path": "docs/research/post-frozen/c2-raw-intake-readback-result.md"
+    },
+    {
+      "code": "PF-C2-08",
+      "verdict": "partial",
+      "output_path": "docs/research/post-frozen/c2-script-seed-generation-result.md"
+    },
+    {
+      "code": "PF-C2-09",
+      "verdict": "partial",
+      "output_path": "docs/research/post-frozen/c2-second-inbox-negative-test.md"
+    },
+    {
+      "code": "PF-C2-10",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/scoutflow-raw-sor-handoff-matrix.md"
+    },
+    {
+      "code": "PF-C2-11",
+      "verdict": "partial",
+      "output_path": "docs/research/post-frozen/c2-proof-readback.md"
+    },
+    {
+      "code": "PF-C2-12",
+      "verdict": "T-PASS",
+      "output_path": "docs/research/post-frozen/future-true-write-gate-draft.md"
+    }
+  ],
+  "batch_a_audit": "clear",
+  "batch_b_audit": "clear",
+  "batch_c_audit": "clear",
+  "c1_verdict": "pass",
+  "c1_useful_count": "3 of 3",
+  "c1_iteration_2_run": false,
+  "c2_verdict": "partial",
+  "c2_partial_count": 5,
+  "c2_partial_dispatches": [
+    "PF-C2-06",
+    "PF-C2-07",
+    "PF-C2-08",
+    "PF-C2-09",
+    "PF-C2-11"
+  ],
+  "c2_partial_reason": "user authorized A-path skip of manual RAW transfer; placeholder enrichment not yet ready",
+  "can_open_c4": false,
+  "can_open_c4_reason": "C2 partial pending future enrichment plus manual RAW intake; not blocker for PF-V handoff lane which runs in parallel",
+  "ready_for_external_audit": true,
+  "ready_for_run_5": "yes_pending_pf_v_handoff",
+  "raw_transfer_status": "skipped_per_user_A_path_2026-05-06",
+  "authority_writeback": "skipped_by_user_choice",
+  "high_blast_audit_verdict": {
+    "PF-C1-04": "clean",
+    "PF-C1-07": "clean",
+    "PF-C2-06": "clean"
+  },
+  "interruption_count": {
+    "slot_local": 1,
+    "control_plane": 0,
+    "ledger": 0
+  },
+  "report_path": "docs/research/post-frozen/runs/RUN-3-4-CODEX0-REPORT-2026-05-06.md",
+  "diff_bundle_path": "docs/research/post-frozen/runs/DIFF-BUNDLE-Run3-4-2026-05-06.md"
+}

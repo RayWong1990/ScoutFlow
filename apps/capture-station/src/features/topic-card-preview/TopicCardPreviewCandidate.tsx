@@ -1,23 +1,4 @@
-type PreviewMetric = {
-  label: string;
-  value: string;
-  tone: "support" | "counter" | "process";
-};
-
-type ReviewStep = {
-  label: string;
-  state: "ready" | "deferred" | "needs_review";
-};
-
-type TopicCardPreviewCandidateData = {
-  title: string;
-  hypothesisSummary: string;
-  reviewState: "mapped" | "reviewed";
-  exportPosture: "local_only" | "handoff_candidate";
-  metrics: PreviewMetric[];
-  reviewSteps: ReviewStep[];
-  counterNote: string;
-};
+import { buildPlaceholderTopicCardPreviewCandidateData, type TopicCardPreviewCandidateData } from "./topicCardLite";
 
 const toneColors = {
   support: "#7adf9b",
@@ -31,29 +12,13 @@ const stepColors = {
   needs_review: "#50d4ff",
 } as const;
 
-const placeholderData: TopicCardPreviewCandidateData = {
-  title: "ScoutFlow topic-card candidate",
-  hypothesisSummary: "metadata proof is enough to frame a review card, but not enough to claim human visual clarity.",
-  reviewState: "mapped",
-  exportPosture: "local_only",
-  metrics: [
-    { label: "strength", value: "evidence_sufficient", tone: "support" },
-    { label: "coverage", value: "metadata + trust-trace", tone: "process" },
-    { label: "risk", value: "missing visual verdict", tone: "counter" },
-  ],
-  reviewSteps: [
-    { label: "intake shell", state: "ready" },
-    { label: "evidence review", state: "needs_review" },
-    { label: "retain or defer", state: "deferred" },
-  ],
-  counterNote: "Counter-evidence stays visible: no screenshot packet, no browser-run proof, no publish action.",
-};
-
 type TopicCardPreviewCandidateProps = {
   data?: TopicCardPreviewCandidateData;
 };
 
-export default function TopicCardPreviewCandidate({ data = placeholderData }: TopicCardPreviewCandidateProps) {
+export default function TopicCardPreviewCandidate({
+  data = buildPlaceholderTopicCardPreviewCandidateData(),
+}: TopicCardPreviewCandidateProps) {
   return (
     <section
       data-testid="topic-card-preview-candidate"
@@ -224,6 +189,9 @@ export default function TopicCardPreviewCandidate({ data = placeholderData }: To
       >
         <p style={{ margin: 0, color: "#eef4ff", fontSize: "13px" }}>
           This preview exposes reviewable structure only. It does not call topic-card APIs or change the four-panel shell.
+        </p>
+        <p style={{ margin: 0, color: "#a6b8cf", fontSize: "12px", wordBreak: "break-all" }}>
+          capture_id=`{data.captureId}` | platform_item_id=`{data.platformItemId}` | target_path=`{data.targetPath}`
         </p>
         <p style={{ margin: 0, color: "#6d8099", fontSize: "12px" }}>
           `deferred_visual_evidence`: screenshot packet and human verdict remain out of scope for this dispatch.

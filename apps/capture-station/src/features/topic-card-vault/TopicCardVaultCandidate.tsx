@@ -1,18 +1,4 @@
-type TopicCardEvidenceRow = {
-  label: string;
-  stance: "support" | "counter" | "process";
-  note: string;
-};
-
-type TopicCardVaultCandidateData = {
-  title: string;
-  hypothesisSummary: string;
-  exportPosture: "local_only" | "handoff_candidate";
-  gate: "write_disabled";
-  targetPath: string;
-  markdownPreview: string;
-  evidence: TopicCardEvidenceRow[];
-};
+import { buildPlaceholderTopicCardVaultCandidateData, type TopicCardVaultCandidateData } from "./topicCardVaultCandidateData";
 
 const stanceColors = {
   support: "#7adf9b",
@@ -20,48 +6,13 @@ const stanceColors = {
   process: "#50d4ff",
 } as const;
 
-const placeholderData: TopicCardVaultCandidateData = {
-  title: "Topic Card Vault",
-  hypothesisSummary: "将证据链压成可审阅的 topic card 视图，但仍停在本地候选层。",
-  exportPosture: "local_only",
-  gate: "write_disabled",
-  targetPath: "/tmp/scoutflow-vault/00-Inbox/topic-card-cap_placeholder.md",
-  markdownPreview: [
-    "# Topic Card / cap_placeholder",
-    "",
-    "- title: ScoutFlow topic-card candidate",
-    "- hypothesis: metadata proof is enough to frame a review card",
-    "- export_posture: local_only",
-    "",
-    "## Evidence",
-    "- support: metadata probe summary",
-    "- process: trust-trace provenance",
-    "- counter: missing human visual verdict",
-  ].join("\n"),
-  evidence: [
-    {
-      label: "metadata evidence",
-      stance: "support",
-      note: "title, duration, page_count and canonical URL can anchor the card headline.",
-    },
-    {
-      label: "trust-trace process",
-      stance: "process",
-      note: "show how the card was formed without implying runtime capture expansion.",
-    },
-    {
-      label: "counter-evidence",
-      stance: "counter",
-      note: "no screenshot packet or human visual verdict is attached in the current phase.",
-    },
-  ],
-};
-
 type TopicCardVaultCandidateProps = {
   data?: TopicCardVaultCandidateData;
 };
 
-export default function TopicCardVaultCandidate({ data = placeholderData }: TopicCardVaultCandidateProps) {
+export default function TopicCardVaultCandidate({
+  data = buildPlaceholderTopicCardVaultCandidateData(),
+}: TopicCardVaultCandidateProps) {
   return (
     <section
       data-testid="topic-card-vault-candidate"
