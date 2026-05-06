@@ -35,7 +35,7 @@ run_id: W2-CODEX0-DOCS-2026-05-06
 | risk | why it remains | current containment |
 |---|---|---|
 | `PF-C3-04 missing` | dependency on `PF-C1-10` still unresolved | keep deferred and call it out explicitly |
-| `other-window branch drift` | one unrelated open PR `#216` exists on a different lane | this run stayed isolated and did not touch that branch |
+| `other-window branch drift` | PR `#216` was a Run-2 lane PR, but not part of the Window-2 dispatch list | this run stayed isolated and did not touch the Run-2 lane branch |
 | `support-doc overread` | future readers may over-promote PF-GLOBAL docs | every output repeats candidate/not-authority language |
 
 ## audit_ready_paths

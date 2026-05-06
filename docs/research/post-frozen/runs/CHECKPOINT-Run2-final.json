@@ -2,13 +2,23 @@
   "run_id": "RUN-2-CODEX0-RESUME-2026-05-06",
   "baseline_origin_main": "f7d6c5c383fe36ed18c6ad981692cec363de3b72",
   "final_origin_main": "7d41e5dc34601a9fd23a819ab9bddc895765ba60",
+  "run_execution_final_sha": "7d41e5dc34601a9fd23a819ab9bddc895765ba60",
+  "run2_receipt_bundle_pr": 238,
+  "audit_final_sha_after_receipt_bundle": "8cf334905ef1dda388737680bf27c552260a9a9b",
+  "amendment_pr_in_resume_window": 231,
   "run_complete": true,
+  "ready_for_run_3": false,
+  "ready_for_run_3_reasons": [
+    "lp_18_closeout_partial_authority_writeback_pending",
+    "real_browser_visual_uat_not_run",
+    "human_decision_pending_run_3_scope"
+  ],
   "dispatches_total": 14,
   "dispatches_merged": [
     {"code": "PF-LP-04", "pr": 207, "merge_commit": "f84e75d1668f6ca146b69764f34006d7862d2db1"},
     {"code": "PF-LP-05", "pr": 216, "merge_commit": "58861877c68f259fb133fa1286f59632b1d44f81"},
-    {"code": "PF-LP-06", "pr": 226, "merge_commit": "04a25c33808a326b767eef7c5bbf2c79212e80e0"},
-    {"code": "PF-LP-07", "pr": 228, "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
+    {"code": "PF-LP-06", "pr": 228, "dispatch_receipt_pr": 226, "coverage_prs": [226, 228], "merge_commit": "04a25c33808a326b767eef7c5bbf2c79212e80e0", "primary_truth_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
+    {"code": "PF-LP-07", "pr": 228, "dispatch_receipt_pr": 228, "coverage_prs": [226, 228], "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93", "primary_truth_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
     {"code": "PF-LP-08", "pr": 228, "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
     {"code": "PF-LP-09", "pr": 233, "merge_commit": "b4fc8b51e90de70364583398dbb463c813adb623"},
     {"code": "PF-LP-10", "pr": 232, "merge_commit": "9512f9ee558f270500d669f90389476454b97869"},
@@ -28,7 +38,7 @@
     "PF-LP-14": "COVERED_BY_228"
   },
   "uat_1_evidence_path": "docs/research/post-frozen/evidence/PF-LP-16-manual-localhost-run-2026-05-06.md",
-  "uat_1_verdict": "works",
+  "uat_1_verdict": "partial",
   "interruption_count": {
     "slot_local": 1,
     "control_plane": 2,
@@ -39,6 +49,8 @@
   "diff_bundle_path": "docs/research/post-frozen/runs/DIFF-BUNDLE-Run2-2026-05-06.md",
   "notes": [
     "Synthetic UAT kept the original query string in the input URL and recorded the BV-only canonical path as a note.",
-    "LP-18 closed as an authority-safe note without modifying authority surfaces."
+    "LP-18 closed as an authority-safe note without modifying authority surfaces.",
+    "LP-06/07 dual-coverage: PR #226 landed initial preview shell, PR #228 super-set re-land + extended; pr field now points to final truth PR #228 while dispatch_receipt_pr preserves the original dispatch receipt PR.",
+    "final_origin_main field equals run_execution_final_sha; the closeout receipt bundle PR #238 advanced origin/main to audit_final_sha_after_receipt_bundle = 8cf3349."
   ]
 }

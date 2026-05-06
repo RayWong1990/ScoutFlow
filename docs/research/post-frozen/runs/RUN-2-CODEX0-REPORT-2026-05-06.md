@@ -14,7 +14,7 @@ final_origin_main: 7d41e5dc34601a9fd23a819ab9bddc895765ba60
 - Scope executed: `PF-LP-04/05/06/07/08/09/10/11/12/14/15/16/17/18`
 - Resume starting truth: `origin/main=f7d6c5c383fe36ed18c6ad981692cec363de3b72`, with `#207/#216/#226/#228/#230` already merged
 - Resume result: all remaining dispatches completed, R1 forensic truth landed, synthetic UAT-1 evidence landed, and preview-only closeout stayed non-authority
-- Allowed write surface stayed inside `docs/research/post-frozen/**`
+- Resume-phase write surface (after `#230`) stayed inside `docs/research/post-frozen/**`. Full Run-2 changed `apps/capture-station/**`, `tests/e2e/**`, `docs/research/repairs/**`, and `docs/research/post-frozen/**` as listed in the `dispatch_receipts` table below.
 
 ## forensic_verdicts
 
@@ -39,8 +39,8 @@ final_origin_main: 7d41e5dc34601a9fd23a819ab9bddc895765ba60
 | `PF-LP-12` | `#230` | `f7d6c5c` | `docs/research/post-frozen/localhost-preview-dev-runbook-2026-05-06.md` | `T-PASS` |
 | `PF-LP-14` | `#234` | `2445761` | `docs/research/post-frozen/runs/RUN-2-LP-14-coverage-evidence-2026-05-06.md` | `COVERED_BY_228` |
 | `PF-LP-15` | `#228` | `bd1f382` | `tests/e2e/test_h5_bridge_preview_placeholder.py` | `T-PASS` |
-| `PF-LP-16` | `#235` | `91a2dea` | `docs/research/post-frozen/evidence/PF-LP-16-manual-localhost-run-2026-05-06.md` | `works` |
-| `PF-LP-17` | `#236` | `0109a5a` | `docs/research/post-frozen/preview-only-localhost-loop-readback.md` | `works` |
+| `PF-LP-16` | `#235` | `91a2dea` | `docs/research/post-frozen/evidence/PF-LP-16-manual-localhost-run-2026-05-06.md` | `partial` |
+| `PF-LP-17` | `#236` | `0109a5a` | `docs/research/post-frozen/preview-only-localhost-loop-readback.md` | `partial` |
 | `PF-LP-18` | `#237` | `7d41e5d` | `docs/research/post-frozen/preview-only-closeout-authority-safe-note-2026-05-06.md` | `partial` |
 
 ## synthetic_uat_1
@@ -58,7 +58,9 @@ final_origin_main: 7d41e5dc34601a9fd23a819ab9bddc895765ba60
 - classification:
   - `copy_action=success`
   - `download_action=success`
-  - `uat_1_verdict=works`
+  - `verdict=partial`
+  - `synthetic_result=works`
+  - `missing_proof=real_browser_visual_uat`
 
 ## validation
 
@@ -96,3 +98,13 @@ final_origin_main: 7d41e5dc34601a9fd23a819ab9bddc895765ba60
   - `docs/research/post-frozen/runs/RUN-2-CODEX0-REPORT-2026-05-06.md`
   - `docs/research/post-frozen/runs/DIFF-BUNDLE-Run2-2026-05-06.md`
   - `docs/research/post-frozen/runs/CHECKPOINT-Run2-final.json`
+
+## ready_for_run_3
+
+- ready_for_run_3: no
+- blocking_reasons:
+  - LP-18 closeout intentionally stopped short of authority writeback (`docs/research/post-frozen/preview-only-closeout-authority-safe-note-2026-05-06.md`)
+  - real_browser_visual_uat_not_run (synthetic UAT-1 only; user authorized partial-evidence mode)
+  - human_decision_pending: whether real-browser UAT + authority writeback are prerequisites for Run-3
+- amendment_status: receipt_traceability_amended_2026-05-06
+- gate: pending_user_decision_on_run_3_scope

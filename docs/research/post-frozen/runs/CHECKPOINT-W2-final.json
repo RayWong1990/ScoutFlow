@@ -2,6 +2,8 @@
   "run_id": "W2-CODEX0-DOCS-2026-05-06",
   "baseline_origin_main": "9d90d0a436ee756bfc31dde4616f14b326a540c3",
   "final_origin_main": "7edd908c142d85ab54301af73324222e5afa070c",
+  "w2_execution_final_sha": "7edd908c142d85ab54301af73324222e5afa070c",
+  "w2_receipt_bundle_pr": 227,
   "run_complete": true,
   "dispatches_total": 17,
   "dispatches_merged": [
@@ -34,6 +36,6 @@
   "diff_bundle_path": "docs/research/post-frozen/runs/DIFF-BUNDLE-W2-Docs-2026-05-06.md",
   "notes": [
     "PF-C3-04 remains deferred because it depends on PF-C1-10.",
-    "An unrelated open PR #216 exists on another lane and was not part of this run."
+    "PR #216 was a Run-2 lane PR (PF-LP-05 wire url bar create capture submit) merged 2026-05-06; not part of Window-2 dispatch list. The 'unrelated open' note in earlier drafts was a concurrent-execution authoring residual."
   ]
 }
