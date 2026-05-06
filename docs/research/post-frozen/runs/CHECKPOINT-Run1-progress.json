@@ -1,0 +1,88 @@
+{
+  "run_id": "Run-1-CODEX0-2026-05-06",
+  "status": "run_complete",
+  "baseline_origin_main": "82481b197eaa420744af90427b07a5ad670d3d96",
+  "current_state": "WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED",
+  "current_stage": 4,
+  "stage_status": [
+    {
+      "stage": 0,
+      "dispatches": [
+        "PF-C0-01R",
+        "PF-O1-01R"
+      ],
+      "status": "completed"
+    },
+    {
+      "stage": 1,
+      "dispatches": [
+        "PF-LP-03",
+        "PF-C0-MERGED-03+04"
+      ],
+      "status": "completed"
+    },
+    {
+      "stage": 2,
+      "dispatches": [
+        "PF-C0-06R",
+        "PF-LP-01"
+      ],
+      "status": "completed"
+    },
+    {
+      "stage": 3,
+      "dispatches": [
+        "PF-LP-02"
+      ],
+      "status": "completed"
+    },
+    {
+      "stage": 4,
+      "dispatches": [
+        "PF-LP-13"
+      ],
+      "status": "completed"
+    },
+    {
+      "stage": 5,
+      "dispatches": [],
+      "status": "not_used_after_rescope"
+    }
+  ],
+  "interruptions": {
+    "slot_local": 1,
+    "control_plane": 3,
+    "ledger": 0
+  },
+  "prs_opened": [
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206
+  ],
+  "prs_merged": [
+    199,
+    200,
+    201,
+    202,
+    203,
+    204,
+    205,
+    206
+  ],
+  "cold_start_receipt": {
+    "git_fetch_origin_prune": "ok",
+    "proxy_env_present": false,
+    "git_status_notes": [
+      "untracked: docs/research/post-frozen/run-1-codex-commander-prompt-2026-05-06.md"
+    ],
+    "dispatch_sample": "PF-LP-01-bridge-router-mount-in-create_app.md",
+    "truth_conflict_detected": true,
+    "truth_conflict_file": "docs/research/post-frozen/runs/RUN-Run1-truth-conflict-2026-05-06.md",
+    "truth_conflict_resolution": "PF-LP-12 deferred to Run-2 after PF-LP-04; Run-1 continues with 8 dispatches"
+  }
+}
