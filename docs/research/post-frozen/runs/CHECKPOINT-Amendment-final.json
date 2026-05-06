@@ -1,0 +1,56 @@
+{
+  "title": "CHECKPOINT-Amendment-final",
+  "status": "candidate / checkpoint / not-authority",
+  "created_at": "2026-05-06",
+  "branch": "codex/run1-amendments",
+  "pr_number": 231,
+  "base_ref": "origin/main",
+  "base_ref_sha_at_branch_creation": "f7d6c5c383fe36ed18c6ad981692cec363de3b72",
+  "pre_receipt_commit_sha": "79f19b8",
+  "scope": "docs_only_amendment",
+  "authority_touched": false,
+  "production_paths_touched": false,
+  "run_1_synthesis_verdict": "REJECT_AS_SCOPE_DRIFT",
+  "run_1_synthesis_decision": "amend_and_proceed",
+  "accepted_partial_scope_deviations": [
+    "A1",
+    "A2",
+    "A3"
+  ],
+  "doc_or_rule_fixes": [
+    "A4",
+    "A5",
+    "A6",
+    "A7"
+  ],
+  "note_only": [
+    "A8"
+  ],
+  "created_paths": [
+    "docs/research/post-frozen/audits/run-1-audit-gpt-pro-independent-a-2026-05-06.md",
+    "docs/research/post-frozen/audits/run-1-audit-gpt-5-codex-cloud-2026-05-06.md",
+    "docs/research/post-frozen/audits/run-1-audit-hermes-2026-05-06.md",
+    "docs/research/post-frozen/runs/RUN-1-AMENDMENT-LEDGER-2026-05-06.md",
+    "docs/research/post-frozen/run-2-commander-prompt-template-rules-2026-05-06.md",
+    "docs/research/post-frozen/runs/RUN-1-AMENDMENT-RUN-REPORT-2026-05-06.md",
+    "docs/research/post-frozen/runs/DIFF-BUNDLE-Amendment-2026-05-06.md",
+    "docs/research/post-frozen/runs/CHECKPOINT-Amendment-final.json"
+  ],
+  "modified_paths": [
+    "docs/research/post-frozen/live-authority-readback-after-pr194.md"
+  ],
+  "step6_validation": {
+    "authority_diff_empty": true,
+    "production_path_diff_empty": true,
+    "frontmatter_check_passed": true,
+    "restricted_keyword_scan_empty": true,
+    "supersession_header_present": true
+  },
+  "step8_gate": {
+    "required": true,
+    "status_at_checkpoint_write": "pending_independent_review"
+  },
+  "compare_boundary_notes": [
+    "PR #198 is user-authorized and lies inside the historical compare interval, but is excluded from Run-1 stage receipts."
+  ]
+}
