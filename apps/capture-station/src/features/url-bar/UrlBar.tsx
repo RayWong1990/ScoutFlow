@@ -10,11 +10,12 @@ const sampleSuggestions = [
 type UrlBarProps = {
   createCapture?: (canonicalUrl: string) => Promise<CreateCaptureResponse>;
   onCaptureCreated?: (capture: CreateCaptureResponse) => void;
+  onDraftChange?: (canonicalUrl: string) => void;
 };
 
 const defaultCreateCapture = createCaptureStationApi("http://127.0.0.1:8000").createCapture;
 
-export default function UrlBar({ createCapture = defaultCreateCapture, onCaptureCreated }: UrlBarProps) {
+export default function UrlBar({ createCapture = defaultCreateCapture, onCaptureCreated, onDraftChange }: UrlBarProps) {
   const [value, setValue] = useState(sampleSuggestions[0]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
@@ -65,8 +66,10 @@ export default function UrlBar({ createCapture = defaultCreateCapture, onCapture
         <input
           value={value}
           onChange={(event) => {
-            setValue(event.target.value);
+            const nextValue = event.target.value;
+            setValue(nextValue);
             setErrorMessage(null);
+            onDraftChange?.(nextValue);
           }}
           placeholder="https://www.bilibili.com/video/BV..."
           style={{
