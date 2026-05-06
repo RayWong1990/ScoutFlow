@@ -30,7 +30,7 @@ This note does not modify or reinterpret `docs/current.md`, `docs/task-index.md`
 | Target | Workflow | Run ID | Event | Final conclusion | Key time |
 | --- | --- | --- | --- | --- | --- |
 | `ff143e6` | `docs-check` | `25424883403` | `pull_request` | `success` | updated `2026-05-06T08:35:17Z` |
-| `ff143e6` | `h5-five-gate` | `25424883411` | `pull_request` | `success` after manual rerun | updated `2026-05-06T08:49:59Z` |
+| `ff143e6` | `h5-five-gate` | `25424883411` | `pull_request` | attempt `1`=`failure`, attempt `2`=`success` after manual rerun | updated `2026-05-06T08:49:59Z` |
 | `82481b1` | `docs-check` | `25424980329` | `push` | `success` | updated `2026-05-06T08:37:38Z` |
 | `82481b1` | `h5-five-gate` | none expected | n/a | n/a | workflow not triggered on `push` |
 
@@ -49,10 +49,11 @@ This note does not modify or reinterpret `docs/current.md`, `docs/task-index.md`
 - Run ID: `25424883411`
 - URL: <https://github.com/RayWong1990/ScoutFlow/actions/runs/25424883411>
 - Event: `pull_request`
-- Attempt 1 observed state during external audit readback:
-  - workflow status=`queued`
-  - job `five-gate-checklist` already `success` at `2026-05-06T08:34:31Z`
-  - job `e2e-placeholder-baseline` remained `queued`
+- Attempt 1 needs two layers of readback truth kept separate:
+  - operator-facing PR rollup at the time showed workflow/job state as `queued`
+  - persisted GitHub attempt history now resolves attempt `1` to workflow conclusion=`failure`
+  - within attempt `1`, `five-gate-checklist` completed `success` at `2026-05-06T08:34:31Z`
+  - within attempt `1`, `e2e-placeholder-baseline` had `started_at=2026-05-06T08:34:24Z` and later ended `cancelled` at `2026-05-06T08:49:25Z`
 - Manual action taken during this readback:
   - executed `gh run rerun 25424883411`
 - Attempt 2 outcome:
@@ -86,8 +87,8 @@ This note does not modify or reinterpret `docs/current.md`, `docs/task-index.md`
 Applicable:
 
 - live readback of `PR #197` GitHub Actions truth
-- explanation of why the first observed PR-head `h5-five-gate` state was `queued`
-- proof that manual rerun cleared the stuck queue state without any repository content change
+- explanation of the difference between the operator-facing `queued` view and the persisted attempt-1 `failure` history
+- proof that manual rerun cleared the attempt-1 failure without any repository content change
 
 Not applicable:
 
@@ -101,8 +102,8 @@ Not applicable:
 
 - `PR #197` merged with merge commit `82481b1`; this is confirmed GitHub fact.
 - `docs-check` is green on both the PR head and the merge commit.
-- `h5-five-gate` for the PR head was initially observed as `queued` because `e2e-placeholder-baseline` had not started yet; after manual rerun, attempt `2` finished `success`.
-- The queued state did not become a content failure for the docs-only post-frozen pack.
+- `h5-five-gate` for the PR head had a split readback story: the operator-facing rollup was seen as `queued`, while persisted attempt history records attempt `1` as `failure` with `e2e-placeholder-baseline=cancelled`.
+- After manual rerun, attempt `2` finished `success`; the failure/rerun path did not point to a docs-only post-frozen content defect.
 
 ## 7. Evidence anchors
 
