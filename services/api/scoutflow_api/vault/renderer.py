@@ -43,16 +43,40 @@ def preview_date_from_capture(created_at: str) -> str:
         ) from exc
 
 
-def build_preview_markdown(capture_id: str, platform_item_id: str, canonical_url: str) -> str:
+def build_preview_markdown(
+    capture_id: str,
+    platform_item_id: str,
+    canonical_url: str,
+    *,
+    frontmatter: Any,
+    source_kind: str,
+    capture_mode: str,
+) -> str:
     title = build_preview_title(platform_item_id)
     return "\n".join(
         [
             f"# {title}",
             "",
+            "## Capture",
             f"- capture_id: `{capture_id}`",
             f"- platform_item_id: `{platform_item_id}`",
             f"- canonical_url: {canonical_url}",
+            f"- source_kind: `{source_kind}`",
+            f"- capture_mode: `{capture_mode}`",
             "",
+            "## Frontmatter candidate",
+            f"- title: {frontmatter.title}",
+            f"- date: {frontmatter.date}",
+            f"- tags: {frontmatter.tags}",
+            f"- status: {frontmatter.status}",
+            "",
+            "## Preview boundary",
+            "- preview_only: `true`",
+            "- write_enabled: `false`",
+            "- runtime_tools_enabled: `false`",
+            "- evidence_source: existing capture truth only",
+            "",
+            "## Draft note",
             "Raw markdown candidate generated from existing capture truth only.",
         ]
     )
@@ -63,6 +87,8 @@ def build_preview_draft(capture: Mapping[str, Any], vault_root: str | Path) -> V
     platform_item_id = _require_capture_field(capture, "platform_item_id")
     canonical_url = _require_capture_field(capture, "canonical_url")
     created_at = _require_capture_field(capture, "created_at")
+    source_kind = str(capture.get("source_kind", "manual_url")).strip() or "manual_url"
+    capture_mode = str(capture.get("capture_mode", "metadata_only")).strip() or "metadata_only"
 
     target_path = str(resolve_inbox_target_path(vault_root, capture_id, platform_item_id))
     frontmatter = build_frontmatter(
@@ -73,6 +99,13 @@ def build_preview_draft(capture: Mapping[str, Any], vault_root: str | Path) -> V
         capture_id=capture_id,
         target_path=target_path,
         frontmatter=frontmatter,
-        body_markdown=build_preview_markdown(capture_id, platform_item_id, canonical_url),
+        body_markdown=build_preview_markdown(
+            capture_id,
+            platform_item_id,
+            canonical_url,
+            frontmatter=frontmatter,
+            source_kind=source_kind,
+            capture_mode=capture_mode,
+        ),
         warnings=[],
     )
