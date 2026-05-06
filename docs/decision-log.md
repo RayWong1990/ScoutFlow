@@ -604,7 +604,7 @@
 - 日期: 2026-05-05
 - PR: authority-only `T-P1A-152`
 - 决议: `Dispatch131-172 / T-P1A-110 ~ T-P1A-151` 已全部以 candidate docs/spec/visual/audit lanes landed on `main`，当前 authority 状态从 `WAVE_5_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED` 收口为 `WAVE_5_CANDIDATE_CLOSED / NOT_EXECUTION_APPROVED`。
-- 决议: `T-P1A-124 / T-P1A-125` 两个 bounded frontend candidate surface 已 landed，但仍保持 `deferred_visual_evidence`，不构成 screenshot evidence、human visual verdict、runtime approval 或 frontend execution gate。
+- 决议: `T-P1A-124 / T-P1A-125` 两个 bounded frontend candidate surface 已 landed，且后续 residual repair 已补齐 local frontend validation 与 bounded screenshot packet / Playwright execution evidence；但该证据仍只适用于 bounded candidate surfaces，不构成全局 visual terminal verdict、product UI approval、package strategy approval、runtime approval 或 frontend execution gate。
 - 决议: `T-P1A-126 ~ T-P1A-151` 的 docs/spec/visual/audit candidate pack 只形成 repo-visible planning / contract / audit surfaces；不解禁 runtime、browser automation、migration、vault true write、BBDown live、yt-dlp、ffmpeg、ASR 或 `audio_transcript` runtime。
 - 决议: 当前仍没有已打开的 code-bearing next gate；后续若进入 Wave 6，仍需通过新的 authority dispatch 和显式 gate。
 
