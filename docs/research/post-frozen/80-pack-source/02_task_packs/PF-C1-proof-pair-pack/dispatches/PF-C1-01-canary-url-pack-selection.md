@@ -61,7 +61,7 @@ Keeps successor work bounded and prevents old candidate truth from becoming exec
 
 ## 8. Pass condition
 
-Human-selected 3 URLs cover ordinary/edge/high-signal cases; no auto crawl/list expansion.
+Human-selected 3 URLs cover ordinary/edge/high-signal cases; no automatic bulk URL expansion.
 
 ## 9. Partial pass condition
 
