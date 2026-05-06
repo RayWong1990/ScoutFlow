@@ -29,7 +29,9 @@ def test_vault_preview_panel_contract_matches_placeholder_fixture(tmp_path: Path
     )
 
     assert "data-testid=\"panel-vault-preview\"" in component_source
-    assert "placeholder only" in component_source
+    assert "Create a metadata-only capture to load preview." in component_source
+    assert "Copy markdown" in component_source
+    assert "Download .md" in component_source
     assert "target_path" in component_source
     assert "body_markdown" in component_source
     assert "BV1PLACEHOLDER" in fixture_source
