@@ -50,6 +50,34 @@ describe("api-client", () => {
     });
   });
 
+  it("loads vault preview data for a capture id", async () => {
+    const api = createCaptureStationApi("http://127.0.0.1:8000");
+    const previewPayload = {
+      capture_id: "cap_123",
+      target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_123-bv1ab411c7md.md",
+      frontmatter: {
+        title: "ScoutFlow BV1AB411c7mD",
+        date: "2026-05-06",
+        tags: "调研/ScoutFlow采集",
+        status: "pending"
+      },
+      body_markdown: "# ScoutFlow BV1AB411c7mD",
+      warnings: []
+    };
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => previewPayload
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(api.getVaultPreview("cap_123")).resolves.toEqual(previewPayload);
+    expect(fetchMock).toHaveBeenCalledWith("http://127.0.0.1:8000/captures/cap_123/vault-preview", {
+      headers: { "Content-Type": "application/json" }
+    });
+  });
+
   it("raises a typed error for non-2xx responses", async () => {
     const api = createCaptureStationApi("http://127.0.0.1:8000");
     const fetchMock = vi.fn().mockResolvedValue({
@@ -81,6 +109,25 @@ describe("api-client", () => {
       status: 422,
       code: "unsupported_platform",
       payload
+    });
+  });
+
+  it("falls back to a default message when an error body is not json", async () => {
+    const api = createCaptureStationApi("http://127.0.0.1:8000");
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 500,
+      json: async () => {
+        throw new Error("invalid json");
+      }
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(api.getBridgeHealth()).rejects.toMatchObject({
+      status: 500,
+      message: "Bridge request failed with status 500",
+      payload: null
     });
   });
 });
