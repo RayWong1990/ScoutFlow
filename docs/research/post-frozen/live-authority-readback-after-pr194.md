@@ -5,7 +5,12 @@ execution_approval: not-approved
 runtime_approval: not-approved
 created_at: 2026-05-06
 related_dispatch: PF-C0-01R
+superseded_by:
+  - PR #204 for "create_app() bridge_router mount" fact (since 2026-05-06)
+valid_at_pr194_boundary_only: true
 ---
+
+> ⚠️ **Supersession note (added 2026-05-06)**：本文档捕获的是 **PR #194 boundary** 的 live truth。PR #204 已经在 `create_app()` 中 mount `bridge_router`。当前路由真相请以 `services/api/scoutflow_api/main.py` + golden contract `tests/contracts/golden/bridge-openapi-2026-05-06.json` 为准。本文档保留作为 PR194 时点存档，不是当前 truth source。
 
 # Live authority readback after PR194
 
