@@ -69,22 +69,42 @@ def test_build_preview_draft_rejects_bad_created_at(tmp_path: Path) -> None:
 
 
 def test_build_preview_markdown_matches_existing_bridge_wording() -> None:
+    from scoutflow_api.vault.frontmatter import build_frontmatter
     from scoutflow_api.vault.renderer import build_preview_markdown
 
     body = build_preview_markdown(
         "cap_123",
         "BV1xx411c7mD",
         "https://www.bilibili.com/video/BV1xx411c7mD",
+        frontmatter=build_frontmatter("ScoutFlow BV1xx411c7mD", date_value="2026-05-05"),
+        source_kind="manual_url",
+        capture_mode="metadata_only",
     )
 
     assert body == "\n".join(
         [
             "# ScoutFlow BV1xx411c7mD",
             "",
+            "## Capture",
             "- capture_id: `cap_123`",
             "- platform_item_id: `BV1xx411c7mD`",
             "- canonical_url: https://www.bilibili.com/video/BV1xx411c7mD",
+            "- source_kind: `manual_url`",
+            "- capture_mode: `metadata_only`",
             "",
+            "## Frontmatter candidate",
+            "- title: ScoutFlow BV1xx411c7mD",
+            "- date: 2026-05-05",
+            "- tags: 调研/ScoutFlow采集",
+            "- status: pending",
+            "",
+            "## Preview boundary",
+            "- preview_only: `true`",
+            "- write_enabled: `false`",
+            "- runtime_tools_enabled: `false`",
+            "- evidence_source: existing capture truth only",
+            "",
+            "## Draft note",
             "Raw markdown candidate generated from existing capture truth only.",
         ]
     )

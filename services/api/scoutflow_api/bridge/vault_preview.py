@@ -14,6 +14,7 @@ from scoutflow_api.bridge.schemas import (
     BridgeVaultPreviewResponse,
 )
 from scoutflow_api.models import ErrorResponse
+from scoutflow_api.vault.renderer import build_preview_markdown
 
 
 SLUG_RE = re.compile(r"[^a-z0-9]+")
@@ -69,15 +70,14 @@ def build_bridge_vault_preview(capture_id: str, request: Request) -> BridgeVault
     slug = _slugify(capture["platform_item_id"])
     target_path = str(PurePosixPath(vault_root, "00-Inbox", f"scoutflow-{capture_id}-{slug}.md"))
     body_markdown = "\n".join(
-        [
-            f"# {title}",
-            "",
-            f"- capture_id: `{capture_id}`",
-            f"- platform_item_id: `{capture['platform_item_id']}`",
-            f"- canonical_url: {capture['canonical_url']}",
-            "",
-            "Raw markdown candidate generated from existing capture truth only.",
-        ]
+        build_preview_markdown(
+            capture_id,
+            capture["platform_item_id"],
+            capture["canonical_url"],
+            frontmatter=frontmatter,
+            source_kind=capture["source_kind"],
+            capture_mode=capture["capture_mode"],
+        ).splitlines()
     )
 
     return BridgeVaultPreviewResponse(
