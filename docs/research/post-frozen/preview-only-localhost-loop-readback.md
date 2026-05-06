@@ -3,7 +3,7 @@ title: Preview-only Localhost Loop Readback
 status: candidate / preview_only_readback / not-authority
 date: 2026-05-06
 dispatch_id: PF-LP-17
-verdict: works
+verdict: partial
 ---
 
 # PF-LP-17 Readback
@@ -18,7 +18,7 @@ verdict: works
 ## Loop readback
 
 - create-capture entrypoint stayed on `POST /captures/discover`; synthetic probe returned `capture_id=01KQYEXWJYZ9X8FW7TGD1QW0XP`
-- preview entrypoint stayed on `GET /captures/{capture_id}/vault-preview`; returned a `23`-line markdown body with the original query string preserved in `canonical_url`
+- preview entrypoint stayed on `GET /captures/{capture_id}/vault-preview`; returned a `23`-line markdown body while preserving the original query string in the preview input URL, with the BV-only canonical form noted separately
 - copy action readback: `success`
   source: `VaultPreviewPanel.test.tsx` green JSDOM assertions plus `pnpm test -- VaultPreviewPanel UrlBar` passing `22/22`
 - download action readback: `success`
@@ -26,9 +26,11 @@ verdict: works
 
 ## Pass / partial / fail classification
 
-- verdict: `works`
-- why not `partial`:
+- verdict: `partial`
+- synthetic_result:
   backend probe succeeded, `capture_id` was created, preview markdown was returned, and copy/download assertions stayed green
+- why not `works`:
+  copy/download proof still comes from `curl` + JSDOM assertions rather than a real browser visual UAT
 - why not `product proof`:
   this is still a preview-only localhost loop using `curl` plus JSDOM tests, not a human visual verdict and not a true browser execution proof
 

@@ -48,7 +48,13 @@
   },
   "step8_gate": {
     "required": true,
-    "status_at_checkpoint_write": "pending_independent_review"
+    "status_at_checkpoint_write": "pending_independent_review",
+    "step8_gate_resolution": {
+      "outcome": "bypassed_with_user_authorization",
+      "rationale": "User reviewed 3-window external audit synthesis (2 REJECT + 1 V-PASS_WITH_AMENDMENTS) and explicitly authorized amend_and_proceed; rollback would break Run-2 already-wired preview consumption.",
+      "future_rule": "pending gates must not auto-merge; require explicit user authorization recorded in PR body before merge.",
+      "amendment_pr": 231
+    }
   },
   "compare_boundary_notes": [
     "PR #198 is user-authorized and lies inside the historical compare interval, but is excluded from Run-1 stage receipts."

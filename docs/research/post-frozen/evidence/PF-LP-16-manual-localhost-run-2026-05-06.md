@@ -2,7 +2,9 @@
 title: PF-LP-16 Manual Localhost Run Evidence
 status: candidate / user_uat_1_evidence / synthetic_partial
 date: 2026-05-06
-verdict: works
+verdict: partial
+synthetic_result: works
+missing_proof: real_browser_visual_uat
 ---
 
 # UAT-1 Manual Run Evidence
@@ -36,8 +38,11 @@ verdict: works
 
 ## verdict
 
-- verdict: works
+- verdict: partial
+- synthetic_result: works (`curl` backend probe + JSDOM `22/22` assertions green)
+- missing_proof: real_browser_visual_uat (no Playwright / Selenium / Puppeteer / real browser by user authorization)
 
 ## blockers
 
-- blockers: none
+- blockers:
+  - real_browser_visual_uat_not_run
