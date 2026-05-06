@@ -10,6 +10,19 @@ export type BridgeHealthResponse = {
   blocked_by: string[];
 };
 
+export type CreateCaptureResponse = {
+  capture_id: string;
+  platform: string;
+  platform_item_id: string;
+  source_kind: string;
+  capture_mode: string;
+  created_by_path: string;
+  status: string;
+  artifact_root_path: string;
+  manifest_path: string;
+  canonical_url: string;
+};
+
 export type BridgeVaultConfigResponse = {
   vault_root_resolved: boolean;
   vault_root: string | null;
@@ -82,6 +95,22 @@ async function requestJson<T>(baseUrl: string, path: string, init?: RequestInit)
 
 export function createCaptureStationApi(baseUrl = "") {
   return {
+    createCapture: async (canonicalUrl: string): Promise<CreateCaptureResponse> => {
+      const response = await requestJson<Omit<CreateCaptureResponse, "canonical_url">>(baseUrl, "/captures/discover", {
+        method: "POST",
+        body: JSON.stringify({
+          platform: "bilibili",
+          canonical_url: canonicalUrl,
+          source_kind: "manual_url",
+          quick_capture_preset: "metadata_only"
+        })
+      });
+
+      return {
+        ...response,
+        canonical_url: canonicalUrl
+      };
+    },
     getBridgeHealth: () => requestJson<BridgeHealthResponse>(baseUrl, "/bridge/health"),
     getBridgeVaultConfig: () => requestJson<BridgeVaultConfigResponse>(baseUrl, "/bridge/vault/config"),
     getVaultPreview: (captureId: string) =>
