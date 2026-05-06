@@ -1,14 +1,44 @@
 import { useMemo, useState } from "react";
 
+import { type CreateCaptureResponse, createCaptureStationApi } from "../../lib/api-client";
+
 const sampleSuggestions = [
   "https://www.bilibili.com/video/BV1AB411c7mD",
   "https://www.bilibili.com/video/BV1Qx411c7mE"
 ];
 
-export default function UrlBar() {
+type UrlBarProps = {
+  createCapture?: (canonicalUrl: string) => Promise<CreateCaptureResponse>;
+  onCaptureCreated?: (capture: CreateCaptureResponse) => void;
+};
+
+const defaultCreateCapture = createCaptureStationApi("http://127.0.0.1:8000").createCapture;
+
+export default function UrlBar({ createCapture = defaultCreateCapture, onCaptureCreated }: UrlBarProps) {
   const [value, setValue] = useState(sampleSuggestions[0]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const trimmed = value.trim();
   const isManualUrlReady = useMemo(() => /^https?:\/\//.test(trimmed), [trimmed]);
+
+  async function handleSubmit() {
+    if (!isManualUrlReady || isSubmitting) {
+      return;
+    }
+
+    setIsSubmitting(true);
+    setErrorMessage(null);
+
+    try {
+      const capture = await createCapture(trimmed);
+      onCaptureCreated?.(capture);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Create capture failed.";
+      setErrorMessage(message);
+    } finally {
+      setIsSubmitting(false);
+    }
+  }
 
   return (
     <section
@@ -34,7 +64,10 @@ export default function UrlBar() {
         <span style={{ color: "#a6b8cf", fontSize: "12px" }}>Canonical URL</span>
         <input
           value={value}
-          onChange={(event) => setValue(event.target.value)}
+          onChange={(event) => {
+            setValue(event.target.value);
+            setErrorMessage(null);
+          }}
           placeholder="https://www.bilibili.com/video/BV..."
           style={{
             width: "100%",
@@ -69,22 +102,41 @@ export default function UrlBar() {
         ))}
       </div>
 
+      {errorMessage ? (
+        <p
+          role="alert"
+          style={{
+            margin: 0,
+            borderRadius: "8px",
+            border: "1px solid #6c2f3f",
+            background: "#24131b",
+            color: "#ff9db2",
+            padding: "10px 12px",
+            fontSize: "13px",
+            lineHeight: 1.45
+          }}
+        >
+          {errorMessage}
+        </p>
+      ) : null}
+
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto" }}>
         <span style={{ color: isManualUrlReady ? "#7adf9b" : "#ff7b7b", fontSize: "12px" }}>
-          {isManualUrlReady ? "manual_url ready" : "manual_url required"}
+          {isSubmitting ? "submitting capture..." : isManualUrlReady ? "manual_url ready" : "manual_url required"}
         </span>
         <button
           type="button"
-          disabled={!isManualUrlReady}
+          disabled={!isManualUrlReady || isSubmitting}
+          onClick={handleSubmit}
           style={{
             borderRadius: "10px",
             border: "1px solid #50d4ff",
-            background: isManualUrlReady ? "#50d4ff" : "#27415d",
-            color: isManualUrlReady ? "#07111b" : "#6d8099",
+            background: isManualUrlReady && !isSubmitting ? "#50d4ff" : "#27415d",
+            color: isManualUrlReady && !isSubmitting ? "#07111b" : "#6d8099",
             padding: "10px 14px",
             fontSize: "14px",
             fontWeight: 600,
-            cursor: isManualUrlReady ? "pointer" : "not-allowed"
+            cursor: isManualUrlReady && !isSubmitting ? "pointer" : "not-allowed"
           }}
         >
           Create capture
