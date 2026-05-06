@@ -106,11 +106,13 @@ Run-1（PR #199–#206）3 家外审中 2/3 给 REJECT，1/3 给 V-PASS_WITH_AME
 - severity: LOW
 - auditor_consensus: gpt-pro / gpt-5.5
 - evidence_paths:
+  - `docs/research/post-frozen/audits/run-1-audit-gpt-pro-independent-a-2026-05-06.md:122-127`
+  - `docs/research/post-frozen/audits/run-1-audit-gpt-5-codex-cloud-2026-05-06.md:98-104`
   - `docs/research/post-frozen/audits/run-1-audit-gpt-pro-independent-a-2026-05-06.md:280-287`
   - `docs/research/post-frozen/audits/run-1-audit-gpt-5-codex-cloud-2026-05-06.md:134-142`
   - `docs/research/post-frozen/run-2-commander-prompt-template-rules-2026-05-06.md:19-38`
 - decision: `RULE_CLARIFICATION`
-- rationale: Run-1 的共同模式不是“功能错”，而是“proof bar 与 §4 合同冲突时默认扩 path”。不把 stop-line 提前锁到模板层，Run-2 还会重复同型偏移。
+- rationale: Run-1 的共同模式不是“功能错”，而是“proof bar 与 §4 合同冲突时默认扩 path”；同时原 commander prompt 仍保留了 `9 dispatch / 9 PR` 的历史 bookkeeping，而 LP-12 defer 后的 resolved topology 已是 8。该 PR 不修改原 prompt 正文，但通过模板规则把 future Run-N 的 dispatch topology 与 §4 stop-line 一并锁定。
 - action: 创建 `docs/research/post-frozen/run-2-commander-prompt-template-rules-2026-05-06.md`，将 Rule 1/2/3 明文化。
 - forward_rule: 任何 future Run-N commander prompt 若未引用 A7 规则文件，视为 invalid，不得执行。
 
@@ -124,6 +126,17 @@ Run-1（PR #199–#206）3 家外审中 2/3 给 REJECT，1/3 给 V-PASS_WITH_AME
 - decision: `NOTE_ONLY`
 - rationale: 这是 PR body formatting 问题，不触及 repo runtime、authority 或 contract state，不值得再开独立修复。保留 note 即可。
 - note: 后续 commander prompt / PR body 模板应强制 shell-safe quoting（尤其 `python -c` 片段）。
+
+# Cross-audit mapping notes
+
+- Hermes Finding 1（当时在 `origin/main` 看不到 handoff receipt files / commander prompt，导致 C/I/K 无法验证）由本 PR 的 artifact persistence 直接消解：
+  - `docs/research/post-frozen/audits/run-1-audit-*.md`
+  - `docs/research/post-frozen/runs/RUN-1-AMENDMENT-RUN-REPORT-2026-05-06.md`
+  - `docs/research/post-frozen/runs/DIFF-BUNDLE-Amendment-2026-05-06.md`
+  - `docs/research/post-frozen/runs/CHECKPOINT-Amendment-final.json`
+  该项属于 audit-visibility gap resolved by artifact landing，不单开 A9。
+- gpt-pro Finding 6 与 gpt-5 Finding 7（原 commander prompt 仍写 `9 dispatch / 9 PR`，而 resolved topology 已是 8）折叠进 A7。
+  本 PR 不改原 prompt 文本，因为原 prompt 文件不在 tracked allowed paths；修复动作改为 future-template hardening + receipt note，避免 Run-2 复用旧 topology 口径。
 
 # Run-1 final state
 
