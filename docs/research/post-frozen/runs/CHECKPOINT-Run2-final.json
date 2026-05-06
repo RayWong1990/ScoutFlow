@@ -1,0 +1,44 @@
+{
+  "run_id": "RUN-2-CODEX0-RESUME-2026-05-06",
+  "baseline_origin_main": "f7d6c5c383fe36ed18c6ad981692cec363de3b72",
+  "final_origin_main": "7d41e5dc34601a9fd23a819ab9bddc895765ba60",
+  "run_complete": true,
+  "dispatches_total": 14,
+  "dispatches_merged": [
+    {"code": "PF-LP-04", "pr": 207, "merge_commit": "f84e75d1668f6ca146b69764f34006d7862d2db1"},
+    {"code": "PF-LP-05", "pr": 216, "merge_commit": "58861877c68f259fb133fa1286f59632b1d44f81"},
+    {"code": "PF-LP-06", "pr": 226, "merge_commit": "04a25c33808a326b767eef7c5bbf2c79212e80e0"},
+    {"code": "PF-LP-07", "pr": 228, "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
+    {"code": "PF-LP-08", "pr": 228, "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
+    {"code": "PF-LP-09", "pr": 233, "merge_commit": "b4fc8b51e90de70364583398dbb463c813adb623"},
+    {"code": "PF-LP-10", "pr": 232, "merge_commit": "9512f9ee558f270500d669f90389476454b97869"},
+    {"code": "PF-LP-11", "pr": 228, "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
+    {"code": "PF-LP-12", "pr": 230, "merge_commit": "f7d6c5c383fe36ed18c6ad981692cec363de3b72"},
+    {"code": "PF-LP-14", "pr": 234, "merge_commit": "244576124f5003f6c062bda88d8cca6b74c5d4f3"},
+    {"code": "PF-LP-15", "pr": 228, "merge_commit": "bd1f38241f613b0766704af1173f3e1760e8ab93"},
+    {"code": "PF-LP-16", "pr": 235, "merge_commit": "91a2deabb18efb2560fe483f40497acad7cdf0ff"},
+    {"code": "PF-LP-17", "pr": 236, "merge_commit": "0109a5aa17d911a7615667ae6fec67e917167733"},
+    {"code": "PF-LP-18", "pr": 237, "merge_commit": "7d41e5dc34601a9fd23a819ab9bddc895765ba60"}
+  ],
+  "preexisting_merged_prs": [207, 216, 226, 228, 230],
+  "resume_merged_prs": [232, 233, 234, 235, 236, 237],
+  "forensic_verdicts": {
+    "PF-LP-09": "COVERED_BY_228",
+    "PF-LP-10": "COVERED_BY_228",
+    "PF-LP-14": "COVERED_BY_228"
+  },
+  "uat_1_evidence_path": "docs/research/post-frozen/evidence/PF-LP-16-manual-localhost-run-2026-05-06.md",
+  "uat_1_verdict": "works",
+  "interruption_count": {
+    "slot_local": 1,
+    "control_plane": 2,
+    "ledger": 0
+  },
+  "blocked_claims_intact": true,
+  "report_path": "docs/research/post-frozen/runs/RUN-2-CODEX0-REPORT-2026-05-06.md",
+  "diff_bundle_path": "docs/research/post-frozen/runs/DIFF-BUNDLE-Run2-2026-05-06.md",
+  "notes": [
+    "Synthetic UAT kept the original query string in the input URL and recorded the BV-only canonical path as a note.",
+    "LP-18 closed as an authority-safe note without modifying authority surfaces."
+  ]
+}
