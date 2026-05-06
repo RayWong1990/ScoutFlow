@@ -13,14 +13,12 @@ if str(API_ROOT) not in sys.path:
 
 
 def build_client(tmp_path: Path) -> TestClient:
-    from scoutflow_api.bridge import router as bridge_router
     from scoutflow_api.main import create_app
 
     runtime_root = tmp_path / "runtime"
     db_path = runtime_root / "data" / "db" / "scoutflow.sqlite"
     artifacts_root = runtime_root / "data" / "artifacts"
     app = create_app(db_path=db_path, artifacts_root=artifacts_root)
-    app.include_router(bridge_router)
     return TestClient(app)
 
 

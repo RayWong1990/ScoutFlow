@@ -69,5 +69,6 @@ class BridgeVaultCommitResponse(BaseModel):
     capture_id: str = Field(min_length=1)
     committed: bool
     dry_run: bool
+    write_enabled: Literal[False]
     target_path: str | None = None
     error: BridgeError | None = None

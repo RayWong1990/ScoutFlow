@@ -36,34 +36,36 @@ def create_capture(client: TestClient) -> dict[str, str]:
     return response.json()
 
 
-def test_vault_preview_renders_capture_truth_only(tmp_path: Path, monkeypatch) -> None:
-    monkeypatch.setenv("SCOUTFLOW_VAULT_ROOT", "/tmp/scoutflow-vault")
+def test_create_app_mounts_bridge_routes(tmp_path: Path) -> None:
     client = build_client(tmp_path)
-    capture = create_capture(client)
 
-    response = client.get(f"/captures/{capture['capture_id']}/vault-preview")
+    route_paths = {route.path for route in client.app.routes}
+    assert "/bridge/health" in route_paths
+    assert "/captures/{capture_id}/vault-preview" in route_paths
+    assert "/captures/{capture_id}/vault-commit" in route_paths
+
+
+def test_create_app_bridge_health_stays_write_disabled(tmp_path: Path) -> None:
+    client = build_client(tmp_path)
+
+    response = client.get("/bridge/health")
     assert response.status_code == 200
     body = response.json()
-    assert body["capture_id"] == capture["capture_id"]
-    assert body["target_path"].startswith(f"/tmp/scoutflow-vault/00-Inbox/scoutflow-{capture['capture_id']}-")
-    assert body["frontmatter"]["status"] == "pending"
-    assert "canonical_url" in body["body_markdown"]
+    assert body["write_enabled"] is False
+    assert "write_disabled" in body["blocked_by"]
 
 
-def test_vault_preview_requires_vault_root(tmp_path: Path, monkeypatch) -> None:
-    monkeypatch.delenv("SCOUTFLOW_VAULT_ROOT", raising=False)
+def test_create_app_bridge_commit_schema_and_dry_run_write_flag(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.setenv("SCOUTFLOW_VAULT_ROOT", "/tmp/scoutflow-vault")
     client = build_client(tmp_path)
     capture = create_capture(client)
 
-    response = client.get(f"/captures/{capture['capture_id']}/vault-preview")
-    assert response.status_code == 409
-    assert response.json()["code"] == "vault_root_unset"
+    schema = client.app.openapi()
+    commit_properties = schema["components"]["schemas"]["BridgeVaultCommitResponse"]["properties"]
+    assert "write_enabled" in commit_properties
 
-
-def test_vault_preview_rejects_unknown_capture(tmp_path: Path, monkeypatch) -> None:
-    monkeypatch.setenv("SCOUTFLOW_VAULT_ROOT", "/tmp/scoutflow-vault")
-    client = build_client(tmp_path)
-
-    response = client.get("/captures/cap_missing/vault-preview")
-    assert response.status_code == 404
-    assert response.json()["code"] == "capture_not_found"
+    response = client.post(f"/captures/{capture['capture_id']}/vault-commit")
+    assert response.status_code == 200
+    body = response.json()
+    assert body["dry_run"] is True
+    assert body["write_enabled"] is False

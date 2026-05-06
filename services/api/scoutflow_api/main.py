@@ -4,6 +4,7 @@ from pathlib import Path
 
 from fastapi import FastAPI
 
+from scoutflow_api.bridge import router as bridge_router
 from scoutflow_api.captures import router as captures_router
 from scoutflow_api.jobs import router as jobs_router
 from scoutflow_api.storage import Storage, StorageConfig
@@ -58,6 +59,7 @@ def create_app(db_path: str | Path | None = None, artifacts_root: str | Path | N
     )
     app.include_router(captures_router)
     app.include_router(jobs_router)
+    app.include_router(bridge_router)
 
     @app.get(
         "/healthz",
