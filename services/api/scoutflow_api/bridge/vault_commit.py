@@ -25,6 +25,7 @@ def build_bridge_vault_commit_dry_run(capture_id: str, request: Request) -> Brid
         capture_id=capture_id,
         committed=False,
         dry_run=True,
+        write_enabled=False,
         target_path=preview_response.target_path,
         error=BridgeError(
             code=BridgeErrorCode.write_disabled,
