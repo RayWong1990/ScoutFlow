@@ -1,0 +1,39 @@
+{
+  "run_id": "W2-CODEX0-DOCS-2026-05-06",
+  "baseline_origin_main": "9d90d0a436ee756bfc31dde4616f14b326a540c3",
+  "final_origin_main": "7edd908c142d85ab54301af73324222e5afa070c",
+  "run_complete": true,
+  "dispatches_total": 17,
+  "dispatches_merged": [
+    {"code": "PF-C3-01", "pr": 208, "merge_commit": "b7b1221aa2d54afc981c8aa2d0dda999d509271a"},
+    {"code": "PF-GLOBAL-01", "pr": 209, "merge_commit": "1d5de6f6c6a72db5739b8feec06617c4ad0678ce"},
+    {"code": "PF-GLOBAL-02", "pr": 210, "merge_commit": "f3628fb0cb5b0d0888335c32bbe0200240e555c7"},
+    {"code": "PF-GLOBAL-03", "pr": 211, "merge_commit": "83365c5fe0a404c78210eca7e5ac4dcda01352c2"},
+    {"code": "PF-GLOBAL-04", "pr": 212, "merge_commit": "4d368ad20f7ba4ba61ee85e58a1f744cc37003cb"},
+    {"code": "PF-GLOBAL-05", "pr": 213, "merge_commit": "df482d110150d7a96c899ac347f805ee55079b57"},
+    {"code": "PF-GLOBAL-06", "pr": 214, "merge_commit": "8d24151a3e63f2ae3d4125e31f982c553765775e"},
+    {"code": "PF-GLOBAL-07", "pr": 215, "merge_commit": "75aabb7b8f8cb8b00a40bf3505a3d6ed951c9e33"},
+    {"code": "PF-GLOBAL-08", "pr": 217, "merge_commit": "ab1a338205be2ff5cb79f4734ba0b735a467020b"},
+    {"code": "PF-GLOBAL-09", "pr": 218, "merge_commit": "ae5abf159f9d327af1b3494f9e93b8a5a5fc33d8"},
+    {"code": "PF-GLOBAL-10", "pr": 219, "merge_commit": "766fa06d389b481153c287ffd681c863d930d256"},
+    {"code": "PF-GLOBAL-11", "pr": 220, "merge_commit": "3e0b8d9dcc246da720342495c6ff77a2cf97d63f"},
+    {"code": "PF-GLOBAL-12", "pr": 221, "merge_commit": "ff0bce62fd8603f2b6e16d2762cf581b8502bb7e"},
+    {"code": "PF-C3-02", "pr": 222, "merge_commit": "bb3068752095b16493f4c2c60d111f515c101119"},
+    {"code": "PF-C3-03", "pr": 223, "merge_commit": "246a7042ccdcf6101f927fd8fbd32d353b106182"},
+    {"code": "PF-C3-05", "pr": 224, "merge_commit": "f05a42fa4690bacca588cfed387cd9ba3f486177"},
+    {"code": "PF-C3-06", "pr": 225, "merge_commit": "7edd908c142d85ab54301af73324222e5afa070c"}
+  ],
+  "interruption_count": {
+    "slot_local": 2,
+    "control_plane": 1,
+    "ledger": 0,
+    "race_with_main": 0
+  },
+  "blocked_claims_intact": true,
+  "report_path": "docs/research/post-frozen/runs/RUN-W2-CODEX0-DOCS-REPORT-2026-05-06.md",
+  "diff_bundle_path": "docs/research/post-frozen/runs/DIFF-BUNDLE-W2-Docs-2026-05-06.md",
+  "notes": [
+    "PF-C3-04 remains deferred because it depends on PF-C1-10.",
+    "An unrelated open PR #216 exists on another lane and was not part of this run."
+  ]
+}
