@@ -4,7 +4,7 @@ status: current authority
 purpose: 跨 vendor 可读的 instinct memory 入口 (CC0 / CC1 / Codex / GPT Pro 云端 / Hermes 共享)
 created_at: 2026-05-07
 source_atlas: docs/research/strategic-upgrade/2026-05-07/outputs/U16-memory-graph/MASTER-MEMORY-ATLAS.md
-batch_count: 16
+batch_count: 17
 ---
 
 # ScoutFlow Cross-Session Memory Index
@@ -20,12 +20,13 @@ batch_count: 16
 | Cloud GPT Pro | 战友 paste GitHub raw URL, e.g. `https://github.com/RayWong1990/ScoutFlow/blob/main/docs/memory/lessons/L-CANDIDATE-PROMOTION.md` |
 | Hermes | 同 GPT Pro |
 
-## 第一批 16 条 (W2D U16 ingest, 2026-05-07)
+## 第一批 17 条 (W2D U16 ingest, 2026-05-07; +1 post-Layer-2-audit fix L-AUTHORITY-DRIFT)
 
-### Lessons (踩坑教训, 6 条)
+### Lessons (踩坑教训, 7 条)
 
 | ID | 短名 | 风险 | 路径 |
 |---|---|---|---|
+| L-AUTHORITY-DRIFT | authority-drift | critical | `lessons/L-AUTHORITY-DRIFT.md` |
 | L-CANDIDATE-PROMOTION | candidate-promotion-discipline | critical | `lessons/L-CANDIDATE-PROMOTION.md` |
 | L-RUNTIME-APPROVAL-DRIFT | runtime-approval-drift | critical | `lessons/L-RUNTIME-APPROVAL-DRIFT.md` |
 | L-MIGRATION-DRIFT | migration-drift | critical | `lessons/L-MIGRATION-DRIFT.md` |
@@ -59,7 +60,7 @@ batch_count: 16
 
 | U16 candidate | 已有 ~/.claude/ overlap | 决策 |
 |---|---|---|
-| L-AUTHORITY-DRIFT | feedback_sidecar_writeback (sidecar 不写 authority) | partial overlap, **本批未收录** (现有已覆盖) |
+| L-AUTHORITY-DRIFT | feedback_sidecar_writeback (sidecar 写权 angle) | differentiated angle — promotion drift vs sidecar 写权 是 AP-authority-drift 同 anti-pattern 两侧, ATLAS LINKED-DECISION 列为独立 lesson, **本批收录** (post-Layer-2-audit fix, 刑部尚书 M-2 修订) |
 | L-BILIBILI-CRED-RISK | feedback_vendor_diversification | full overlap, **本批未收录** |
 | L-SECOND-KNOWLEDGE-BASE | feedback_external_facts_authority + F-NOT-HEAVY-KM | partial, F-NOT-HEAVY-KM 角度已覆盖 |
 | L-MULTIWINDOW-RACE | user_multi_agent | partial (user_multi_agent 提了但没说 race), **本批未收录** (后续 follow-up) |
@@ -87,7 +88,7 @@ batch_count: 16
 
 - 新 memory 加入: lessons/ / feedback/ / patterns/ 子目录 + 本 INDEX 表加行
 - frontmatter 必含 `cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]` + `status: current authority`
-- body ≤ 200 字 (rule + Why + How to apply 三段)
+- body ≤ 600 字 中文+半角混排 (rule + Why + How to apply 三段)
 - source_atlas_node 字段链回 U16 ATLAS (本批) 或新 source
 
 ## 关联

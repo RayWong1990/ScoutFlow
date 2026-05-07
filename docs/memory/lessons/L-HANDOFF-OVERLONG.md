@@ -1,7 +1,7 @@
 ---
 name: handoff-overlong
 description: handoff 长不等于可执行; 80 行内可执行 > 800 行不可执行
-type: feedback
+type: project
 source_atlas_node: L-HANDOFF-OVERLONG
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
 risk_if_forgotten: medium

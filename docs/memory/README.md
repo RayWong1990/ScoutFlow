@@ -20,6 +20,6 @@ ScoutFlow 跨 vendor 可读的 instinct memory 真源.
 
 **第一批**: 2026-05-07 W2D U16 memory ingest 入选 16 条 (lesson 6 + feedback 5 + pattern 5), source = `MASTER-MEMORY-ATLAS.md` 79 candidate node.
 
-**format**: 每 file 含 frontmatter (`name` / `description` / `type` / `source_atlas_node` / `cross_vendor_readers` / `status`) + body 三段 (rule / Why / How to apply, ≤200 字).
+**format**: 每 file 含 frontmatter (`name` / `description` / `type` / `source_atlas_node` / `cross_vendor_readers` / `status`) + body 三段 (rule / Why / How to apply, ≤600 字 中文+半角混排).
 
 **维护**: 见 [INDEX.md §维护规则](./INDEX.md).
