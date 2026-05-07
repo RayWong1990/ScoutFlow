@@ -4,6 +4,14 @@ version: 1.1 (errata applied 2026-05-04 22:30)
 title: ScoutFlow 开源肩膀生命周期手册 — 7 阶段从发现到退役
 date: 2026-05-04 22:05 Asia/Shanghai (v1.0) / 22:30 (v1.1 errata)
 authority_status: research-only / not-authority / not-runtime-approval
+status_word: reference storage
+doc_series: doc2 of doc1/doc2/doc3 三件套 (2026-05-04 cloud GPT Pro 输出, ACCEPT WITH ERRATA verdict)
+doc_role: Shoulders lifecycle system of record
+doc_index: docs/00-START-HERE.md §5
+companion_doc1: docs/architecture/baseline-roadmap-after-pr54-candidate-2026-05-04.md
+companion_doc3: docs/research/pr55-pr74-worklist-candidate-2026-05-04.md
+errata_report: docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md
+historical_value: 已被 PR55-74 + Wave 5/6 实施超过, 现为 reference storage
 suggested_commit_path: docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md
 companion_to: doc1 (baseline-roadmap-after-pr54-candidate-2026-05-04.md)
 addresses_user_finding: "Codex/GPT Pro 都没考虑开源肩膀的调研、本地 fork、吸收"

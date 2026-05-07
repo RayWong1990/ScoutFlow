@@ -1,0 +1,1615 @@
+[
+  {
+    "path": "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+    "bytes": 12627,
+    "sha256": "3d1bdee8ec40dad406fd4c212443d92891c605f2b2cd8b62c593bef176882513",
+    "headings": [
+      "### Step 1：解包与 source inventory",
+      "### Step 2：先读 zip，不急着下结论",
+      "### Step 3：连接 GitHub App 做 live truth readback",
+      "### Step 4：必须联网搜索公开资料",
+      "### Step 5：进入 adversarial audit",
+      "### 交付物 A：`01-source-readback.md`",
+      "### 交付物 B：`02-feasibility-index.md`",
+      "### 交付物 C：`03-strategy-verdict.md`",
+      "### 交付物 D：`04-roadmap-rewrite.md`",
+      "### 交付物 E：`05-bridge-and-integration.md`",
+      "### 交付物 F：`06-kill-criteria-and-open-questions.md`"
+    ]
+  },
+  {
+    "path": "00_overview/INCLUDED-SOURCES.md",
+    "bytes": 3235,
+    "sha256": "290a526882be0621deee9c8378eea8dc3a292409481e24d2a36060832703aadf",
+    "headings": [
+      "# Included Sources",
+      "## 1. 外部六份报告",
+      "## 2. ScoutFlow repo 关键源",
+      "## 3. RAW 侧源",
+      "## 4. 本轮输出交付物",
+      "## 5. 公开参考链接",
+      "## 6. 用户最新修正"
+    ]
+  },
+  {
+    "path": "00_overview/PACK-README.md",
+    "bytes": 1664,
+    "sha256": "41a06678c72124b4a621430447479286c5a96a5d18b1ac34bde79eb7a249d78f",
+    "headings": [
+      "# ScoutFlow Post176 Cloud Audit Pack",
+      "## 1. 目的",
+      "## 2. 读法",
+      "## 3. 重要边界",
+      "## 4. 期望云端模型做的事"
+    ]
+  },
+  {
+    "path": "00_overview/PUBLIC-REFERENCE-LINKS.md",
+    "bytes": 1650,
+    "sha256": "c062be8d4350717f4c04a6f5be8e2ab65127c79bbc6e033d6eb6766411a3f18e",
+    "headings": [
+      "# Public Reference Links",
+      "## 1. 产品/工具官方入口",
+      "## 2. 云端模型建议的再研究方向"
+    ]
+  },
+  {
+    "path": "00_overview/USER-CORRECTION-2026-05-05.md",
+    "bytes": 1124,
+    "sha256": "058b5a5eb89733f4cc194f89787210d6b007a31826fd1b3d68e4daaac5abd4c9",
+    "headings": [
+      "# User Correction 2026-05-05",
+      "## 1. 冻结状态修正",
+      "## 2. 第一性原理修正",
+      "## 3. 对云端评审的要求"
+    ]
+  },
+  {
+    "path": "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md",
+    "bytes": 58344,
+    "sha256": "09fa160f31e56cfad92aa74afbcc7c11d56ec2174c527e4168b042d81b43d608",
+    "headings": [
+      "# ScoutFlow Product Mechanism Premortem and Core Loop Strategy Review",
+      "## 1. Executive Verdict",
+      "## 2. Source Readback and Scope",
+      "### 2.1 实际读取范围",
+      "### 2.2 缺失文件与处理方式",
+      "## 3. Current Truth Snapshot",
+      "### 3.1 main authority truth",
+      "### 3.2 code / PR truth 已经跑在 authority 前面",
+      "### 3.3 当前真正证明过的产品能力",
+      "## 4. Hypothesis Decomposition",
+      "## 5. Onion Peeling: Five-Layer Product Mechanism",
+      "### 5.1 Layer 1 — 用户工作流层"
+    ]
+  },
+  {
+    "path": "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+    "bytes": 61176,
+    "sha256": "6ff6cc07be27690451e24a8377becbc9243bd101f736847573c029b37968ece9",
+    "headings": [
+      "# ScoutFlow x RAW Unified Knowledge OS and Evidence Compiler Strategy Review",
+      "## 1. Executive Verdict",
+      "### 核心裁决",
+      "### 推荐目标形态",
+      "### 未来 90 天唯一优先闭环",
+      "## 2. Source Readback and Truth Classification",
+      "### 2.1 实际读到的 GitHub 文件",
+      "### 2.2 用户上传文件读取情况",
+      "### 2.3 未读到 / GitHub 未命中的文件",
+      "### 2.4 RAW 侧 gap",
+      "## 3. Current Cross-System Snapshot",
+      "### 3.1 现在的真实结构"
+    ]
+  },
+  {
+    "path": "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md",
+    "bytes": 51738,
+    "sha256": "9fbe7246395abe5458c0b19d3edc38cd2d7dd0bbd24f12105d2194a87f50b9c1",
+    "headings": [
+      "# OpenDesign Tech Utility 视觉规范候选稿 v2",
+      "## 1. Round 2 Delta",
+      "## 2. Source Refresh Table",
+      "## 3. Executive Summary",
+      "## 4. Visual Decision Ledger",
+      "## 5. Mermaid Visual Review State Machine",
+      "### Transition Gates",
+      "## 6. Mermaid L1/L2/L3 Influence Diagram",
+      "## 7. Visual North Star: Tech Utility / Operator Workstation",
+      "### 7.1 可测量视觉原则",
+      "### 7.2 直接拒绝",
+      "## 8. H5 Ownership Model"
+    ]
+  },
+  {
+    "path": "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md",
+    "bytes": 56071,
+    "sha256": "8cd03fc90a87d137ff009aebba564111f441b7a6876015d52b57c02fabd1231b",
+    "headings": [
+      "# PRD-v3 / SRD-v4 Wave 5 Outline Candidate V2",
+      "## 1. Round 2 Delta",
+      "### 1.1 v1 为什么被阻塞",
+      "### 1.2 v2 如何修复 v1",
+      "### 1.3 本文件的输出承诺",
+      "## 2. GitHub Fetch Table",
+      "## 3. Executive summary: outline-only, not promotion",
+      "## 4. Current PRD-v2/SRD-v2 baseline snapshot",
+      "### 4.1 产品基线快照",
+      "### 4.2 工程基线快照",
+      "### 4.3 当前 authority 与 contracts 补充",
+      "## 5. Promoted addenda carry-forward map"
+    ]
+  },
+  {
+    "path": "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+    "bytes": 71040,
+    "sha256": "ffa4e7504dc3923b6cd5124e7cfb201106fed4d097866d13aaadf17836ab93a3",
+    "headings": [
+      "# ScoutFlow Corner Case And Persona Matrix v2",
+      "## 1. Round 2 Delta",
+      "## 2. GitHub Refresh Table",
+      "## 3. Executive Summary",
+      "## 4. Claim Labels 与边界",
+      "## 5. Product Boundary Restatement",
+      "## 6. Actor / State Model",
+      "### 6.1 Actor Map",
+      "### 6.2 Mermaid State Machine",
+      "### 6.3 Transition Gate Notes",
+      "### 6.4 Mermaid Actor / Flow Diagram",
+      "## 7. Persona v2：Operator Modes"
+    ]
+  },
+  {
+    "path": "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md",
+    "bytes": 56937,
+    "sha256": "2a4a35ee920dd28305e425fee993ab9172f902cfc979a9dd7a28cae58c583448",
+    "headings": [
+      "# Wave 4 Retrospective V2 — 2026-05-05",
+      "## 1. Round 2 Delta",
+      "## 2. GitHub Refresh Table",
+      "## 3. Executive Summary",
+      "## 4. Wave 4 State Machine",
+      "## 5. PR / Task Timeline — Core Range PR #103-#127",
+      "### 5.1 Post-target continuation PR #128-#139",
+      "## 6. Surface Matrix",
+      "## 7. Evidence Grading",
+      "## 8. Introduced vs Exposed",
+      "## 9. Governance Lesson Ledger",
+      "## 10. Product Lesson Ledger"
+    ]
+  },
+  {
+    "path": "02_repo_sources/AGENTS.md",
+    "bytes": 3533,
+    "sha256": "6ab8a58fbcc4d1b1c5facc631c9df6ec2c91453e97e883555273e9b9a7ca8d20",
+    "headings": [
+      "# ScoutFlow AGENTS",
+      "## 1. 进入项目先读",
+      "## 2. 当前 Phase",
+      "## 3. 当前允许路径",
+      "## 4. 当前硬红线",
+      "## 5. 写回顺序",
+      "## 6. 并行规则",
+      "## 7. 工具分工",
+      "## 8. 输出要求"
+    ]
+  },
+  {
+    "path": "02_repo_sources/code_refs/services/api/scoutflow_api/bridge/vault_preview.py",
+    "bytes": 2959,
+    "sha256": "6a5294d191dfa67dde11bdc88daf769e98cd06a314fe0d4b0c0f631fe616364d",
+    "headings": []
+  },
+  {
+    "path": "02_repo_sources/code_refs/services/api/scoutflow_api/main.py",
+    "bytes": 2765,
+    "sha256": "abd9e3181702f5cab25e8f2b1f940b6006da2859d5737f498e74ebda9f4e63eb",
+    "headings": []
+  },
+  {
+    "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/commit.py",
+    "bytes": 1322,
+    "sha256": "a67f29382dc52e41725b66f70a9cbefc1fe603932facf77d99a48393d67be016",
+    "headings": []
+  },
+  {
+    "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/frontmatter.py",
+    "bytes": 1939,
+    "sha256": "c91ab11525fb02c6c9d628e78fbef3ba27de8c307b93f9100d7ece0556f45584",
+    "headings": []
+  },
+  {
+    "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/path_policy.py",
+    "bytes": 2079,
+    "sha256": "ddf03d925f1643406ca068bf91666d9ebe4bd61963bed363841f5b9fbafddf48",
+    "headings": []
+  },
+  {
+    "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/renderer.py",
+    "bytes": 2807,
+    "sha256": "6b9aefd8c58dbabf1f8031b1e09418582e8561f58c3f0ffe5f34c602c2b0a5a0",
+    "headings": []
+  },
+  {
+    "path": "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+    "bytes": 10330,
+    "sha256": "c189f3242c78bd950e5fb72cf189f981e9427d8c2a95024dcb82d7de3fd7e0a4",
+    "headings": [
+      "## §X.1 Strong Visual Capture H5",
+      "## §X.2 Existing PARA / Claudian Vault Integration",
+      "## §X.3 Fixed Product Shoulders",
+      "## §X.4 PR Factory Product Operating Mode",
+      "## §X.5 Out of scope",
+      "## §X.6 Promotion basis and future evidence gates"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+    "bytes": 11465,
+    "sha256": "25e9e70de6a20a3dac537fce96280659e03c921d4f0f89f0c21fc78dc4e8094a",
+    "headings": [
+      "# ScoutFlow v2 PRD",
+      "## 0. 元信息",
+      "### 0.1 项目身份",
+      "### 0.2 当前阅读顺序",
+      "### 0.3 当前文档角色",
+      "## 1. Mission / 范围 / 非目标",
+      "### 1.1 一句话定义",
+      "### 1.2 当前目标",
+      "### 1.3 明确非目标",
+      "### 1.4 当前红线",
+      "## 2. 产品边界",
+      "### 2.1 单 user / local-first 假设"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md",
+    "bytes": 37855,
+    "sha256": "423c89fe552523330e3242306ab6a4a786958f98295bdb1091e9536131226230",
+    "headings": [
+      "# SRD-v3 Candidate Amendment - DB VNext",
+      "## 0. Boundary",
+      "## 0.1 Diff Summary v2 -> v3",
+      "## 1. Supersession Boundary",
+      "### 1.1 Enforced In SQL",
+      "#### 1.1.1 SQLite Trigger Contract",
+      "### 1.2 Enforced In App",
+      "### 1.3 Deferred",
+      "### 1.4 Cross-Capture Identity Invariant (F-011)",
+      "#### 1.4.1 Composite identity unique indexes (REQUIRED in Phase 2A migration)",
+      "#### 1.4.2 Composite FKs (REQUIRED in Phase 2A migration target shape)",
+      "#### 1.4.3 Circular reference handling"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+    "bytes": 16327,
+    "sha256": "f18352082ac33181c84ecc698329499e45e37d4bd36aafd694581e979d10883c",
+    "headings": [
+      "# SRD-v3 Addendum - H5 Bridge PARA Vault",
+      "## 0. Boundary",
+      "### §17.1 H5 Capture Station",
+      "### §17.2 Bridge / Thin API Route Group",
+      "### §17.3 VaultWriter Contract",
+      "### §17.4 PR Factory Protocol Dependency",
+      "### §17.5 Out of Scope",
+      "### §17.6 Promotion basis and future evidence gates"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+    "bytes": 7862,
+    "sha256": "ce6243958c4e6b5b6c36066fe8b14727ad27fc15a5791bbc9df7f93e834c3986",
+    "headings": [
+      "# ScoutFlow SRD v2",
+      "## 0. 元信息与仲裁链",
+      "### 0.1 文档定位",
+      "### 0.2 当前仲裁链",
+      "### 0.3 单 user / local-first 假设",
+      "## 1. 系统总览",
+      "### 1.1 当前有效系统形态",
+      "### 1.2 当前生效而非 future outline 的部分",
+      "### 1.3 当前仍是 outline 的部分",
+      "## 2. 当前功能基线（FR）",
+      "### 2.1 Capture entry",
+      "### 2.2 Receipt / artifact ledger"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md",
+    "bytes": 34681,
+    "sha256": "228bdd90e1fe3b6db5b2ec1a563d6eba52c37658cb544238c540bcb9f975b466",
+    "headings": [
+      "# ScoutFlow 开源肩膀生命周期手册 — 7 阶段从发现到退役",
+      "## 0. 用户洞察：scan ≠ 完整生命周期",
+      "## 1. 7 阶段生命周期定义",
+      "### 1.1 阶段速查表（v1.1: 7 阶段 + stage 5 alternatives）",
+      "## 2. 每阶段详细规范",
+      "### 2.1 阶段 1: discover (发现)",
+      "### 2.2 阶段 2: scan (30 分钟初筛)",
+      "### 2.3 阶段 3: clone (拉到本地)",
+      "### 2.4 阶段 4: probe (深读 + 报告)",
+      "### 2.5 阶段 5a: adapt (抽模式进 main)",
+      "### 2.6 阶段 5b: fork (长期维护本地 fork)",
+      "### 2.7 阶段 6: integrate (集成到工作流)"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/current.md",
+    "bytes": 4209,
+    "sha256": "6b825cd797224680363a3f3f6007205f69f63e75016c98800ecc47960c2f6d6b",
+    "headings": [
+      "# Current",
+      "## 当前状态",
+      "## 当前允许",
+      "## 当前禁止",
+      "## 下一步"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md",
+    "bytes": 21226,
+    "sha256": "290176c1e223e607ea8c9471fe59d999cd49f65c2b393d66cc810b369f87cdff",
+    "headings": [
+      "# ScoutFlow Doc1/Doc2/Doc3 接纳后的细节修订建议报告",
+      "## 0. 总裁决",
+      "## 1. 已核事实",
+      "### 1.1 PR54 状态",
+      "### 1.2 当前仓库红线脚本约束",
+      "## 2. P0 修订：不修会直接阻塞执行",
+      "### P0-1：PR55 / PR66 / PR67 / PR74 这类 authority ledger PR 必须允许改 `AGENTS.md`",
+      "### P0-2：`referencerepo/` 不能作为 tracked allowed path",
+      "### P0-3：`Bridge` 本地错误不应复用 `PlatformResult`",
+      "### P0-4：PR55 应补记 `T-P1A-029 / PR54` 的 Done 或明确“closeout fix 不入 task-index”",
+      "### P0-5：PR57/58 candidate amendments 最好在 PR66 closeout 注册到 `contracts-index.md`",
+      "## 3. P1 修订：建议改，不改也能跑但会增加返工"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/research/repairs/wave5-scope-and-template-extraction-2026-05-05.md",
+    "bytes": 26943,
+    "sha256": "1663a503f70eaf86d183505a3bd01eee89cb82c241407d9dff431b903a08cb4c",
+    "headings": [
+      "# Wave 5 Scope and Template Extraction",
+      "## 0. Purpose and Method",
+      "## 1. Wave 5 PRD/SRD Section Index Candidates",
+      "### 1.1 Primary anchors for `Dispatch127-176`",
+      "### 1.2 Context-only anchors",
+      "### 1.3 Exclude from default backbone",
+      "## 2. batch1 Worklist Structural Template Extraction",
+      "### 2.1 Verified structure in the `Dispatch 76-125` worklist",
+      "### 2.2 Reusable per-dispatch schema from batch1",
+      "### 2.3 Required adaptations for `Dispatch127-176`",
+      "### 2.4 Structural draft that should carry forward",
+      "## 3. Implemented-vs-Unimplemented Continuation Mapping for `Dispatch127-176`"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/research/shoulders/adapt-decision-table-2026-05-05.md",
+    "bytes": 3748,
+    "sha256": "ef23f81e7e6333b9903eb0c56c9fa0fab0e701868174133a840e469fc822e5f8",
+    "headings": [
+      "# ScoutFlow Shoulders Adapt Decision Table",
+      "## 1. Scope",
+      "## 2. Inputs",
+      "## 3. Decision rubric",
+      "## 4. Decision table",
+      "## 5. REDNOTE-XHS call",
+      "## 6. CONSOLE-CLI call",
+      "## 7. BILIBILI-COMPARATOR call",
+      "## 8. Wave 4 carry-forward"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/research/wave4-mid-checkpoint-2026-05-05.md",
+    "bytes": 1602,
+    "sha256": "de53c9d8431c2471755bdec0fb88122afa0c541a8bf1470c923adc91f5b3584e",
+    "headings": [
+      "# Wave 4 Mid Checkpoint 2026-05-05",
+      "## What Landed In This Checkpoint",
+      "## Batch 3 Live PR Mapping",
+      "## Current Truth",
+      "## Boundaries That Remain"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/shoulders-index.md",
+    "bytes": 8114,
+    "sha256": "e7eef5f849a9311fd604beb8f4e8d5c39837b257cfb3e34329d73104b3385c5e",
+    "headings": [
+      "# ScoutFlow Shoulders Index",
+      "## Transition Rule (per errata P1-10)",
+      "## Entries (10 列 schema; 字段定义见 doc2 §10; 19 entries; 3 locked / 5 integrated / 11 discovered)"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/specs/contracts-index.md",
+    "bytes": 8629,
+    "sha256": "e089ce9480cb0a62a5568b11a1b870fc1ad9f6967937054d3b321c7dc942ba36",
+    "headings": [
+      "# ScoutFlow Contracts Index",
+      "## 待拍板候选基准（8 group）",
+      "## 当前实现基线状态",
+      "## Promoted Amendments",
+      "## 当前 research note / draft contract 状态",
+      "## 当前引用但未落地的上游文档",
+      "## 仅作参考 outline 的内容",
+      "## 更新规则"
+    ]
+  },
+  {
+    "path": "02_repo_sources/docs/task-index.md",
+    "bytes": 39251,
+    "sha256": "1df4f2a2cd01e848466311c4c3044d544c5ab877492a668445867323dbde474b",
+    "headings": [
+      "# ScoutFlow Task Index",
+      "## 规则",
+      "## 当前 Phase",
+      "## Active",
+      "## Review",
+      "## Backlog",
+      "## Wave 2 Conflict Domain (T-P1A-018/019/020)",
+      "## Blocked",
+      "## Done",
+      "## Stop-the-line"
+    ]
+  },
+  {
+    "path": "03_raw_sources/05-Projects/ScoutFlow/README.md",
+    "bytes": 1296,
+    "sha256": "a2d0bd5284b84ac5f5cc0ee1ad01f00a4e4330a2bcc7a66ef2d40f1c25783cad",
+    "headings": [
+      "# ScoutFlow",
+      "## 入口",
+      "## 规则"
+    ]
+  },
+  {
+    "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/REPORT-Dispatch127-176-Batch0-preflight-CODEX0-2026-05-05.md",
+    "bytes": 2313,
+    "sha256": "4b525b7e56bc1abd29172aeea7f85cfbbf214dcc5e24286523a162dade0f6225",
+    "headings": [
+      "# REPORT — Dispatch127-176 Batch0 Preflight",
+      "## 1. Result",
+      "## 2. What Batch0 Confirmed",
+      "## 3. What Batch0 Repaired",
+      "## 4. Validator Verdict",
+      "## 5. Carry-Forward Constraints"
+    ]
+  },
+  {
+    "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/RUN-Dispatch127-176-overnight-2026-05-05/CHECKPOINT-main.json",
+    "bytes": 7087,
+    "sha256": "510e8df6f19649b2450adb051e72bea84d6b2f26b72535b8729620536b3a97b8",
+    "headings": []
+  },
+  {
+    "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/RUN-Dispatch127-176-overnight-2026-05-05/STARTUP-SELF-CHECK.md",
+    "bytes": 2440,
+    "sha256": "6e1e6d0c8c7f3d40cfc0e88eacadfd5008f9d27ed5f92e0ec46e0ba59fce7104",
+    "headings": [
+      "# STARTUP SELF CHECK"
+    ]
+  },
+  {
+    "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/_INDEX.md",
+    "bytes": 963,
+    "sha256": "c3b8891bdf4f93f1b2f3058a910681fdef52871d5ed9c2e932c67ce39d760443",
+    "headings": [
+      "# ScoutFlow Dispatches Index",
+      "## Dataview 自动聚合 (示例, Obsidian dataview 插件)",
+      "## Dispatches (按 PR 编号排序)"
+    ]
+  },
+  {
+    "path": "03_raw_sources/AGENTS.md",
+    "bytes": 17336,
+    "sha256": "566d25bf0f3748aa99587c2cb863f65875dd0ab4e28e90cbb2ba87086dec33fd",
+    "headings": [
+      "# RAW Codex Project Instructions",
+      "## Mission",
+      "## Hard Guardrails",
+      "## Enrich Execution Discipline (2026-04-11)",
+      "### Candidate selection (do NOT trust stale frontmatter)",
+      "### Pre-dispatch candidate verification (mandatory)",
+      "### Image and raw-source handling (token bomb protection)",
+      "### Agent dispatch hard prohibitions",
+      "### v7.0 quality gates (main validates on callback)",
+      "### Closure loop (after each batch, no skipping)",
+      "### Known pitfalls (pre-2026-04-11 failure modes, do NOT repeat)",
+      "## Wiki 双向链接规范（CRITICAL — 三引擎共同约束，2026-04-17）"
+    ]
+  },
+  {
+    "path": "03_raw_sources/System/domain-map.md",
+    "bytes": 4272,
+    "sha256": "f8261d57f7f3cc21b8067c81c0a9740d3c748855784725cec736cf81dace74b4",
+    "headings": [
+      "# 知识领域地图",
+      "## 产品线分离原则（CRITICAL）",
+      "## Domain 枚举值（9 值）",
+      "## 四大支柱（中枢大模型技术深潜）",
+      "### 支柱 1：架构（Architecture）",
+      "### 支柱 2：能力（Capabilities）",
+      "### 支柱 3：工程（Engineering）",
+      "### 支柱 4：生态（Ecosystem）",
+      "## 覆盖度矩阵",
+      "## 02-Raw → 01-Wiki 映射",
+      "## 盲区检测规则"
+    ]
+  },
+  {
+    "path": "03_raw_sources/System/frontmatter-templates.md",
+    "bytes": 8036,
+    "sha256": "2ad82366888652dcfa1bb3ffd99d781478ab9c4061854f12a9e97788e75e144f",
+    "headings": [
+      "# Frontmatter 统一规范",
+      "## compiled 文章模板（9 个必填字段）",
+      "## crafted 文章模板（8 个必填字段，无 source）",
+      "## 02-Raw 原始材料模板（4 个字段）",
+      "## solution 文档模板（10 个字段）",
+      "## 字段枚举值定义",
+      "### type",
+      "### status",
+      "### ⚠️ 禁止重复字段（CRITICAL — 2026-04-07 新增）",
+      "### priority",
+      "### domain（9 值枚举）",
+      "## 迁移映射（不规范值 → 目标值）"
+    ]
+  },
+  {
+    "path": "03_raw_sources/System/intake-rules.md",
+    "bytes": 2111,
+    "sha256": "d0b5b05307503066b2f5ffd30bde9f09b42e963f764f44e3c61611b315e32035",
+    "headings": [
+      "# 入库规则",
+      "## 入库流程",
+      "## 分类规则",
+      "## 去重检查",
+      "## 批量入库",
+      "## 图片处理"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/CODEX-AUDIT-2026-05-05.md",
+    "bytes": 4924,
+    "sha256": "0107ee2513b597e1f6efdc59396afb0f9e6c48e4e5a70a922ba43de21b9fe59e",
+    "headings": [
+      "# Codex Audit - ScoutFlow Dispatch127-176 Candidate Pack",
+      "## Verdict",
+      "## Scope",
+      "## Ground Truth Results",
+      "## Findings",
+      "### F1 - Intake Clear, Execution Still Gated",
+      "### F2 - Existing `pack-lint` Cannot Validate This Pack Shape",
+      "### F3 - New Parent Directories Need Commander Handling",
+      "### F4 - Product Rows Need Type-Specific Validation Repair",
+      "## Agreement With Opus Review",
+      "## Required Before Execution",
+      "## Final State"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/COMMANDER-RUN-PROMPT.md",
+    "bytes": 7699,
+    "sha256": "7068a03d65d08e68c2e2afff3dfc12bbc7be28062055394bc386123cba75f35c",
+    "headings": [
+      "# COMMANDER-RUN-PROMPT.md — Draft Spec Only",
+      "## 1. Commander Posture",
+      "## 2. Required Refresh",
+      "## 3. Execution Mode",
+      "## 4. Pool Staging",
+      "## 5. Lane Caps",
+      "## 6. Dispatch Execution Rules",
+      "## 7. Visual / H5 Hard Clause",
+      "## 8. Runtime And Package Redlines",
+      "## 9. Authority Writeback Before Execution Gate",
+      "## 10. Stop Classes",
+      "## 11. Closeout"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/PACK-SELF-CHECK.md",
+    "bytes": 3880,
+    "sha256": "f129be281c302d832b290009ca0520a1b58c11ca9adf36647dd16c24d393899c",
+    "headings": [
+      "# PACK-SELF-CHECK.md",
+      "## 1. Self-Repair Summary",
+      "## 2. Required Checks",
+      "## 3. Manifest Schema Check",
+      "## 4. Dispatch Template Check",
+      "## 5. Redline Scan",
+      "## 6. Candidate Status"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch127-T-P1A-106-wave4-post-mid-checkpoint-continuation-map.md",
+    "bytes": 6110,
+    "sha256": "ec5b2bd8c2f7de225575acebf86a604ac73f7da70d8df73fe99f406907c288b2",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch128-T-P1A-107-wave4-visual-touchpoint-roster-and-localhost-plan.md",
+    "bytes": 6618,
+    "sha256": "8f87ccf524f0cade23321b366921195df0f14290b479d2bc36e74bee4595ea3f",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch129-T-P1A-108-wave4-bridge-vault-continuation-gap-matrix.md",
+    "bytes": 5747,
+    "sha256": "001eaa615ebb9a7793aa460fb94e24ef4e46fa38b1e7b83dc86011820fb110a7",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch130-T-P1A-109-wave4-closeout-and-wave5-opening-candidate.md",
+    "bytes": 5981,
+    "sha256": "320aa82ec9fdaf47ee5f0f85b9280be7c118c2d06eea8e03bb684ed95c404f26",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch131-T-P1A-110-signal-entity-glossary-candidate.md",
+    "bytes": 5740,
+    "sha256": "55cee21d26ec561e6e5739b891b3985dc7ee5e81ac8706ae33506547d7c53e38",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch132-T-P1A-111-signal-state-map-candidate.md",
+    "bytes": 5754,
+    "sha256": "37e1d18735d43bee8dc251aa37e4dc962327b9caf7cf593ec738d619076b6b25",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch133-T-P1A-112-hypothesis-lifecycle-candidate.md",
+    "bytes": 5589,
+    "sha256": "390398e738ddd3c7248bf0f8cd3f30e183244c28f2eca31d6afbbbe1b78b73ea",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch134-T-P1A-113-capture-plan-entity-surface-candidate.md",
+    "bytes": 5652,
+    "sha256": "372e6d02ca6a35c63ada408ce812676b709b7a323b6df387ef07248c817d9540",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch135-T-P1A-114-topic-card-entity-surface-candidate.md",
+    "bytes": 5700,
+    "sha256": "c104e8b274cebfbcfe2101cff5274241b1f498f90298d8f7b97bccddd4848ff0",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch136-T-P1A-115-signal-workbench-boundary-note.md",
+    "bytes": 5699,
+    "sha256": "03bd2fa79a5a4eaca9911318900f79a900a2ae237bcc1d9b5a70ae0e8eb2c2f1",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch137-T-P1A-116-manual-url-continuity-constraints-for-wave5.md",
+    "bytes": 5669,
+    "sha256": "7622bd3177442939c7144b38bd874819bc911ea40d588ba4a93b2a91c53a3d2a",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch138-T-P1A-117-trust-trace-to-topic-card-mapping-candidate.md",
+    "bytes": 5721,
+    "sha256": "358ae3dce65ecd7688a05e80b8bded7b3bd4197d6c50caacd4ee65993225e155",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch139-T-P1A-118-metadata-evidence-normalization-continuation.md",
+    "bytes": 5797,
+    "sha256": "00c733cef39d69c96f9335a3a3103210f2a5f57e6efbc19e9e864431f11ff661",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch140-T-P1A-119-h5-panel-to-signal-hypothesis-mapping.md",
+    "bytes": 6693,
+    "sha256": "2ba189c04cfeaffad1e9d24a7d653f5500c01107b30018b204f0507801d3990c",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch141-T-P1A-120-topic-card-review-flow-candidate.md",
+    "bytes": 5728,
+    "sha256": "021f924dcb41ff1148a1276842c2aff575f6b1345d5dcb506527b953901e53de",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch142-T-P1A-121-capture-plan-input-output-contract-candidate.md",
+    "bytes": 5809,
+    "sha256": "d5393155579f9280776bcc55dff94d820bba5d26c00487a273e7a59f15bedc8c",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch143-T-P1A-122-signal-scoring-vocabulary-candidate.md",
+    "bytes": 5639,
+    "sha256": "32a6250bd75e8815ad6e7084f187f4d49d413a3c0d7020baea6879aac18a5e39",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch144-T-P1A-123-hypothesis-evidence-source-matrix.md",
+    "bytes": 5640,
+    "sha256": "0881c2dfd7d06ab94dccb9098abbe776cfd59a117f6d0b9bd42016bf9dba2ac7",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch145-T-P1A-124-topic-card-vault-rendering-candidate.md",
+    "bytes": 7237,
+    "sha256": "2352eeb49f96a3642f95d6fabcec98e0e70d4090f576a6207613b191102cfd36",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch146-T-P1A-125-topic-card-preview-shape-candidate.md",
+    "bytes": 7170,
+    "sha256": "4ee1225b2182e9497c86f63a2ef5771d60573a3be31923e10c965fb975eb0c15",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch147-T-P1A-126-capture-plan-dry-run-note-shape.md",
+    "bytes": 5578,
+    "sha256": "ee71c1c5d88c5923fb334189c58c712f332cd7ef3fc4a193915646c70d69f149",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch148-T-P1A-127-wave5-docs-pack-pr-factory-packaging.md",
+    "bytes": 5751,
+    "sha256": "f42460bca3d55434d45ede0156a965a539b19f9e91b56047681f7afe72b5d5a1",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch149-T-P1A-128-wave5-file-domain-matrix-draft.md",
+    "bytes": 5683,
+    "sha256": "0f9d5ad3f55a24f3aea9e1061b66c827d45132fd38988caf5807450abf566073",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch150-T-P1A-129-wave5-dependency-graph-draft.md",
+    "bytes": 5654,
+    "sha256": "af0e1dd7ea252b27be9d3272a93d30a35d5a292708ed62818146b112d17a1c02",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch151-T-P1A-130-signal-workbench-api-placeholder-contract.md",
+    "bytes": 5720,
+    "sha256": "9b69214e38e6827dee121bc39a300fca6ce3fdd5fce8110986c59159841a7f69",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch152-T-P1A-131-topic-card-frontend-ia-candidate.md",
+    "bytes": 6539,
+    "sha256": "ee3f195464bbac963c04f3ff36e637e23e8cee29a8b40abd93fb8914030c62ef",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch153-T-P1A-132-capture-plan-frontend-ia-candidate.md",
+    "bytes": 6547,
+    "sha256": "9763098cf179fb0d1dcd87f1918178a20266ca5d2ecf7ffc898bdf00cab13a0c",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch154-T-P1A-133-hypothesis-comparison-ux-candidate.md",
+    "bytes": 6547,
+    "sha256": "71c76a4ee823b90e3645abc382541a20992fa6b568fb6c489cde053dd4dffdfe",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch155-T-P1A-134-signal-ingestion-audit-lane-candidate.md",
+    "bytes": 5578,
+    "sha256": "7798b2c27f864a556d0e3433ba52b466202bca3a81c476d3e55d7124025b11f6",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch156-T-P1A-135-wave5-visual-reporting-candidate.md",
+    "bytes": 6623,
+    "sha256": "5690285193e09e94212b6762aee0798351d3de1705162e58ec57fea82d8c550a",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch157-T-P1A-136-localhost-review-roster-for-wave5-surfaces.md",
+    "bytes": 6526,
+    "sha256": "4a6cd814a5d5d64656aceeb7d49952652affcf7c83a8365fe0453f651180dbd5",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch158-T-P1A-137-step3-commander-prompt-contract-note.md",
+    "bytes": 5792,
+    "sha256": "8222264664d59ffefa6cccd8ba0aef37784e05ddfd7e2b2aaa65811686761a1c",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch159-T-P1A-138-cloud-draft-resume-and-packaging-rules.md",
+    "bytes": 5650,
+    "sha256": "600101c77fd95e35df30658d5a9007faa4cf58d6f0bff427e375c9f4d402282a",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch160-T-P1A-139-readback-delta-application-rules.md",
+    "bytes": 5605,
+    "sha256": "ab4d25ba725ee15c98948459266e5920eeed6e3ce7259613ff2def1aa573b952",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch161-T-P1A-140-deferred-and-overflow-registry-candidate.md",
+    "bytes": 5611,
+    "sha256": "a26f2e4d7bce574277f530a219943ad3d6c57e669731ba70edbe31cf5b99e04b",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch162-T-P1A-141-bridge-hardening-post-110-continuation.md",
+    "bytes": 5752,
+    "sha256": "42942cf1d8a099a67598de3025047d8b6d466df1aaf32bc4f5d75a7db6b8877a",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch163-T-P1A-142-vault-preview-continuation-candidate.md",
+    "bytes": 5705,
+    "sha256": "8efd6d1a532f47f3fc766b6e0c51c360665dad1be1926c6fe85915d24f78c1e0",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch164-T-P1A-143-vault-dry-run-continuation-candidate.md",
+    "bytes": 5688,
+    "sha256": "5f69971556cb1fc9de497c2028e41f2ab3eb479473bcb570f38e6fc508ba515c",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch165-T-P1A-144-5-gate-ci-continuation-note.md",
+    "bytes": 5575,
+    "sha256": "164bb95c1d7fe96948a31f8b4816097157fa521ea75cb14d38fe4d10dcabf930",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch166-T-P1A-145-playwright-smoke-extension-candidate.md",
+    "bytes": 6532,
+    "sha256": "0994016ebfd6b171a4a93c36e26af6abc9ac47cb4133e59f525d234c9e75e812",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch167-T-P1A-146-visual-regression-reporting-continuation.md",
+    "bytes": 6578,
+    "sha256": "c4b20cd084207ce5f24cc9996f99a15edad184a1e9de3caa17cde8c658c0ac49",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch168-T-P1A-147-runtime-log-schema-for-dispatch127-176-run.md",
+    "bytes": 5643,
+    "sha256": "f09add79169fe28db61eb3333cc9576b5e736f6bff29dfa5c6397f1e444586db",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch169-T-P1A-148-run-summary-schema-for-dispatch127-176-run.md",
+    "bytes": 5582,
+    "sha256": "4d650866a471a63605eaa50881646a6f340aeaac6e7f74fe382804acef5c8ceb",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch170-T-P1A-149-product-lane-override-evidence-packet.md",
+    "bytes": 5604,
+    "sha256": "719cdcac96bc540479459696e91b8f97e5794be51a07e4ed1cc2f231463fe089",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch171-T-P1A-150-global-pool-staging-health-check-contract.md",
+    "bytes": 5625,
+    "sha256": "2432122794fabd4dfd3b0736186e2e91a9c042a9a1fb9ce3d5b724eb5c5a756d",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch172-T-P1A-151-branch-protection-and-merge-policy-note.md",
+    "bytes": 5581,
+    "sha256": "1a513290200d75865b24054c6fdfd0c5448d4fb7973176c9897fee6b197b9d6c",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch173-T-P1A-152-wave5-closeout-template.md",
+    "bytes": 5922,
+    "sha256": "834e45353c8e9aafe0650aadf82ccb6108faf01c308bce1b74fc0078b96ba6d2",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch174-T-P1A-153-wave6-ledger-open-candidate.md",
+    "bytes": 5793,
+    "sha256": "76a99583f04575d5aad6610b86b9730683caf3310e0374c9f91ba12ea9971167",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch175-T-P1A-154-overflow-candidate-registry-for-db-vnext-and-blocked-runtime-lanes.md",
+    "bytes": 5782,
+    "sha256": "b1895f07336b1138afab1378c778bf36b68a23f9dad3977b57b3d4ad0063d336",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch176-T-P1A-155-step3-cold-start-handoff-packet-contract.md",
+    "bytes": 5748,
+    "sha256": "37b2113ce0667756e1aa66cc9246f45f44d3495c0c0865a07d9a65969d689bfe",
+    "headings": [
+      "## 1. Context",
+      "## 2. Goal",
+      "## 3. Allowed Paths",
+      "## 4. Forbidden Paths And Redlines",
+      "## 5. Implementation Instructions",
+      "## 6. Validation",
+      "## 7. Acceptance",
+      "## 8. Handoff",
+      "## 9. Rollback / Defer",
+      "## 10. Runtime Log",
+      "## 11. Visual Screenshot"
+    ]
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+    "bytes": 51993,
+    "sha256": "fa02050f6740e4c6e2ae9243fd004ceb0bb6d8310ababfbf01d270d210b8e771",
+    "headings": []
+  },
+  {
+    "path": "03_raw_sources/dispatch127-176-autoexec-pack/worklist-amendment.md",
+    "bytes": 8285,
+    "sha256": "2fbe1b5789e7e18e5280306aa20cba48335bb3cf37946a1dcfe86f7d62e3b14e",
+    "headings": [
+      "# Worklist Amendment — Dispatch127-176 Candidate Pack",
+      "## 1. Status",
+      "## 2. Pack Identity",
+      "## 3. Boundary Carry-Forward",
+      "## 4. Worklist Rows",
+      "## 5. Conflict-Domain Notes",
+      "## 6. Required Later Readback",
+      "## 7. Non-Goals"
+    ]
+  },
+  {
+    "path": "04_outputs/post-dispatch176-report-index-candidate-2026-05-05.md",
+    "bytes": 2944,
+    "sha256": "21e6c9ec3b133b6f7f4f4c4d9e0604314f63fb3b31f15070916c443e9f0a502e",
+    "headings": [
+      "# Post-Dispatch176 报告索引",
+      "## 1. 报告清单",
+      "## 2. 建议阅读顺序",
+      "## 3. 三份报告的关系",
+      "## 4. 本套报告的统一结论"
+    ]
+  },
+  {
+    "path": "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+    "bytes": 9548,
+    "sha256": "098d9a56c8d1680fe141798685b37b913427d34df23cbcbee58606e6f467893f",
+    "headings": [
+      "# Post-Dispatch176 路线图报告",
+      "## 1. 路线总判断",
+      "### 1.1 不建议继续沿用的默认路线",
+      "### 1.2 建议改成的路线",
+      "## 2. `127-176` 压缩矩阵",
+      "### 2.1 slot 组级重排",
+      "### 2.2 关键结论",
+      "## 3. 建议的后续 cluster",
+      "### 3.1 Cluster 定义",
+      "### 3.2 推荐顺序图",
+      "## 4. `177` 之后不建议按纯编号排的原因",
+      "### 4.1 推荐命名法"
+    ]
+  },
+  {
+    "path": "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+    "bytes": 9373,
+    "sha256": "864aa660dcdca9487acfdc61e16808007bd48e682371290ba79d259cb81e1909",
+    "headings": [
+      "# Post-Dispatch176 ScoutFlow ↔ RAW 融合契约报告",
+      "## 1. 总原则",
+      "### 1.1 一句话定义",
+      "### 1.2 这份契约为什么必须写",
+      "## 2. Source of Record 矩阵",
+      "## 3. 融合流程图",
+      "### 3.1 这条链路的关键边界",
+      "## 4. 为什么现有 RAW 规则支持这个判断",
+      "### 4.1 `frontmatter` 与 `/intake` 的真实作用",
+      "### 4.2 直接结论",
+      "## 5. “巨人的肩膀流程”该怎么接进来",
+      "### 5.1 doc2 的 7 阶段生命周期，不该直接变产品主线"
+    ]
+  },
+  {
+    "path": "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+    "bytes": 13525,
+    "sha256": "d9ed2107088a596d18e2217003bad2ab4281c15e3dbf39d94cf4e2c5f5643448",
+    "headings": [
+      "# Post-Dispatch176 总战略报告",
+      "## 1. 执行摘要",
+      "### 1.1 总裁决",
+      "### 1.2 三条最重要结论",
+      "## 2. 当前判断基线",
+      "### 2.1 现实证据层",
+      "### 2.2 路线假设层",
+      "## 3. 六份报告的正负作用",
+      "### 3.1 综合评分表",
+      "### 3.2 逐份分析",
+      "## 4. 外部证据给出的共同模式",
+      "### 4.1 工具共性表"
+    ]
+  }
+]

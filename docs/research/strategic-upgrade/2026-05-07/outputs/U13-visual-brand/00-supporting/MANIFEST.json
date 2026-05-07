@@ -1,0 +1,653 @@
+{
+  "generated_at": "2026-05-07",
+  "files": [
+    {
+      "path": "00-supporting/5-GATE-TEST-SUITE-MASTER.md",
+      "bytes": 17986,
+      "approx_units": 2972,
+      "sha256_16": "9119f560fc88275e"
+    },
+    {
+      "path": "00-supporting/BRAND-VOICE-AND-TONE.md",
+      "bytes": 16054,
+      "approx_units": 2688,
+      "sha256_16": "0124f9e3b063d2c6"
+    },
+    {
+      "path": "00-supporting/LINKED-ASSET-AND-STATE.md",
+      "bytes": 15405,
+      "approx_units": 2557,
+      "sha256_16": "9a0bd382658f0f37"
+    },
+    {
+      "path": "00-supporting/LIVE-WEB-EVIDENCE-LIMITATIONS.md",
+      "bytes": 11391,
+      "approx_units": 1847,
+      "sha256_16": "26806edf708831ca"
+    },
+    {
+      "path": "00-supporting/MASTER-BRAND-ATLAS.md",
+      "bytes": 26293,
+      "approx_units": 4265,
+      "sha256_16": "baee2a70b94407e3"
+    },
+    {
+      "path": "00-supporting/SELF-AUDIT-25-FINDINGS.md",
+      "bytes": 15148,
+      "approx_units": 2443,
+      "sha256_16": "ee3bb8cf6a196987"
+    },
+    {
+      "path": "00-supporting/SOURCE-DIGEST-AND-BOUNDARY-NOTES.md",
+      "bytes": 12374,
+      "approx_units": 2001,
+      "sha256_16": "8b8adf9338487e36"
+    },
+    {
+      "path": "00-supporting/TRUTHFUL-STDOUT.yaml.md",
+      "bytes": 2262,
+      "approx_units": 275,
+      "sha256_16": "e2faa86974fa747d"
+    },
+    {
+      "path": "00-supporting/VALIDATION-REPORT.md",
+      "bytes": 3950,
+      "approx_units": 474,
+      "sha256_16": "399989425592604a"
+    },
+    {
+      "path": "01-token-system/TOKEN-01-PALETTE-15-DEEP-BLUE-AND-DERIVED.md",
+      "bytes": 16599,
+      "approx_units": 2417,
+      "sha256_16": "f8f33d85580cbede"
+    },
+    {
+      "path": "01-token-system/TOKEN-02-TYPOGRAPHY-RAMP-BILINGUAL.md",
+      "bytes": 14777,
+      "approx_units": 2376,
+      "sha256_16": "f7f3ea284856b289"
+    },
+    {
+      "path": "01-token-system/TOKEN-03-SPACING-8DP-GRID-RADIUS-DENSITY.md",
+      "bytes": 14352,
+      "approx_units": 2393,
+      "sha256_16": "91d06f7b35194fc0"
+    },
+    {
+      "path": "01-token-system/TOKEN-04-SHADOW-ELEVATION-OVERLAY.md",
+      "bytes": 13876,
+      "approx_units": 2307,
+      "sha256_16": "9a83722f231c8ae9"
+    },
+    {
+      "path": "01-token-system/TOKEN-05-MOTION-DURATION-EASING.md",
+      "bytes": 13938,
+      "approx_units": 2295,
+      "sha256_16": "4786d0260238558e"
+    },
+    {
+      "path": "02-icon-library/I01-capture-start-icons.md",
+      "bytes": 8979,
+      "approx_units": 1322,
+      "sha256_16": "28f81ace05efb2b1"
+    },
+    {
+      "path": "02-icon-library/I02-metadata-probe-icons.md",
+      "bytes": 9055,
+      "approx_units": 1320,
+      "sha256_16": "55bfa591b4846566"
+    },
+    {
+      "path": "02-icon-library/I03-scope-blocked-icons.md",
+      "bytes": 8991,
+      "approx_units": 1335,
+      "sha256_16": "3d78dc71d2900f48"
+    },
+    {
+      "path": "02-icon-library/I04-trust-edge-icons.md",
+      "bytes": 8992,
+      "approx_units": 1320,
+      "sha256_16": "3f78f07f393342b1"
+    },
+    {
+      "path": "02-icon-library/I05-vault-preview-icons.md",
+      "bytes": 9186,
+      "approx_units": 1366,
+      "sha256_16": "fbb7c2b04ae94f2c"
+    },
+    {
+      "path": "02-icon-library/I06-topic-card-icons.md",
+      "bytes": 8949,
+      "approx_units": 1319,
+      "sha256_16": "68522dd28650a7bd"
+    },
+    {
+      "path": "02-icon-library/I07-signal-ingest-icons.md",
+      "bytes": 8987,
+      "approx_units": 1318,
+      "sha256_16": "f29d772b63b36482"
+    },
+    {
+      "path": "02-icon-library/I08-evidence-source-icons.md",
+      "bytes": 8927,
+      "approx_units": 1316,
+      "sha256_16": "49481eb3db9e8be8"
+    },
+    {
+      "path": "02-icon-library/I09-dispatch-icons.md",
+      "bytes": 8909,
+      "approx_units": 1331,
+      "sha256_16": "bf69a12f1a5c938b"
+    },
+    {
+      "path": "02-icon-library/I10-runtime-block-icons.md",
+      "bytes": 9012,
+      "approx_units": 1318,
+      "sha256_16": "4ee245635d3a9db1"
+    },
+    {
+      "path": "02-icon-library/I11-media-audio-icons.md",
+      "bytes": 8390,
+      "approx_units": 1221,
+      "sha256_16": "954a0c402ccae538"
+    },
+    {
+      "path": "02-icon-library/I12-graph-fork-icons.md",
+      "bytes": 8891,
+      "approx_units": 1314,
+      "sha256_16": "7ce40d3fd863495d"
+    },
+    {
+      "path": "02-icon-library/I13-timestamp-icons.md",
+      "bytes": 8863,
+      "approx_units": 1315,
+      "sha256_16": "f1c34b0cacfafe7b"
+    },
+    {
+      "path": "02-icon-library/I14-operator-icons.md",
+      "bytes": 8917,
+      "approx_units": 1318,
+      "sha256_16": "318f364ae7800154"
+    },
+    {
+      "path": "02-icon-library/I15-panel-focus-icons.md",
+      "bytes": 8879,
+      "approx_units": 1330,
+      "sha256_16": "60329c3046c53429"
+    },
+    {
+      "path": "02-icon-library/I16-warning-gate-icons.md",
+      "bytes": 8976,
+      "approx_units": 1317,
+      "sha256_16": "9e1c46c88501dc6e"
+    },
+    {
+      "path": "02-icon-library/I17-error-branch-icons.md",
+      "bytes": 9167,
+      "approx_units": 1359,
+      "sha256_16": "3c5e13713e1a7992"
+    },
+    {
+      "path": "02-icon-library/I18-future-gate-icons.md",
+      "bytes": 8879,
+      "approx_units": 1313,
+      "sha256_16": "7f58350fa575974e"
+    },
+    {
+      "path": "02-icon-library/I19-preview-eye-icons.md",
+      "bytes": 8939,
+      "approx_units": 1316,
+      "sha256_16": "2cb05d3f9c81618c"
+    },
+    {
+      "path": "02-icon-library/I20-amend-icons.md",
+      "bytes": 8802,
+      "approx_units": 1316,
+      "sha256_16": "3a8e60d2656477d4"
+    },
+    {
+      "path": "02-icon-library/I21-pr-factory-icons.md",
+      "bytes": 8939,
+      "approx_units": 1333,
+      "sha256_16": "7b400fbc6bfb92bc"
+    },
+    {
+      "path": "02-icon-library/I22-issue-map-icons.md",
+      "bytes": 8837,
+      "approx_units": 1317,
+      "sha256_16": "a61bdd4d98b20682"
+    },
+    {
+      "path": "02-icon-library/I23-index-icons.md",
+      "bytes": 8158,
+      "approx_units": 1221,
+      "sha256_16": "47d5ecf07a8c1f9d"
+    },
+    {
+      "path": "02-icon-library/I24-raw-vault-icons.md",
+      "bytes": 8797,
+      "approx_units": 1313,
+      "sha256_16": "b4aa6bf28a77249a"
+    },
+    {
+      "path": "02-icon-library/I25-source-refresh-icons.md",
+      "bytes": 8959,
+      "approx_units": 1316,
+      "sha256_16": "adf1fe4aade361ae"
+    },
+    {
+      "path": "02-icon-library/I26-occlusion-icons.md",
+      "bytes": 8885,
+      "approx_units": 1315,
+      "sha256_16": "1aaaf018ece4c35f"
+    },
+    {
+      "path": "02-icon-library/I27-spacing-icons.md",
+      "bytes": 8822,
+      "approx_units": 1331,
+      "sha256_16": "c6dc3dfc80c89a3a"
+    },
+    {
+      "path": "02-icon-library/I28-screenshot-icons.md",
+      "bytes": 8938,
+      "approx_units": 1318,
+      "sha256_16": "e1f86c6e03f413e3"
+    },
+    {
+      "path": "02-icon-library/I29-reduce-motion-icons.md",
+      "bytes": 9170,
+      "approx_units": 1359,
+      "sha256_16": "5bed67b024e25d65"
+    },
+    {
+      "path": "02-icon-library/I30-package-boundary-icons.md",
+      "bytes": 9018,
+      "approx_units": 1314,
+      "sha256_16": "99d53284dd924cc8"
+    },
+    {
+      "path": "03-illustration-library/ILL01-station-hero.md",
+      "bytes": 12321,
+      "approx_units": 1863,
+      "sha256_16": "a20384b9fcdd95cd"
+    },
+    {
+      "path": "03-illustration-library/ILL02-metadata-arrival.md",
+      "bytes": 11521,
+      "approx_units": 1733,
+      "sha256_16": "21f5616607751953"
+    },
+    {
+      "path": "03-illustration-library/ILL03-trust-trace-chain.md",
+      "bytes": 12236,
+      "approx_units": 1812,
+      "sha256_16": "261cd6092325bfdc"
+    },
+    {
+      "path": "03-illustration-library/ILL04-vault-preview-only.md",
+      "bytes": 11976,
+      "approx_units": 1755,
+      "sha256_16": "3941e0693eb9c362"
+    },
+    {
+      "path": "03-illustration-library/ILL05-empty-url-state.md",
+      "bytes": 12442,
+      "approx_units": 1857,
+      "sha256_16": "ffdd3a3a2d0b0592"
+    },
+    {
+      "path": "03-illustration-library/ILL06-probe-failed-state.md",
+      "bytes": 11580,
+      "approx_units": 1728,
+      "sha256_16": "f6c906420a50edc8"
+    },
+    {
+      "path": "03-illustration-library/ILL07-runtime-gated-state.md",
+      "bytes": 12249,
+      "approx_units": 1806,
+      "sha256_16": "a17cc0133ebec3dd"
+    },
+    {
+      "path": "03-illustration-library/ILL08-visual-audit-room.md",
+      "bytes": 11845,
+      "approx_units": 1755,
+      "sha256_16": "03f7d431ad2b3517"
+    },
+    {
+      "path": "03-illustration-library/ILL09-token-map.md",
+      "bytes": 12150,
+      "approx_units": 1853,
+      "sha256_16": "5650034a82b9af8e"
+    },
+    {
+      "path": "03-illustration-library/ILL10-poster-hero.md",
+      "bytes": 11421,
+      "approx_units": 1727,
+      "sha256_16": "ed2ac35a0dd8f837"
+    },
+    {
+      "path": "03-illustration-library/ILL11-h5-responsive-stack.md",
+      "bytes": 12161,
+      "approx_units": 1804,
+      "sha256_16": "8db3546550a6322d"
+    },
+    {
+      "path": "03-illustration-library/ILL12-evidence-branch.md",
+      "bytes": 11952,
+      "approx_units": 1753,
+      "sha256_16": "5d9f1eaa11c0f7a8"
+    },
+    {
+      "path": "03-illustration-library/ILL13-bridge-preview.md",
+      "bytes": 12249,
+      "approx_units": 1859,
+      "sha256_16": "e79f6b2649b34b96"
+    },
+    {
+      "path": "03-illustration-library/ILL14-audit-room.md",
+      "bytes": 11314,
+      "approx_units": 1724,
+      "sha256_16": "ee2d31c242f2e276"
+    },
+    {
+      "path": "03-illustration-library/ILL15-template-system.md",
+      "bytes": 12053,
+      "approx_units": 1803,
+      "sha256_16": "11a7ebb9be790f9f"
+    },
+    {
+      "path": "04-pattern-library/PAT01-deep-grid.md",
+      "bytes": 10133,
+      "approx_units": 1575,
+      "sha256_16": "36442155d4e1cb34"
+    },
+    {
+      "path": "04-pattern-library/PAT02-trace-rails.md",
+      "bytes": 10686,
+      "approx_units": 1673,
+      "sha256_16": "ae0029f18cfb6770"
+    },
+    {
+      "path": "04-pattern-library/PAT03-topographic-current.md",
+      "bytes": 9885,
+      "approx_units": 1547,
+      "sha256_16": "8b4c1a0222e0b342"
+    },
+    {
+      "path": "04-pattern-library/PAT04-receipt-watermark.md",
+      "bytes": 10542,
+      "approx_units": 1625,
+      "sha256_16": "8144d00d04eccd83"
+    },
+    {
+      "path": "04-pattern-library/PAT05-focus-ring-test.md",
+      "bytes": 10269,
+      "approx_units": 1572,
+      "sha256_16": "19098fc33f399fa9"
+    },
+    {
+      "path": "04-pattern-library/PAT06-node-matrix.md",
+      "bytes": 10759,
+      "approx_units": 1674,
+      "sha256_16": "1b0db3e384e71be8"
+    },
+    {
+      "path": "04-pattern-library/PAT07-timeline-ticks.md",
+      "bytes": 9865,
+      "approx_units": 1544,
+      "sha256_16": "24b8bb1ea56bd532"
+    },
+    {
+      "path": "04-pattern-library/PAT08-badge-dash.md",
+      "bytes": 10390,
+      "approx_units": 1626,
+      "sha256_16": "7fea61f56018e69f"
+    },
+    {
+      "path": "04-pattern-library/PAT09-social-crop-guide.md",
+      "bytes": 10303,
+      "approx_units": 1569,
+      "sha256_16": "d13f03973bf15875"
+    },
+    {
+      "path": "04-pattern-library/PAT10-h5-density-grid.md",
+      "bytes": 10859,
+      "approx_units": 1672,
+      "sha256_16": "2ea2b9286be76a9e"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-01-url-bar.md",
+      "bytes": 15478,
+      "approx_units": 2509,
+      "sha256_16": "149d3291d6e4b0c7"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-02-live-metadata.md",
+      "bytes": 16422,
+      "approx_units": 2626,
+      "sha256_16": "303b401f8169967e"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-03-capture-scope.md",
+      "bytes": 16439,
+      "approx_units": 2630,
+      "sha256_16": "ff3a246c316bb6ec"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-04-trust-trace.md",
+      "bytes": 16358,
+      "approx_units": 2628,
+      "sha256_16": "2e1d865ec103840b"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-05-topic-card-preview.md",
+      "bytes": 15712,
+      "approx_units": 2526,
+      "sha256_16": "5d9f8f7cd1f79fb2"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-06-topic-card-vault.md",
+      "bytes": 16487,
+      "approx_units": 2653,
+      "sha256_16": "3b654a2b00234e3e"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-07-four-panel-shell.md",
+      "bytes": 16482,
+      "approx_units": 2652,
+      "sha256_16": "b29c50878c9c9f7b"
+    },
+    {
+      "path": "05-panel-design-spec/PANEL-08-main-nav.md",
+      "bytes": 15926,
+      "approx_units": 2539,
+      "sha256_16": "31984a5326c8863e"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-01-ppt-cover.md",
+      "bytes": 12297,
+      "approx_units": 2044,
+      "sha256_16": "3da4a6c135a3bffc"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-02-ppt-section.md",
+      "bytes": 12305,
+      "approx_units": 2003,
+      "sha256_16": "29d7ff912d81d834"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-03-ppt-comparison.md",
+      "bytes": 11927,
+      "approx_units": 1940,
+      "sha256_16": "95fff3611498c110"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-04-ppt-data.md",
+      "bytes": 12151,
+      "approx_units": 1971,
+      "sha256_16": "1964ea8fe9ddf2c0"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-05-ppt-summary.md",
+      "bytes": 12546,
+      "approx_units": 2061,
+      "sha256_16": "549802ce3cd799a9"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-06-poster-a2.md",
+      "bytes": 12289,
+      "approx_units": 2003,
+      "sha256_16": "005a8b451140f47c"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-07-poster-wide.md",
+      "bytes": 12028,
+      "approx_units": 1960,
+      "sha256_16": "aa3d1dc9e3fde849"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-08-poster-mobile.md",
+      "bytes": 12142,
+      "approx_units": 1948,
+      "sha256_16": "5be7a7ac866acfc3"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-09-social-card.md",
+      "bytes": 12636,
+      "approx_units": 2083,
+      "sha256_16": "6ab9e9d5fe0ac694"
+    },
+    {
+      "path": "06-multi-medium-template/TEMPLATE-10-h5-page-samples.md",
+      "bytes": 12172,
+      "approx_units": 1929,
+      "sha256_16": "1fa815772fe25f3a"
+    },
+    {
+      "path": "07-5-gate-audit-tests/GATE-01-G1-visual-hierarchy.md",
+      "bytes": 19837,
+      "approx_units": 3101,
+      "sha256_16": "695671b806712130"
+    },
+    {
+      "path": "07-5-gate-audit-tests/GATE-02-G2-spacing-alignment.md",
+      "bytes": 19833,
+      "approx_units": 3078,
+      "sha256_16": "edcf858ac5717ddf"
+    },
+    {
+      "path": "07-5-gate-audit-tests/GATE-03-G3-occlusion-safety.md",
+      "bytes": 20173,
+      "approx_units": 3177,
+      "sha256_16": "2ff54306222c36a1"
+    },
+    {
+      "path": "07-5-gate-audit-tests/GATE-04-G4-typography-readability.md",
+      "bytes": 20423,
+      "approx_units": 3144,
+      "sha256_16": "6f3fddc51465e96e"
+    },
+    {
+      "path": "07-5-gate-audit-tests/GATE-05-G5-visual-weight.md",
+      "bytes": 19842,
+      "approx_units": 3075,
+      "sha256_16": "6537db0f2b8154ed"
+    },
+    {
+      "path": "08-cross-phase-evolution/PHASE-01-phase-01-foundation.md",
+      "bytes": 13054,
+      "approx_units": 2139,
+      "sha256_16": "bf2d2fff75cf9423"
+    },
+    {
+      "path": "08-cross-phase-evolution/PHASE-02-phase-02-asset-spine.md",
+      "bytes": 11875,
+      "approx_units": 2007,
+      "sha256_16": "81b1589ffaebb9ce"
+    },
+    {
+      "path": "08-cross-phase-evolution/PHASE-03-phase-03-state-library.md",
+      "bytes": 11607,
+      "approx_units": 1927,
+      "sha256_16": "d36760c63e922646"
+    },
+    {
+      "path": "08-cross-phase-evolution/PHASE-04-phase-04-pfv-generation.md",
+      "bytes": 11974,
+      "approx_units": 1971,
+      "sha256_16": "7881897568e8b9b3"
+    },
+    {
+      "path": "08-cross-phase-evolution/PHASE-05-phase-05-dispatch-audit.md",
+      "bytes": 12588,
+      "approx_units": 2092,
+      "sha256_16": "f024d730f70e9486"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-01-master-index.md",
+      "bytes": 10442,
+      "approx_units": 1723,
+      "sha256_16": "7a9f5ea7441dc2db"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-02-token-index.md",
+      "bytes": 10405,
+      "approx_units": 1718,
+      "sha256_16": "44fe87a882a5f0be"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-03-icon-index.md",
+      "bytes": 10401,
+      "approx_units": 1723,
+      "sha256_16": "272fc1fd341dd1b2"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-04-illustration-index.md",
+      "bytes": 10553,
+      "approx_units": 1723,
+      "sha256_16": "b102867dbfcfa524"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-05-pattern-index.md",
+      "bytes": 10458,
+      "approx_units": 1723,
+      "sha256_16": "aa644370f412cd78"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-06-panel-index.md",
+      "bytes": 10387,
+      "approx_units": 1720,
+      "sha256_16": "b0e133d5634e099f"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-07-template-index.md",
+      "bytes": 10329,
+      "approx_units": 1701,
+      "sha256_16": "f4603f66aac71f21"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-08-five-gate-index.md",
+      "bytes": 10291,
+      "approx_units": 1704,
+      "sha256_16": "2b14ce32d48d0678"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-09-phase-index.md",
+      "bytes": 10441,
+      "approx_units": 1719,
+      "sha256_16": "e0c4b5939e43b65d"
+    },
+    {
+      "path": "09-cluster-index/CLUSTER-10-linked-asset-state-index.md",
+      "bytes": 10499,
+      "approx_units": 1720,
+      "sha256_16": "078670acc795c347"
+    },
+    {
+      "path": "README.md",
+      "bytes": 11739,
+      "approx_units": 1973,
+      "sha256_16": "e0322ebba11c0c25"
+    }
+  ]
+}

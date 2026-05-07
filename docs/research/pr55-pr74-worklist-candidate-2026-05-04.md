@@ -4,6 +4,12 @@ version: 1.1 (errata applied 2026-05-04 22:30)
 title: ScoutFlow PR55-PR74 工作清单 — 20 个 PR Backbone (Wave 3A + Wave 3B 前段)
 date: 2026-05-04 22:10 Asia/Shanghai (v1.0) / 22:30 (v1.1 errata)
 authority_status: research-only / not-authority / not-runtime-approval
+status_word: reference storage
+doc_series: doc3 of doc1/doc2/doc3 三件套 (2026-05-04 cloud GPT Pro 输出, ACCEPT WITH ERRATA verdict)
+doc_role: PR55-PR74 dispatch backbone
+doc_index: docs/00-START-HERE.md §5
+errata_report: docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md
+historical_value: 已被 PR55-74 实施超过, 现为 reference storage
 suggested_commit_path: docs/research/pr55-pr74-worklist-candidate-2026-05-04.md
 companion_to:
   - doc1: baseline-roadmap-after-pr54-candidate-2026-05-04.md
