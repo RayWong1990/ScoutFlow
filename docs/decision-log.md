@@ -653,3 +653,22 @@
   - `docs/task-index.md`
   - `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`
   - `tools/refresh-start-here.py`
+
+## 2026-05-07 — PR #246 merged + closeout (D-017 follow-up)
+
+- Decision: PR #246 admin merged into main as squash commit `3c01a1c`.
+- Audit chain: 4-commit (`20d18e6` → `9bf2251` → `1fb4582` → `7acafa0`); amend trail=4 (战友 explicit override "全部修复" per W6K governance lane scope).
+- Layer 1 CC0 self-audit: CLEAR (catch H-1 + M-1 + M-2 + M-3 自审, 全修在 1fb4582 + 7acafa0).
+- Layer 2 刑部尚书 subagent (Anthropic Opus 4.7, instinct §3 #16 自我应用 same-family weak audit): **CLEAR_WITH_LOW_FOLLOWUPS** (0 Critical / 0 High / 0 Medium / 4 Low post-merge).
+- Layer 3 (cross-vendor strong gate): 推迟 W6K 长期议程 (Codex / GPT Pro / Hermes 一轮 audit, post-merge 不阻 merge).
+- 4 LOW post-merge follow-up:
+  - L-1: `tools/refresh-start-here.py:32-35` `RUNS_DIR.exists()` + `is_dir()` fail-loud check
+  - L-2: master spec §16.1 第 3 条 vs START-HERE §9 第 3 条 authority files 措辞统一
+  - L-4: `read_git_commits` REMOTE 存在性 preflight
+  - W6K candidate PR: `~/.claude/rules/*` + `~/.claude/projects/.../memory/*` 镜像到 `docs/global-rules/` + `docs/agent-memory/` 真跨 vendor 共享
+- Closeout 顺序 (本 PR #247, 跟 master spec §14.4 Layer C 锁):
+  - `docs/task-index.md`: T-DOC-246 active → Done + Active 1/3 → 0/3 + Authority writer 1/1 → 0/1 ✓
+  - `docs/current.md`: main SHA 改 `3c01a1c` ✓
+  - `docs/decision-log.md`: 本 entry (PR #246 merged D-017 follow-up) ✓
+  - `python tools/refresh-start-here.py`: 自动刷新 START-HERE §1 anchor 块 + frontmatter `last_refreshed_from_main_sha` / `last_refreshed_from_main_pr` ✓
+- e2e-placeholder-baseline FAIL 是 PR #243 pre-existing tech debt (component 改名 vs e2e hardcode), 跟 PR #246 0 因果, admin override per F-DIRECT-MERGE-OK.
