@@ -1,150 +1,122 @@
-import { useMemo, useState } from "react";
+import Button from "../../components/Button/Button";
+import CaptureIdChip from "../../components/CaptureIdChip/CaptureIdChip";
+import Icon from "../../components/Icon/Icon";
+import PanelCard from "../../components/PanelCard/PanelCard";
+import StateBadge from "../../components/StateBadge/StateBadge";
+import SurfaceFrame, { SurfaceDivider, SurfaceSection } from "../../components/SurfaceFrame/SurfaceFrame";
+import UrlInput from "../../components/UrlInput/UrlInput";
+import { urlHistory } from "../shared/fixtures";
+import styles from "./UrlBar.module.css";
 
-import { type CreateCaptureResponse, createCaptureStationApi } from "../../lib/api-client";
-
-const sampleSuggestions = [
-  "https://www.bilibili.com/video/BV1AB411c7mD",
-  "https://www.bilibili.com/video/BV1Qx411c7mE"
-];
-
-type UrlBarProps = {
-  createCapture?: (canonicalUrl: string) => Promise<CreateCaptureResponse>;
-  onCaptureCreated?: (capture: CreateCaptureResponse) => void;
-  onDraftChange?: (canonicalUrl: string) => void;
-};
-
-const defaultCreateCapture = createCaptureStationApi("http://127.0.0.1:8000").createCapture;
-
-export default function UrlBar({ createCapture = defaultCreateCapture, onCaptureCreated, onDraftChange }: UrlBarProps) {
-  const [value, setValue] = useState(sampleSuggestions[0]);
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
-  const trimmed = value.trim();
-  const isManualUrlReady = useMemo(() => /^https?:\/\//.test(trimmed), [trimmed]);
-
-  async function handleSubmit() {
-    if (!isManualUrlReady || isSubmitting) {
-      return;
-    }
-
-    setIsSubmitting(true);
-    setErrorMessage(null);
-
-    try {
-      const capture = await createCapture(trimmed);
-      onCaptureCreated?.(capture);
-    } catch (error) {
-      const message = error instanceof Error ? error.message : "Create capture failed.";
-      setErrorMessage(message);
-    } finally {
-      setIsSubmitting(false);
-    }
-  }
-
+export default function UrlBar() {
   return (
-    <section
-      data-testid="panel-url-bar"
-      style={{
-        minHeight: "220px",
-        borderRadius: "8px",
-        border: "1px solid #27415d",
-        background: "#111f31",
-        padding: "16px",
-        display: "flex",
-        flexDirection: "column",
-        gap: "12px"
-      }}
-    >
-      <p style={{ margin: 0, color: "#6d8099", fontSize: "12px" }}>url-bar</p>
-      <h2 style={{ margin: 0, fontSize: "20px", lineHeight: 1.15 }}>Manual URL</h2>
-      <p style={{ margin: 0, color: "#a6b8cf", fontSize: "14px", lineHeight: 1.45 }}>
-        Only `manual_url` can create a capture. recommendation / keyword / RAW gap stay blocked.
-      </p>
+    <SurfaceFrame title="URL 输入栏状态集" description="粘贴入口、校验、错误与历史下拉，对应 P7 的 01-url-bar surface。">
+      <div className={styles.stack}>
+        <SurfaceSection title="状态: 空闲">
+          <PanelCard title="URL 地址" eyebrow="url-bar" description="空输入时保持 blocked posture。">
+            <div className={styles.section}>
+              <UrlInput id="url-empty" label="URL 地址" value="" placeholder="粘贴一个 URL 或拖入文件" readOnly />
+              <div className={styles.actions}>
+                <Button icon={<Icon name="capture" />} variant="blocked" disabled>
+                  创建采集
+                </Button>
+              </div>
+            </div>
+          </PanelCard>
+        </SurfaceSection>
 
-      <label style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
-        <span style={{ color: "#a6b8cf", fontSize: "12px" }}>Canonical URL</span>
-        <input
-          value={value}
-          onChange={(event) => {
-            const nextValue = event.target.value;
-            setValue(nextValue);
-            setErrorMessage(null);
-            onDraftChange?.(nextValue);
-          }}
-          placeholder="https://www.bilibili.com/video/BV..."
-          style={{
-            width: "100%",
-            borderRadius: "10px",
-            border: "1px solid #27415d",
-            background: "#0b1624",
-            color: "#eef4ff",
-            padding: "12px 14px",
-            fontSize: "14px"
-          }}
-        />
-      </label>
+        <SurfaceDivider />
 
-      <div style={{ display: "flex", gap: "8px", flexWrap: "wrap" }}>
-        {sampleSuggestions.map((suggestion) => (
-          <button
-            key={suggestion}
-            type="button"
-            onClick={() => setValue(suggestion)}
-            style={{
-              borderRadius: "999px",
-              border: "1px solid #27415d",
-              background: "#16263c",
-              color: "#a6b8cf",
-              padding: "6px 10px",
-              fontSize: "12px",
-              cursor: "pointer"
-            }}
-          >
-            Fill sample
-          </button>
-        ))}
+        <SurfaceSection title="状态: 聚焦">
+          <PanelCard title="URL 地址" eyebrow="url-bar" description="输入框聚焦时以 accent-live 强化边界。">
+            <div className={styles.section}>
+              <UrlInput id="url-focus" label="URL 地址" value="" placeholder="粘贴一个 URL 或拖入文件" mode="focus" readOnly />
+              <div className={styles.actions}>
+                <Button icon={<Icon name="capture" />} variant="blocked" disabled>
+                  创建采集
+                </Button>
+              </div>
+            </div>
+          </PanelCard>
+        </SurfaceSection>
+
+        <SurfaceDivider />
+
+        <SurfaceSection title="状态: 校验中">
+          <PanelCard title="URL 地址" eyebrow="url-bar" description="解析中时保留 ready-to-validate 视觉，但不假装已经入账。">
+            <div className={styles.section}>
+              <UrlInput
+                id="url-validating"
+                label="URL 地址"
+                value="https://www.bilibili.com/video/BV1xK4y1f7yC"
+                mode="focus"
+                readOnly
+              />
+              <div className={styles.statusRow}>
+                <StateBadge tone="loading" label="解析中..." />
+                <Button icon={<Icon name="capture" />} variant="blocked" disabled>
+                  创建采集
+                </Button>
+              </div>
+            </div>
+          </PanelCard>
+        </SurfaceSection>
+
+        <SurfaceDivider />
+
+        <SurfaceSection title="状态: 错误">
+          <PanelCard title="URL 地址" eyebrow="url-bar" description="错误态只收窄到输入问题，不误导为 runtime failure。">
+            <div className={styles.section}>
+              <UrlInput
+                id="url-error"
+                label="URL 地址"
+                value="https://invalid-url"
+                mode="error"
+                errorMessage="URL 格式无效"
+                readOnly
+              />
+              <div className={styles.actions}>
+                <Button icon={<Icon name="capture" />} variant="blocked" disabled>
+                  创建采集
+                </Button>
+              </div>
+            </div>
+          </PanelCard>
+        </SurfaceSection>
+
+        <SurfaceDivider />
+
+        <SurfaceSection title="状态: 历史下拉">
+          <PanelCard title="最近采集记录" eyebrow="url-bar" description="历史状态维持中文文案与 metadata-loaded 词汇。">
+            <div className={styles.section}>
+              <UrlInput
+                id="url-history"
+                label="URL 地址"
+                value="https://www.bilibili.com/video/BV1xK4y1f7yC"
+                mode="focus"
+                readOnly
+              />
+              <div className={styles.actions}>
+                <Button icon={<Icon name="capture" />} variant="primary">
+                  创建采集
+                </Button>
+              </div>
+              <ul className={styles.history}>
+                {urlHistory.map((item) => (
+                  <li key={item.captureId} className={styles.historyItem}>
+                    <div className={styles.historyMeta}>
+                      <CaptureIdChip value={item.captureId} />
+                      <span>{item.time}</span>
+                    </div>
+                    <span>{item.url}</span>
+                    <StateBadge tone="metadataLoaded" label={item.label} />
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </PanelCard>
+        </SurfaceSection>
       </div>
-
-      {errorMessage ? (
-        <p
-          role="alert"
-          style={{
-            margin: 0,
-            borderRadius: "8px",
-            border: "1px solid #6c2f3f",
-            background: "#24131b",
-            color: "#ff9db2",
-            padding: "10px 12px",
-            fontSize: "13px",
-            lineHeight: 1.45
-          }}
-        >
-          {errorMessage}
-        </p>
-      ) : null}
-
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginTop: "auto" }}>
-        <span style={{ color: isManualUrlReady ? "#7adf9b" : "#ff7b7b", fontSize: "12px" }}>
-          {isSubmitting ? "submitting capture..." : isManualUrlReady ? "manual_url ready" : "manual_url required"}
-        </span>
-        <button
-          type="button"
-          disabled={!isManualUrlReady || isSubmitting}
-          onClick={handleSubmit}
-          style={{
-            borderRadius: "10px",
-            border: "1px solid #50d4ff",
-            background: isManualUrlReady && !isSubmitting ? "#50d4ff" : "#27415d",
-            color: isManualUrlReady && !isSubmitting ? "#07111b" : "#6d8099",
-            padding: "10px 14px",
-            fontSize: "14px",
-            fontWeight: 600,
-            cursor: isManualUrlReady && !isSubmitting ? "pointer" : "not-allowed"
-          }}
-        >
-          Create capture
-        </button>
-      </div>
-    </section>
+    </SurfaceFrame>
   );
 }

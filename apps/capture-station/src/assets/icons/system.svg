@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none" aria-hidden="true">
+  <symbol id="icon-capture" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M56 144h48l12 18h56l12-18h48v56H56z"/>
+    <path d="M128 48v96"/>
+    <path d="M92 108l36 36 36-36"/>
+    <path d="M72 144l20-64h28"/>
+    <path d="M184 144l-20-64h-28"/>
+  </symbol>
+  <symbol id="icon-preview" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M28 128c32-44 68-66 100-66s68 22 100 66c-32 44-68 66-100 66S60 172 28 128z"/>
+  </symbol>
+  <symbol id="icon-commit" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M72 36h96l36 36v148H72z"/>
+    <path d="M168 36v36h36"/>
+    <path d="M92 138l32 32 64-70"/>
+  </symbol>
+  <symbol id="icon-dry-run" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M76 36h92l36 36v148H76z"/>
+    <path d="M168 36v36h36"/>
+    <circle cx="98" cy="156" r="42"/>
+    <path d="M68 186l-28 28"/>
+  </symbol>
+  <symbol id="icon-blocked" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="56" y="112" width="144" height="100" rx="16"/>
+    <path d="M84 112V82a44 44 0 0 1 88 0v30"/>
+    <path d="M100 144l56 56"/>
+    <path d="M156 144l-56 56"/>
+  </symbol>
+  <symbol id="icon-signal" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="18"/>
+    <circle cx="128" cy="128" r="52"/>
+    <circle cx="128" cy="128" r="86"/>
+  </symbol>
+  <symbol id="icon-hypothesis" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M92 44h72l44 76-44 76H92l-44-76z"/>
+    <path d="M96 128l32 32 32-32"/>
+    <path d="M128 160v28"/>
+    <path d="M104 204h48"/>
+    <path d="M112 220h32"/>
+  </symbol>
+  <symbol id="icon-plan" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="64" y="52" width="128" height="168" rx="12"/>
+    <path d="M100 52h56v24h-56z"/>
+    <path d="M112 40h32"/>
+    <path d="M92 108h12"/>
+    <path d="M120 108h56"/>
+    <path d="M92 144h12"/>
+    <path d="M120 144h56"/>
+    <path d="M92 180h12"/>
+    <path d="M120 180h56"/>
+  </symbol>
+  <symbol id="icon-trace" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="64" r="26"/>
+    <circle cx="76" cy="180" r="26"/>
+    <circle cx="180" cy="180" r="26"/>
+    <path d="M116 88l-40 66"/>
+    <path d="M140 88l40 66"/>
+  </symbol>
+  <symbol id="icon-evidence" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M72 60h104l28 28v132H72z"/>
+    <path d="M176 60v28h28"/>
+    <path d="M56 80h16v132h116v20H56z"/>
+    <path d="M96 116h84"/>
+    <path d="M96 148h84"/>
+    <path d="M96 180h56"/>
+  </symbol>
+</svg>

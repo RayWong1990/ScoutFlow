@@ -1,0 +1,9 @@
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.note {
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
+}

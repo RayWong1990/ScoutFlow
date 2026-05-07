@@ -1,101 +1,57 @@
-import { Suspense, lazy, type ComponentType } from "react";
+import { useState } from "react";
 
-type ShellModule = { default: ComponentType };
+import AppShell from "./components/AppShell/AppShell";
+import AppShellOverview from "./components/AppShell/AppShellOverview";
+import CapturePlan from "./features/capture-plan/CapturePlan";
+import CaptureScope from "./features/capture-scope/CaptureScope";
+import DensitySpec from "./features/_specs/DensitySpec";
+import TypeSpec from "./features/_specs/TypeSpec";
+import LiveMetadata from "./features/live-metadata/LiveMetadata";
+import SignalHypothesis from "./features/signal-hypothesis/SignalHypothesis";
+import TrustTrace from "./features/trust-trace/TrustTrace";
+import TopicCardLite from "./features/topic-card-preview/TopicCardLite";
+import TopicCardVault from "./features/topic-card-vault/TopicCardVault";
+import UrlBar from "./features/url-bar/UrlBar";
+import VaultCommit from "./features/vault-commit/VaultCommit";
+import VaultPreview from "./features/vault-preview/VaultPreview";
 
-const shellModules = import.meta.glob<ShellModule>("./layout/FourPanelShell.tsx");
-const shellLoader = shellModules["./layout/FourPanelShell.tsx"];
-const LazyShell = shellLoader ? lazy(shellLoader as () => Promise<ShellModule>) : null;
-
-const fallbackPanels = [
-  {
-    id: "url-bar",
-    title: "Manual URL",
-    body: "等待 URL Bar panel 接管输入边界。"
-  },
-  {
-    id: "live-metadata",
-    title: "Live Metadata",
-    body: "等待 metadata panel 接管占位数据。"
-  },
-  {
-    id: "capture-scope",
-    title: "Capture Scope",
-    body: "等待 scope panel 接管 blocked/pending 视图。"
-  },
-  {
-    id: "trust-trace",
-    title: "Trust Trace",
-    body: "等待 trust trace graph 接管投影视图。"
-  }
-];
-
-function StaticFallbackShell() {
-  return (
-    <main
-      style={{
-        minHeight: "100vh",
-        background: "#07111b",
-        color: "#eef4ff",
-        fontFamily: 'Inter, "PingFang SC", "Helvetica Neue", sans-serif',
-        padding: "24px"
-      }}
-    >
-      <section
-        style={{
-          maxWidth: "1360px",
-          margin: "0 auto",
-          border: "1px solid #1d3148",
-          borderRadius: "8px",
-          background: "#0d1826",
-          boxShadow: "0 24px 48px rgba(0, 0, 0, 0.32)",
-          padding: "24px"
-        }}
-      >
-        <header style={{ marginBottom: "24px" }}>
-          <p style={{ margin: 0, color: "#50d4ff", fontSize: "12px", letterSpacing: 0 }}>ScoutFlow</p>
-          <h1 style={{ margin: "8px 0 4px", fontSize: "28px", lineHeight: 1.1 }}>Capture Station</h1>
-          <p style={{ margin: 0, color: "#a6b8cf", fontSize: "14px", lineHeight: 1.45 }}>
-            Wave 4 B2 scaffold. Four-panel shell will be progressively mounted by later slots.
-          </p>
-        </header>
-
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(2, minmax(0, 1fr))",
-            gap: "24px"
-          }}
-        >
-          {fallbackPanels.map((panel) => (
-            <section
-              key={panel.id}
-              style={{
-                minHeight: "220px",
-                borderRadius: "8px",
-                border: "1px solid #27415d",
-                background: "#111f31",
-                padding: "16px"
-              }}
-            >
-              <p style={{ margin: 0, color: "#6d8099", fontSize: "12px" }}>{panel.id}</p>
-              <h2 style={{ margin: "8px 0 12px", fontSize: "20px", lineHeight: 1.15 }}>{panel.title}</h2>
-              <p style={{ margin: 0, color: "#a6b8cf", fontSize: "14px", lineHeight: 1.45 }}>{panel.body}</p>
-            </section>
-          ))}
-        </div>
-      </section>
-    </main>
-  );
-}
+const surfaces = [
+  { id: "00-app-shell", title: "00 App Shell", caption: "工作站总览" },
+  { id: "01-url-bar", title: "01 URL Bar", caption: "输入、校验、历史" },
+  { id: "02-live-metadata", title: "02 Live Metadata", caption: "元数据状态集" },
+  { id: "03-capture-scope", title: "03 Capture Scope", caption: "生命周期与边界" },
+  { id: "04-trust-trace", title: "04 Trust Trace", caption: "图谱 / 时间轴 / 错误路径" },
+  { id: "05-vault-preview", title: "05 Vault Preview", caption: "预览与 frontmatter" },
+  { id: "06-vault-commit", title: "06 Vault Commit", caption: "干跑与弹窗" },
+  { id: "07-topic-card-lite", title: "07 Topic Card Lite", caption: "新闻 / 视频 / 对比" },
+  { id: "08-topic-card-vault", title: "08 Topic Card Vault", caption: "聚合 / promote / sync" },
+  { id: "09-signal-hypothesis", title: "09 Signal / Hypothesis", caption: "展开 / 对比 / 生命周期" },
+  { id: "10-capture-plan", title: "10 Capture Plan", caption: "I/O / 干跑 / 日志" },
+  { id: "11-density-spec", title: "11 Density Spec", caption: "V3 compact reference" },
+  { id: "12-type-spec", title: "12 Type Spec", caption: "V4 weight-heavy reference" },
+] as const;
 
 export default function App() {
-  if (!LazyShell) {
-    return <StaticFallbackShell />;
-  }
+  const [current, setCurrent] = useState<(typeof surfaces)[number]["id"]>("00-app-shell");
+
+  const currentSurface =
+    current === "00-app-shell" ? <AppShellOverview /> :
+    current === "01-url-bar" ? <UrlBar /> :
+    current === "02-live-metadata" ? <LiveMetadata /> :
+    current === "03-capture-scope" ? <CaptureScope /> :
+    current === "04-trust-trace" ? <TrustTrace /> :
+    current === "05-vault-preview" ? <VaultPreview /> :
+    current === "06-vault-commit" ? <VaultCommit /> :
+    current === "07-topic-card-lite" ? <TopicCardLite /> :
+    current === "08-topic-card-vault" ? <TopicCardVault /> :
+    current === "09-signal-hypothesis" ? <SignalHypothesis /> :
+    current === "10-capture-plan" ? <CapturePlan /> :
+    current === "11-density-spec" ? <DensitySpec /> :
+    <TypeSpec />;
 
   return (
-    <Suspense fallback={<StaticFallbackShell />}>
-      <LazyShell />
-    </Suspense>
+    <AppShell current={current} onSelect={(id) => setCurrent(id as (typeof surfaces)[number]["id"])} surfaces={[...surfaces]}>
+      {currentSurface}
+    </AppShell>
   );
 }

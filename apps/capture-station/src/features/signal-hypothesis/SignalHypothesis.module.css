@@ -1,0 +1,17 @@
+.details {
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-panel);
+  background: var(--surface-muted);
+  padding: var(--space-md);
+}
+
+.details summary {
+  cursor: pointer;
+  color: var(--text-primary);
+}
+
+.list {
+  display: grid;
+  gap: var(--space-xs);
+  color: var(--text-secondary);
+}

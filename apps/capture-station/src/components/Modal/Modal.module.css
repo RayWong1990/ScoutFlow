@@ -1,0 +1,44 @@
+.dialog {
+  inline-size: min(100%, calc(var(--space-xl) * 18));
+  margin: 0;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-panel);
+  background: var(--surface-base);
+  box-shadow: var(--shadow-panel);
+  padding: var(--space-lg);
+  color: var(--text-primary);
+}
+
+.pass {
+  border-color: var(--accent-success);
+}
+
+.fail {
+  border-color: var(--accent-blocked);
+}
+
+.promote {
+  border-color: var(--accent-focus);
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  margin: 0 0 var(--space-md);
+  font-size: var(--type-title);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-sm);
+  color: var(--text-secondary);
+  line-height: var(--line-height-body);
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--space-sm);
+  margin-block-start: var(--space-md);
+}

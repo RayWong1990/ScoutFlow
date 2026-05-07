@@ -1,0 +1,47 @@
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.section {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.statusRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.history {
+  display: grid;
+  gap: var(--space-sm);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.historyItem {
+  display: grid;
+  gap: var(--space-xs);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-panel);
+  background: var(--surface-muted);
+  padding: var(--space-sm);
+}
+
+.historyMeta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  color: var(--text-secondary);
+}
