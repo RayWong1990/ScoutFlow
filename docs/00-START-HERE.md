@@ -233,10 +233,13 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 2. **Read** `docs/current.md` TL;DR (5 行) 看真态
 3. **Read** `docs/task-index.md` 看 Active 是 0/3 还是已满
 4. **Bash** `git log --oneline origin/main -5` 看最近 5 commit
-5. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + storage U.
-6. **Read** master spec § 13.1 (11 wave) + § 15.2 (优先级 P0-P4) + § 16 (红线 + 升级路径) — single source of routing truth (CC1 retrospective sediment, 2026-05-07)
-7. **Bash** `find <dir> -type f | wc -l` 校验任何 "~N file" 估值 — 子目录会被 count, 直接用估值差 10x (元认知 instinct §3 第 9 条)
-8. **Verify** stack/路线/规范决策 → grep frontmatter `status:` + 核 PR merge 状态 — 文件名带 `candidate-` 后缀的不是 authority (元认知 instinct §3 第 10 条)
+5. **Read** master spec § 13.1 (11 wave) + § 15.2 (优先级 P0-P4) + § 16 (红线 + 升级路径) — single source of routing truth (CC1 retrospective sediment, 2026-05-07)
+6. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + storage U (此步依赖 5 的 master spec 输入).
+
+> 以下 7-8 件为 CC1 retrospective sediment (2026-05-07) 增补 — 防止数据估值与 candidate 误读类常见错误:
+
+7. **Bash** `find <dir> -type f | wc -l` 校验任何 "~N file" 估值 — 子目录会被 count, 直接用估值差 10x (元认知 instinct §3 find-type-f 校验条款)
+8. **Verify** stack/路线/规范决策 → grep frontmatter `status:` + 核 PR merge 状态 — 文件名带 `candidate-` 后缀的不是 authority (元认知 instinct §3 candidate-vs-authority 条款)
 
 如果你是 Codex Long Runner: 战友会 paste commander prompt + 你按 §13 master spec 4-agent 分工执行.
 
@@ -258,7 +261,7 @@ ScoutFlow ad-hoc 工作文件 (dispatch / commander prompt / 中间产物 / hand
 **ScoutFlow repo 内只放最终 deliverable**:
 
 - ✅ docs / code / spec / contract / authority files
-- ✅ retrospective / decision-log entry / handoff (轻量, ≤ 10 行, 用 `docs/research/post-frozen/handoff-template.md` 模板)
+- ✅ retrospective / decision-log entry / handoff (轻量, 内容 ≤ 15 行 frontmatter 不含, 用 `docs/research/post-frozen/handoff-template.md` 模板, 落 `docs/research/post-frozen/handoff/`)
 - ❌ commander prompt 草稿 / Codex paste-ready / GPT Pro spec 中间产物 / Hermes 输入包
 
 **触发**: mkdir / Write 任何 "工作中间文件" 前必先确认路径分类 (元认知 instinct §3 第 15 条).

@@ -6,7 +6,7 @@ agent: CC1 / CC0 / GPT Pro / Codex / Hermes / 战友
 type: decision / pr-merge / wave-start / lane-unlock / audit-verdict / amend
 related_pr: PR #N (optional)
 related_wave: WnX (optional, 对应 master spec § 13.1)
-status: candidate / handoff / not-authority
+status: reference storage
 ---
 
 # Handoff: <一句话标题>

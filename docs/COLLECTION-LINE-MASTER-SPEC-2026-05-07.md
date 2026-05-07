@@ -685,9 +685,9 @@ UI dashboard: per-day / per-week / per-month / per-project / per-agent.
 - 失败 / amend / retry pattern catalog
 - 跨项目 SOP 共享
 
-## §9.13 16 U → § 9.x 子模块对应表 (CC1 retrospective sediment, 2026-05-07)
+## §9.13 16 U → § 9.x 子模块对应表 (CC1 retrospective sediment, 2026-05-07; PR #246 Layer 2 audit amend)
 
-> 解决 "可见性断层" — 16 ZIP 储能层跟 § 9.x 子模块 12/16 1:1 映射, 之前没显式标. 新 agent 起手凭此表立刻知道 U → wave 桥 (元认知 instinct §3 第 14 条).
+> 解决 "可见性断层" — 16 ZIP 储能层跟 § 9.x 子模块 **11/16 1:1 映射 + 5 U gap** (其中 § 9.4 Cost Ledger 没 U 来源 — 战友单人 prosumer 没 explicit 设计, U9-dispatch-catalog 语义跨 § 9.2 Agent Fleet + § 14 pre-flight), 之前没显式标. 新 agent 起手凭此表立刻知道 U → wave 桥 (元认知 instinct §3 第 14 条).
 
 | U | 主题 | § 9.x 对应 | 消费 wave |
 |---|---|---|---|
@@ -703,7 +703,7 @@ UI dashboard: per-day / per-week / per-month / per-project / per-agent.
 | U15-decision-log | Decision Log Atlas | § 9.11 | ~/.claude/skills/ScoutFlow-pr-decisions |
 | U10-runbook | Prosumer SOP Runbook | § 9.12 | ~/.claude/skills/ScoutFlow-runbooks |
 
-**Gap (4 U 没显式 § 9.x 对应)**:
+**Gap (5 U 没显式 § 9.x 对应)**:
 
 | U | 主题 | 真路线 |
 |---|---|---|
@@ -711,6 +711,7 @@ UI dashboard: per-day / per-week / per-month / per-project / per-agent.
 | U2-deep | 5 Lane spike + vendor matrix + fail-mode | § 4-§ 6 / W4F+W4G+W5H spec 输入 |
 | U3-deep | 4 entity v0→v1 + RI test + OpenAPI | § 5.4 / W4F (Lane-4 dbvnext) |
 | U4-visual-asset | Visual asset DDL + CRUD | § 9.x gap, 待补 (W2C 后续 services/api/scoutflow_api/visual/) |
+| U9-dispatch-catalog | Phase 2-4 ≥71 dispatch prompt | § 14 (pre-flight 5 步) / W3E 80packs 余量; 语义跨 § 9.2 Agent Fleet + § 14 |
 
 ---
 

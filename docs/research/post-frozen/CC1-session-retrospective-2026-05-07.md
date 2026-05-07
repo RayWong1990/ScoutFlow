@@ -331,9 +331,15 @@ session 止 (2026-05-07 22:30):
 
 ---
 
-## §3 6 条新增 instinct (加在元认知 §3 自检清单后)
+## §3 11 条新增 instinct (#9-#19, 战友显式 8 条 + CC1 前 turn 加 3 条)
 
-> 以下加在 `~/.claude/rules/codex-metacognition-learnings.md` §3 现有 8 条清单后, 编号 9-14.
+> 以下加在 `~/.claude/rules/codex-metacognition-learnings.md` §3 现有 8 条清单后, 编号 **9-19**. 其中:
+> - **#9-#14** (6 条): CC1 self-audit 6 instinct (本 retrospective 原版)
+> - **#15** (1 条): CC0 加的 raw PARA 路径 contract
+> - **#16** (1 条): 战友加的 Anthropic Opus self-audit ≠ Layer 2 cross-vendor audit (PR #244/#245 实证)
+> - **#17/#18/#19** (3 条): CC1 前 turn 加的 PR # 验证 / handoff trace / default 推荐 ⭐
+>
+> 详细 11 条内容见 instinct §3 ledger (PR #246 已 land). 本节只展开 #9-#14 (6 条原版), #15-#19 5 条详细见全局 rule 文件.
 
 ```text
 [ ] 9. 任何 "file count" 估值前必加 `find -type f` 或 `wc -l` 二次校验
@@ -501,9 +507,9 @@ CC1 / CC0 / GPT Pro / Codex / Hermes 之间没有自动通信. 战友是唯一 p
 | memory `project_4_agent_division_v3.md` (Codex 双能力) | 同上 | ✅ 已写 (CC1 在另一窗口) |
 | memory `feedback_codex_long_runner.md` (~84 dispatch 实证) | 同上 | ✅ 已写 (CC1 在另一窗口) |
 | 本 retrospective | `docs/research/post-frozen/CC1-session-retrospective-2026-05-07.md` | ✅ 本次 |
-| 元认知 §3 增补 9-14 | `~/.claude/rules/codex-metacognition-learnings.md` § 3 末尾 | 待 user 拍板 |
-| START-HERE § 10 增补 6/7/8 | `docs/00-START-HERE.md` § 10 | 待 user 拍板 (PR #244 范围内) |
-| § 9.x ↔ 16 U cross-reference 表 | master spec § 9.13 (新增) 或 START-HERE § 6 末尾 | 待 user 拍板 (PR #244 范围内) |
+| 元认知 §3 增补 #9-#19 (11 条, 战友显式 8 + CC1 加 3) | `~/.claude/rules/codex-metacognition-learnings.md` § 3 末尾 | ✅ 已 land PR #246 (commit 20d18e6) |
+| START-HERE § 10 升 8 件 + 新 § 11 ad-hoc 路径 contract | `docs/00-START-HERE.md` § 10/§ 11/§ 12 | ✅ 已 land PR #246 |
+| § 9.x ↔ 16 U cross-reference 表 (5 U gap, audit amend) | master spec § 9.13 | ✅ 已 land PR #246 |
 
 ---
 
