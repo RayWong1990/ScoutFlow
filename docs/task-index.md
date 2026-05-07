@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-DOC-244` | `Baseline doc consolidation + master spec promotion + PRD-v3/SRD-v3 thin shell + 16 ZIP storage land` | `active` | `cc1` | `docs only (no runtime / no migration / no app code)` | `docs/**, README.md, .gitignore` | `services/, apps/, workers/, packages/, data/, referencerepo/` | `00-START-HERE.md / COLLECTION-LINE-MASTER-SPEC / PRD-v2 / SRD-v2` | `docs-check pass + git diff --check + admin merge override (e2e-placeholder-baseline supersede unrelated)` | `若引入 services/apps 改动则停` | `PR #244` |
+| `T-DOC-244` | `Baseline doc consolidation + master spec promotion + PRD-v3/SRD-v3 thin shell + 16 ZIP storage land` | `active` | `cc1` | `docs only (no runtime / no migration / no app code) + redline tool 单点豁免 reference storage prefix` | `docs/**, README.md, .gitignore, tools/check-docs-redlines.py (单点 ALLOWED_BANNED_WORD_PREFIXES 豁免 reference storage)` | `services/, apps/, workers/, packages/, data/, referencerepo/` | `00-START-HERE.md / COLLECTION-LINE-MASTER-SPEC / PRD-v2 / SRD-v2` | `docs-check pass + git diff --check + admin merge override (e2e-placeholder-baseline supersede unrelated)` | `若引入 services/apps 改动则停` | `PR #244` |
 
 ## Review
 
