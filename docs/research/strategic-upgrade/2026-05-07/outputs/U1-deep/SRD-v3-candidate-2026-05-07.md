@@ -1,7 +1,8 @@
 ---
 title: SRD v3 Compiled Candidate Shell
-status: candidate north-star / not-authority / not promoted
+status: candidate north-star
 authority: not-authority
+promoted: false
 created_at: 2026-05-07
 created_by: cc1 compiled (来源 SRD-v2 + SRD-v3 h5-bridge promoted + SRD-v3 db-vnext candidate + U1-deep SRD supplement; 非正式 base)
 execution_approval: not-approved
@@ -9,7 +10,7 @@ runtime_approval: not-approved
 migration_approval: not-approved
 frontend_approval: not-approved
 authority_base: docs/SRD-v2-2026-05-04.md
-sources:
+sources_synthesized:
   - docs/SRD-v2-2026-05-04.md (canonical engineering base; promoted)
   - docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md (promoted addendum, T-P1A-103 / PR #64)
   - docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md (still candidate, T-P1A-026)
@@ -27,9 +28,10 @@ disclaimer: |
     - vault-commit true_write_approval (write_enabled invariant 仍 False)
     - authority writer (SRD canonical 仍是 SRD-v2 + h5-bridge promoted addendum)
 revalidate_before_promote: true
-sunset_trigger: |
-  Replaced when (1) cloud-output 真态 SRD-v3 base 找回并 mv 替换本 shell, 或
-  (2) 战友综合 SRD-v2 + h5-bridge promoted + db-vnext promote 后写出新 SRD-v3 promoted base PR.
+sunset_trigger:
+  - cloud-output 真态 SRD-v3 base 找回 → mv replace shell
+  - 战友综合 SRD-v2 + h5-bridge promoted + db-vnext promote 后写新 SRD-v3 promoted base PR
+  - U1-deep SRD-v3-supplement + db-vnext candidate 被吸收进 SRD-v3 promoted base 后, 本 shell sunset
 ---
 
 # SRD-v3 Compiled Candidate Shell

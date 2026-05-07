@@ -8,7 +8,7 @@ baseline_commit: e1deda6
 baseline_lane: PF-C4-01 closed
 canonical_path: docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md
 mv_from: docs/research/post-frozen/PR243-baseline-collection-line-master-spec-2026-05-07.md
-purpose: 采集线全生命周期路线图 + 现在没做的全部 inventory + 7 wave routing + 4-agent v3 分工 + 算法/UX/Memory 4 视角综合
+purpose: 采集线全生命周期路线图 + 现在没做的全部 inventory + 11 wave routing + 4-agent v3 分工 + 算法/UX/Memory 4 视角综合
 authors: cc1 (Anthropic) + integrated audit from cc0 (5 漏洞修订)
 sources_synthesized:
   - 16 ZIP cloud audit (U1-U16 储能层 / 1.1M 字 / 895 file / Phase A+B 已 audit)

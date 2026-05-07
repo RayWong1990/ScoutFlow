@@ -20,13 +20,14 @@ ScoutFlow 是个人本地研究工作流的 `Authority-first` 内容采集、转
 - PRD canonical：`docs/PRD-v2-2026-05-04.md` + `docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md` (promoted addendum)
 - SRD canonical：`docs/SRD-v2-2026-05-04.md` + `docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md` (promoted addendum)
 - Contract 总索引：`docs/specs/contracts-index.md`；硬原则：`docs/specs/locked-principles.md`
-- 架构记录：`docs/architecture/**` (含 doc1 / doc2, candidate baseline; not authority)
+- 架构记录：`docs/architecture/**` (doc1/doc2 = `reference storage`；见 `docs/00-START-HERE.md` §5；not authority)
 
 ## 阅读顺序 (扁平化)
 
 1. `docs/00-START-HERE.md` (5 min cold start)
 2. `docs/current.md` TL;DR (1 min)
 3. 视任务跳 master spec / PRD / SRD / specs / 储能层 U[1-16]
+
 ## 当前不做
 - 不写 `workers/`、`apps/`、`packages/`、`services/**` 新 runtime
 - 不碰 `data/`、`referencerepo/`、凭据、raw cookie/token

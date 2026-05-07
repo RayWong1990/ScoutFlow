@@ -209,7 +209,7 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 
 1. ❌ `write_enabled=False` (`bridge/config.py:24,36`) 不能改
 2. ❌ 5 overflow lane Hold (`true_vault_write` / `runtime_tools` / `browser_automation` / `dbvnext_migration` / `full_signal_workbench`)
-3. ❌ Authority files 永不写 (`current.md` / `task-index.md` / `decision-log.md` / `AGENTS.md` / 根 `CLAUDE.md`)
+3. ❌ Authority files 未经 authority-writer dispatch 不得写 (`current.md` / `task-index.md` / `decision-log.md` 仅 authority-writer dispatch 可写, max=1; 顶级 `AGENTS.md` / 根 `CLAUDE.md` 不主动触碰, 仅治理类 dispatch 显式授权时才改)
 4. ❌ 历史 ledger immutable (`CHECKPOINT-Run*.json` / `EXTERNAL-AUDIT-REPORT-*.md` / `PF-C4-01-CHECKPOINT.json`)
 5. ❌ `~/workspace/raw/` 永不污染 (除 true_vault_write 解禁后)
 6. ❌ 引整套 vendored shadcn / Radix / TanStack / React Flow / Zustand

@@ -1,6 +1,6 @@
 ---
 title: PRD v3 Compiled Candidate Shell
-status: candidate / north-star / not-authority
+status: candidate north-star
 authority: not-authority
 promoted: false
 created_at: 2026-05-07
@@ -9,16 +9,17 @@ execution_approval: not-approved
 runtime_approval: not-approved
 migration_approval: not-approved
 frontend_implementation_approval: not-approved
-sources:
+sources_synthesized:
   - docs/PRD-v2-2026-05-04.md (canonical base)
   - docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md (promoted addendum)
   - docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/PRD-v3-supplement-worked-examples-2026-05-07.md
   - docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/NFR-SINGLE-USER-CAPACITY-2026-05-07.md
   - docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/SIBLING-PROJECT-EGRESS-CONTRACT-2026-05-07.md
   - docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/TRACEABILITY-MATRIX-EXTENDED-2026-05-07.md
-sunset_trigger: |
-  Deprecated when (a) cloud-output base file PRD-v3-candidate-2026-05-07.md is recovered and replaces this shell, or
-  (b) commander synthesizes a real promoted PRD-v3 base PR that absorbs the 4 U1-deep supplements directly.
+sunset_trigger:
+  - cloud-output base file PRD-v3-candidate-2026-05-07.md 找回 → mv replace shell
+  - 战友综合 PRD-v2 + v2.1 + U1-deep supplement 写新 PRD-v3 promoted base PR
+  - 4 个 U1-deep supplement 被吸收进 PRD-v3 promoted base 后, 本 shell sunset
 disclaimer: |
   这是 thin compiled candidate, 不是正式 PRD-v3 base.
   cloud-output PRD-v3-candidate-2026-05-07.md base file 暂未在本机找回 (find -maxdepth 8 + Downloads/ 全部 negative).
