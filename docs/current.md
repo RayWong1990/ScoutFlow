@@ -2,7 +2,7 @@
 
 ## TL;DR (5 行)
 
-- main = `3c01a1c` (PR #246 governance harness — Layer A-D START-HERE auto-managed + retrospective sediment); doc baseline = `e207664` (PR #244); capture-station code baseline 仍为 `e1deda6` / PR #243 的 13 surface 静态壳 + tokens 三层 overlay
+- main = `c802de4` (PR #247 closeout — Layer C writeback) ← `3c01a1c` (PR #246 governance harness); doc baseline = `e207664` (PR #244); capture-station code baseline 仍为 `e1deda6` / PR #243 的 13 surface 静态壳 + tokens 三层 overlay
 - Active product lane `0/3` / Authority writer `0/1` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - write_enabled=False / 5 overflow lane Hold (true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench)
 - PRD canonical = v2 + v2.1 amend (promoted); SRD canonical = v2 + v3-h5-bridge amend (promoted)

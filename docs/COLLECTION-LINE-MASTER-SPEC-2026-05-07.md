@@ -1108,7 +1108,7 @@ SessionStart → 自动注入相关 memory (按 topic / lane / time 排序)
 
 1. ❌ `write_enabled=False` (bridge/config.py:24,36) 不能改
 2. ❌ 5 overflow lane 永不"偷开" (`true_vault_write` / `runtime_tools` / `browser_automation` / `dbvnext_migration` / `full_signal_workbench`) — 必须走 authority 升级 PR
-3. ❌ Authority files 永不写 (`docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `AGENTS.md` / 根 `CLAUDE.md`)
+3. ❌ Authority files 未经 authority-writer dispatch 不得写 (`docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` 仅 authority-writer dispatch 可写, max=1; 顶级 `AGENTS.md` / 根 `CLAUDE.md` 不主动触碰, 仅治理类 dispatch 显式授权时才改) — 跟 `docs/00-START-HERE.md` §9 第 3 条措辞统一
 4. ❌ 历史 ledger immutable (`CHECKPOINT-Run*.json` / `EXTERNAL-AUDIT-REPORT-*.md` / `PF-C4-01-CHECKPOINT.json`)
 5. ❌ `~/workspace/raw/` 永不污染 (除真 vault commit 解禁后)
 6. ❌ 引整套 vendored shadcn / Radix / TanStack 全家桶 / React Flow / Zustand (即使 vendored 也不行, §10 reject list)
