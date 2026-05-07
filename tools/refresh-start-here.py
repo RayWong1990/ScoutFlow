@@ -87,6 +87,18 @@ def parse_pr_number(subject: str) -> int | None:
 
 
 def read_git_commits(repo: Path, limit: int = 3) -> list[GitCommit]:
+    remote_check = subprocess.run(
+        ["git", "remote", "get-url", REMOTE],
+        cwd=repo,
+        check=False,
+        capture_output=True,
+        text=True,
+    )
+    if remote_check.returncode != 0:
+        raise RuntimeError(
+            f"git remote {REMOTE!r} not found "
+            f"(set SCOUTFLOW_REMOTE to a valid remote name; default 'origin')"
+        )
     output = run_git(repo, "log", f"{REMOTE}/main", f"-{limit}", "--pretty=%h%x09%s%x09%cs")
     commits: list[GitCommit] = []
     for line in output.splitlines():
@@ -98,6 +110,11 @@ def read_git_commits(repo: Path, limit: int = 3) -> list[GitCommit]:
 
 
 def sum_checkpoint_dispatches(runs_dir: Path) -> int:
+    if not runs_dir.exists() or not runs_dir.is_dir():
+        raise RuntimeError(
+            f"checkpoint runs directory not found: {runs_dir} "
+            f"(set SCOUTFLOW_RUNS_DIR to override default path)"
+        )
     total = 0
     for path in sorted(runs_dir.glob("CHECKPOINT-Run*-final.json")):
         payload = json.loads(path.read_text(encoding="utf-8"))
