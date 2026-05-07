@@ -685,6 +685,34 @@ UI dashboard: per-day / per-week / per-month / per-project / per-agent.
 - 失败 / amend / retry pattern catalog
 - 跨项目 SOP 共享
 
+## §9.13 16 U → § 9.x 子模块对应表 (CC1 retrospective sediment, 2026-05-07; PR #246 Layer 2 audit amend)
+
+> 解决 "可见性断层" — 16 ZIP 储能层跟 § 9.x 子模块 **11/16 1:1 映射 + 5 U gap** (其中 § 9.4 Cost Ledger 没 U 来源 — 战友单人 prosumer 没 explicit 设计, U9-dispatch-catalog 语义跨 § 9.2 Agent Fleet + § 14 pre-flight), 之前没显式标. 新 agent 起手凭此表立刻知道 U → wave 桥 (元认知 instinct §3 第 14 条).
+
+| U | 主题 | § 9.x 对应 | 消费 wave |
+|---|---|---|---|
+| U6-retrieval-dam | Asset DAM | § 9.1 | W2C 后续 / W6J |
+| U5-agent-fleet | Agent Fleet Dispatch Ledger | § 9.2 | W3E 80packs |
+| U16-memory-graph | Memory Graph (现状 17 → 50-100) | § 9.3 | W2D / W6K |
+| U12-tools-catalog | Skills/Tools/MCP Catalog | § 9.5 | W6K |
+| U11-anti-pattern | Anti-pattern Defense | § 9.6 | pre-commit hook + ~/.claude/rules/anti-patterns.md |
+| U13-visual-brand | Visual Brand Atlas Cascade | § 9.7 | W2C 主菜视觉 input |
+| U14-apple-silicon | Apple Silicon 优化 | § 9.8 | W4F (Phase 2 ASR 解禁后) |
+| U7-state-library | State Machine Library | § 9.9 | W2C state machine |
+| U8-egress | Cross-System Egress | § 9.10 | W2C 输出 contract / 跨项目 |
+| U15-decision-log | Decision Log Atlas | § 9.11 | ~/.claude/skills/ScoutFlow-pr-decisions |
+| U10-runbook | Prosumer SOP Runbook | § 9.12 | ~/.claude/skills/ScoutFlow-runbooks |
+
+**Gap (5 U 没显式 § 9.x 对应)**:
+
+| U | 主题 | 真路线 |
+|---|---|---|
+| U1-deep | PRD-v3/SRD-v3 supplement + NFR | § 19.2 / 升 PRD-v3 candidate shell |
+| U2-deep | 5 Lane spike + vendor matrix + fail-mode | § 4-§ 6 / W4F+W4G+W5H spec 输入 |
+| U3-deep | 4 entity v0→v1 + RI test + OpenAPI | § 5.4 / W4F (Lane-4 dbvnext) |
+| U4-visual-asset | Visual asset DDL + CRUD | § 9.x gap, 待补 (W2C 后续 services/api/scoutflow_api/visual/) |
+| U9-dispatch-catalog | Phase 2-4 ≥71 dispatch prompt | § 14 (pre-flight 5 步) / W3E 80packs 余量; 语义跨 § 9.2 Agent Fleet + § 14 |
+
 ---
 
 # §10 算法工程师视角 — Implementation 细节 inventory (现在没做)
@@ -1009,6 +1037,10 @@ SessionStart → 自动注入相关 memory (按 topic / lane / time 排序)
 - 战友 V-PASS (浏览器审 + 5 Gate)
 - 路径 1 merge / 路径 2 amend / 路径 3 root cause
 - 写 closeout receipt (类似 PF-C4-01-v-pass-merged-2026-05-07.md)
+- authority 写回顺序固定: `docs/task-index.md` → `docs/current.md` → `docs/decision-log.md`
+- 跑 `python tools/refresh-start-here.py`，刷新 START-HERE §1 auto-managed 真态锚点
+- 人工复核 `docs/00-START-HERE.md` §7 wave 表 + README / master spec / closeout receipt 的旧 PR / SHA / wave 状态引用
+- 若最新 merged PR 号达到 START-HERE frontmatter `next_forced_refresh_pr`，本次 closeout 还必须完成一次 W6K refresh sprint，并把阈值顺延 `+50`
 
 ---
 
@@ -1190,6 +1222,7 @@ SessionStart → 自动注入相关 memory (按 topic / lane / time 排序)
 - [ ] W6J Vault commit 真解禁 + 全 7 阶段闭环
 - [ ] W5I 评论 / 楼中楼 全功能
 - [ ] W6K Memory 沉淀
+- [ ] W6K START-HERE forced refresh sprint：当前轮已在 `PR #246` 执行；下一次 `PR #300`，其后每 `+50 PR`
 
 ---
 

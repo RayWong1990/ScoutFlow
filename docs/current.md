@@ -2,7 +2,7 @@
 
 ## TL;DR (5 行)
 
-- main = `e1deda6` (PR #243 PF-C4-01 land); 13 surface 静态壳 + tokens 三层 overlay 已就位
+- main = `e207664` (PR #244 doc baseline land); capture-station code baseline 仍为 `e1deda6` / PR #243 的 13 surface 静态壳 + tokens 三层 overlay
 - Active product lane `0/3` / Authority writer `0/1` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - write_enabled=False / 5 overflow lane Hold (true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench)
 - PRD canonical = v2 + v2.1 amend (promoted); SRD canonical = v2 + v3-h5-bridge amend (promoted)

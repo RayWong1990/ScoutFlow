@@ -638,3 +638,18 @@
   - `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`
   - `docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/PRD-v3-candidate-2026-05-07.md` (thin shell)
   - `docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/SRD-v3-candidate-2026-05-07.md` (thin shell)
+
+## 2026-05-07 — START-HERE dynamic maintenance harness accepted (PR #246)
+
+- Decision (1): `docs/00-START-HERE.md` 的易漂移锚点改为 4 层维护机制，而不是继续靠口头约束。
+- Decision (2): `Layer A` 生效：§0 减 hard-code，§1 改成 `python tools/refresh-start-here.py` auto-managed 真态锚点。
+- Decision (3): `Layer B` 生效：`python tools/refresh-start-here.py --check` 接入 docs-check；main SHA / checkpoint dispatch 求和 / forced refresh 阈值漂移时直接 fail。
+- Decision (4): `Layer C` 生效：每次 wave / governance lane closeout 必须按 `docs/task-index.md -> docs/current.md -> docs/decision-log.md -> python tools/refresh-start-here.py` 顺序写回，并人工复核 START-HERE §7 与关联文档的旧 PR / SHA / wave 状态引用。
+- Decision (5): `Layer D` 生效：当前 refresh 已在 PR `#246` 执行；下一次 forced refresh = `PR #300`，之后每 `+50 PR` 再做一次 refresh sprint。
+- Decision (6): PR #244 合并后遗留的 authority 漂移本次一并收口：`docs/current.md` main SHA 对齐 `e207664`，`docs/task-index.md` 关闭 `T-DOC-244` Active 行。
+- Source:
+  - `docs/00-START-HERE.md`
+  - `docs/current.md`
+  - `docs/task-index.md`
+  - `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`
+  - `tools/refresh-start-here.py`
