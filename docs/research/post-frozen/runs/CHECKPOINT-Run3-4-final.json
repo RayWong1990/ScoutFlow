@@ -96,22 +96,26 @@
     },
     {
       "code": "PF-C2-06",
-      "verdict": "partial",
+      "verdict": "T-PASS",
+      "verdict_history": ["partial (2026-05-06)", "T-PASS (2026-05-07 manual transfer completed)"],
       "output_path": "docs/research/post-frozen/c2-two-note-manual-raw-handoff-run.md"
     },
     {
       "code": "PF-C2-07",
-      "verdict": "partial",
+      "verdict": "T-PASS",
+      "verdict_history": ["partial (2026-05-06)", "T-PASS (2026-05-07 sha256 lossless transfer verified)"],
       "output_path": "docs/research/post-frozen/c2-raw-intake-readback-result.md"
     },
     {
       "code": "PF-C2-08",
-      "verdict": "partial",
+      "verdict": "T-PASS",
+      "verdict_history": ["partial (2026-05-06)", "T-PASS (2026-05-07 source note now RAW-resident)"],
       "output_path": "docs/research/post-frozen/c2-script-seed-generation-result.md"
     },
     {
       "code": "PF-C2-09",
-      "verdict": "partial",
+      "verdict": "T-PASS",
+      "verdict_history": ["expected_partial (2026-05-06)", "T-PASS (2026-05-07 single-canonical-inbox contract upheld)"],
       "output_path": "docs/research/post-frozen/c2-second-inbox-negative-test.md"
     },
     {
@@ -121,7 +125,8 @@
     },
     {
       "code": "PF-C2-11",
-      "verdict": "partial",
+      "verdict": "T-PASS",
+      "verdict_history": ["partial (2026-05-06)", "T-PASS (2026-05-07 c2 closure declared)"],
       "output_path": "docs/research/post-frozen/c2-proof-readback.md"
     },
     {
@@ -136,21 +141,26 @@
   "c1_verdict": "pass",
   "c1_useful_count": "3 of 3",
   "c1_iteration_2_run": false,
-  "c2_verdict": "partial",
-  "c2_partial_count": 5,
-  "c2_partial_dispatches": [
+  "c2_verdict": "pass",
+  "c2_partial_count": 0,
+  "c2_partial_dispatches": [],
+  "c2_partial_dispatches_resolved_2026-05-07": [
     "PF-C2-06",
     "PF-C2-07",
     "PF-C2-08",
     "PF-C2-09",
     "PF-C2-11"
   ],
-  "c2_partial_reason": "user authorized A-path skip of manual RAW transfer; placeholder enrichment not yet ready",
-  "can_open_c4": false,
-  "can_open_c4_reason": "C2 partial pending future enrichment plus manual RAW intake; not blocker for PF-V handoff lane which runs in parallel",
+  "c2_partial_reason_historical": "user authorized A-path skip of manual RAW transfer 2026-05-06; closed 2026-05-07 by completing manual transfer (cp staging/note-{1,2}-* ~/workspace/raw/00-Inbox/)",
+  "can_open_c4": true,
+  "can_open_c4_reason": "C2 cleared 2026-05-07 (manual RAW transfer completed, sha256 lossless verified); PF-V already handed off via PR #241; PF-C4-01 Local Frontend Bootstrap unblocked",
   "ready_for_external_audit": true,
-  "ready_for_run_5": "yes_pending_pf_v_handoff",
-  "raw_transfer_status": "skipped_per_user_A_path_2026-05-06",
+  "ready_for_run_5": "yes",
+  "raw_transfer_status": "completed_2026-05-07T06:14:00Z",
+  "raw_transfer_sha256_evidence": {
+    "note-1-01KQYY9KP26SSZA6285MAY706S.md": "7c6a023134d541f6e84020c3261f5d9fd75b07562fe21b2c2ab7c7aabf026b37",
+    "note-2-01KQYY9KT8WSQRAH1T2B2DPHVA.md": "0d61a33130a1df559808d48e2bc5463ab9619838931d9307e2064a551b007820"
+  },
   "authority_writeback": "skipped_by_user_choice",
   "high_blast_audit_verdict": {
     "PF-C1-04": "clean",
