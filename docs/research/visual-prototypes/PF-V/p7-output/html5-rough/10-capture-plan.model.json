@@ -1,0 +1,43 @@
+{
+  "surface_id": "10-capture-plan",
+  "source_images": [
+    "10_capture-plan-ia/task-40_plan-io-contract.png",
+    "10_capture-plan-ia/task-41_plan-dry-run.png",
+    "10_capture-plan-ia/task-42_plan-execution-log.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "io-contract",
+        "role": "input-output-contract"
+      },
+      {
+        "id": "automation-hooks",
+        "role": "dry-run-checkpoints"
+      },
+      {
+        "id": "execution-log",
+        "role": "run-ledger"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "capture-plan",
+      "tag": "section",
+      "states": [
+        "io",
+        "dry-run",
+        "log"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card"
+  ],
+  "icons_referenced": [
+    "icon-success",
+    "icon-loading",
+    "icon-blocked"
+  ]
+}

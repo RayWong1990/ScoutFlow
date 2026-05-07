@@ -1,0 +1,7 @@
+# P7/P8 build artifacts (rebuildable via scripts/build-*.sh)
+pfv-p7-bundle.zip
+pfv-p8-bundle.zip
+
+# P8 PR + changelog drafts (one-shot use during PR creation)
+.p8-pr-body.md
+.p8-changelog-row.md

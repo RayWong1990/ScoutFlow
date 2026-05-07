@@ -1,0 +1,8 @@
+/* PF-V P7 typography override — V4 Weight Heavy baseline */
+:root {
+  --font-weight-hero: 800;
+  --font-weight-title: 700;
+  --font-weight-body: 400;
+  --font-weight-mono: 500;
+  --type-mono: 13px;
+}

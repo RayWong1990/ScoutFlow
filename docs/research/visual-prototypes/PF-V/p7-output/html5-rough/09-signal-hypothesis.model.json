@@ -1,0 +1,42 @@
+{
+  "surface_id": "09-signal-hypothesis",
+  "source_images": [
+    "09_signal-hypothesis-ia/task-37_signal-expanded-with-hypotheses.png",
+    "09_signal-hypothesis-ia/task-38_hypothesis-compare.png",
+    "09_signal-hypothesis-ia/task-39_signal-lifecycle-stepper.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "signal-card",
+        "role": "parent-signal"
+      },
+      {
+        "id": "hypothesis-list",
+        "role": "child-hypotheses"
+      },
+      {
+        "id": "compare-table",
+        "role": "hypothesis-comparison"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "signal-ia",
+      "tag": "section",
+      "states": [
+        "expanded",
+        "compare",
+        "lifecycle"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "lifecycle-stepper"
+  ],
+  "icons_referenced": [
+    "icon-success"
+  ]
+}

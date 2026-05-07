@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 选题卡库</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./08-topic-card-vault.module.css">
+</head>
+<body>
+<main class="topic-card-vault-surface">
+<header class="surface-shell__header"><h1 class="surface-title">选题卡库状态集</h1></header>
+<section class="topic-card-vault topic-card-vault--default panel-card">
+  <h3 class="state-label">状态: 默认列表</h3>
+  <header class="vault-toolbar"><input type="search" placeholder="搜索选题卡" aria-label="搜索选题卡"><select class="filter-select" aria-label="过滤状态"><option>全部状态</option><option>预览就绪</option></select></header>
+  <section class="vault-list" aria-label="选题卡列表">
+    <article class="topic-card">
+      <header class="topic-card__source"><code>cap_20260506_8a3f2</code><span class="state-badge state-badge--ready">预览就绪</span></header>
+      <h3 class="topic-card__title">深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</h3>
+      <p class="topic-card__abstract">围绕采集、证据和后续内容生产形成的轻量卡片。</p>
+    </article>
+    <article class="topic-card">
+      <header class="topic-card__source"><code>cap_20260506_8a3f3</code><span class="state-badge state-badge--ready">预览就绪</span></header>
+      <h3 class="topic-card__title">主题卡片示例 2</h3>
+      <p class="topic-card__abstract">围绕采集、证据和后续内容生产形成的轻量卡片。</p>
+    </article>
+    <article class="topic-card">
+      <header class="topic-card__source"><code>cap_20260506_8a3f4</code><span class="state-badge state-badge--ready">预览就绪</span></header>
+      <h3 class="topic-card__title">主题卡片示例 3</h3>
+      <p class="topic-card__abstract">围绕采集、证据和后续内容生产形成的轻量卡片。</p>
+    </article>
+    <article class="topic-card">
+      <header class="topic-card__source"><code>cap_20260506_8a3f5</code><span class="state-badge state-badge--ready">预览就绪</span></header>
+      <h3 class="topic-card__title">主题卡片示例 4</h3>
+      <p class="topic-card__abstract">围绕采集、证据和后续内容生产形成的轻量卡片。</p>
+    </article>
+    <article class="topic-card">
+      <header class="topic-card__source"><code>cap_20260506_8a3f6</code><span class="state-badge state-badge--ready">预览就绪</span></header>
+      <h3 class="topic-card__title">主题卡片示例 5</h3>
+      <p class="topic-card__abstract">围绕采集、证据和后续内容生产形成的轻量卡片。</p>
+    </article>
+  </section>
+</section>
+<hr class="state-divider">
+<section class="topic-card-vault topic-card-vault--aggregated panel-card">
+  <h3 class="state-label">状态: 按来源聚合</h3>
+  <details class="domain-group" open><summary class="domain-summary"><code>bilibili.com</code><span class="count">12 条采集</span></summary><section class="vault-list">    <article class="topic-card">
+      <header class="topic-card__source"><code>cap_20260506_8a3f2</code><span class="state-badge state-badge--ready">预览就绪</span></header>
+      <h3 class="topic-card__title">深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</h3>
+      <p class="topic-card__abstract">围绕采集、证据和后续内容生产形成的轻量卡片。</p>
+    </article></section></details>
+  <details class="domain-group"><summary class="domain-summary"><code>example.com</code><span class="count">4 条采集</span></summary></details>
+</section>
+<hr class="state-divider">
+<section class="topic-card-vault topic-card-vault--promote panel-card">
+  <h3 class="state-label">状态: 晋升准备度</h3>
+  <article class="topic-card topic-card--selected"><header class="topic-card__source"><code>cap_20260506_8a3f2</code></header><h2 class="topic-card__title">深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</h2></article>
+  <section class="promote-gate"><h3 class="promote-gate__title">晋升 DiloFlow 准备度</h3><ul class="gate-criteria">
+    <li class="gate-item gate-item--met"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>信号 ≥ 3</li>
+    <li class="gate-item gate-item--met"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>假设 ≥ 1</li>
+    <li class="gate-item gate-item--met"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>证据已链接</li>
+    <li class="gate-item gate-item--met"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>操作员已标记有用</li>
+  </ul><button class="btn btn--primary" type="button">晋升 DiloFlow</button></section>
+</section>
+<hr class="state-divider">
+<section class="topic-card-vault topic-card-vault--promote-modal panel-card">
+  <h3 class="state-label">状态: 晋升确认弹窗</h3>
+  <dialog class="modal modal--promote" open><h2 class="modal__title"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-plan"></use></svg>确认晋升 DiloFlow</h2><p>将选题卡、信号、假设与证据指针转入 DiloFlow 草案。ScoutFlow 不写入 Obsidian 之外的持久库。</p><dl class="metadata-grid"><dt>来源</dt><dd><code>cap_20260506_8a3f2</code></dd><dt>目标</dt><dd>DiloFlow 草案</dd></dl><footer class="modal__footer"><button class="btn btn--secondary" type="button">取消</button><button class="btn btn--primary" type="button">确认晋升</button></footer></dialog>
+</section>
+<hr class="state-divider">
+<section class="topic-card-vault topic-card-vault--sync panel-card">
+  <h3 class="state-label">状态: Obsidian 同步状态</h3>
+  <article class="topic-card"><header class="topic-card__source"><code>cap_20260506_8a3f2</code><aside class="sync-badge sync-badge--synced"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>已同步</aside></header><h3 class="topic-card__title">深度工作流</h3></article>
+  <article class="topic-card"><header class="topic-card__source"><code>cap_20260506_91b7c</code><aside class="sync-badge sync-badge--pending"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-warning"></use></svg>待同步</aside></header><h3 class="topic-card__title">异步协作</h3></article>
+  <article class="topic-card"><header class="topic-card__source"><code>cap_20260506_a02ef</code><aside class="sync-badge sync-badge--external-changed"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-focus"></use></svg>外部已改</aside></header><h3 class="topic-card__title">知识飞轮</h3></article>
+</section>
+</main>
+</body>
+</html>

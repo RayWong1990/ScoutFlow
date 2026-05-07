@@ -1,0 +1,45 @@
+{
+  "surface_id": "02-live-metadata",
+  "source_images": [
+    "02_live-metadata/task-06_long-cn-title.png",
+    "02_live-metadata/task-07_numbers-heavy.png",
+    "02_live-metadata/task-08_tags-overflow.png",
+    "02_live-metadata/task-09_live-counter.png",
+    "02_live-metadata/task-10_thumbnail-field.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "metadata-grid",
+        "role": "field-list"
+      },
+      {
+        "id": "tag-list",
+        "role": "overflow-tags"
+      },
+      {
+        "id": "thumbnail",
+        "role": "media-placeholder"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "metadata-grid",
+      "tag": "dl",
+      "states": [
+        "long-title",
+        "numbers-heavy",
+        "tags-overflow",
+        "live-counter",
+        "with-thumbnail"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "tag-list",
+    "live-pulse"
+  ],
+  "icons_referenced": []
+}

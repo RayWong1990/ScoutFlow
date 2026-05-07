@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 信任溯源</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./04-trust-trace.module.css">
+</head>
+<body>
+<main class="trust-trace-surface">
+<header class="surface-shell__header"><h1 class="surface-title">信任溯源状态集</h1></header>
+<section class="trust-trace trust-trace--filter-dom panel-card">
+  <h3 class="state-label">状态: DOM 过滤</h3>
+  <ul class="trace-filters" role="tablist">
+    <li class="trace-filter trace-filter--active">DOM</li>
+    <li class="trace-filter">JSON-LD</li>
+    <li class="trace-filter">OpenGraph</li>
+    <li class="trace-filter">Microdata</li>
+  </ul>
+  <!-- TODO: source mockup task-14_filter-dom-only.png shows complex DOM-tree visualization. PF-C4 should implement using D3 / vis-network / cytoscape graph library. This is structural placeholder. -->
+  <section class="trust-trace__graph-placeholder" data-todo="graph-rendering">
+    <p class="placeholder-hint">信任溯源图谱（视觉参考: task-14_filter-dom-only.png）</p>
+  </section>
+  <table class="evidence-table">
+    <thead><tr><th>状态</th><th>字段</th><th>DOM 路径</th><th>值</th><th>置信度</th></tr></thead>
+    <tbody>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>title</td><td><code>dom.meta.og:title</code></td><td>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</td><td>98%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>uploader</td><td><code>dom.handle</code></td><td>@scout_ops_archive</td><td>96%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>duration</td><td><code>json.ld.duration</code></td><td>12:34</td><td>92%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>stats</td><td><code>dom.stats.play</code></td><td>24,891</td><td>91%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>comments</td><td><code>dom.stats.comment</code></td><td>287</td><td>89%</td></tr>
+    </tbody>
+  </table>
+</section>
+<hr class="state-divider">
+<section class="trust-trace trust-trace--time-axis panel-card">
+  <h3 class="state-label">状态: 时间轴</h3>
+  <header class="trust-trace__axis-header"><h2>时间轴（UTC）</h2><span class="state-badge state-badge--metadata-loaded">证据到达</span></header>
+  <!-- TODO: source mockup task-15_time-axis.png shows D3 timeline. PF-C4 should implement timeline with hover timestamp tooltip. -->
+  <section class="time-axis-placeholder" data-todo="d3-timeline">
+    <ol class="time-axis-ticks"><li>10:00</li><li>12:00</li><li>14:00</li><li>16:00</li><li>18:00</li></ol>
+  </section>
+  <table class="evidence-table">
+    <thead><tr><th>状态</th><th>字段</th><th>DOM 路径</th><th>值</th><th>置信度</th></tr></thead>
+    <tbody>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>title</td><td><code>dom.meta.og:title</code></td><td>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</td><td>98%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>uploader</td><td><code>dom.handle</code></td><td>@scout_ops_archive</td><td>96%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>duration</td><td><code>json.ld.duration</code></td><td>12:34</td><td>92%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>stats</td><td><code>dom.stats.play</code></td><td>24,891</td><td>91%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>comments</td><td><code>dom.stats.comment</code></td><td>287</td><td>89%</td></tr>
+    </tbody>
+  </table>
+</section>
+<hr class="state-divider">
+<section class="trust-trace trust-trace--error-path panel-card">
+  <h3 class="state-label">状态: 错误路径</h3>
+  <ul class="trace-filters" role="tablist">
+    <li class="trace-filter trace-filter--active">DOM</li>
+    <li class="trace-filter">JSON-LD</li>
+    <li class="trace-filter">OpenGraph</li>
+    <li class="trace-filter">Microdata</li>
+  </ul>
+  <!-- TODO: source mockup task-16_error-path.png shows graph error path. PF-C4 should implement highlighted path in graph library. -->
+  <section class="trust-trace__graph-placeholder trust-trace__graph-placeholder--error" data-todo="graph-rendering">
+    <p class="placeholder-hint">字段缺失: og:duration</p>
+  </section>
+  <table class="evidence-table">
+    <thead><tr><th>状态</th><th>字段</th><th>DOM 路径</th><th>值</th><th>置信度</th></tr></thead>
+    <tbody>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>title</td><td><code>dom.meta.og:title</code></td><td>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</td><td>98%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>uploader</td><td><code>dom.handle</code></td><td>@scout_ops_archive</td><td>96%</td></tr>
+      <tr class="evidence-row evidence-row--error"><td class="evidence-status"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-error"></use></svg></td><td>duration</td><td><code>dom.meta.og:duration</code></td><td>字段缺失: og:duration</td><td>43%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>duration</td><td><code>json.ld.duration</code></td><td>12:34</td><td>92%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>stats</td><td><code>dom.stats.play</code></td><td>24,891</td><td>91%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>comments</td><td><code>dom.stats.comment</code></td><td>287</td><td>89%</td></tr>
+    </tbody>
+  </table>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,53 @@
+{
+  "surface_id": "08-topic-card-vault",
+  "source_images": [
+    "08_topic-card-vault/task-32_default.png",
+    "08_topic-card-vault/task-33_source-url-aggregate.png",
+    "08_topic-card-vault/task-34_promote-readiness.png",
+    "08_topic-card-vault/task-35_promote-diloflow-modal.png",
+    "08_topic-card-vault/task-36_obsidian-sync-status.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "vault-toolbar",
+        "role": "search-filter"
+      },
+      {
+        "id": "vault-list",
+        "role": "topic-card-list"
+      },
+      {
+        "id": "promote-gate",
+        "role": "promotion-readiness"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "topic-card-vault",
+      "tag": "section",
+      "states": [
+        "default",
+        "aggregated",
+        "promote",
+        "promote-modal",
+        "sync"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "topic-card",
+    "sync-badge",
+    "promote-gate",
+    "modal",
+    "btn",
+    "state-badge"
+  ],
+  "icons_referenced": [
+    "icon-success",
+    "icon-warning",
+    "icon-focus",
+    "icon-plan"
+  ]
+}

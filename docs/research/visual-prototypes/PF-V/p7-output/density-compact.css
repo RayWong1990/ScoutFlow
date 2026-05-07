@@ -1,0 +1,7 @@
+/* PF-V P7 density override — V3 Compact baseline */
+:root {
+  --type-title: 18px;
+  --type-body: 13px;
+  --space-md: 12px;
+  --space-sm: 8px;
+}

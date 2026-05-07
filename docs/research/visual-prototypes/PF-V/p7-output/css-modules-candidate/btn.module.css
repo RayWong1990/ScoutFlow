@@ -1,0 +1,53 @@
+.component-demo {
+  min-height: 100vh;
+  margin: 0;
+  padding: var(--space-lg);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--line-height-body);
+}
+.component-demo code {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-xs);
+  min-block-size: calc(var(--space-xl) + var(--space-xs));
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-button);
+  background: var(--surface-elevated);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  padding: var(--space-sm) var(--space-md);
+}
+.btn svg {
+  inline-size: var(--space-lg);
+  block-size: var(--space-lg);
+}
+.btn--primary {
+  border-color: var(--accent-live);
+  color: var(--accent-live);
+  background: var(--state-bg-info);
+}
+.btn--secondary {
+  color: var(--text-secondary);
+}
+.btn--blocked,
+.btn:disabled {
+  cursor: not-allowed;
+  border-color: var(--border-soft);
+  color: var(--text-muted);
+  background: var(--surface-muted);
+}
+.btn--success {
+  border-color: var(--accent-success);
+  color: var(--accent-success);
+  background: var(--state-bg-success);
+}

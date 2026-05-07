@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 信号假设信息架构</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./09-signal-hypothesis.module.css">
+</head>
+<body>
+<main class="signal-hypothesis-surface">
+<header class="surface-shell__header"><h1 class="surface-title">信号 / 假设信息架构状态集</h1></header>
+<section class="signal-ia signal-ia--expanded panel-card">
+  <h3 class="state-label">状态: 信号展开</h3>
+  <details class="signal-card" open><summary><strong>异步协作降低上下文切换成本</strong><code>76.4%</code></summary><ol class="hypothesis-list"><li>高频采集场景中，异步优先减少即时响应压力。</li><li>证据先入账再判断，能降低误判。</li><li>选题卡可作为内容生产前置缓冲。</li></ol></details>
+</section>
+<hr class="state-divider">
+<section class="signal-ia signal-ia--compare panel-card">
+  <h3 class="state-label">状态: 假设对比</h3>
+  <table class="hypothesis-compare-table"><thead><tr><th>假设</th><th>置信度</th><th>支持证据</th><th>冲突证据</th></tr></thead><tbody><tr><td>异步优先更稳定</td><td><code>76.4%</code></td><td><a href="#evidence-1">证据 1</a></td><td>—</td></tr><tr><td>同步确认更可靠</td><td><code>43.1%</code></td><td><a href="#evidence-3">证据 3</a></td><td><a href="#evidence-4">证据 4</a></td></tr></tbody></table>
+</section>
+<hr class="state-divider">
+<section class="signal-ia signal-ia--lifecycle panel-card">
+  <h3 class="state-label">状态: 信号生命周期</h3>
+  <ol class="lifecycle-stepper" aria-label="生命周期阶段">
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">原始信号</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">已验证</span></li>
+    <li class="lifecycle-step lifecycle-step--active"><span class="step-num">3</span><span class="step-name">形成假设</span></li>
+    <li class="lifecycle-step"><span class="step-num">4</span><span class="step-name">已晋升</span></li>
+  </ol>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 采集范围</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./03-capture-scope.module.css">
+</head>
+<body>
+<main class="capture-scope-surface">
+<header class="surface-shell__header"><h1 class="surface-title">采集范围状态集</h1></header>
+<section class="capture-scope capture-scope--start panel-card">
+  <h3 class="state-label">状态: 生命周期开始</h3>
+  <ol class="lifecycle-stepper" aria-label="生命周期阶段">
+    <li class="lifecycle-step lifecycle-step--active"><span class="step-num">1</span><span class="step-name">URL 验证</span></li>
+    <li class="lifecycle-step"><span class="step-num">2</span><span class="step-name">元数据加载</span></li>
+    <li class="lifecycle-step"><span class="step-num">3</span><span class="step-name">正文抓取</span></li>
+    <li class="lifecycle-step"><span class="step-num">4</span><span class="step-name">入库预览</span></li>
+    <li class="lifecycle-step"><span class="step-num">5</span><span class="step-name">入库提交</span></li>
+  </ol>
+  <dl class="scope-state"><dt>状态</dt><dd><span class="state-badge state-badge--metadata-only">仅元数据</span></dd><dt>抓取范围</dt><dd>已折叠</dd></dl>
+</section>
+<hr class="state-divider">
+<section class="capture-scope capture-scope--complete panel-card">
+  <h3 class="state-label">状态: 生命周期完成</h3>
+  <ol class="lifecycle-stepper" aria-label="生命周期阶段">
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">URL 验证</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">元数据加载</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">正文抓取</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">入库预览</span></li>
+    <li class="lifecycle-step lifecycle-step--active"><span class="step-num">5</span><span class="step-name">入库提交</span></li>
+  </ol>
+  <dl class="scope-state"><dt>状态</dt><dd><span class="state-badge state-badge--locked">已锁定</span></dd><dt>预览路径</dt><dd><code>~/workspace/raw/00-Inbox/cap_20260506_8a3f2.md</code></dd></dl>
+</section>
+<hr class="state-divider">
+<section class="capture-scope capture-scope--blocked-tooltip panel-card">
+  <h3 class="state-label">状态: 阻塞层提示</h3>
+  <ol class="lifecycle-stepper" aria-label="生命周期阶段">
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">URL 验证</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">元数据加载</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">正文抓取</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">入库预览</span></li>
+    <li class="lifecycle-step lifecycle-step--active"><span class="step-num">5</span><span class="step-name">入库提交</span></li>
+  </ol>
+  <aside class="governance-tooltip" role="tooltip">
+    <h4 class="governance-tooltip__title">治理边界</h4>
+    <p>ScoutFlow 交付干净 Markdown 到 Obsidian raw vault inbox（<code>~/workspace/raw/00-Inbox/</code>）。</p>
+    <p>之后增强、双链回填与知识飞轮在 Obsidian 内发生，ScoutFlow 不参与。</p>
+  </aside>
+</section>
+</main>
+</body>
+</html>

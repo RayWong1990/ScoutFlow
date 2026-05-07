@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 实时元数据</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./02-live-metadata.module.css">
+</head>
+<body>
+<main class="live-metadata-surface">
+<header class="surface-shell__header"><h1 class="surface-title">实时元数据状态集</h1></header>
+<section class="live-metadata live-metadata--long-title panel-card">
+  <h3 class="state-label">状态: 长标题（中文换行）</h3>
+  <dl class="metadata-grid">
+    <dt>视频标题</dt><dd>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯：从低摩擦记录到证据入账的完整链路</dd>
+    <dt>上传者</dt><dd>@scout_ops_archive</dd>
+    <dt>时长</dt><dd><code>12:34</code></dd>
+    <dt>播放量</dt><dd><code>24,891</code></dd>
+    <dt>点赞</dt><dd><code>3,142</code></dd>
+    <dt>评论</dt><dd><code>287</code></dd>
+    <dt>capture_id</dt><dd><code>cap_20260506_8a3f2</code></dd>
+    <dt>最后更新</dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+  </dl>
+</section>
+<hr class="state-divider">
+<section class="live-metadata live-metadata--numbers-heavy panel-card">
+  <h3 class="state-label">状态: 数字高权重</h3>
+  <dl class="metadata-grid">
+    <dt>视频标题</dt><dd>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</dd>
+    <dt>上传者</dt><dd>@scout_ops_archive</dd>
+    <dt>时长</dt><dd><code>12:34</code></dd>
+    <dt>播放量</dt><dd><strong><code>24,891</code></strong></dd>
+    <dt>点赞</dt><dd><strong><code>3,142</code></strong></dd>
+    <dt>评论</dt><dd><strong><code>287</code></strong></dd>
+    <dt>capture_id</dt><dd><code>cap_20260506_8a3f2</code></dd>
+    <dt>最后更新</dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+  </dl>
+</section>
+<hr class="state-divider">
+<section class="live-metadata live-metadata--tags-overflow panel-card">
+  <h3 class="state-label">状态: 标签溢出</h3>
+  <dl class="metadata-grid">
+    <dt>视频标题</dt><dd>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</dd>
+    <dt>上传者</dt><dd>@scout_ops_archive</dd>
+    <dt>时长</dt><dd><code>12:34</code></dd>
+    <dt>播放量</dt><dd><code>24,891</code></dd>
+    <dt>点赞</dt><dd><code>3,142</code></dd>
+    <dt>评论</dt><dd><code>287</code></dd>
+    <dt>capture_id</dt><dd><code>cap_20260506_8a3f2</code></dd>
+    <dt>最后更新</dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+  </dl>
+  <ul class="tag-list"><li class="tag-chip">深度工作</li><li class="tag-chip">操作员</li><li class="tag-chip">采集线</li><li class="tag-chip">证据入账</li><li class="tag-chip">异步协作</li><li class="tag-chip">内容研究</li><li class="tag-chip">高频工作流</li><li class="tag-chip">Bilibili</li><li class="tag-chip">元数据</li><li class="tag-chip tag-chip--more">+5 更多</li></ul>
+</section>
+<hr class="state-divider">
+<section class="live-metadata live-metadata--live-counter panel-card">
+  <h3 class="state-label">状态: 实时计数</h3>
+  <dl class="metadata-grid">
+    <dt>播放量</dt><dd><span class="live-pulse" aria-live="polite"></span><strong><code>24,914</code></strong></dd>
+    <dt>点赞</dt><dd><span class="live-pulse" aria-live="polite"></span><strong><code>3,151</code></strong></dd>
+    <dt>评论</dt><dd><code>287</code></dd>
+    <dt>最后更新</dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+  </dl>
+</section>
+<hr class="state-divider">
+<section class="live-metadata live-metadata--with-thumbnail panel-card">
+  <h3 class="state-label">状态: 缩略图字段</h3>
+  <figure class="thumbnail-frame">
+    <!-- TODO: source mockup task-10_thumbnail-field.png shows video thumbnail. PF-C4 should fetch actual thumbnail from BBDown extracted metadata. -->
+    <section class="thumbnail-placeholder" data-todo="thumbnail-fetch" aria-label="视频缩略图占位"></section>
+  </figure>
+  <dl class="metadata-grid">
+    <dt>视频标题</dt><dd>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</dd>
+    <dt>上传者</dt><dd>@scout_ops_archive</dd>
+    <dt>时长</dt><dd><code>12:34</code></dd>
+    <dt>播放量</dt><dd><code>24,891</code></dd>
+    <dt>点赞</dt><dd><code>3,142</code></dd>
+    <dt>评论</dt><dd><code>287</code></dd>
+    <dt>capture_id</dt><dd><code>cap_20260506_8a3f2</code></dd>
+    <dt>最后更新</dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+  </dl>
+</section>
+</main>
+</body>
+</html>
