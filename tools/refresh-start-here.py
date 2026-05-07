@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -13,9 +14,26 @@ from pathlib import Path
 
 
 ROOT = Path(__file__).resolve().parents[1]
+
+
+def _resolve_env_path(env_var: str, default: Path) -> Path:
+    """Allow env var override for hardcoded paths (M-1 mitigation)."""
+    override = os.environ.get(env_var)
+    if override:
+        return Path(override).expanduser().resolve()
+    return default
+
+
 START_HERE_PATH = ROOT / "docs/00-START-HERE.md"
-SUMMARY_PATH = ROOT / "docs/research/strategic-upgrade/2026-05-07/audit/PHASE-A-B-SUMMARY.md"
-RUNS_DIR = ROOT / "docs/research/post-frozen/runs"
+SUMMARY_PATH = _resolve_env_path(
+    "SCOUTFLOW_SUMMARY_PATH",
+    ROOT / "docs/research/strategic-upgrade/2026-05-07/audit/PHASE-A-B-SUMMARY.md",
+)
+RUNS_DIR = _resolve_env_path(
+    "SCOUTFLOW_RUNS_DIR",
+    ROOT / "docs/research/post-frozen/runs",
+)
+REMOTE = os.environ.get("SCOUTFLOW_REMOTE", "origin")
 
 AUTO_BEGIN = "<!-- START_HERE_AUTO_ANCHORS_BEGIN -->"
 AUTO_END = "<!-- START_HERE_AUTO_ANCHORS_END -->"
@@ -69,7 +87,7 @@ def parse_pr_number(subject: str) -> int | None:
 
 
 def read_git_commits(repo: Path, limit: int = 3) -> list[GitCommit]:
-    output = run_git(repo, "log", "origin/main", f"-{limit}", "--pretty=%h%x09%s%x09%cs")
+    output = run_git(repo, "log", f"{REMOTE}/main", f"-{limit}", "--pretty=%h%x09%s%x09%cs")
     commits: list[GitCommit] = []
     for line in output.splitlines():
         sha, subject, _date = line.split("\t", 2)
@@ -206,7 +224,7 @@ def build_context(start_here_text: str) -> RefreshContext:
     next_forced_refresh_pr = frontmatter_int(
         start_here_text, "next_forced_refresh_pr", DEFAULT_NEXT_FORCED_REFRESH_PR
     )
-    last_updated = run_git(ROOT, "log", "origin/main", "-1", "--pretty=%cs")
+    last_updated = run_git(ROOT, "log", f"{REMOTE}/main", "-1", "--pretty=%cs")
     return RefreshContext(
         commits=commits,
         checkpoint_dispatch_total=sum_checkpoint_dispatches(RUNS_DIR),

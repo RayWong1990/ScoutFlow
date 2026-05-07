@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`1/3`，Review count=`0`，Authority writer count=`1/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-DOC-246` | `governance harness + retrospective + layer-2-audit follow-up + M-1/M-2 fix` | `active` | `cc1+cc0` | `docs+tools+tests+ci, governance lane` | `docs/00-START-HERE.md, docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md, docs/current.md, docs/task-index.md, docs/decision-log.md, docs/research/post-frozen/**, docs/memory/**, tools/refresh-start-here.py, tests/tools/**, .github/workflows/docs-check.yml, .gitignore` | `services/, apps/, workers/, packages/, data/, referencerepo/` | `D-017 + L-AUTHORITY-DRIFT lesson + master spec §14.4 closeout 顺序` | `pytest tests/tools (46 pass) + python tools/refresh-start-here.py --check + docs-check + secrets-redline` | `none` | `PR #246 in-progress; admin merge after Layer 2 audit subagent CLEAR + 战友 V-PASS` |
 
 ## Review
 
