@@ -1,0 +1,3067 @@
+{
+  "atlas_status": "candidate / supplementary / not-authority",
+  "generated_at": "2026-05-06T00:00:00Z-current-session",
+  "input_zip": "ScoutFlow-post176-cloud-audit-pack-2026-05-05.zip",
+  "input_prompt": "cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+  "availability_boundary": {
+    "available_zip_files": 100,
+    "unavailable_local_memory_paths": [
+      "~/.claude/projects/-Users-wanglei-workspace-ScoutFlow/memory/",
+      "~/workspace/ScoutFlow/plan/handoffs/",
+      "claude-mem SQLite + ChromaDB",
+      "jsonl session transcript",
+      "~/workspace/contentflow/L/",
+      "~/workspace/DiloFlow/",
+      "~/.claude/rules/"
+    ],
+    "github_connector_refs": [
+      "docs/decision-log.md turn1file0",
+      "docs/current.md turn2file0",
+      "docs/task-index.md turn3file0"
+    ]
+  },
+  "nodes": [
+    {
+      "node_id": "E-SCOUTFLOW",
+      "title": "ScoutFlow / 采集线",
+      "kind": "entity",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-BRIDGE-THIN-API",
+        "E-H5-CAPTURE-STATION",
+        "E-RAW-VAULT",
+        "E-RECEIPT-LEDGER",
+        "E-TRUST-TRACE",
+        "E-VAULTWRITER",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 16,
+      "claim_label": "canonical + candidate synthesis",
+      "file": "01_entity_nodes/E-SCOUTFLOW.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-RAW-VAULT",
+      "title": "RAW vault / 长期知识 SoR",
+      "kind": "entity",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+        "03_raw_sources/System/frontmatter-templates.md",
+        "03_raw_sources/System/intake-rules.md",
+        "03_raw_sources/System/domain-map.md"
+      ],
+      "linked_nodes": [
+        "E-DILOFLOW",
+        "E-SCOUTFLOW",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SCOUTFLOW-RAW-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 8,
+      "claim_label": "candidate synthesis",
+      "file": "01_entity_nodes/E-RAW-VAULT.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-DILOFLOW",
+      "title": "DiloFlow sibling consumer",
+      "kind": "entity",
+      "source": "memory_file",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md"
+      ],
+      "linked_nodes": [
+        "E-CONTENTFLOW",
+        "E-RAW-VAULT",
+        "T-AUTHORITY-FIRST",
+        "T-SECOND-KM-RISK"
+      ],
+      "risk_if_forgotten": "medium",
+      "cross_session_count": 1,
+      "claim_label": "unverified prompt-specified memory",
+      "file": "01_entity_nodes/E-DILOFLOW.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-CONTENTFLOW",
+      "title": "ContentFlow / L retrospective sibling source",
+      "kind": "entity",
+      "source": "memory_file",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md"
+      ],
+      "linked_nodes": [
+        "E-DILOFLOW",
+        "E-USER-PROSUMER",
+        "P-SELF-AUDIT-CLAIM-LABELS",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "medium",
+      "cross_session_count": 1,
+      "claim_label": "unverified prompt-specified memory",
+      "file": "01_entity_nodes/E-CONTENTFLOW.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-USER-PROSUMER",
+      "title": "用户：single-user prosumer / 最大马力 owner",
+      "kind": "entity",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "E-AI-AGENTS",
+        "E-CONTENTFLOW",
+        "F-MAX-HORSEPOWER",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-MAX-HORSEPOWER",
+        "T-SINGLE-USER-LOCAL-FIRST"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 12,
+      "claim_label": "canonical feedback synthesis",
+      "file": "01_entity_nodes/E-USER-PROSUMER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-AI-AGENTS",
+      "title": "AI agent mesh: GPT Pro / Codex / CC / Hermes / OpenClaw",
+      "kind": "entity",
+      "source": "handoff",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/COMMANDER-RUN-PROMPT.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/CODEX-AUDIT-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl"
+      ],
+      "linked_nodes": [
+        "E-SIGNAL",
+        "E-USER-PROSUMER",
+        "P-HANDOFF-COLD-START",
+        "T-AUTHORITY-FIRST",
+        "T-PARALLEL-LANES"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 14,
+      "claim_label": "candidate synthesis",
+      "file": "01_entity_nodes/E-AI-AGENTS.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-SIGNAL",
+      "title": "Signal entity v0",
+      "kind": "entity",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch131-T-P1A-110-signal-entity-glossary-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch132-T-P1A-111-signal-state-map-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch143-T-P1A-122-signal-scoring-vocabulary-candidate.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "E-AI-AGENTS",
+        "E-HYPOTHESIS",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 4,
+      "claim_label": "candidate docs",
+      "file": "01_entity_nodes/E-SIGNAL.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-HYPOTHESIS",
+      "title": "Hypothesis entity v0",
+      "kind": "entity",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch133-T-P1A-112-hypothesis-lifecycle-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch144-T-P1A-123-hypothesis-evidence-source-matrix.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch154-T-P1A-133-hypothesis-comparison-ux-candidate.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "E-CAPTURE-PLAN",
+        "E-SIGNAL",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 4,
+      "claim_label": "candidate docs",
+      "file": "01_entity_nodes/E-HYPOTHESIS.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-CAPTURE-PLAN",
+      "title": "CapturePlan entity v0",
+      "kind": "entity",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch134-T-P1A-113-capture-plan-entity-surface-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch142-T-P1A-121-capture-plan-input-output-contract-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch147-T-P1A-126-capture-plan-dry-run-note-shape.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch153-T-P1A-132-capture-plan-frontend-ia-candidate.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "E-HYPOTHESIS",
+        "E-TOPIC-CARD",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 4,
+      "claim_label": "candidate docs",
+      "file": "01_entity_nodes/E-CAPTURE-PLAN.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-TOPIC-CARD",
+      "title": "TopicCard / topic-card-lite",
+      "kind": "entity",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch135-T-P1A-114-topic-card-entity-surface-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch138-T-P1A-117-trust-trace-to-topic-card-mapping-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch141-T-P1A-120-topic-card-review-flow-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch145-T-P1A-124-topic-card-vault-rendering-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch146-T-P1A-125-topic-card-preview-shape-candidate.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-CAPTURE-PLAN",
+        "E-H5-CAPTURE-STATION",
+        "E-TRUST-TRACE",
+        "E-VAULTWRITER",
+        "P-PROOF-PAIR-CANARY",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 6,
+      "claim_label": "candidate docs + bounded evidence",
+      "file": "01_entity_nodes/E-TOPIC-CARD.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-H5-CAPTURE-STATION",
+      "title": "H5 Capture Station / strong visual surface",
+      "kind": "entity",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch128-T-P1A-107-wave4-visual-touchpoint-roster-and-localhost-plan.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch152-T-P1A-131-topic-card-frontend-ia-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch153-T-P1A-132-capture-plan-frontend-ia-candidate.md"
+      ],
+      "linked_nodes": [
+        "E-BRIDGE-THIN-API",
+        "E-SCOUTFLOW",
+        "E-TOPIC-CARD",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "T-AUTHORITY-FIRST",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 8,
+      "claim_label": "promoted addendum + candidate",
+      "file": "01_entity_nodes/E-H5-CAPTURE-STATION.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-BRIDGE-THIN-API",
+      "title": "Bridge / Thin API boundary",
+      "kind": "entity",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/bridge/vault_preview.py",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch129-T-P1A-108-wave4-bridge-vault-continuation-gap-matrix.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch162-T-P1A-141-bridge-hardening-post-110-continuation.md"
+      ],
+      "linked_nodes": [
+        "E-H5-CAPTURE-STATION",
+        "E-SCOUTFLOW",
+        "E-VAULTWRITER",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 7,
+      "claim_label": "promoted addendum + code reference",
+      "file": "01_entity_nodes/E-BRIDGE-THIN-API.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-VAULTWRITER",
+      "title": "VaultWriter / vault preview-write split",
+      "kind": "entity",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/vault/frontmatter.py",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/vault/renderer.py",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/vault/commit.py",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/vault/path_policy.py",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch163-T-P1A-142-vault-preview-continuation-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch164-T-P1A-143-vault-dry-run-continuation-candidate.md"
+      ],
+      "linked_nodes": [
+        "E-BRIDGE-THIN-API",
+        "E-RECEIPT-LEDGER",
+        "E-SCOUTFLOW",
+        "E-TOPIC-CARD",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 7,
+      "claim_label": "promoted addendum + code reference",
+      "file": "01_entity_nodes/E-VAULTWRITER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-RECEIPT-LEDGER",
+      "title": "Receipt ledger / artifact_assets",
+      "kind": "entity",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/task-index.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-SCOUTFLOW",
+        "E-TRUST-TRACE",
+        "E-VAULTWRITER",
+        "M-PHASE1A-MANUALURL",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 11,
+      "claim_label": "canonical fact",
+      "file": "01_entity_nodes/E-RECEIPT-LEDGER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "E-TRUST-TRACE",
+      "title": "Trust Trace / trace projection",
+      "kind": "entity",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch138-T-P1A-117-trust-trace-to-topic-card-mapping-candidate.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-RECEIPT-LEDGER",
+        "E-SCOUTFLOW",
+        "E-TOPIC-CARD",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 8,
+      "claim_label": "canonical + candidate synthesis",
+      "file": "01_entity_nodes/E-TRUST-TRACE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-AUTHORITY-FIRST",
+      "title": "Authority-first 四层与 SoR discipline",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/specs/contracts-index.md",
+        "02_repo_sources/docs/current.md"
+      ],
+      "linked_nodes": [
+        "E-AI-AGENTS",
+        "E-BRIDGE-THIN-API",
+        "E-CAPTURE-PLAN",
+        "E-CONTENTFLOW",
+        "E-DILOFLOW",
+        "E-H5-CAPTURE-STATION",
+        "E-HYPOTHESIS",
+        "E-RAW-VAULT",
+        "E-RECEIPT-LEDGER",
+        "E-SCOUTFLOW",
+        "E-SIGNAL",
+        "E-TOPIC-CARD",
+        "E-TRUST-TRACE",
+        "E-USER-PROSUMER",
+        "E-VAULTWRITER",
+        "F-AMEND-AND-PROCEED",
+        "F-DIRECT-MERGE-OK",
+        "F-GPT-PRO-AS-WORKER",
+        "F-LOOSER-NOT-CEREMONY",
+        "L-AUTHORITY-DRIFT",
+        "L-HANDOFF-OVERLONG",
+        "L-OVEROBJECTIFICATION",
+        "L-TOKEN-BUDGET",
+        "M-GIT-BOOTSTRAP",
+        "M-TRUST-TRACE",
+        "M-WAVE2-CLOSE",
+        "P-API-AS-WRITE-BOUNDARY",
+        "P-AUTHORITY-READBACK-BEFORE-WORK",
+        "R-EXTERNAL-SIX-REPORTS",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-MAX-HORSEPOWER"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 18,
+      "claim_label": "canonical fact",
+      "file": "02_theme_nodes/T-AUTHORITY-FIRST.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-MAX-HORSEPOWER",
+      "title": "最大马力开发 / 安全前提下并行",
+      "kind": "theme",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "E-USER-PROSUMER",
+        "T-AUTHORITY-FIRST",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 10,
+      "claim_label": "feedback + canonical constraints",
+      "file": "02_theme_nodes/T-MAX-HORSEPOWER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-STRONG-VISUAL",
+      "title": "强视觉一级 axis / 5-Gate aesthetic",
+      "kind": "theme",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch128-T-P1A-107-wave4-visual-touchpoint-roster-and-localhost-plan.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch156-T-P1A-135-wave5-visual-reporting-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch165-T-P1A-144-5-gate-ci-continuation-note.md"
+      ],
+      "linked_nodes": [
+        "E-H5-CAPTURE-STATION",
+        "E-TOPIC-CARD",
+        "F-STRONG-VISUAL-FIRST-CLASS",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "M-WAVE4-BATCH2-BATCH3",
+        "P-PROOF-PAIR-CANARY",
+        "P-VISUAL-REVIEW-5-GATE",
+        "T-MAX-HORSEPOWER",
+        "T-SINGLE-USER-LOCAL-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 9,
+      "claim_label": "feedback + candidate docs",
+      "file": "02_theme_nodes/T-STRONG-VISUAL.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-SINGLE-USER-LOCAL-FIRST",
+      "title": "single-user / local-first 产品边界",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-USER-PROSUMER",
+        "F-SINGLE-USER-PROSUMER",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 12,
+      "claim_label": "canonical fact",
+      "file": "02_theme_nodes/T-SINGLE-USER-LOCAL-FIRST.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-CANDIDATE-NOT-AUTHORITY",
+      "title": "candidate/not-authority discipline",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/specs/contracts-index.md",
+        "02_repo_sources/docs/task-index.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "E-BRIDGE-THIN-API",
+        "E-RAW-VAULT",
+        "E-RECEIPT-LEDGER",
+        "E-SCOUTFLOW",
+        "E-TOPIC-CARD",
+        "E-USER-PROSUMER",
+        "E-VAULTWRITER",
+        "F-DISPATCH-FROZEN-CORRECTION",
+        "F-MAX-HORSEPOWER",
+        "F-NOT-HEAVY-KM",
+        "F-SAFE-PARALLEL",
+        "L-AUTHORITY-DRIFT",
+        "L-BILIBILI-CRED-RISK",
+        "L-CANDIDATE-PROMOTION",
+        "L-MIGRATION-DRIFT",
+        "L-MULTIWINDOW-RACE",
+        "L-PRODUCT-CLOSURE-MISTAKE",
+        "L-RUNTIME-APPROVAL-DRIFT",
+        "L-SECOND-KNOWLEDGE-BASE",
+        "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+        "M-DISPATCH127-176-FROZEN",
+        "M-GIT-BOOTSTRAP",
+        "M-PHASE1A-MANUALURL",
+        "M-PRD-SRD-V2",
+        "M-RECEIPT-LEDGER",
+        "M-WAVE6-CANDIDATE-OPEN",
+        "P-API-AS-WRITE-BOUNDARY",
+        "P-AUTHORITY-READBACK-BEFORE-WORK",
+        "P-DUAL-TRUTH-SEPARATION",
+        "P-FROZEN-DISPATCH-AS-EVIDENCE",
+        "P-LOCAL-ONLY-AUTH-SAFETY",
+        "P-PROOF-PAIR-CANARY",
+        "P-SELF-AUDIT-CLAIM-LABELS",
+        "R-CURRENT-TASK-DECISION",
+        "R-PRD-SRD-CONTRACTS",
+        "T-AUTHORITY-FIRST",
+        "T-EXECUTION-GATES",
+        "T-FROZEN-DISPATCH-EVIDENCE",
+        "T-PARALLEL-LANES",
+        "T-PREVIEW-ONLY-VAULT",
+        "T-PRODUCT-PROOF-NOT-BREADTH",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-SECOND-KM-RISK",
+        "T-SINGLE-USER-LOCAL-FIRST",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 20,
+      "claim_label": "canonical fact",
+      "file": "02_theme_nodes/T-CANDIDATE-NOT-AUTHORITY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-EXECUTION-GATES",
+      "title": "runtime / migration / frontend / visual gates",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "L-MIGRATION-DRIFT",
+        "L-RUNTIME-APPROVAL-DRIFT",
+        "P-OVERFLOW-NOT-BLOCKER",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-OVERFLOW-REGISTRY",
+        "T-PRODUCT-PROOF-NOT-BREADTH"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 18,
+      "claim_label": "canonical fact",
+      "file": "02_theme_nodes/T-EXECUTION-GATES.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "title": "post176 主线：proof not breadth",
+      "kind": "theme",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md"
+      ],
+      "linked_nodes": [
+        "L-PRODUCT-CLOSURE-MISTAKE",
+        "P-PROOF-PAIR-CANARY",
+        "R-EXTERNAL-SIX-REPORTS",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-EXECUTION-GATES",
+        "T-SCOUTFLOW-RAW-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 6,
+      "claim_label": "candidate synthesis",
+      "file": "02_theme_nodes/T-PRODUCT-PROOF-NOT-BREADTH.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "title": "ScoutFlow ↔ RAW SoR boundary",
+      "kind": "theme",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+        "03_raw_sources/System/frontmatter-templates.md",
+        "03_raw_sources/System/intake-rules.md"
+      ],
+      "linked_nodes": [
+        "E-RAW-VAULT",
+        "E-TOPIC-CARD",
+        "E-VAULTWRITER",
+        "L-SECOND-KNOWLEDGE-BASE",
+        "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "P-DUAL-TRUTH-SEPARATION",
+        "R-RAW-SYSTEM-RULES",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PARALLEL-LANES",
+        "T-PREVIEW-ONLY-VAULT",
+        "T-PRODUCT-PROOF-NOT-BREADTH"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 8,
+      "claim_label": "candidate synthesis",
+      "file": "02_theme_nodes/T-SCOUTFLOW-RAW-BOUNDARY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-PARALLEL-LANES",
+      "title": "3 product lanes + 1 authority writer",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl"
+      ],
+      "linked_nodes": [
+        "E-AI-AGENTS",
+        "F-SAFE-PARALLEL",
+        "L-MULTIWINDOW-RACE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-OVERFLOW-REGISTRY",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 13,
+      "claim_label": "canonical fact",
+      "file": "02_theme_nodes/T-PARALLEL-LANES.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-OVERFLOW-REGISTRY",
+      "title": "overflow registry / blocked lanes discipline",
+      "kind": "theme",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch161-T-P1A-140-deferred-and-overflow-registry-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch175-T-P1A-154-overflow-candidate-registry-for-db-vnext-and-blocked-runtime-lanes.md",
+        "02_repo_sources/docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "T-EXECUTION-GATES",
+        "T-PARALLEL-LANES",
+        "T-PREVIEW-ONLY-VAULT"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "candidate docs",
+      "file": "02_theme_nodes/T-OVERFLOW-REGISTRY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-PREVIEW-ONLY-VAULT",
+      "title": "preview-only / write_enabled=False boundary",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/vault/commit.py",
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch163-T-P1A-142-vault-preview-continuation-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch164-T-P1A-143-vault-dry-run-continuation-candidate.md"
+      ],
+      "linked_nodes": [
+        "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-OVERFLOW-REGISTRY",
+        "T-RUNBOOK-READBACK",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 9,
+      "claim_label": "canonical + code reference",
+      "file": "02_theme_nodes/T-PREVIEW-ONLY-VAULT.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-RUNBOOK-READBACK",
+      "title": "readback delta / runbook discipline",
+      "kind": "theme",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch158-T-P1A-137-step3-commander-prompt-contract-note.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch159-T-P1A-138-cloud-draft-resume-and-packaging-rules.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch160-T-P1A-139-readback-delta-application-rules.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/COMMANDER-RUN-PROMPT.md",
+        "03_raw_sources/05-Projects/ScoutFlow/dispatches/RUN-Dispatch127-176-overnight-2026-05-05/STARTUP-SELF-CHECK.md"
+      ],
+      "linked_nodes": [
+        "P-HANDOFF-COLD-START",
+        "T-PREVIEW-ONLY-VAULT",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 7,
+      "claim_label": "candidate docs",
+      "file": "02_theme_nodes/T-RUNBOOK-READBACK.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-THIN-API-BOUNDARY",
+      "title": "Thin API is the only write channel",
+      "kind": "theme",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/bridge/vault_preview.py",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-BRIDGE-THIN-API",
+        "E-VAULTWRITER",
+        "F-SAFE-PARALLEL",
+        "L-MULTIWINDOW-RACE",
+        "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+        "P-API-AS-WRITE-BOUNDARY",
+        "P-PR-FACTORY-LANE-SHAPING",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PARALLEL-LANES",
+        "T-PREVIEW-ONLY-VAULT",
+        "T-RUNBOOK-READBACK",
+        "T-SECOND-KM-RISK"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 11,
+      "claim_label": "canonical fact",
+      "file": "02_theme_nodes/T-THIN-API-BOUNDARY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-SECOND-KM-RISK",
+      "title": "第二知识库风险 / mirror drift",
+      "kind": "theme",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-DILOFLOW",
+        "F-NOT-HEAVY-KM",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-FROZEN-DISPATCH-EVIDENCE",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 8,
+      "claim_label": "candidate synthesis",
+      "file": "02_theme_nodes/T-SECOND-KM-RISK.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "T-FROZEN-DISPATCH-EVIDENCE",
+      "title": "Dispatch126-176 frozen history, not reopening",
+      "kind": "theme",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "F-DISPATCH-FROZEN-CORRECTION",
+        "M-DISPATCH127-176-FROZEN",
+        "M-WAVE6-CANDIDATE-OPEN",
+        "P-FROZEN-DISPATCH-AS-EVIDENCE",
+        "R-DISPATCH127-176-PACK",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SECOND-KM-RISK"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 7,
+      "claim_label": "highest-priority feedback",
+      "file": "02_theme_nodes/T-FROZEN-DISPATCH-EVIDENCE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-AUTHORITY-READBACK-BEFORE-WORK",
+      "title": "先读 authority，再开工",
+      "kind": "pattern",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/specs/contracts-index.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch160-T-P1A-139-readback-delta-application-rules.md"
+      ],
+      "linked_nodes": [
+        "P-FROZEN-DISPATCH-AS-EVIDENCE",
+        "R-CURRENT-TASK-DECISION",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 15,
+      "claim_label": "recurring pattern",
+      "file": "03_pattern_nodes/P-AUTHORITY-READBACK-BEFORE-WORK.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-FROZEN-DISPATCH-AS-EVIDENCE",
+      "title": "冻结 dispatch 作为 evidence layer",
+      "kind": "pattern",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "M-DISPATCH127-176-FROZEN",
+        "P-AUTHORITY-READBACK-BEFORE-WORK",
+        "P-PROOF-PAIR-CANARY",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-FROZEN-DISPATCH-EVIDENCE"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 7,
+      "claim_label": "recurring pattern",
+      "file": "03_pattern_nodes/P-FROZEN-DISPATCH-AS-EVIDENCE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-PROOF-PAIR-CANARY",
+      "title": "Topic-card proof pair canary",
+      "kind": "pattern",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch145-T-P1A-124-topic-card-vault-rendering-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch146-T-P1A-125-topic-card-preview-shape-candidate.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "E-TOPIC-CARD",
+        "P-FROZEN-DISPATCH-AS-EVIDENCE",
+        "P-OBJECTS-AFTER-PROOF",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PRODUCT-PROOF-NOT-BREADTH",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 5,
+      "claim_label": "candidate pattern",
+      "file": "03_pattern_nodes/P-PROOF-PAIR-CANARY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-OBJECTS-AFTER-PROOF",
+      "title": "先 proof 后对象化扩张",
+      "kind": "pattern",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "L-OVEROBJECTIFICATION",
+        "P-API-AS-WRITE-BOUNDARY",
+        "P-PROOF-PAIR-CANARY"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 6,
+      "claim_label": "candidate pattern",
+      "file": "03_pattern_nodes/P-OBJECTS-AFTER-PROOF.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-API-AS-WRITE-BOUNDARY",
+      "title": "API-as-write-boundary",
+      "kind": "pattern",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "P-LOCAL-ONLY-AUTH-SAFETY",
+        "P-OBJECTS-AFTER-PROOF",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 12,
+      "claim_label": "canonical pattern",
+      "file": "03_pattern_nodes/P-API-AS-WRITE-BOUNDARY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-LOCAL-ONLY-AUTH-SAFETY",
+      "title": "local-only auth / credential isolation",
+      "kind": "pattern",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/current.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "L-BILIBILI-CRED-RISK",
+        "P-API-AS-WRITE-BOUNDARY",
+        "P-PR-FACTORY-LANE-SHAPING",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 8,
+      "claim_label": "canonical pattern",
+      "file": "03_pattern_nodes/P-LOCAL-ONLY-AUTH-SAFETY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-PR-FACTORY-LANE-SHAPING",
+      "title": "PR Factory lane shaping",
+      "kind": "pattern",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md",
+        "02_repo_sources/docs/task-index.md"
+      ],
+      "linked_nodes": [
+        "P-LOCAL-ONLY-AUTH-SAFETY",
+        "P-OVERFLOW-NOT-BLOCKER",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 7,
+      "claim_label": "promoted addendum pattern",
+      "file": "03_pattern_nodes/P-PR-FACTORY-LANE-SHAPING.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-OVERFLOW-NOT-BLOCKER",
+      "title": "Overflow captures options without blocking proof",
+      "kind": "pattern",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch161-T-P1A-140-deferred-and-overflow-registry-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch175-T-P1A-154-overflow-candidate-registry-for-db-vnext-and-blocked-runtime-lanes.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "02_repo_sources/docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "P-DUAL-TRUTH-SEPARATION",
+        "P-PR-FACTORY-LANE-SHAPING",
+        "T-EXECUTION-GATES"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "candidate pattern",
+      "file": "03_pattern_nodes/P-OVERFLOW-NOT-BLOCKER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-DUAL-TRUTH-SEPARATION",
+      "title": "Zip truth / GitHub live truth / RAW truth separation",
+      "kind": "pattern",
+      "source": "retrospective",
+      "source_path": [
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "00_overview/INCLUDED-SOURCES.md",
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "02_repo_sources/docs/current.md"
+      ],
+      "linked_nodes": [
+        "P-OVERFLOW-NOT-BLOCKER",
+        "P-VISUAL-REVIEW-5-GATE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SCOUTFLOW-RAW-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 9,
+      "claim_label": "candidate pattern",
+      "file": "03_pattern_nodes/P-DUAL-TRUTH-SEPARATION.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-VISUAL-REVIEW-5-GATE",
+      "title": "5-Gate visual review",
+      "kind": "pattern",
+      "source": "feedback",
+      "source_path": [
+        "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch156-T-P1A-135-wave5-visual-reporting-candidate.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch165-T-P1A-144-5-gate-ci-continuation-note.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch167-T-P1A-146-visual-regression-reporting-continuation.md"
+      ],
+      "linked_nodes": [
+        "P-DUAL-TRUTH-SEPARATION",
+        "P-HANDOFF-COLD-START",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 7,
+      "claim_label": "candidate + promoted pattern",
+      "file": "03_pattern_nodes/P-VISUAL-REVIEW-5-GATE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-HANDOFF-COLD-START",
+      "title": "cold-start handoff packet",
+      "kind": "pattern",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch176-T-P1A-155-step3-cold-start-handoff-packet-contract.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/COMMANDER-RUN-PROMPT.md",
+        "03_raw_sources/05-Projects/ScoutFlow/dispatches/RUN-Dispatch127-176-overnight-2026-05-05/STARTUP-SELF-CHECK.md"
+      ],
+      "linked_nodes": [
+        "E-AI-AGENTS",
+        "P-SELF-AUDIT-CLAIM-LABELS",
+        "P-VISUAL-REVIEW-5-GATE",
+        "T-RUNBOOK-READBACK"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "candidate pattern",
+      "file": "03_pattern_nodes/P-HANDOFF-COLD-START.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "P-SELF-AUDIT-CLAIM-LABELS",
+      "title": "claim labels + self-audit as anti-drift",
+      "kind": "pattern",
+      "source": "retrospective",
+      "source_path": [
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "02_repo_sources/docs/specs/contracts-index.md"
+      ],
+      "linked_nodes": [
+        "E-CONTENTFLOW",
+        "P-HANDOFF-COLD-START",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 8,
+      "claim_label": "recurring pattern",
+      "file": "03_pattern_nodes/P-SELF-AUDIT-CLAIM-LABELS.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-AUTHORITY-DRIFT",
+      "title": "踩坑：authority drift",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/current.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+        "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "L-RUNTIME-APPROVAL-DRIFT",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 16,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-AUTHORITY-DRIFT.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-RUNTIME-APPROVAL-DRIFT",
+      "title": "踩坑：runtime approval drift",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "L-AUTHORITY-DRIFT",
+        "L-MIGRATION-DRIFT",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-EXECUTION-GATES"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 14,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-RUNTIME-APPROVAL-DRIFT.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-MIGRATION-DRIFT",
+      "title": "踩坑：DB/migration 被 candidate 偷渡",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "02_repo_sources/docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch175-T-P1A-154-overflow-candidate-registry-for-db-vnext-and-blocked-runtime-lanes.md"
+      ],
+      "linked_nodes": [
+        "L-RUNTIME-APPROVAL-DRIFT",
+        "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-EXECUTION-GATES"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 8,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-MIGRATION-DRIFT.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "title": "踩坑：把 vault preview 当 true write",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/code_refs/services/api/scoutflow_api/vault/commit.py",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "L-MIGRATION-DRIFT",
+        "L-SECOND-KNOWLEDGE-BASE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PREVIEW-ONLY-VAULT",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 9,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-VAULT-PREVIEW-AS-TRUE-WRITE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-SECOND-KNOWLEDGE-BASE",
+      "title": "踩坑：第二知识库 / mirror truth",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md"
+      ],
+      "linked_nodes": [
+        "L-HANDOFF-OVERLONG",
+        "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SCOUTFLOW-RAW-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 6,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-SECOND-KNOWLEDGE-BASE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-HANDOFF-OVERLONG",
+      "title": "踩坑：handoff 过长但不可执行",
+      "kind": "lesson",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch158-T-P1A-137-step3-commander-prompt-contract-note.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch159-T-P1A-138-cloud-draft-resume-and-packaging-rules.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch176-T-P1A-155-step3-cold-start-handoff-packet-contract.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "L-CANDIDATE-PROMOTION",
+        "L-SECOND-KNOWLEDGE-BASE",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-HANDOFF-OVERLONG.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-CANDIDATE-PROMOTION",
+      "title": "踩坑：candidate 漂移成 authority",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "02_repo_sources/docs/specs/contracts-index.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "L-HANDOFF-OVERLONG",
+        "L-MULTIWINDOW-RACE",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 18,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-CANDIDATE-PROMOTION.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-MULTIWINDOW-RACE",
+      "title": "踩坑：多窗口 race / authority writer 冲突",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+        "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "L-CANDIDATE-PROMOTION",
+        "L-TOKEN-BUDGET",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PARALLEL-LANES",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 10,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-MULTIWINDOW-RACE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-TOKEN-BUDGET",
+      "title": "踩坑：token over budget / 全量读取错觉",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl"
+      ],
+      "linked_nodes": [
+        "L-BILIBILI-CRED-RISK",
+        "L-MULTIWINDOW-RACE",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 2,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-TOKEN-BUDGET.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-BILIBILI-CRED-RISK",
+      "title": "踩坑：Bilibili / credential / C&D 风险",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+        "02_repo_sources/docs/task-index.md"
+      ],
+      "linked_nodes": [
+        "L-PRODUCT-CLOSURE-MISTAKE",
+        "L-TOKEN-BUDGET",
+        "P-LOCAL-ONLY-AUTH-SAFETY",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 9,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-BILIBILI-CRED-RISK.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-PRODUCT-CLOSURE-MISTAKE",
+      "title": "踩坑：工程闭环误当产品闭环",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "L-BILIBILI-CRED-RISK",
+        "L-OVEROBJECTIFICATION",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PRODUCT-PROOF-NOT-BREADTH"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 5,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-PRODUCT-CLOSURE-MISTAKE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "L-OVEROBJECTIFICATION",
+      "title": "踩坑：过早对象化 / 单人 prosumer 工具链膨胀",
+      "kind": "lesson",
+      "source": "retrospective",
+      "source_path": [
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md",
+        "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md"
+      ],
+      "linked_nodes": [
+        "L-PRODUCT-CLOSURE-MISTAKE",
+        "P-OBJECTS-AFTER-PROOF",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 6,
+      "claim_label": "lesson",
+      "file": "04_lesson_nodes/L-OVEROBJECTIFICATION.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-GIT-BOOTSTRAP",
+      "title": "2026-05-03 GitHub bootstrap / Step0 baseline",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "api_tool:docs/decision-log.md#2026-05-03",
+        "02_repo_sources/docs/task-index.md"
+      ],
+      "linked_nodes": [
+        "M-PHASE1A-MANUALURL",
+        "T-AUTHORITY-FIRST",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "medium",
+      "cross_session_count": 4,
+      "claim_label": "canonical decision",
+      "file": "05_milestone_nodes/M-GIT-BOOTSTRAP.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-PHASE1A-MANUALURL",
+      "title": "Phase 1A manual_url metadata-only authorized",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "api_tool:docs/decision-log.md#T-P1A-001",
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "E-RECEIPT-LEDGER",
+        "M-GIT-BOOTSTRAP",
+        "M-RECEIPT-LEDGER",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 5,
+      "claim_label": "canonical decision",
+      "file": "05_milestone_nodes/M-PHASE1A-MANUALURL.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-RECEIPT-LEDGER",
+      "title": "Receipt ledger / artifact_assets baseline",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "api_tool:docs/decision-log.md#T-P1A-002",
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "M-PHASE1A-MANUALURL",
+        "M-TRUST-TRACE",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 6,
+      "claim_label": "canonical decision",
+      "file": "05_milestone_nodes/M-RECEIPT-LEDGER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-TRUST-TRACE",
+      "title": "Trust Trace API surface completed",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "api_tool:docs/decision-log.md#T-P1A-013",
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "M-PRD-SRD-V2",
+        "M-RECEIPT-LEDGER",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "canonical decision",
+      "file": "05_milestone_nodes/M-TRUST-TRACE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-PRD-SRD-V2",
+      "title": "PRD-v2 / SRD-v2 promoted",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/specs/contracts-index.md"
+      ],
+      "linked_nodes": [
+        "M-TRUST-TRACE",
+        "M-WAVE2-CLOSE",
+        "R-PRD-SRD-CONTRACTS",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 5,
+      "claim_label": "canonical fact",
+      "file": "05_milestone_nodes/M-PRD-SRD-V2.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-WAVE2-CLOSE",
+      "title": "Wave 2 closed / authority reconciliation",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/task-index.md",
+        "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "M-PRD-SRD-V2",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "medium",
+      "cross_session_count": 4,
+      "claim_label": "canonical fact",
+      "file": "05_milestone_nodes/M-WAVE2-CLOSE.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "title": "Wave 3B H5 / Bridge / Vault planning landed",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "E-BRIDGE-THIN-API",
+        "E-H5-CAPTURE-STATION",
+        "E-VAULTWRITER",
+        "M-WAVE2-CLOSE",
+        "M-WAVE4-BATCH2-BATCH3",
+        "T-SCOUTFLOW-RAW-BOUNDARY",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 6,
+      "claim_label": "canonical + promoted addendum",
+      "file": "05_milestone_nodes/M-WAVE3B-H5-BRIDGE-VAULT.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-WAVE4-BATCH2-BATCH3",
+      "title": "Wave 4 Batch2/3 app+service candidate surfaces landed",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/task-index.md",
+        "02_repo_sources/docs/current.md",
+        "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md"
+      ],
+      "linked_nodes": [
+        "M-DISPATCH127-176-FROZEN",
+        "M-WAVE3B-H5-BRIDGE-VAULT",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 6,
+      "claim_label": "canonical fact",
+      "file": "05_milestone_nodes/M-WAVE4-BATCH2-BATCH3.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-DISPATCH127-176-FROZEN",
+      "title": "Dispatch126-176 executed and frozen",
+      "kind": "milestone",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md"
+      ],
+      "linked_nodes": [
+        "M-WAVE4-BATCH2-BATCH3",
+        "M-WAVE6-CANDIDATE-OPEN",
+        "P-FROZEN-DISPATCH-AS-EVIDENCE",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-FROZEN-DISPATCH-EVIDENCE"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 6,
+      "claim_label": "highest-priority feedback",
+      "file": "05_milestone_nodes/M-DISPATCH127-176-FROZEN.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "M-WAVE6-CANDIDATE-OPEN",
+      "title": "Wave 6 candidate open / no code-bearing next gate",
+      "kind": "milestone",
+      "source": "decision_log",
+      "source_path": [
+        "api_tool:docs/current.md#2026-05-06",
+        "api_tool:docs/task-index.md#T-P1A-152-155",
+        "04_outputs/post-dispatch176-report-index-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "M-DISPATCH127-176-FROZEN",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-FROZEN-DISPATCH-EVIDENCE"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 5,
+      "claim_label": "live GitHub authority",
+      "file": "05_milestone_nodes/M-WAVE6-CANDIDATE-OPEN.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-MAX-HORSEPOWER",
+      "title": "用户反馈：最大化马力 / 最大效率",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md"
+      ],
+      "linked_nodes": [
+        "E-USER-PROSUMER",
+        "F-LOOSER-NOT-CEREMONY",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 7,
+      "claim_label": "direct feedback",
+      "file": "06_feedback_nodes/F-MAX-HORSEPOWER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-LOOSER-NOT-CEREMONY",
+      "title": "用户反馈：松一点，不堆 ceremony",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+        "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "F-MAX-HORSEPOWER",
+        "F-STRONG-VISUAL-FIRST-CLASS",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "feedback synthesis",
+      "file": "06_feedback_nodes/F-LOOSER-NOT-CEREMONY.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-STRONG-VISUAL-FIRST-CLASS",
+      "title": "用户反馈：强视觉是一级轴",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "F-LOOSER-NOT-CEREMONY",
+        "F-SAFE-PARALLEL",
+        "T-STRONG-VISUAL"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 7,
+      "claim_label": "direct feedback + addendum",
+      "file": "06_feedback_nodes/F-STRONG-VISUAL-FIRST-CLASS.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-SAFE-PARALLEL",
+      "title": "用户反馈：安全前提下最大并行",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/task-index.md"
+      ],
+      "linked_nodes": [
+        "F-GPT-PRO-AS-WORKER",
+        "F-STRONG-VISUAL-FIRST-CLASS",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-PARALLEL-LANES",
+        "T-THIN-API-BOUNDARY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 9,
+      "claim_label": "direct feedback + canonical",
+      "file": "06_feedback_nodes/F-SAFE-PARALLEL.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-GPT-PRO-AS-WORKER",
+      "title": "用户反馈：用 GPT Pro 干活",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md"
+      ],
+      "linked_nodes": [
+        "F-AMEND-AND-PROCEED",
+        "F-SAFE-PARALLEL",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "medium",
+      "cross_session_count": 4,
+      "claim_label": "prompt-specified feedback",
+      "file": "06_feedback_nodes/F-GPT-PRO-AS-WORKER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-AMEND-AND-PROCEED",
+      "title": "用户反馈：amend_and_proceed",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "F-DIRECT-MERGE-OK",
+        "F-GPT-PRO-AS-WORKER",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 6,
+      "claim_label": "feedback synthesis",
+      "file": "06_feedback_nodes/F-AMEND-AND-PROCEED.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-DIRECT-MERGE-OK",
+      "title": "用户反馈：可直 merge，但要不越界",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md",
+        "02_repo_sources/docs/task-index.md"
+      ],
+      "linked_nodes": [
+        "F-AMEND-AND-PROCEED",
+        "F-NOT-HEAVY-KM",
+        "T-AUTHORITY-FIRST"
+      ],
+      "risk_if_forgotten": "medium",
+      "cross_session_count": 4,
+      "claim_label": "feedback synthesis",
+      "file": "06_feedback_nodes/F-DIRECT-MERGE-OK.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-NOT-HEAVY-KM",
+      "title": "用户反馈：不要重 KM / 第二知识库",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+        "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+        "/mnt/data/cloud-prompt-U16-cross-session-memory-graph-2026-05-07.md"
+      ],
+      "linked_nodes": [
+        "F-DIRECT-MERGE-OK",
+        "F-SINGLE-USER-PROSUMER",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-SECOND-KM-RISK"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 5,
+      "claim_label": "feedback synthesis",
+      "file": "06_feedback_nodes/F-NOT-HEAVY-KM.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-SINGLE-USER-PROSUMER",
+      "title": "用户反馈：单人 prosumer max horsepower",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "00_overview/USER-CORRECTION-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "F-DISPATCH-FROZEN-CORRECTION",
+        "F-NOT-HEAVY-KM",
+        "T-SINGLE-USER-LOCAL-FIRST"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 8,
+      "claim_label": "canonical + feedback",
+      "file": "06_feedback_nodes/F-SINGLE-USER-PROSUMER.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "F-DISPATCH-FROZEN-CORRECTION",
+      "title": "用户反馈：126-176 已执行冻结",
+      "kind": "feedback",
+      "source": "feedback",
+      "source_path": [
+        "00_overview/USER-CORRECTION-2026-05-05.md",
+        "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl"
+      ],
+      "linked_nodes": [
+        "F-SINGLE-USER-PROSUMER",
+        "T-CANDIDATE-NOT-AUTHORITY",
+        "T-FROZEN-DISPATCH-EVIDENCE"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 6,
+      "claim_label": "highest-priority direct feedback",
+      "file": "06_feedback_nodes/F-DISPATCH-FROZEN-CORRECTION.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "R-PRD-SRD-CONTRACTS",
+      "title": "PRD/SRD/contracts authority stack",
+      "kind": "reference",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+        "02_repo_sources/docs/specs/contracts-index.md",
+        "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+        "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md"
+      ],
+      "linked_nodes": [
+        "M-PRD-SRD-V2",
+        "R-CURRENT-TASK-DECISION",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 12,
+      "claim_label": "canonical reference",
+      "file": "07_reference_nodes/R-PRD-SRD-CONTRACTS.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "R-CURRENT-TASK-DECISION",
+      "title": "current/task-index/decision-log live readback",
+      "kind": "reference",
+      "source": "decision_log",
+      "source_path": [
+        "02_repo_sources/docs/current.md",
+        "02_repo_sources/docs/task-index.md",
+        "api_tool:docs/current.md#turn2file0",
+        "api_tool:docs/task-index.md#turn3file0",
+        "api_tool:docs/decision-log.md#turn1file0"
+      ],
+      "linked_nodes": [
+        "P-AUTHORITY-READBACK-BEFORE-WORK",
+        "R-DISPATCH127-176-PACK",
+        "R-PRD-SRD-CONTRACTS",
+        "T-CANDIDATE-NOT-AUTHORITY"
+      ],
+      "risk_if_forgotten": "critical",
+      "cross_session_count": 16,
+      "claim_label": "canonical reference",
+      "file": "07_reference_nodes/R-CURRENT-TASK-DECISION.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "R-DISPATCH127-176-PACK",
+      "title": "Dispatch127-176 autoexec frozen pack",
+      "kind": "reference",
+      "source": "handoff",
+      "source_path": [
+        "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+        "03_raw_sources/dispatch127-176-autoexec-pack/worklist-amendment.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/COMMANDER-RUN-PROMPT.md",
+        "03_raw_sources/dispatch127-176-autoexec-pack/CODEX-AUDIT-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "R-CURRENT-TASK-DECISION",
+        "R-RAW-SYSTEM-RULES",
+        "T-FROZEN-DISPATCH-EVIDENCE"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "frozen evidence reference",
+      "file": "07_reference_nodes/R-DISPATCH127-176-PACK.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "R-RAW-SYSTEM-RULES",
+      "title": "RAW system rules and frontmatter contracts",
+      "kind": "reference",
+      "source": "retrospective",
+      "source_path": [
+        "03_raw_sources/System/frontmatter-templates.md",
+        "03_raw_sources/System/intake-rules.md",
+        "03_raw_sources/System/domain-map.md",
+        "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "R-DISPATCH127-176-PACK",
+        "R-EXTERNAL-SIX-REPORTS",
+        "T-SCOUTFLOW-RAW-BOUNDARY"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 5,
+      "claim_label": "reference",
+      "file": "07_reference_nodes/R-RAW-SYSTEM-RULES.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    },
+    {
+      "node_id": "R-EXTERNAL-SIX-REPORTS",
+      "title": "Six external reports as candidate research corpus",
+      "kind": "reference",
+      "source": "retrospective",
+      "source_path": [
+        "00_overview/INCLUDED-SOURCES.md",
+        "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md",
+        "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+        "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md",
+        "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+        "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md",
+        "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md"
+      ],
+      "linked_nodes": [
+        "R-RAW-SYSTEM-RULES",
+        "T-AUTHORITY-FIRST",
+        "T-PRODUCT-PROOF-NOT-BREADTH"
+      ],
+      "risk_if_forgotten": "high",
+      "cross_session_count": 6,
+      "claim_label": "candidate research reference",
+      "file": "07_reference_nodes/R-EXTERNAL-SIX-REPORTS.md",
+      "note": "This graph is a supplementary atlas; it does not replace canonical memory, GitHub authority docs, or RAW source-of-record."
+    }
+  ],
+  "edges": [
+    {
+      "from": "E-AI-AGENTS",
+      "to": "E-SIGNAL",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-AI-AGENTS",
+      "to": "E-USER-PROSUMER",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-AI-AGENTS",
+      "to": "P-HANDOFF-COLD-START",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-AI-AGENTS",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-AI-AGENTS",
+      "to": "T-PARALLEL-LANES",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "E-H5-CAPTURE-STATION",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "E-SCOUTFLOW",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "E-VAULTWRITER",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-BRIDGE-THIN-API",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "E-CAPTURE-PLAN",
+      "to": "E-HYPOTHESIS",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-CAPTURE-PLAN",
+      "to": "E-HYPOTHESIS",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-CAPTURE-PLAN",
+      "to": "E-TOPIC-CARD",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-CAPTURE-PLAN",
+      "to": "E-TOPIC-CARD",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-CAPTURE-PLAN",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-CONTENTFLOW",
+      "to": "E-DILOFLOW",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-CONTENTFLOW",
+      "to": "E-DILOFLOW",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-CONTENTFLOW",
+      "to": "E-USER-PROSUMER",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-CONTENTFLOW",
+      "to": "P-SELF-AUDIT-CLAIM-LABELS",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-CONTENTFLOW",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-DILOFLOW",
+      "to": "E-RAW-VAULT",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-DILOFLOW",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-DILOFLOW",
+      "to": "T-SECOND-KM-RISK",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-H5-CAPTURE-STATION",
+      "to": "E-SCOUTFLOW",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-H5-CAPTURE-STATION",
+      "to": "E-TOPIC-CARD",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-H5-CAPTURE-STATION",
+      "to": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-H5-CAPTURE-STATION",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-H5-CAPTURE-STATION",
+      "to": "T-STRONG-VISUAL",
+      "relation": "visual"
+    },
+    {
+      "from": "E-HYPOTHESIS",
+      "to": "E-SIGNAL",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-HYPOTHESIS",
+      "to": "E-SIGNAL",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-HYPOTHESIS",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-RAW-VAULT",
+      "to": "E-SCOUTFLOW",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-RAW-VAULT",
+      "to": "E-SCOUTFLOW",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-RAW-VAULT",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-RAW-VAULT",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-RAW-VAULT",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "E-RECEIPT-LEDGER",
+      "to": "E-SCOUTFLOW",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-RECEIPT-LEDGER",
+      "to": "E-TRUST-TRACE",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-RECEIPT-LEDGER",
+      "to": "E-VAULTWRITER",
+      "relation": "entity_sequence"
+    },
+    {
+      "from": "E-RECEIPT-LEDGER",
+      "to": "M-PHASE1A-MANUALURL",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-RECEIPT-LEDGER",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-RECEIPT-LEDGER",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-SCOUTFLOW",
+      "to": "E-TRUST-TRACE",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-SCOUTFLOW",
+      "to": "E-VAULTWRITER",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-SCOUTFLOW",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-SCOUTFLOW",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-SIGNAL",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "E-TRUST-TRACE",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "E-VAULTWRITER",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "P-PROOF-PAIR-CANARY",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "E-TOPIC-CARD",
+      "to": "T-STRONG-VISUAL",
+      "relation": "visual"
+    },
+    {
+      "from": "E-TRUST-TRACE",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-USER-PROSUMER",
+      "to": "F-MAX-HORSEPOWER",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-USER-PROSUMER",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-USER-PROSUMER",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-USER-PROSUMER",
+      "to": "T-MAX-HORSEPOWER",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-USER-PROSUMER",
+      "to": "T-SINGLE-USER-LOCAL-FIRST",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-VAULTWRITER",
+      "to": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "relation": "semantic"
+    },
+    {
+      "from": "E-VAULTWRITER",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "entity_theme"
+    },
+    {
+      "from": "E-VAULTWRITER",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "E-VAULTWRITER",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "E-VAULTWRITER",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "F-AMEND-AND-PROCEED",
+      "to": "F-DIRECT-MERGE-OK",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-AMEND-AND-PROCEED",
+      "to": "F-GPT-PRO-AS-WORKER",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-AMEND-AND-PROCEED",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "F-DIRECT-MERGE-OK",
+      "to": "F-NOT-HEAVY-KM",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-DIRECT-MERGE-OK",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "F-DISPATCH-FROZEN-CORRECTION",
+      "to": "F-SINGLE-USER-PROSUMER",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-DISPATCH-FROZEN-CORRECTION",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "F-DISPATCH-FROZEN-CORRECTION",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "frozen"
+    },
+    {
+      "from": "F-DISPATCH-FROZEN-CORRECTION",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "semantic"
+    },
+    {
+      "from": "F-GPT-PRO-AS-WORKER",
+      "to": "F-SAFE-PARALLEL",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-GPT-PRO-AS-WORKER",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "F-LOOSER-NOT-CEREMONY",
+      "to": "F-MAX-HORSEPOWER",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-LOOSER-NOT-CEREMONY",
+      "to": "F-STRONG-VISUAL-FIRST-CLASS",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-LOOSER-NOT-CEREMONY",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "F-MAX-HORSEPOWER",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "F-NOT-HEAVY-KM",
+      "to": "F-SINGLE-USER-PROSUMER",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-NOT-HEAVY-KM",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "F-NOT-HEAVY-KM",
+      "to": "T-SECOND-KM-RISK",
+      "relation": "semantic"
+    },
+    {
+      "from": "F-SAFE-PARALLEL",
+      "to": "F-STRONG-VISUAL-FIRST-CLASS",
+      "relation": "feedback_sequence"
+    },
+    {
+      "from": "F-SAFE-PARALLEL",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "F-SAFE-PARALLEL",
+      "to": "T-PARALLEL-LANES",
+      "relation": "semantic"
+    },
+    {
+      "from": "F-SAFE-PARALLEL",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "F-SINGLE-USER-PROSUMER",
+      "to": "T-SINGLE-USER-LOCAL-FIRST",
+      "relation": "semantic"
+    },
+    {
+      "from": "F-STRONG-VISUAL-FIRST-CLASS",
+      "to": "T-STRONG-VISUAL",
+      "relation": "semantic"
+    },
+    {
+      "from": "F-STRONG-VISUAL-FIRST-CLASS",
+      "to": "T-STRONG-VISUAL",
+      "relation": "visual"
+    },
+    {
+      "from": "L-AUTHORITY-DRIFT",
+      "to": "L-RUNTIME-APPROVAL-DRIFT",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-AUTHORITY-DRIFT",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-AUTHORITY-DRIFT",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-BILIBILI-CRED-RISK",
+      "to": "L-PRODUCT-CLOSURE-MISTAKE",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-BILIBILI-CRED-RISK",
+      "to": "L-TOKEN-BUDGET",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-BILIBILI-CRED-RISK",
+      "to": "P-LOCAL-ONLY-AUTH-SAFETY",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-BILIBILI-CRED-RISK",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-CANDIDATE-PROMOTION",
+      "to": "L-HANDOFF-OVERLONG",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-CANDIDATE-PROMOTION",
+      "to": "L-MULTIWINDOW-RACE",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-CANDIDATE-PROMOTION",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-CANDIDATE-PROMOTION",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-HANDOFF-OVERLONG",
+      "to": "L-SECOND-KNOWLEDGE-BASE",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-HANDOFF-OVERLONG",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "L-MIGRATION-DRIFT",
+      "to": "L-RUNTIME-APPROVAL-DRIFT",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-MIGRATION-DRIFT",
+      "to": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-MIGRATION-DRIFT",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-MIGRATION-DRIFT",
+      "to": "T-EXECUTION-GATES",
+      "relation": "approval_gate"
+    },
+    {
+      "from": "L-MIGRATION-DRIFT",
+      "to": "T-EXECUTION-GATES",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-MULTIWINDOW-RACE",
+      "to": "L-TOKEN-BUDGET",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-MULTIWINDOW-RACE",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-MULTIWINDOW-RACE",
+      "to": "T-PARALLEL-LANES",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-MULTIWINDOW-RACE",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "L-OVEROBJECTIFICATION",
+      "to": "L-PRODUCT-CLOSURE-MISTAKE",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-OVEROBJECTIFICATION",
+      "to": "P-OBJECTS-AFTER-PROOF",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-OVEROBJECTIFICATION",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "L-PRODUCT-CLOSURE-MISTAKE",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-PRODUCT-CLOSURE-MISTAKE",
+      "to": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-RUNTIME-APPROVAL-DRIFT",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-RUNTIME-APPROVAL-DRIFT",
+      "to": "T-EXECUTION-GATES",
+      "relation": "approval_gate"
+    },
+    {
+      "from": "L-RUNTIME-APPROVAL-DRIFT",
+      "to": "T-EXECUTION-GATES",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-SECOND-KNOWLEDGE-BASE",
+      "to": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "relation": "lesson_sequence"
+    },
+    {
+      "from": "L-SECOND-KNOWLEDGE-BASE",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-SECOND-KNOWLEDGE-BASE",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-TOKEN-BUDGET",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "to": "T-PREVIEW-ONLY-VAULT",
+      "relation": "semantic"
+    },
+    {
+      "from": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "L-VAULT-PREVIEW-AS-TRUE-WRITE",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "M-DISPATCH127-176-FROZEN",
+      "to": "M-WAVE4-BATCH2-BATCH3",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-DISPATCH127-176-FROZEN",
+      "to": "M-WAVE6-CANDIDATE-OPEN",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-DISPATCH127-176-FROZEN",
+      "to": "P-FROZEN-DISPATCH-AS-EVIDENCE",
+      "relation": "semantic"
+    },
+    {
+      "from": "M-DISPATCH127-176-FROZEN",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "M-DISPATCH127-176-FROZEN",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "frozen"
+    },
+    {
+      "from": "M-GIT-BOOTSTRAP",
+      "to": "M-PHASE1A-MANUALURL",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-GIT-BOOTSTRAP",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "M-GIT-BOOTSTRAP",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "M-PHASE1A-MANUALURL",
+      "to": "M-RECEIPT-LEDGER",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-PHASE1A-MANUALURL",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "M-PRD-SRD-V2",
+      "to": "M-TRUST-TRACE",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-PRD-SRD-V2",
+      "to": "M-WAVE2-CLOSE",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-PRD-SRD-V2",
+      "to": "R-PRD-SRD-CONTRACTS",
+      "relation": "semantic"
+    },
+    {
+      "from": "M-PRD-SRD-V2",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "M-RECEIPT-LEDGER",
+      "to": "M-TRUST-TRACE",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-RECEIPT-LEDGER",
+      "to": "M-TRUST-TRACE",
+      "relation": "semantic"
+    },
+    {
+      "from": "M-RECEIPT-LEDGER",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "M-TRUST-TRACE",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "M-WAVE2-CLOSE",
+      "to": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-WAVE2-CLOSE",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "to": "M-WAVE4-BATCH2-BATCH3",
+      "relation": "milestone_sequence"
+    },
+    {
+      "from": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "M-WAVE3B-H5-BRIDGE-VAULT",
+      "to": "T-STRONG-VISUAL",
+      "relation": "visual"
+    },
+    {
+      "from": "M-WAVE4-BATCH2-BATCH3",
+      "to": "T-STRONG-VISUAL",
+      "relation": "semantic"
+    },
+    {
+      "from": "M-WAVE6-CANDIDATE-OPEN",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "M-WAVE6-CANDIDATE-OPEN",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "semantic"
+    },
+    {
+      "from": "P-API-AS-WRITE-BOUNDARY",
+      "to": "P-LOCAL-ONLY-AUTH-SAFETY",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-API-AS-WRITE-BOUNDARY",
+      "to": "P-OBJECTS-AFTER-PROOF",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-API-AS-WRITE-BOUNDARY",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "semantic"
+    },
+    {
+      "from": "P-API-AS-WRITE-BOUNDARY",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-API-AS-WRITE-BOUNDARY",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "P-AUTHORITY-READBACK-BEFORE-WORK",
+      "to": "P-FROZEN-DISPATCH-AS-EVIDENCE",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-AUTHORITY-READBACK-BEFORE-WORK",
+      "to": "R-CURRENT-TASK-DECISION",
+      "relation": "semantic"
+    },
+    {
+      "from": "P-AUTHORITY-READBACK-BEFORE-WORK",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "semantic"
+    },
+    {
+      "from": "P-AUTHORITY-READBACK-BEFORE-WORK",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-DUAL-TRUTH-SEPARATION",
+      "to": "P-OVERFLOW-NOT-BLOCKER",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-DUAL-TRUTH-SEPARATION",
+      "to": "P-VISUAL-REVIEW-5-GATE",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-DUAL-TRUTH-SEPARATION",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-DUAL-TRUTH-SEPARATION",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "P-FROZEN-DISPATCH-AS-EVIDENCE",
+      "to": "P-PROOF-PAIR-CANARY",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-FROZEN-DISPATCH-AS-EVIDENCE",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-FROZEN-DISPATCH-AS-EVIDENCE",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "frozen"
+    },
+    {
+      "from": "P-HANDOFF-COLD-START",
+      "to": "P-SELF-AUDIT-CLAIM-LABELS",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-HANDOFF-COLD-START",
+      "to": "P-VISUAL-REVIEW-5-GATE",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-HANDOFF-COLD-START",
+      "to": "T-RUNBOOK-READBACK",
+      "relation": "semantic"
+    },
+    {
+      "from": "P-LOCAL-ONLY-AUTH-SAFETY",
+      "to": "P-PR-FACTORY-LANE-SHAPING",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-LOCAL-ONLY-AUTH-SAFETY",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-OBJECTS-AFTER-PROOF",
+      "to": "P-PROOF-PAIR-CANARY",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-OVERFLOW-NOT-BLOCKER",
+      "to": "P-PR-FACTORY-LANE-SHAPING",
+      "relation": "pattern_sequence"
+    },
+    {
+      "from": "P-OVERFLOW-NOT-BLOCKER",
+      "to": "T-EXECUTION-GATES",
+      "relation": "approval_gate"
+    },
+    {
+      "from": "P-PR-FACTORY-LANE-SHAPING",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "P-PROOF-PAIR-CANARY",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-PROOF-PAIR-CANARY",
+      "to": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "relation": "semantic"
+    },
+    {
+      "from": "P-PROOF-PAIR-CANARY",
+      "to": "T-STRONG-VISUAL",
+      "relation": "visual"
+    },
+    {
+      "from": "P-SELF-AUDIT-CLAIM-LABELS",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "P-VISUAL-REVIEW-5-GATE",
+      "to": "T-STRONG-VISUAL",
+      "relation": "visual"
+    },
+    {
+      "from": "R-CURRENT-TASK-DECISION",
+      "to": "R-DISPATCH127-176-PACK",
+      "relation": "reference_sequence"
+    },
+    {
+      "from": "R-CURRENT-TASK-DECISION",
+      "to": "R-PRD-SRD-CONTRACTS",
+      "relation": "reference_sequence"
+    },
+    {
+      "from": "R-CURRENT-TASK-DECISION",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "R-DISPATCH127-176-PACK",
+      "to": "R-RAW-SYSTEM-RULES",
+      "relation": "reference_sequence"
+    },
+    {
+      "from": "R-DISPATCH127-176-PACK",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "frozen"
+    },
+    {
+      "from": "R-DISPATCH127-176-PACK",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "semantic"
+    },
+    {
+      "from": "R-EXTERNAL-SIX-REPORTS",
+      "to": "R-RAW-SYSTEM-RULES",
+      "relation": "reference_sequence"
+    },
+    {
+      "from": "R-EXTERNAL-SIX-REPORTS",
+      "to": "T-AUTHORITY-FIRST",
+      "relation": "anti_orphan"
+    },
+    {
+      "from": "R-EXTERNAL-SIX-REPORTS",
+      "to": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "relation": "semantic"
+    },
+    {
+      "from": "R-PRD-SRD-CONTRACTS",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "R-RAW-SYSTEM-RULES",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "R-RAW-SYSTEM-RULES",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "semantic"
+    },
+    {
+      "from": "T-AUTHORITY-FIRST",
+      "to": "T-CANDIDATE-NOT-AUTHORITY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-AUTHORITY-FIRST",
+      "to": "T-MAX-HORSEPOWER",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-EXECUTION-GATES",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-EXECUTION-GATES",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-FROZEN-DISPATCH-EVIDENCE",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-PARALLEL-LANES",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-PREVIEW-ONLY-VAULT",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-SECOND-KM-RISK",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-SINGLE-USER-LOCAL-FIRST",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-CANDIDATE-NOT-AUTHORITY",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "risk_guard"
+    },
+    {
+      "from": "T-EXECUTION-GATES",
+      "to": "T-OVERFLOW-REGISTRY",
+      "relation": "approval_gate"
+    },
+    {
+      "from": "T-EXECUTION-GATES",
+      "to": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-FROZEN-DISPATCH-EVIDENCE",
+      "to": "T-SECOND-KM-RISK",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-MAX-HORSEPOWER",
+      "to": "T-STRONG-VISUAL",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-OVERFLOW-REGISTRY",
+      "to": "T-PARALLEL-LANES",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-OVERFLOW-REGISTRY",
+      "to": "T-PREVIEW-ONLY-VAULT",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-PARALLEL-LANES",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-PARALLEL-LANES",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "T-PREVIEW-ONLY-VAULT",
+      "to": "T-RUNBOOK-READBACK",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-PREVIEW-ONLY-VAULT",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "boundary"
+    },
+    {
+      "from": "T-PREVIEW-ONLY-VAULT",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "api_boundary"
+    },
+    {
+      "from": "T-PRODUCT-PROOF-NOT-BREADTH",
+      "to": "T-SCOUTFLOW-RAW-BOUNDARY",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-RUNBOOK-READBACK",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-SECOND-KM-RISK",
+      "to": "T-THIN-API-BOUNDARY",
+      "relation": "theme_sequence"
+    },
+    {
+      "from": "T-SINGLE-USER-LOCAL-FIRST",
+      "to": "T-STRONG-VISUAL",
+      "relation": "theme_sequence"
+    }
+  ]
+}

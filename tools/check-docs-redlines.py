@@ -33,6 +33,14 @@ ALLOWED_BANNED_WORD_FILES = {
     "docs/specs/locked-principles.md",
     "tools/check-docs-redlines.py",
 }
+# reference storage (16 ZIP 储能层 + archive) 是历史 / grep-able reference, 不是 active 文档,
+# 内含工具名 (firecrawl crawl depth) / 反例 narrative (no auto_capture) 等 mention 合法.
+# 状态词体系 4 类: current authority / promoted addendum / candidate north-star / reference storage.
+# 本豁免对应 reference storage 类, 跟 docs/00-START-HERE.md §2 一致.
+ALLOWED_BANNED_WORD_PREFIXES = (
+    "docs/research/strategic-upgrade/",
+    "docs/archive/",
+)
 BANNED_WORD_RE = re.compile(r"\b(crawl|spider|scrape_all|auto_capture|harvest)\b", re.IGNORECASE)
 STATE_RE = re.compile(r"`?(active|backlog|in_progress|review|done|blocked)`?")
 TASK_RE = re.compile(r"T-P(?:0|1A)-\d{3}[A-Z]?")
@@ -374,6 +382,8 @@ def check_local_only_tracking(tracked: list[str], failures: list[str]) -> None:
 def check_banned_words(repo: Path, tracked: list[str], failures: list[str]) -> None:
     for rel in tracked:
         if rel in ALLOWED_BANNED_WORD_FILES:
+            continue
+        if any(rel.startswith(prefix) for prefix in ALLOWED_BANNED_WORD_PREFIXES):
             continue
         path = repo / rel
         if not path.is_file():

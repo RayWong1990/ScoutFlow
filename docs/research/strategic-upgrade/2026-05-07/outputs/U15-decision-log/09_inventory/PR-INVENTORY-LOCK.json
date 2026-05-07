@@ -1,0 +1,1627 @@
+[
+  {
+    "number": 1,
+    "title": "feat(dispatch): import Dispatch-002 audit bundle and smoke script",
+    "merged_at": "2025-05-04T21:29:10Z",
+    "summary": "Imported the Dispatch-002 audit bundle and a smoke script as the initial verified bootstrap artifact for the repository decision trail.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/1",
+    "cluster": "C00 Bootstrap / Dispatch Import",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 161,
+    "title": "T-P1A-124: Topic card vault rendering candidate",
+    "merged_at": "2026-05-05T16:58:24Z",
+    "summary": "Bounded topic-card vault rendering candidate under apps/capture-station topic-card-vault; no panel wiring, no runtime route, no vault true write.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/161",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 162,
+    "title": "T-P1A-125: Topic card preview shape candidate",
+    "merged_at": "2026-05-05T17:03:20Z",
+    "summary": "Bounded topic-card preview candidate under apps/capture-station topic-card-preview; no panel wiring, no backend runtime coupling, no vault true write.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/162",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 163,
+    "title": "T-P1A-126: Capture plan dry-run note shape",
+    "merged_at": "2026-05-05T17:05:17Z",
+    "summary": "Docs-only candidate for capture plan dry-run note shape with no authority writeback, no runtime, no package, no migration, no browser automation, no ASR/audio transcript, and no vault write approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/163",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 164,
+    "title": "T-P1A-127: Wave 5 docs-pack PR factory packaging",
+    "merged_at": "2026-05-05T17:07:45Z",
+    "summary": "Docs-only Wave 5 PR factory packaging candidate; preserves no-authority and no-runtime boundaries while standardizing package shape.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/164",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 165,
+    "title": "T-P1A-128: Wave 5 file-domain matrix draft",
+    "merged_at": "2026-05-05T17:09:11Z",
+    "summary": "Docs-only Wave 5 file-domain matrix draft; maps file surfaces to domains without promoting any runtime or migration approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/165",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 166,
+    "title": "T-P1A-129: Wave 5 dependency graph draft",
+    "merged_at": "2026-05-05T17:10:36Z",
+    "summary": "Docs-only Wave 5 dependency graph draft; captures dependency topology as candidate planning material.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/166",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 167,
+    "title": "T-P1A-130: Signal workbench API placeholder contract",
+    "merged_at": "2026-05-05T17:12:03Z",
+    "summary": "Docs-only signal workbench API placeholder contract; keeps placeholder semantics bounded and non-authority.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/167",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 168,
+    "title": "T-P1A-131: Topic card frontend IA candidate",
+    "merged_at": "2026-05-05T17:13:28Z",
+    "summary": "Docs-only topic card frontend information architecture candidate for Wave 5 H5 capture-station surfaces.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/168",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 169,
+    "title": "T-P1A-132: Capture plan frontend IA candidate",
+    "merged_at": "2026-05-05T17:14:53Z",
+    "summary": "Docs-only capture plan frontend information architecture candidate; no authority writeback or runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/169",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 170,
+    "title": "T-P1A-133: Hypothesis comparison UX candidate",
+    "merged_at": "2026-05-05T17:16:18Z",
+    "summary": "Docs-only hypothesis comparison UX candidate for Wave 5 evaluation surfaces.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/170",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 171,
+    "title": "T-P1A-134: Signal ingestion audit lane candidate",
+    "merged_at": "2026-05-05T17:18:45Z",
+    "summary": "Docs-only signal ingestion audit lane candidate; establishes audit-lane vocabulary and scope without runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/171",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 172,
+    "title": "T-P1A-135: Wave 5 visual reporting candidate",
+    "merged_at": "2026-05-05T17:22:00Z",
+    "summary": "Docs-only Wave 5 visual reporting candidate; keeps visual evidence candidate-only and unpromoted.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/172",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 173,
+    "title": "T-P1A-136: Localhost review roster for Wave 5 surfaces",
+    "merged_at": "2026-05-05T17:24:28Z",
+    "summary": "Docs-only localhost review roster for Wave 5 surfaces; defines review roster without implying browser automation or runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/173",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 174,
+    "title": "T-P1A-137: STEP3 commander prompt contract note",
+    "merged_at": "2026-05-05T17:26:56Z",
+    "summary": "Docs-only STEP3 commander prompt contract note; makes handoff-prompt contract explicit while remaining non-authority.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/174",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 175,
+    "title": "T-P1A-138: Cloud draft resume and packaging rules",
+    "merged_at": "2026-05-05T17:29:01Z",
+    "summary": "Docs-only cloud draft resume and packaging rules; encodes packaging discipline for cloud-generated candidate work.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/175",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 176,
+    "title": "T-P1A-139: Readback delta application rules",
+    "merged_at": "2026-05-05T17:30:25Z",
+    "summary": "Docs-only readback delta application rules; distinguishes delta readback from authority writeback.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/176",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 177,
+    "title": "T-P1A-140: Deferred and overflow registry candidate",
+    "merged_at": "2026-05-05T17:32:52Z",
+    "summary": "Docs-only deferred and overflow registry candidate; captures postponed items and bounded reopen conditions.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/177",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "boundary",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "boundary_preservation"
+    ]
+  },
+  {
+    "number": 178,
+    "title": "T-P1A-141: Bridge hardening post-110 continuation",
+    "merged_at": "2026-05-05T17:37:45Z",
+    "summary": "Docs-only bridge hardening continuation after post-110 work; preserves non-runtime and non-write gates.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/178",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "implementation-boundary",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 179,
+    "title": "T-P1A-142: Vault preview continuation candidate",
+    "merged_at": "2026-05-05T17:40:14Z",
+    "summary": "Docs-only vault preview continuation candidate; keeps preview semantics separate from true vault write.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/179",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 180,
+    "title": "T-P1A-143: Vault dry-run continuation candidate",
+    "merged_at": "2026-05-05T17:42:49Z",
+    "summary": "Docs-only vault dry-run continuation candidate; separates dry-run contract from commit/write authority.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/180",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 181,
+    "title": "T-P1A-144: 5 Gate CI continuation note",
+    "merged_at": "2026-05-05T17:45:18Z",
+    "summary": "Docs-only 5 Gate CI continuation note; maps validation gates without making checks a substitute for authority.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/181",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 182,
+    "title": "T-P1A-145: Playwright smoke extension candidate",
+    "merged_at": "2026-05-05T17:46:43Z",
+    "summary": "Docs-only Playwright smoke extension candidate; explicitly avoids browser automation approval in this state.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/182",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 183,
+    "title": "T-P1A-146: Visual regression reporting continuation",
+    "merged_at": "2026-05-05T17:49:13Z",
+    "summary": "Docs-only visual regression reporting continuation; maintains candidate status for visual evidence.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/183",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 184,
+    "title": "T-P1A-147: Runtime-log schema for Dispatch127-176 run",
+    "merged_at": "2026-05-05T17:51:40Z",
+    "summary": "Docs-only runtime-log schema for Dispatch127-176 run; provides structured logging vocabulary without runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/184",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "contract",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 185,
+    "title": "T-P1A-148: RUN-SUMMARY schema for Dispatch127-176 run",
+    "merged_at": "2026-05-05T17:53:05Z",
+    "summary": "Docs-only RUN-SUMMARY schema for Dispatch127-176 run; standardizes run summary shape for review and audit.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/185",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "contract",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 186,
+    "title": "T-P1A-149: Product-lane override evidence packet",
+    "merged_at": "2026-05-05T17:54:30Z",
+    "summary": "Docs-only product-lane override evidence packet; captures evidence shape for controlled lane overrides.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/186",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 187,
+    "title": "T-P1A-150: Global pool staging health-check contract",
+    "merged_at": "2026-05-05T17:55:55Z",
+    "summary": "Docs-only global pool staging health-check contract; defines candidate health check shape.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/187",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "contract",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 188,
+    "title": "T-P1A-151: Branch protection and merge policy note",
+    "merged_at": "2026-05-05T17:57:20Z",
+    "summary": "Docs-only branch protection and merge policy note; records governance expectations for future merge operations.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/188",
+    "cluster": "C01 Wave 5 Candidate Factory",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 189,
+    "title": "T-P1A-152: Wave 5 closeout template",
+    "merged_at": "2026-05-05T18:04:01Z",
+    "summary": "Authority-only Wave 5 candidate closeout writeback to current/task-index/decision-log/contracts-index; keeps state NOT_EXECUTION_APPROVED and does not open a code-bearing next gate.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/189",
+    "cluster": "C02 Authority Sync / Wave Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "system_of_record_split"
+    ]
+  },
+  {
+    "number": 190,
+    "title": "T-P1A-153: Wave 6 ledger-open candidate",
+    "merged_at": "2026-05-05T18:08:50Z",
+    "summary": "Authority-only Wave 6 candidate ledger-open writeback to current/task-index/decision-log; keeps state NOT_EXECUTION_APPROVED and opens candidate planning only.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/190",
+    "cluster": "C02 Authority Sync / Wave Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write",
+      "system_of_record_split"
+    ]
+  },
+  {
+    "number": 191,
+    "title": "T-P1A-154: Overflow candidate registry for DB vNext and blocked runtime lanes",
+    "merged_at": "2026-05-05T18:11:57Z",
+    "summary": "Docs-only overflow candidate registry for DB vNext and blocked runtime lanes; no authority writeback or runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/191",
+    "cluster": "C02 Authority Sync / Wave Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter",
+      "preview_only_before_write",
+      "boundary_preservation"
+    ]
+  },
+  {
+    "number": 192,
+    "title": "T-P1A-155: STEP3 cold-start handoff packet contract",
+    "merged_at": "2026-05-05T18:13:24Z",
+    "summary": "Docs-only STEP3 cold-start handoff packet contract; standardizes cold-start packet expectations without authority writeback.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/192",
+    "cluster": "C02 Authority Sync / Wave Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 193,
+    "title": "docs: close out batch abc authority sync",
+    "merged_at": "2026-05-05T23:41:19Z",
+    "summary": "Synced authority surfaces to landed Dispatch173-176 truth, recorded T-P1A-153/154/155 in task index, and clarified closure wording while keeping Wave 6 open without runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/193",
+    "cluster": "C02 Authority Sync / Wave Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "system_of_record_split"
+    ]
+  },
+  {
+    "number": 194,
+    "title": "docs: add web GPT STEP0 authoring templates",
+    "merged_at": "2026-05-06T03:08:39Z",
+    "summary": "Added GitHub-visible STEP0 web GPT templates, successor-pack authoring template, localhost-preview dispatch template, and proof/overflow template; candidate-only and non-authority.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/194",
+    "cluster": "C03 Post176 / STEP0 / PF-META",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 195,
+    "title": "docs: close out dispatch127-176 residual risks",
+    "merged_at": "2026-05-06T03:29:56Z",
+    "summary": "Reconciled Dispatch127-176 run evidence, reproduced fresh-worktree capture-station validation, and collected bounded topic-card screenshot evidence without runtime/global visual approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/195",
+    "cluster": "C03 Post176 / STEP0 / PF-META",
+    "decision_kind": "other",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 196,
+    "title": "docs: add post-dispatch176 research candidates",
+    "merged_at": "2026-05-06T03:34:46Z",
+    "summary": "Added four post-dispatch176 research candidate docs and refreshed temporary assumptions to current Wave 6 candidate truth; research-only, no runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/196",
+    "cluster": "C03 Post176 / STEP0 / PF-META",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 197,
+    "title": "docs(post-frozen): PF-META-01-FIX v2 commander-ready deliverables",
+    "merged_at": "2026-05-06T08:36:39Z",
+    "summary": "Landed 17 commander-ready R-version dispatches and 8 deprecated dispatches after PF-META-01-FIX; schema 25/25 clean_or_deprecated_clean; self-review V-PASS_3_3.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/197",
+    "cluster": "C03 Post176 / STEP0 / PF-META",
+    "decision_kind": "other",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 198,
+    "title": "docs: record pr197 check readback",
+    "merged_at": "2026-05-06T09:02:50Z",
+    "summary": "Recorded PR #197 check readback for head and merge commit, captured queued/manual rerun/final success, and documented workflow trigger boundary.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/198",
+    "cluster": "C03 Post176 / STEP0 / PF-META",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "boundary_preservation",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 199,
+    "title": "docs(post-frozen): add live authority readback after PR194",
+    "merged_at": "2026-05-06T08:57:03Z",
+    "summary": "Added PF-C0-01R live authority readback after PR194, separated zip-derived, PR192-era, PR193/PR194 GitHub, and current localhost seam truth, keeping no-runtime/no-write claims explicit.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/199",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "evidence_receipt_readback",
+      "system_of_record_split"
+    ]
+  },
+  {
+    "number": 200,
+    "title": "docs(post-frozen): add overflow registry v0",
+    "merged_at": "2026-05-06T09:09:41Z",
+    "summary": "Added PF-O1-01R overflow registry v0, collapsed true-write/runtime/browser/migration/full-workbench into five bounded rows, and kept reopen conditions and human gates explicit.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/200",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "boundary",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "boundary_preservation"
+    ]
+  },
+  {
+    "number": 201,
+    "title": "docs(post-frozen): add vault preview env contract",
+    "merged_at": "2026-05-06T09:09:47Z",
+    "summary": "Added PF-LP-03 vault preview environment contract note, separated unset/non-empty/configured preview semantics, and kept no-true-write boundary explicit.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/201",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "contract",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "boundary_preservation",
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 202,
+    "title": "docs(post-frozen): add successor entry scope memo",
+    "merged_at": "2026-05-06T09:09:52Z",
+    "summary": "Added successor-entry scope memo, defined PF cluster route instead of automatic continuation, and codified the seven-step preview-only localhost pass bar.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/202",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 203,
+    "title": "docs(post-frozen): add near-term execution matrix",
+    "merged_at": "2026-05-06T09:09:57Z",
+    "summary": "Added PF-C0-06R near-term execution matrix for all 80 authored dispatches, preserving repaired and superseded relationships in status/reason.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/203",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 204,
+    "title": "feat(api): mount bridge router in create_app",
+    "merged_at": "2026-05-06T09:12:41Z",
+    "summary": "Mounted bridge router from create_app, exposed write_enabled=false on dry-run commit schema/response, aligned route/openapi/preview/commit contract tests.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/204",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "contract",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amended_by": [
+        231
+      ],
+      "related_prs": [
+        231
+      ],
+      "amends": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 205,
+    "title": "test(api): add bridge vault preview smoke coverage",
+    "merged_at": "2026-05-06T09:19:49Z",
+    "summary": "Added PF-LP-02 API smoke coverage for mounted vault-preview route, expanded preview markdown into fuller preview-only draft, and kept write-disabled semantics explicit.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/205",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "implementation-boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amended_by": [
+        231
+      ],
+      "related_prs": [
+        231
+      ],
+      "amends": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 206,
+    "title": "test(contracts): add bridge openapi golden contract",
+    "merged_at": "2026-05-06T09:24:43Z",
+    "summary": "Added PF-LP-13 golden contract coverage for mounted bridge OpenAPI paths and schema shapes, including minimal pytest --golden plumbing.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/206",
+    "cluster": "C04 PF-LP Run-1",
+    "decision_kind": "contract",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amended_by": [
+        231
+      ],
+      "related_prs": [
+        231
+      ],
+      "amends": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 207,
+    "title": "PF-LP-04: add capture station createCapture client",
+    "merged_at": "2026-05-06T09:50:29Z",
+    "summary": "Added createCapture to capture-station API client with fixed manual_url metadata_only payload and tests for request shape, success mapping, and error propagation.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/207",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "implementation-boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 208,
+    "title": "docs: add PF-C3-01 object inventory",
+    "merged_at": "2026-05-06T09:49:08Z",
+    "summary": "Added dispatch output for PF-C3-01 object inventory; docs/research/post-frozen validation with docs and secrets redline checks.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/208",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 209,
+    "title": "tools: add PF-GLOBAL-01 manifest verifier",
+    "merged_at": "2026-05-06T09:49:22Z",
+    "summary": "Added dispatch output for PF-GLOBAL-01 manifest verifier; introduces a tool-backed verification pattern for post-frozen manifest handling.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/209",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 210,
+    "title": "docs: add PF-GLOBAL-02 near-term commander prompt",
+    "merged_at": "2026-05-06T09:49:36Z",
+    "summary": "Added PF-GLOBAL-02 near-term commander prompt dispatch output; keeps commander guidance within docs/research/post-frozen boundaries.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/210",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 211,
+    "title": "docs: add PF-GLOBAL-03 preview review checklist",
+    "merged_at": "2026-05-06T09:49:50Z",
+    "summary": "Added PF-GLOBAL-03 preview review checklist dispatch output; defines preview review criteria without runtime promotion.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/211",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 212,
+    "title": "docs: add PF-GLOBAL-04 proof scorecard schema",
+    "merged_at": "2026-05-06T09:50:04Z",
+    "summary": "Added PF-GLOBAL-04 proof scorecard schema dispatch output; creates structured proof scoring for post-frozen work.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/212",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "contract",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "contract_first_evidence"
+    ]
+  },
+  {
+    "number": 213,
+    "title": "docs: add PF-GLOBAL-05 runlog resume protocol",
+    "merged_at": "2026-05-06T09:50:18Z",
+    "summary": "Added PF-GLOBAL-05 runlog resume protocol dispatch output; records how interrupted/post-frozen work should resume.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/213",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 214,
+    "title": "docs: add PF-GLOBAL-06 audit packet generator candidate",
+    "merged_at": "2026-05-06T09:50:32Z",
+    "summary": "Added PF-GLOBAL-06 audit packet generator candidate dispatch output; turns audit-packet production into candidate generator pattern.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/214",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 215,
+    "title": "docs: add PF-GLOBAL-07 branch grouping policy",
+    "merged_at": "2026-05-06T09:51:01Z",
+    "summary": "Added PF-GLOBAL-07 branch grouping policy dispatch output; captures grouping discipline for batched branches.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/215",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 216,
+    "title": "PF-LP-05: wire url bar create capture submit",
+    "merged_at": "2026-05-06T10:03:32Z",
+    "summary": "Wired URL bar create action to createCapture with loading/error states and bounded callback seam; added scoped repair notes for the bounded app diff.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/216",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "implementation-boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 217,
+    "title": "docs: add PF-GLOBAL-08 human gate calendar",
+    "merged_at": "2026-05-06T09:51:16Z",
+    "summary": "Added PF-GLOBAL-08 human gate calendar dispatch output; makes human-in-loop gates explicit.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/217",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "boundary_preservation"
+    ]
+  },
+  {
+    "number": 218,
+    "title": "docs: add PF-GLOBAL-09 kill switch registry",
+    "merged_at": "2026-05-06T09:51:30Z",
+    "summary": "Added PF-GLOBAL-09 kill switch registry dispatch output; maps stoppability and operator control points.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/218",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "boundary_preservation"
+    ]
+  },
+  {
+    "number": 219,
+    "title": "docs: add PF-GLOBAL-10 external research queue",
+    "merged_at": "2026-05-06T09:51:45Z",
+    "summary": "Added PF-GLOBAL-10 external research queue dispatch output; creates queue discipline for external research inputs.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/219",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 220,
+    "title": "docs: add PF-GLOBAL-11 runtime lane research note",
+    "merged_at": "2026-05-06T09:51:58Z",
+    "summary": "Added PF-GLOBAL-11 runtime lane research note dispatch output; separates runtime-lane research from runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/220",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "candidate-scope",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "candidate_not_authority_frontmatter"
+    ]
+  },
+  {
+    "number": 221,
+    "title": "docs: add PF-GLOBAL-12 reservoir closeout map",
+    "merged_at": "2026-05-06T09:52:12Z",
+    "summary": "Added PF-GLOBAL-12 reservoir closeout map dispatch output; maps how reservoir items should close or remain deferred.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/221",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 222,
+    "title": "docs: add PF-C3-02 keep list",
+    "merged_at": "2026-05-06T09:53:12Z",
+    "summary": "Added PF-C3-02 keep list dispatch output; records object-retention decisions for PF-C3.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/222",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 223,
+    "title": "docs: add PF-C3-03 compress list",
+    "merged_at": "2026-05-06T09:53:25Z",
+    "summary": "Added PF-C3-03 compress list dispatch output; records object-compression decisions for PF-C3.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/223",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 224,
+    "title": "docs: add PF-C3-05 language patch",
+    "merged_at": "2026-05-06T09:54:05Z",
+    "summary": "Added PF-C3-05 language patch dispatch output; records language repair decisions.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/224",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 225,
+    "title": "docs: add PF-C3-06 closeout",
+    "merged_at": "2026-05-06T09:54:41Z",
+    "summary": "Added PF-C3-06 closeout dispatch output; completes the PF-C3 closeout trail.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/225",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 226,
+    "title": "PF-LP-06/07: add preview shell bridge",
+    "merged_at": "2026-05-06T10:03:33Z",
+    "summary": "Added bounded shell seam from URL bar capture creation into preview loading, reset stale preview state, and mounted preview/dry-run commit surfaces.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/226",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "implementation-boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amended_by": [
+        239
+      ],
+      "related_prs": [
+        232,
+        233,
+        234,
+        239
+      ],
+      "amends": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 227,
+    "title": "docs: add window2 docs run bundle",
+    "merged_at": "2026-05-06T09:57:32Z",
+    "summary": "Added RUN-W2 report, diff bundle, and final checkpoint for Window 2 docs run.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/227",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "dispatch_lineage"
+    ]
+  },
+  {
+    "number": 228,
+    "title": "PF-LP-06-15 repair: land preview shell and panel loop",
+    "merged_at": "2026-05-06T10:09:19Z",
+    "summary": "Landed preview shell bridge from URL bar capture creation into preview loading/reset, stateful preview panel behavior, copy/download actions, fail-loud blocked states, and frontend contract tests.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/228",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "contract",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amended_by": [
+        239
+      ],
+      "related_prs": [
+        232,
+        233,
+        234,
+        239
+      ],
+      "amends": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 230,
+    "title": "PF-LP-12: add localhost preview dev runbook",
+    "merged_at": "2026-05-06T10:11:39Z",
+    "summary": "Added localhost preview dev runbook for backend/H5 startup, environment setup, manual evidence capture, and stop-lines; output remains shape-only and preview-only.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/230",
+    "cluster": "C05 PF-LP Run-2 / Window-2 / PF-GLOBAL / PF-C3",
+    "decision_kind": "boundary",
+    "impact_radius": "multi-cluster",
+    "introduced_or_exposed": "introduced",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write"
+    ]
+  },
+  {
+    "number": 231,
+    "title": "docs(post-frozen): Run-1 amendment ledger + 3 external audits",
+    "merged_at": "2026-05-06T10:50:13Z",
+    "summary": "Landed Run-1 amendment ledger, three external audit reports, supersession notes, and Run-2 stop-line rules. Synthesis verdict REJECT_AS_SCOPE_DRIFT; synthesis decision amend_and_proceed with A1/A2/A3 accepted_partial_scope_deviation and no rollback.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/231",
+    "cluster": "C06 Run-1 Amendment",
+    "decision_kind": "amendment",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [
+        204,
+        205,
+        206,
+        198,
+        199
+      ],
+      "amended_by": [
+        239
+      ],
+      "related_prs": [
+        199,
+        204,
+        205,
+        206,
+        239
+      ]
+    },
+    "linked_patterns": [
+      "amend_and_proceed",
+      "truthful_stdout_contract",
+      "introduced_vs_exposed_attribution",
+      "system_of_record_split"
+    ]
+  },
+  {
+    "number": 232,
+    "title": "docs(post-frozen): record PF-LP-10 coverage evidence under #228",
+    "merged_at": "2026-05-06T10:55:46Z",
+    "summary": "Recorded PF-LP-10 forensic verdict as COVERED_BY_228, cited implementation/test assertions from PR #228, and kept blocked claims intact without authority writeback.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/232",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [
+        239
+      ],
+      "related_prs": [
+        228,
+        239
+      ]
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 233,
+    "title": "docs(post-frozen): record PF-LP-09 coverage evidence under #228",
+    "merged_at": "2026-05-06T10:58:55Z",
+    "summary": "Recorded PF-LP-09 forensic verdict as COVERED_BY_228, cited implementation/test assertions from PR #228, and kept blocked claims intact without authority writeback.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/233",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [
+        239
+      ],
+      "related_prs": [
+        228,
+        239
+      ]
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 234,
+    "title": "docs(post-frozen): record PF-LP-14 coverage evidence under #228",
+    "merged_at": "2026-05-06T10:59:00Z",
+    "summary": "Recorded PF-LP-14 forensic verdict as COVERED_BY_228, cited api-client test assertions from PR #228, and kept blocked claims intact without authority writeback.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/234",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [
+        239
+      ],
+      "related_prs": [
+        228,
+        239
+      ]
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 235,
+    "title": "docs(post-frozen): add PF-LP-16 synthetic localhost evidence",
+    "merged_at": "2026-05-06T11:00:11Z",
+    "summary": "Recorded synthetic UAT-1 evidence for PF-LP-16 using curl plus JSDOM tests, preserving original URL and classifying copy/download results without browser-execution claims.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/235",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "other",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 236,
+    "title": "docs(post-frozen): add PF-LP-17 preview-only readback",
+    "merged_at": "2026-05-06T11:01:33Z",
+    "summary": "Read back localhost preview-only loop after synthetic PF-LP-16 evidence, classified loop as works without runtime/product proof, and preserved no-write/no-browser-automation boundaries.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/236",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "preview_only_before_write",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 237,
+    "title": "docs(post-frozen): add PF-LP-18 authority-safe closeout note",
+    "merged_at": "2026-05-06T11:02:40Z",
+    "summary": "Added closeout note for preview-only localhost chain, kept authority surfaces read-only, preserved NOT_EXECUTION_APPROVED state, and documented future authority wording without claiming runtime approval.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/237",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "authority-sync",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "system_of_record_split"
+    ]
+  },
+  {
+    "number": 238,
+    "title": "docs(post-frozen): add Run-2 closeout receipt bundle",
+    "merged_at": "2026-05-06T11:06:21Z",
+    "summary": "Added Run-2 report, diff bundle, and final checkpoint after LP-18; captured forensic verdicts for LP-09/10/14 and synthetic UAT-1 evidence path; preserved blocked claims.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/238",
+    "cluster": "C07 Run-2 Evidence / Receipt Closeout",
+    "decision_kind": "audit-evidence",
+    "impact_radius": "single-cluster",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": []
+    },
+    "linked_patterns": [
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 239,
+    "title": "chore(post-frozen): amend run-2 receipt traceability",
+    "merged_at": "2026-05-06T13:36:29Z",
+    "summary": "One-shot Run-2 receipt and traceability amendment based on 3-window audit synthesis: LP-06/07 dual coverage, synthetic UAT downgraded to partial, blockers added, SHA separation, PR #231 gate bypass recorded, PR #226/#228 topology note, and RUN-2-AMENDMENT-LEDGER.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/239",
+    "cluster": "C08 Run-2 Amendment",
+    "decision_kind": "amendment",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "exposed",
+    "amend_chain": {
+      "amends": [
+        226,
+        228,
+        231,
+        232,
+        233,
+        234,
+        235,
+        236,
+        237,
+        238
+      ],
+      "amended_by": [],
+      "related_prs": [
+        226,
+        228,
+        231,
+        238,
+        240
+      ]
+    },
+    "linked_patterns": [
+      "amend_and_proceed",
+      "truthful_stdout_contract",
+      "introduced_vs_exposed_attribution",
+      "evidence_receipt_readback"
+    ]
+  },
+  {
+    "number": 240,
+    "title": "Run-3+4: PF-C1 proof pair + PF-C2 RAW handoff (24 dispatch / C1 pass / C2 partial pending RAW intake)",
+    "merged_at": "2026-05-06T16:03:36Z",
+    "summary": "Combined Run-3 PF-C1 and Run-4 PF-C2 single-PR closeout: C1 pass, C2 partial, can_open_c4 false, ready_for_run_5 pending PF-V handoff; 24 dispatch local worktree-only until merge with RAW staged in repo for future enrichment.",
+    "url": "https://github.com/RayWong1990/ScoutFlow/pull/240",
+    "cluster": "C09 Run-3+4 Combined Closeout",
+    "decision_kind": "other",
+    "impact_radius": "cross-phase",
+    "introduced_or_exposed": "both",
+    "amend_chain": {
+      "amends": [],
+      "amended_by": [],
+      "related_prs": [
+        239
+      ]
+    },
+    "linked_patterns": [
+      "single_pr_compressed_closeout",
+      "partial_signal_preservation",
+      "human_in_loop_gate"
+    ]
+  }
+]

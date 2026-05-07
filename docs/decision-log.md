@@ -623,3 +623,18 @@
 - 决议: `Dispatch175 / T-P1A-154` 与 `Dispatch176 / T-P1A-155` 已 landed on `main`，分别收口 Wave 6 overflow candidate registry 与 STEP3 cold-start handoff packet contract。
 - 决议: 当前 authority 继续保持 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`；`Dispatch175/176` 的 landed truth 不构成 code-bearing next gate，也不构成 runtime、migration、browser automation、BBDown live、yt-dlp、ffmpeg、ASR、`audio_transcript` runtime 或 vault true write approval。
 - 决议: 当前 Wave 6 仅保留 candidate planning / overflow / handoff continuation truth；任何后续 code-bearing、runtime-bearing 或 migration-bearing 动作都必须走新 dispatch + 外审。
+
+## 2026-05-07 — Baseline navigation consolidated (PR #244)
+
+- Decision (1): 新 `docs/00-START-HERE.md` 作为 `current authority` 入口, 含 Agent Cold Start Ladder + 4 状态词字典 + 文档地图.
+- Decision (2): PR #243 master spec 从 `docs/research/post-frozen/` 提升到 `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` 顶级, 跟 PRD/SRD 同级 visibility.
+- Decision (3): master spec 状态 = `candidate north-star`, **不是** PRD-v3 / SRD-v3 / runtime approval / migration approval / authority writer (顶部边界声明硬锁).
+- Decision (4): PRD-v3 / SRD-v3 thin compiled candidate shell 落到 `docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/`, 来源 = PRD-v2 + v2.1 + U1-deep supplement (PRD) / SRD-v2 + h5-bridge promoted + db-vnext + supplement (SRD), 让孤儿 supplement 引用闭环, 不假装正式 base.
+- Decision (5): 16 ZIP 储能层 (~1.48M 字 / 895 file) 状态 = `reference storage`, grep-able reference 不行动基线.
+- Decision (6): doc1/doc2/doc3 frontmatter 加 `status_word: reference storage` + cross-link 字段, 跟 00-START-HERE.md §5 三向闭环.
+- Decision (7): 状态词锁 4 类 forward-going: `current authority` / `promoted addendum` / `candidate north-star` / `reference storage`. 严禁引入新状态词. 历史遗留文件按 grandfather rule, 不强制 retroactive 整改.
+- Source:
+  - `docs/00-START-HERE.md`
+  - `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`
+  - `docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/PRD-v3-candidate-2026-05-07.md` (thin shell)
+  - `docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/SRD-v3-candidate-2026-05-07.md` (thin shell)

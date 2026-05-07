@@ -1,0 +1,32 @@
+CLOUD_U14_APPLE_SILICON_OPTIMIZATION_COMPLETE: false
+pack_generated: true
+completion_blockers:
+  - live_web_disabled_required_2026_evidence_not_completed
+  - local_mac_hardware_capture_not_available_in_this_environment
+  - benchmark_execution_explicitly_not_performed
+  - github_specific_U2_U6_prompt_paths_not_found_by_connector_search
+zip_filename: cloud-output-U14-apple-silicon-optimization-2026-05-07.zip
+files_count: 80
+total_words_cjk_latin_approx: 127004
+total_thinking_minutes: "not_claimed; interactive_generation_time_only"
+expected_thinking_minutes_met: false
+recipes_count: 62
+asr_recipes: 10
+embedding_recipes: 8
+llm_recipes: 10
+image_recipes: 8
+video_recipes: 6
+system_integration_recipes: 8
+resource_mgmt_recipes: 6
+benchmarking_recipes: 6
+benchmark_numbers_attributed: false
+benchmark_numbers_policy: "no self-run or vendor benchmark values included; tables are paste-time contracts"
+mlx_recipes_count: 3
+core_ml_recipes_count: 3
+metal_recipes_count: 4
+multi_pass_completed: "10 drafted / 8 evidence-satisfied / live-web-and-local-hardware-passes-incomplete"
+self_audit_findings: 30
+boundary_preservation_check: clear
+ready_for_user_audit: yes
+claim_label_coverage_files: "77/78 markdown files"
+mermaid_diagrams: 9

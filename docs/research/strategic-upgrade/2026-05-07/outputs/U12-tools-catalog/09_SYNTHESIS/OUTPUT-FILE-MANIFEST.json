@@ -1,0 +1,734 @@
+[
+  {
+    "path": "00_EVIDENCE/INPUT-MANIFEST.json",
+    "bytes": 18907,
+    "words_cjk_latin": 999,
+    "sha256_12": "b3666cd6391f"
+  },
+  {
+    "path": "00_EVIDENCE/LOCAL-RESCAN-CHECKLIST.md",
+    "bytes": 1713,
+    "words_cjk_latin": 299,
+    "sha256_12": "695b6ea08549"
+  },
+  {
+    "path": "00_EVIDENCE/SOURCE-INVENTORY.md",
+    "bytes": 2798,
+    "words_cjk_latin": 503,
+    "sha256_12": "e3b6c1e11b26"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/00-CLUSTER-A-INDEX.md",
+    "bytes": 5118,
+    "words_cjk_latin": 782,
+    "sha256_12": "22a85e0e6568"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/01-global-code-reviewer.md",
+    "bytes": 7060,
+    "words_cjk_latin": 1604,
+    "sha256_12": "00f340d455f4"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/02-global-build-error-resolver.md",
+    "bytes": 7109,
+    "words_cjk_latin": 1612,
+    "sha256_12": "8984959cb18b"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/03-global-e2e-runner.md",
+    "bytes": 7104,
+    "words_cjk_latin": 1609,
+    "sha256_12": "f5a2ae1fba91"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/04-global-tdd-guide.md",
+    "bytes": 7033,
+    "words_cjk_latin": 1595,
+    "sha256_12": "6754913a6eb7"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/05-global-refactor-cleaner.md",
+    "bytes": 7097,
+    "words_cjk_latin": 1610,
+    "sha256_12": "0b627dbab01f"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/06-global-doc-updater.md",
+    "bytes": 7058,
+    "words_cjk_latin": 1594,
+    "sha256_12": "a4be769eedbd"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/07-global-brainstorm-five-lens.md",
+    "bytes": 7117,
+    "words_cjk_latin": 1617,
+    "sha256_12": "b3db2cba04fa"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/08-global-writing-plan.md",
+    "bytes": 6998,
+    "words_cjk_latin": 1596,
+    "sha256_12": "76a0ea49c579"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/09-global-executing-plan.md",
+    "bytes": 7022,
+    "words_cjk_latin": 1598,
+    "sha256_12": "a8157a03449b"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/10-global-context-loader.md",
+    "bytes": 7046,
+    "words_cjk_latin": 1605,
+    "sha256_12": "39aa416ea824"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/11-global-source-verifier.md",
+    "bytes": 7088,
+    "words_cjk_latin": 1611,
+    "sha256_12": "093352034251"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/12-global-vault-lint.md",
+    "bytes": 7002,
+    "words_cjk_latin": 1593,
+    "sha256_12": "9dcac8e55456"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/13-global-wiki-compile.md",
+    "bytes": 7073,
+    "words_cjk_latin": 1611,
+    "sha256_12": "4a31090a0a51"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/14-global-export-pdf.md",
+    "bytes": 7028,
+    "words_cjk_latin": 1589,
+    "sha256_12": "efd87f9020c0"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/15-global-deep-intake.md",
+    "bytes": 7060,
+    "words_cjk_latin": 1606,
+    "sha256_12": "b978b08c9656"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/16-global-solution-writer.md",
+    "bytes": 7067,
+    "words_cjk_latin": 1606,
+    "sha256_12": "8c1bff557d10"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/17-global-ux-ia-review.md",
+    "bytes": 7031,
+    "words_cjk_latin": 1600,
+    "sha256_12": "aae186a9dde2"
+  },
+  {
+    "path": "01_CLUSTER_A_GLOBAL_SKILLS/18-global-quality-gate.md",
+    "bytes": 7076,
+    "words_cjk_latin": 1599,
+    "sha256_12": "1594ac89c861"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/00-CLUSTER-B-INDEX.md",
+    "bytes": 5105,
+    "words_cjk_latin": 776,
+    "sha256_12": "4fdd58be46b9"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/01-agent-planner.md",
+    "bytes": 6925,
+    "words_cjk_latin": 1575,
+    "sha256_12": "fb686e285e38"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/02-agent-architect.md",
+    "bytes": 7042,
+    "words_cjk_latin": 1594,
+    "sha256_12": "aa264c562361"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/03-agent-code-reviewer.md",
+    "bytes": 6990,
+    "words_cjk_latin": 1580,
+    "sha256_12": "21ccfbd441e8"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/04-agent-build-error-resolver.md",
+    "bytes": 6972,
+    "words_cjk_latin": 1582,
+    "sha256_12": "d80c073e8ab3"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/05-agent-e2e-runner.md",
+    "bytes": 6983,
+    "words_cjk_latin": 1592,
+    "sha256_12": "3e39f832aaa6"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/06-agent-refactor-cleaner.md",
+    "bytes": 6981,
+    "words_cjk_latin": 1587,
+    "sha256_12": "520b87445ff8"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/07-agent-doc-updater.md",
+    "bytes": 6957,
+    "words_cjk_latin": 1578,
+    "sha256_12": "18e653b30634"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/08-agent-tdd-guide.md",
+    "bytes": 6957,
+    "words_cjk_latin": 1584,
+    "sha256_12": "f7bb5a02a7ea"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/09-agent-product-strategist.md",
+    "bytes": 6984,
+    "words_cjk_latin": 1583,
+    "sha256_12": "58749f2d4d76"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/10-agent-audit-lens.md",
+    "bytes": 6938,
+    "words_cjk_latin": 1561,
+    "sha256_12": "a12f16bf5cc6"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/11-agent-qa-gatekeeper.md",
+    "bytes": 6963,
+    "words_cjk_latin": 1574,
+    "sha256_12": "7e51f37bef70"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/12-agent-dispatch-commander.md",
+    "bytes": 7076,
+    "words_cjk_latin": 1593,
+    "sha256_12": "0b973f41738e"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/13-agent-zhongshuling.md",
+    "bytes": 6971,
+    "words_cjk_latin": 1595,
+    "sha256_12": "8bc70e259086"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/14-agent-gongbu.md",
+    "bytes": 6969,
+    "words_cjk_latin": 1591,
+    "sha256_12": "c1c8ac02e0e7"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/15-agent-xingbu.md",
+    "bytes": 6897,
+    "words_cjk_latin": 1577,
+    "sha256_12": "7070f8342157"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/16-agent-raw-review-router.md",
+    "bytes": 7082,
+    "words_cjk_latin": 1609,
+    "sha256_12": "88fdd43db2f3"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/17-agent-raw-watchtower.md",
+    "bytes": 7030,
+    "words_cjk_latin": 1597,
+    "sha256_12": "49cc12344f97"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/18-agent-raw-ops-console.md",
+    "bytes": 7014,
+    "words_cjk_latin": 1592,
+    "sha256_12": "8e23aff782bc"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/19-agent-raw-memory-governor.md",
+    "bytes": 7076,
+    "words_cjk_latin": 1601,
+    "sha256_12": "d0aba769ee7b"
+  },
+  {
+    "path": "02_CLUSTER_B_AGENTS/20-agent-raw-gui-bridge.md",
+    "bytes": 7088,
+    "words_cjk_latin": 1616,
+    "sha256_12": "94e226f0e432"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/00-CLUSTER-C-INDEX.md",
+    "bytes": 4006,
+    "words_cjk_latin": 710,
+    "sha256_12": "1fd37dbb9e7a"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/01-plugin-everything-claude-code.md",
+    "bytes": 7110,
+    "words_cjk_latin": 1578,
+    "sha256_12": "86d88ecd0c52"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/02-plugin-superpowers.md",
+    "bytes": 7032,
+    "words_cjk_latin": 1574,
+    "sha256_12": "92b019c5c76f"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/03-plugin-claude-mem.md",
+    "bytes": 7000,
+    "words_cjk_latin": 1581,
+    "sha256_12": "aa4eb9af13f5"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/04-plugin-dx.md",
+    "bytes": 6931,
+    "words_cjk_latin": 1570,
+    "sha256_12": "431aa35664f8"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/05-plugin-github-app.md",
+    "bytes": 6944,
+    "words_cjk_latin": 1569,
+    "sha256_12": "d4394b1d41ec"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/06-plugin-playwright-automation.md",
+    "bytes": 7039,
+    "words_cjk_latin": 1590,
+    "sha256_12": "83d7ab3b8801"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/07-plugin-context7-docs.md",
+    "bytes": 6959,
+    "words_cjk_latin": 1575,
+    "sha256_12": "f4fd622e165a"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/08-plugin-exa-research.md",
+    "bytes": 6978,
+    "words_cjk_latin": 1581,
+    "sha256_12": "782b11d24753"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/09-plugin-firecrawl-ingestion.md",
+    "bytes": 7010,
+    "words_cjk_latin": 1578,
+    "sha256_12": "0e6b356f3474"
+  },
+  {
+    "path": "03_CLUSTER_C_PLUGINS/10-plugin-notion-bridge.md",
+    "bytes": 6954,
+    "words_cjk_latin": 1577,
+    "sha256_12": "b6062b61203a"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/00-CLUSTER-D-INDEX.md",
+    "bytes": 4337,
+    "words_cjk_latin": 723,
+    "sha256_12": "070972808136"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/01-mcp-github.md",
+    "bytes": 6968,
+    "words_cjk_latin": 1578,
+    "sha256_12": "28b5b2174ca4"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/02-mcp-supabase.md",
+    "bytes": 7050,
+    "words_cjk_latin": 1600,
+    "sha256_12": "06d103000319"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/03-mcp-firecrawl.md",
+    "bytes": 6943,
+    "words_cjk_latin": 1571,
+    "sha256_12": "287e88c2c0ec"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/04-mcp-context7.md",
+    "bytes": 6941,
+    "words_cjk_latin": 1575,
+    "sha256_12": "a1939a435c82"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/05-mcp-exa.md",
+    "bytes": 6944,
+    "words_cjk_latin": 1574,
+    "sha256_12": "5a7a80c9ef72"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/06-mcp-playwright.md",
+    "bytes": 7034,
+    "words_cjk_latin": 1599,
+    "sha256_12": "ad915cfd82f9"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/07-mcp-sequential-thinking.md",
+    "bytes": 7032,
+    "words_cjk_latin": 1583,
+    "sha256_12": "60eb1de3ef60"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/08-mcp-engram.md",
+    "bytes": 6957,
+    "words_cjk_latin": 1584,
+    "sha256_12": "3046fcefa1e7"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/09-mcp-notion.md",
+    "bytes": 6977,
+    "words_cjk_latin": 1580,
+    "sha256_12": "ed470642e1e4"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/10-mcp-claude-mem.md",
+    "bytes": 6972,
+    "words_cjk_latin": 1587,
+    "sha256_12": "862c885af1d2"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/11-mcp-iflytek.md",
+    "bytes": 6963,
+    "words_cjk_latin": 1586,
+    "sha256_12": "8d64517ec57a"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/12-mcp-filesystem.md",
+    "bytes": 7021,
+    "words_cjk_latin": 1598,
+    "sha256_12": "191143405c9d"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/13-mcp-sqlite-chroma.md",
+    "bytes": 7063,
+    "words_cjk_latin": 1609,
+    "sha256_12": "ace7d9fafad9"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/14-mcp-browser-research.md",
+    "bytes": 7066,
+    "words_cjk_latin": 1607,
+    "sha256_12": "e593c1672a8d"
+  },
+  {
+    "path": "04_CLUSTER_D_MCP_SERVERS/15-mcp-slack-or-chatops.md",
+    "bytes": 7031,
+    "words_cjk_latin": 1584,
+    "sha256_12": "fbb2b18655ee"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/00-CLUSTER-E-INDEX.md",
+    "bytes": 3879,
+    "words_cjk_latin": 720,
+    "sha256_12": "1f4242d9c22a"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/01-hook-pretooluse.md",
+    "bytes": 6968,
+    "words_cjk_latin": 1592,
+    "sha256_12": "1fab51d7b93f"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/02-hook-posttooluse.md",
+    "bytes": 7003,
+    "words_cjk_latin": 1587,
+    "sha256_12": "afcd085f5ade"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/03-hook-stop.md",
+    "bytes": 6890,
+    "words_cjk_latin": 1568,
+    "sha256_12": "f94725431899"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/04-hook-sessionstart.md",
+    "bytes": 6936,
+    "words_cjk_latin": 1569,
+    "sha256_12": "0e9f8b6e398d"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/05-hook-sessionend.md",
+    "bytes": 6929,
+    "words_cjk_latin": 1559,
+    "sha256_12": "0e4810224fef"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/06-hook-precompact.md",
+    "bytes": 6954,
+    "words_cjk_latin": 1574,
+    "sha256_12": "d5371fc2e6ff"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/07-hook-userpromptsubmit.md",
+    "bytes": 6984,
+    "words_cjk_latin": 1577,
+    "sha256_12": "3ce5be261cb6"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/08-hook-notification.md",
+    "bytes": 6861,
+    "words_cjk_latin": 1551,
+    "sha256_12": "7650e54a162d"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/09-hook-subagentstop.md",
+    "bytes": 6945,
+    "words_cjk_latin": 1571,
+    "sha256_12": "be71158bf7f2"
+  },
+  {
+    "path": "05_CLUSTER_E_HOOKS/10-hook-prefilewritegate.md",
+    "bytes": 7025,
+    "words_cjk_latin": 1582,
+    "sha256_12": "eb433b8ae162"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/00-CLUSTER-F-INDEX.md",
+    "bytes": 3962,
+    "words_cjk_latin": 705,
+    "sha256_12": "1b7d77d3441f"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/01-script-cc-resilient.md",
+    "bytes": 6969,
+    "words_cjk_latin": 1564,
+    "sha256_12": "b9dba60a073e"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/02-script-context-threshold.md",
+    "bytes": 6979,
+    "words_cjk_latin": 1571,
+    "sha256_12": "d49aaaca1c59"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/03-script-sedimentation.md",
+    "bytes": 6958,
+    "words_cjk_latin": 1572,
+    "sha256_12": "044ca0aefab1"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/04-script-observe.md",
+    "bytes": 6876,
+    "words_cjk_latin": 1562,
+    "sha256_12": "1ce652d5e941"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/05-script-quality-gate.md",
+    "bytes": 6957,
+    "words_cjk_latin": 1566,
+    "sha256_12": "c9b4ddd0fa98"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/06-script-parallel-safety-check.md",
+    "bytes": 7049,
+    "words_cjk_latin": 1580,
+    "sha256_12": "7c33cdc715e9"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/07-script-handoff-writer.md",
+    "bytes": 6947,
+    "words_cjk_latin": 1555,
+    "sha256_12": "c3157f368a2e"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/08-script-pack-builder.md",
+    "bytes": 6953,
+    "words_cjk_latin": 1559,
+    "sha256_12": "56ccfec473f9"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/09-script-secret-masker.md",
+    "bytes": 6984,
+    "words_cjk_latin": 1580,
+    "sha256_12": "ff9db3ef4523"
+  },
+  {
+    "path": "06_CLUSTER_F_SCRIPTS/10-script-stdout-auditor.md",
+    "bytes": 6955,
+    "words_cjk_latin": 1563,
+    "sha256_12": "479d5b8b7100"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/00-CLUSTER-G-INDEX.md",
+    "bytes": 3951,
+    "words_cjk_latin": 697,
+    "sha256_12": "0ab3e3e37217"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/01-codex-raw-go.md",
+    "bytes": 7088,
+    "words_cjk_latin": 1610,
+    "sha256_12": "42b8959951a5"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/02-codex-raw-context.md",
+    "bytes": 7070,
+    "words_cjk_latin": 1590,
+    "sha256_12": "bbb2a922b6d1"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/03-codex-raw-start-day.md",
+    "bytes": 7123,
+    "words_cjk_latin": 1605,
+    "sha256_12": "d392b6568468"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/04-codex-raw-comment-sweep.md",
+    "bytes": 7178,
+    "words_cjk_latin": 1601,
+    "sha256_12": "5793d453d8d6"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/05-codex-raw-session-carry-forward.md",
+    "bytes": 7178,
+    "words_cjk_latin": 1597,
+    "sha256_12": "e23c2bff6862"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/06-codex-raw-review-router.md",
+    "bytes": 7156,
+    "words_cjk_latin": 1606,
+    "sha256_12": "cade59742627"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/07-codex-raw-delivery-closer.md",
+    "bytes": 7208,
+    "words_cjk_latin": 1609,
+    "sha256_12": "821ab7783c6e"
+  },
+  {
+    "path": "07_CLUSTER_G_CODEX_CLI_SKILLS/08-codex-raw-source-verifier.md",
+    "bytes": 7222,
+    "words_cjk_latin": 1615,
+    "sha256_12": "3115bdf4f166"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/00-CLUSTER-H-INDEX.md",
+    "bytes": 3767,
+    "words_cjk_latin": 686,
+    "sha256_12": "a95b5100a4bb"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/01-example-scoutflow-dispatch-audit.md",
+    "bytes": 7138,
+    "words_cjk_latin": 1576,
+    "sha256_12": "9cfb07a5d653"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/02-example-raw-wiki-enrich.md",
+    "bytes": 7066,
+    "words_cjk_latin": 1562,
+    "sha256_12": "85d7a6c9d02a"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/03-example-h5-bridge-vault-review.md",
+    "bytes": 7080,
+    "words_cjk_latin": 1580,
+    "sha256_12": "e854b9c9271c"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/04-example-memory-governance-loop.md",
+    "bytes": 7041,
+    "words_cjk_latin": 1557,
+    "sha256_12": "c3872f1e23da"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/05-example-incident-recovery.md",
+    "bytes": 7102,
+    "words_cjk_latin": 1573,
+    "sha256_12": "05c2e4ad97f8"
+  },
+  {
+    "path": "08_CLUSTER_H_CROSS_TOOL_EXAMPLES/06-example-research-to-authority-separation.md",
+    "bytes": 7128,
+    "words_cjk_latin": 1574,
+    "sha256_12": "8b94f7944bc6"
+  },
+  {
+    "path": "09_SYNTHESIS/CATALOG-MIGRATION-PLAYBOOK.md",
+    "bytes": 1319,
+    "words_cjk_latin": 292,
+    "sha256_12": "8b22652a1ad7"
+  },
+  {
+    "path": "09_SYNTHESIS/CROSS-TOOL-COLLABORATION-GRAPH.md",
+    "bytes": 3792,
+    "words_cjk_latin": 650,
+    "sha256_12": "1741827f3ae5"
+  },
+  {
+    "path": "09_SYNTHESIS/EVIDENCE-LIMITATIONS.md",
+    "bytes": 1897,
+    "words_cjk_latin": 393,
+    "sha256_12": "d3a0946c3137"
+  },
+  {
+    "path": "09_SYNTHESIS/LINKED-RULES-AND-RUNBOOKS.md",
+    "bytes": 2827,
+    "words_cjk_latin": 563,
+    "sha256_12": "637e5ff5f53d"
+  },
+  {
+    "path": "09_SYNTHESIS/MASTER-CATALOG-INDEX.md",
+    "bytes": 14552,
+    "words_cjk_latin": 1322,
+    "sha256_12": "36e68915c087"
+  },
+  {
+    "path": "09_SYNTHESIS/OUTPUT-FILE-MANIFEST.json",
+    "bytes": 18525,
+    "words_cjk_latin": 1464,
+    "sha256_12": "8dea4d016353"
+  },
+  {
+    "path": "09_SYNTHESIS/REDUNDANCY-CONFLICT-DETECTION.md",
+    "bytes": 4038,
+    "words_cjk_latin": 651,
+    "sha256_12": "0aba2353f210"
+  },
+  {
+    "path": "09_SYNTHESIS/SCHEMA-CHECK-REPORT.md",
+    "bytes": 320,
+    "words_cjk_latin": 41,
+    "sha256_12": "4c5bfe135bd9"
+  },
+  {
+    "path": "09_SYNTHESIS/SELF-AUDIT-FINDINGS.md",
+    "bytes": 3048,
+    "words_cjk_latin": 494,
+    "sha256_12": "b6240d1d0517"
+  },
+  {
+    "path": "09_SYNTHESIS/SENSITIVE-VALUE-SCAN-REPORT.md",
+    "bytes": 669,
+    "words_cjk_latin": 143,
+    "sha256_12": "f4ea446548c8"
+  },
+  {
+    "path": "09_SYNTHESIS/SKILL-EVOLUTION-TIMELINE.md",
+    "bytes": 4422,
+    "words_cjk_latin": 938,
+    "sha256_12": "6568ee2b74c0"
+  },
+  {
+    "path": "09_SYNTHESIS/SOURCE-INVENTORY.md",
+    "bytes": 2798,
+    "words_cjk_latin": 503,
+    "sha256_12": "e3b6c1e11b26"
+  },
+  {
+    "path": "09_SYNTHESIS/TRUTHFUL-STDOUT.yml",
+    "bytes": 1037,
+    "words_cjk_latin": 94,
+    "sha256_12": "f05d13ad2a54"
+  },
+  {
+    "path": "README.md",
+    "bytes": 2988,
+    "words_cjk_latin": 548,
+    "sha256_12": "210e3d645c60"
+  }
+]

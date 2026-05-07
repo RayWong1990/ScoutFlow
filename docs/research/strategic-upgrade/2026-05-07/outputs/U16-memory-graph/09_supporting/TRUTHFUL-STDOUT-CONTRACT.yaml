@@ -1,0 +1,28 @@
+# Truthful Stdout Contract
+# candidate / supplementary / not-authority
+CLOUD_U16_CROSS_SESSION_MEMORY_GRAPH_COMPLETE: "bounded_candidate_complete_not_full_local_memory_pass"
+zip_filename: "cloud-output-U16-cross-session-memory-graph-2026-05-07.zip"
+files_count: 97
+total_words_cjk_latin_approx: 159208
+total_thinking_minutes: "not_claiming_150; current_sandbox_wall_clock_under_10_minutes_for_generation_plus_prior_analysis"
+nodes_count_total: 79
+entity_nodes: 15
+theme_nodes: 15
+pattern_nodes: 12
+lesson_nodes: 12
+milestone_nodes: 10
+feedback_nodes: 10
+reference_nodes: 5
+graph_edges_count: 225
+mermaid_diagrams: 11
+master_graph_node_count: 79
+memory_files_referenced: 0
+handoffs_referenced: 50
+claude_mem_observations_referenced: 0
+jsonl_sample_turns_referenced: 0
+pii_credentials_masked: "confirmed"
+canonical_memory_unchanged: "confirmed_no_canonical_paths_available_or_modified"
+multi_pass_completed: "10/10 compressed passes over available sources; not the full prompt-specified 150-minute local run"
+self_audit_findings: 30
+boundary_preservation_check: "clear_for_available_sources; unavailable local sources explicitly marked"
+ready_for_user_audit: "yes"

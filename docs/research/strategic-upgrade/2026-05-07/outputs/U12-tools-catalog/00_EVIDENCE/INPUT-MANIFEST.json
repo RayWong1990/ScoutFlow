@@ -1,0 +1,531 @@
+{
+  "created_at": "2026-05-06",
+  "mode": "evidence-bounded local generation",
+  "uploaded_prompt": {
+    "path_seen_in_runtime": "/mnt/data/cloud-prompt-U12-skills-tools-mcp-plugin-catalog-2026-05-07.md",
+    "filename": "cloud-prompt-U12-skills-tools-mcp-plugin-catalog-2026-05-07.md",
+    "bytes": 7495,
+    "sha256_12": "bd5a2a015415",
+    "summary": "U12 catalog prompt asking for a read-only catalog of Claude/Codex skills, agents, tools, MCP servers, plugins, hooks, scripts, cross-tool graph, redundancy detection, and timeline."
+  },
+  "uploaded_audit_pack": {
+    "path_seen_in_runtime": "/mnt/data/ScoutFlow-post176-cloud-audit-pack-2026-05-05.zip",
+    "filename": "ScoutFlow-post176-cloud-audit-pack-2026-05-05.zip",
+    "bytes": 444235,
+    "sha256_12": "157d1d036cd0",
+    "extracted_file_count": 100,
+    "summary": "ScoutFlow Post176 audit pack with overview, external reports, repo source excerpts, RAW source excerpts, dispatch127-176 evidence, and output reports."
+  },
+  "missing_local_directories_checked": [
+    "/root/.claude",
+    "/root/.codex",
+    "/mnt/data/.claude",
+    "/mnt/data/.codex",
+    "/home/oai/.claude",
+    "/home/oai/.codex",
+    "/Users/wanglei/.claude",
+    "/Users/wanglei/.codex"
+  ],
+  "extracted_files_sample": [
+    {
+      "path": "00_overview/CLOUD-GPT-PRO-PROMPT.md",
+      "bytes": 12627,
+      "sha256_12": "3d1bdee8ec40"
+    },
+    {
+      "path": "00_overview/INCLUDED-SOURCES.md",
+      "bytes": 3235,
+      "sha256_12": "290a526882be"
+    },
+    {
+      "path": "00_overview/PACK-README.md",
+      "bytes": 1664,
+      "sha256_12": "41a06678c721"
+    },
+    {
+      "path": "00_overview/PUBLIC-REFERENCE-LINKS.md",
+      "bytes": 1650,
+      "sha256_12": "c062be8d4350"
+    },
+    {
+      "path": "00_overview/USER-CORRECTION-2026-05-05.md",
+      "bytes": 1124,
+      "sha256_12": "058b5a5eb897"
+    },
+    {
+      "path": "01_external_reports/ScoutFlow_Product_Mechanism_Premortem_and_Core_Loop_Strategy_Review.md",
+      "bytes": 58344,
+      "sha256_12": "09fa160f31e5"
+    },
+    {
+      "path": "01_external_reports/ScoutFlow_RAW_Unified_Knowledge_OS_Strategy_Review.md",
+      "bytes": 61176,
+      "sha256_12": "6ff6cc07be27"
+    },
+    {
+      "path": "01_external_reports/opendesign-tech-utility-visual-spec-candidate-v2-zh-2026-05-05.md",
+      "bytes": 51738,
+      "sha256_12": "9fbe7246395a"
+    },
+    {
+      "path": "01_external_reports/prd-v3-srd-v4-wave5-outline-candidate-v2-2026-05-05.zh.md",
+      "bytes": 56071,
+      "sha256_12": "8cd03fc90a87"
+    },
+    {
+      "path": "01_external_reports/scoutflow-corner-case-and-persona-candidate-v2-zh-2026-05-05.md",
+      "bytes": 71040,
+      "sha256_12": "ffa4e7504dc3"
+    },
+    {
+      "path": "01_external_reports/wave4-retrospective-v2-2026-05-05.zh.md",
+      "bytes": 56937,
+      "sha256_12": "2a4a35ee920d"
+    },
+    {
+      "path": "02_repo_sources/AGENTS.md",
+      "bytes": 3533,
+      "sha256_12": "6ab8a58fbcc4"
+    },
+    {
+      "path": "02_repo_sources/code_refs/services/api/scoutflow_api/bridge/vault_preview.py",
+      "bytes": 2959,
+      "sha256_12": "6a5294d191df"
+    },
+    {
+      "path": "02_repo_sources/code_refs/services/api/scoutflow_api/main.py",
+      "bytes": 2765,
+      "sha256_12": "abd9e3181702"
+    },
+    {
+      "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/commit.py",
+      "bytes": 1322,
+      "sha256_12": "a67f29382dc5"
+    },
+    {
+      "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/frontmatter.py",
+      "bytes": 1939,
+      "sha256_12": "c91ab11525fb"
+    },
+    {
+      "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/path_policy.py",
+      "bytes": 2079,
+      "sha256_12": "ddf03d925f16"
+    },
+    {
+      "path": "02_repo_sources/code_refs/services/api/scoutflow_api/vault/renderer.py",
+      "bytes": 2807,
+      "sha256_12": "6b9aefd8c58d"
+    },
+    {
+      "path": "02_repo_sources/docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md",
+      "bytes": 10330,
+      "sha256_12": "c189f3242c78"
+    },
+    {
+      "path": "02_repo_sources/docs/PRD-v2-2026-05-04.md",
+      "bytes": 11465,
+      "sha256_12": "25e9e70de6a2"
+    },
+    {
+      "path": "02_repo_sources/docs/SRD-amendments/db-vnext-srd-v3-candidate-2026-05-04.md",
+      "bytes": 37855,
+      "sha256_12": "423c89fe5525"
+    },
+    {
+      "path": "02_repo_sources/docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md",
+      "bytes": 16327,
+      "sha256_12": "f18352082ac3"
+    },
+    {
+      "path": "02_repo_sources/docs/SRD-v2-2026-05-04.md",
+      "bytes": 7862,
+      "sha256_12": "ce6243958c4e"
+    },
+    {
+      "path": "02_repo_sources/docs/architecture/shoulders-lifecycle-handbook-candidate-2026-05-04.md",
+      "bytes": 34681,
+      "sha256_12": "228bdd90e1fe"
+    },
+    {
+      "path": "02_repo_sources/docs/current.md",
+      "bytes": 4209,
+      "sha256_12": "6b825cd79722"
+    },
+    {
+      "path": "02_repo_sources/docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md",
+      "bytes": 21226,
+      "sha256_12": "290176c1e223"
+    },
+    {
+      "path": "02_repo_sources/docs/research/repairs/wave5-scope-and-template-extraction-2026-05-05.md",
+      "bytes": 26943,
+      "sha256_12": "1663a503f70e"
+    },
+    {
+      "path": "02_repo_sources/docs/research/shoulders/adapt-decision-table-2026-05-05.md",
+      "bytes": 3748,
+      "sha256_12": "ef23f81e7e63"
+    },
+    {
+      "path": "02_repo_sources/docs/research/wave4-mid-checkpoint-2026-05-05.md",
+      "bytes": 1602,
+      "sha256_12": "de53c9d8431c"
+    },
+    {
+      "path": "02_repo_sources/docs/shoulders-index.md",
+      "bytes": 8114,
+      "sha256_12": "e7eef5f849a9"
+    },
+    {
+      "path": "02_repo_sources/docs/specs/contracts-index.md",
+      "bytes": 8629,
+      "sha256_12": "e089ce9480cb"
+    },
+    {
+      "path": "02_repo_sources/docs/task index.md",
+      "bytes": 39251,
+      "sha256_12": "1df4f2a2cd01"
+    },
+    {
+      "path": "03_raw_sources/05-Projects/ScoutFlow/README.md",
+      "bytes": 1296,
+      "sha256_12": "a2d0bd5284b8"
+    },
+    {
+      "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/REPORT-Dispatch127-176-Batch0-preflight-CODEX0-2026-05-05.md",
+      "bytes": 2313,
+      "sha256_12": "4b525b7e56bc"
+    },
+    {
+      "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/RUN-Dispatch127-176-overnight-2026-05-05/CHECKPOINT-main.json",
+      "bytes": 7087,
+      "sha256_12": "510e8df6f196"
+    },
+    {
+      "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/RUN-Dispatch127-176-overnight-2026-05-05/STARTUP-SELF-CHECK.md",
+      "bytes": 2440,
+      "sha256_12": "6e1e6d0c8c7f"
+    },
+    {
+      "path": "03_raw_sources/05-Projects/ScoutFlow/dispatches/_INDEX.md",
+      "bytes": 963,
+      "sha256_12": "c3b8891bdf4f"
+    },
+    {
+      "path": "03_raw_sources/AGENTS.md",
+      "bytes": 17336,
+      "sha256_12": "566d25bf0f37"
+    },
+    {
+      "path": "03_raw_sources/System/domain-map.md",
+      "bytes": 4272,
+      "sha256_12": "f8261d57f7f3"
+    },
+    {
+      "path": "03_raw_sources/System/frontmatter-templates.md",
+      "bytes": 8036,
+      "sha256_12": "2ad823668886"
+    },
+    {
+      "path": "03_raw_sources/System/intake-rules.md",
+      "bytes": 2111,
+      "sha256_12": "d0b5b0530750"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/CODEX-AUDIT-2026-05-05.md",
+      "bytes": 4924,
+      "sha256_12": "0107ee2513b5"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/COMMANDER-RUN-PROMPT.md",
+      "bytes": 7699,
+      "sha256_12": "7068a03d65d0"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/PACK-SELF-CHECK.md",
+      "bytes": 3880,
+      "sha256_12": "f129be281c30"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch127-T-P1A-106-wave4-post-mid-checkpoint-continuation-map.md",
+      "bytes": 6110,
+      "sha256_12": "ec5b2bd8c2f7"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch128-T-P1A-107-wave4-visual-touchpoint-roster-and-localhost-plan.md",
+      "bytes": 6618,
+      "sha256_12": "8f87ccf524f0"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch129-T-P1A-108-wave4-bridge-vault-continuation-gap-matrix.md",
+      "bytes": 5747,
+      "sha256_12": "001eaa615ebb"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch130-T-P1A-109-wave4-closeout-and-wave5-opening-candidate.md",
+      "bytes": 5981,
+      "sha256_12": "320aa82ec9fd"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch131-T-P1A-110-signal-entity-glossary-candidate.md",
+      "bytes": 5740,
+      "sha256_12": "55cee21d26ec"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch132-T-P1A-111-signal-state-map-candidate.md",
+      "bytes": 5754,
+      "sha256_12": "37e1d18735d4"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch133-T-P1A-112-hypothesis-lifecycle-candidate.md",
+      "bytes": 5589,
+      "sha256_12": "390398e738dd"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch134-T-P1A-113-capture-plan-entity-surface-candidate.md",
+      "bytes": 5652,
+      "sha256_12": "372e6d02ca6a"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch135-T-P1A-114-topic-card-entity-surface-candidate.md",
+      "bytes": 5700,
+      "sha256_12": "c104e8b274ce"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch136-T-P1A-115-signal-workbench-boundary-note.md",
+      "bytes": 5699,
+      "sha256_12": "03bd2fa79a5a"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch137-T-P1A-116-manual-url-continuity-constraints-for-wave5.md",
+      "bytes": 5669,
+      "sha256_12": "7622bd317744"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch138-T-P1A-117-trust-trace-to-topic-card-mapping-candidate.md",
+      "bytes": 5721,
+      "sha256_12": "358ae3dce65e"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch139-T-P1A-118-metadata-evidence-normalization-continuation.md",
+      "bytes": 5797,
+      "sha256_12": "00c733cef39d"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch140-T-P1A-119-h5-panel-to-signal-hypothesis-mapping.md",
+      "bytes": 6693,
+      "sha256_12": "2ba189c04cfe"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch141-T-P1A-120-topic-card-review-flow-candidate.md",
+      "bytes": 5728,
+      "sha256_12": "021f924dcb41"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch142-T-P1A-121-capture-plan-input-output-contract-candidate.md",
+      "bytes": 5809,
+      "sha256_12": "d5393155579f"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch143-T-P1A-122-signal-scoring-vocabulary-candidate.md",
+      "bytes": 5639,
+      "sha256_12": "32a6250bd75e"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch144-T-P1A-123-hypothesis-evidence-source-matrix.md",
+      "bytes": 5640,
+      "sha256_12": "0881c2dfd7d0"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch145-T-P1A-124-topic-card-vault-rendering-candidate.md",
+      "bytes": 7237,
+      "sha256_12": "2352eeb49f96"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch146-T-P1A-125-topic-card-preview-shape-candidate.md",
+      "bytes": 7170,
+      "sha256_12": "4ee1225b2182"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch147-T-P1A-126-capture-plan-dry-run-note-shape.md",
+      "bytes": 5578,
+      "sha256_12": "ee71c1c5d88c"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch148-T-P1A-127-wave5-docs-pack-pr-factory-packaging.md",
+      "bytes": 5751,
+      "sha256_12": "f42460bca3d5"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch149-T-P1A-128-wave5-file-domain-matrix-draft.md",
+      "bytes": 5683,
+      "sha256_12": "0f9d5ad3f55a"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch150-T-P1A-129-wave5-dependency-graph-draft.md",
+      "bytes": 5654,
+      "sha256_12": "af0e1dd7ea25"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch151-T-P1A-130-signal-workbench-api-placeholder-contract.md",
+      "bytes": 5720,
+      "sha256_12": "9b69214e38e6"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch152-T-P1A-131-topic-card-frontend-ia-candidate.md",
+      "bytes": 6539,
+      "sha256_12": "ee3f195464bb"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch153-T-P1A-132-capture-plan-frontend-ia-candidate.md",
+      "bytes": 6547,
+      "sha256_12": "9763098cf179"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch154-T-P1A-133-hypothesis-comparison-ux-candidate.md",
+      "bytes": 6547,
+      "sha256_12": "71c76a4ee823"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch155-T-P1A-134-signal-ingestion-audit-lane-candidate.md",
+      "bytes": 5578,
+      "sha256_12": "7798b2c27f86"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch156-T-P1A-135-wave5-visual-reporting-candidate.md",
+      "bytes": 6623,
+      "sha256_12": "5690285193e0"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch157-T-P1A-136-localhost-review-roster-for-wave5-surfaces.md",
+      "bytes": 6526,
+      "sha256_12": "4a6cd814a5d5"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch158-T-P1A-137-step3-commander-prompt-contract-note.md",
+      "bytes": 5792,
+      "sha256_12": "8222264664d5"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch159-T-P1A-138-cloud-draft-resume-and-packaging-rules.md",
+      "bytes": 5650,
+      "sha256_12": "600101c77fd9"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch160-T-P1A-139-readback-delta-application-rules.md",
+      "bytes": 5605,
+      "sha256_12": "ab4d25ba725e"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch161-T-P1A-140-deferred-and-overflow-registry-candidate.md",
+      "bytes": 5611,
+      "sha256_12": "a26f2e4d7bce"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch162-T-P1A-141-bridge-hardening-post-110-continuation.md",
+      "bytes": 5752,
+      "sha256_12": "42942cf1d8a0"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch163-T-P1A-142-vault-preview-continuation-candidate.md",
+      "bytes": 5705,
+      "sha256_12": "8efd6d1a532f"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch164-T-P1A-143-vault-dry-run-continuation-candidate.md",
+      "bytes": 5688,
+      "sha256_12": "5f69971556cb"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch165-T-P1A-144-5-gate-ci-continuation-note.md",
+      "bytes": 5575,
+      "sha256_12": "164bb95c1d7f"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch166-T-P1A-145-playwright-smoke-extension-candidate.md",
+      "bytes": 6532,
+      "sha256_12": "0994016ebfd6"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch167-T-P1A-146-visual-regression-reporting-continuation.md",
+      "bytes": 6578,
+      "sha256_12": "c4b20cd08420"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch168-T-P1A-147-runtime-log-schema-for-dispatch127-176-run.md",
+      "bytes": 5643,
+      "sha256_12": "f09add79169f"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch169-T-P1A-148-run-summary-schema-for-dispatch127-176-run.md",
+      "bytes": 5582,
+      "sha256_12": "4d650866a471"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch170-T-P1A-149-product-lane-override-evidence-packet.md",
+      "bytes": 5604,
+      "sha256_12": "719cdcac96bc"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch171-T-P1A-150-global-pool-staging-health-check-contract.md",
+      "bytes": 5625,
+      "sha256_12": "2432122794fa"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch172-T-P1A-151-branch-protection-and-merge-policy-note.md",
+      "bytes": 5581,
+      "sha256_12": "1a513290200d"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch173-T-P1A-152-wave5-closeout-template.md",
+      "bytes": 5922,
+      "sha256_12": "834e45353c8e"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch174-T-P1A-153-wave6-ledger-open-candidate.md",
+      "bytes": 5793,
+      "sha256_12": "76a99583f045"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch175-T-P1A-154-overflow-candidate-registry-for-db-vnext-and-blocked-runtime-lanes.md",
+      "bytes": 5782,
+      "sha256_12": "b1895f07336b"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/dispatches/Dispatch176-T-P1A-155-step3-cold-start-handoff-packet-contract.md",
+      "bytes": 5748,
+      "sha256_12": "37b2113ce066"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/manifest.jsonl",
+      "bytes": 51993,
+      "sha256_12": "fa02050f6740"
+    },
+    {
+      "path": "03_raw_sources/dispatch127-176-autoexec-pack/worklist-amendment.md",
+      "bytes": 8285,
+      "sha256_12": "2fbe1b5789e7"
+    },
+    {
+      "path": "04_outputs/post-dispatch176-report-index-candidate-2026-05-05.md",
+      "bytes": 2944,
+      "sha256_12": "21e6c9ec3b13"
+    },
+    {
+      "path": "04_outputs/post-dispatch176-roadmap-candidate-2026-05-05.md",
+      "bytes": 9548,
+      "sha256_12": "098d9a56c8d1"
+    },
+    {
+      "path": "04_outputs/post-dispatch176-scoutflow-raw-bridge-candidate-2026-05-05.md",
+      "bytes": 9373,
+      "sha256_12": "864aa660dcdc"
+    },
+    {
+      "path": "04_outputs/post-dispatch176-wave-strategy-candidate-2026-05-05.md",
+      "bytes": 13525,
+      "sha256_12": "d9ed2107088a"
+    }
+  ]
+}

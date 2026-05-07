@@ -1,0 +1,25 @@
+CLOUD_U15_PR_DECISION_LOG_ATLAS_COMPLETE: False
+completion_status: "partial_candidate_delivery"
+zip_filename: "cloud-output-U15-pr-decision-log-atlas-2026-05-07.zip"
+files_count: 145
+total_words_cjk_latin_approx: 130005
+prs_documented: 80
+merged_prs_documented: 80
+amendment_prs_documented: 3
+decision_patterns_extracted: 20
+timelines_count: 5
+topic_views_count: 7
+cluster_indexes_count: 11
+contentflow_legacy_decisions: 5
+mermaid_diagrams: 19
+introduced_count: 51
+exposed_count: 21
+both_count: 8
+self_audit_findings: 32
+canonical_decision_log_unchanged: "confirmed_offline_artifact_only"
+boundary_preservation_check: "clear_with_gaps_recorded"
+u10_runbook_loaded: False
+u11_anti_pattern_registry_loaded: False
+full_240_pr_inventory_loaded: False
+ready_for_user_audit: "yes"
+failed_gates: ["full_240_pr_inventory", "u10_registry", "u11_registry", "contentflow_l1_source"]

@@ -1,4 +1,13 @@
 # Current
+
+## TL;DR (5 行)
+
+- main = `e1deda6` (PR #243 PF-C4-01 land); 13 surface 静态壳 + tokens 三层 overlay 已就位
+- Active product lane `0/3` / Authority writer `0/1` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
+- write_enabled=False / 5 overflow lane Hold (true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench)
+- PRD canonical = v2 + v2.1 amend (promoted); SRD canonical = v2 + v3-h5-bridge amend (promoted)
+- 入口：`docs/00-START-HERE.md`; 路线图：`docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` (candidate north-star)
+
 ## 当前状态
 - Phase / Step：`1A` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - 主任务：`T-P1A-072` 仅作为当前 authority ledger-open anchor 保留；无 active product task；`Dispatch131 / T-P1A-110 ~ Dispatch172 / T-P1A-151` 已全部以 candidate docs/spec/visual/audit lanes landed；`Dispatch173 ~ Dispatch176 / T-P1A-152 ~ T-P1A-155` 已完成 Wave 5 closeout、Wave 6 candidate open 与 overflow/handoff candidate 落地；其中 `T-P1A-124 / T-P1A-125` 为 bounded frontend candidate surfaces，现已补齐 local frontend validation 与 bounded screenshot packet / Playwright execution evidence，但仍保持 `NOT_EXECUTION_APPROVED`，且不构成全局 visual terminal verdict、product UI approval、runtime approval、package strategy approval 或 frontend execution gate；当前仍未打开新的 code-bearing next gate；`PR #93` 已由 `T-P1A-103` supersede，`PR #93` 不得原样合并
