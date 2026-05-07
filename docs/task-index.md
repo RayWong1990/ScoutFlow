@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`1/3`，Review count=`0`，Authority writer count=`1/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-DOC-246` | `governance harness + retrospective + layer-2-audit follow-up + M-1/M-2 fix` | `active` | `cc1+cc0` | `docs+tools+tests+ci, governance lane` | `docs/00-START-HERE.md, docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md, docs/current.md, docs/task-index.md, docs/decision-log.md, docs/research/post-frozen/**, docs/memory/**, tools/refresh-start-here.py, tests/tools/**, .github/workflows/docs-check.yml, .gitignore` | `services/, apps/, workers/, packages/, data/, referencerepo/` | `D-017 + L-AUTHORITY-DRIFT lesson + master spec §14.4 closeout 顺序` | `pytest tests/tools (46 pass) + python tools/refresh-start-here.py --check + docs-check + secrets-redline` | `none` | `PR #246 in-progress; admin merge after Layer 2 audit subagent CLEAR + 战友 V-PASS` |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Review
 
@@ -64,6 +64,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-DOC-246` | `Governance harness + CC1 retrospective sediment + 4 commit chain (Layer A-D auto-managed START-HERE)` | `2026-05-07` | PR=#246; merge commit=`3c01a1c`; result=`Layer A frontmatter + Layer B refresh-start-here.py + CI --check + Layer C master spec §14.4 closeout 顺序硬锁 + Layer D PR #300 forced refresh + 50 PR interval + tools/refresh-start-here.py 245 行 (env var override) + tests/tools/test_refresh_start_here.py (46 passed) + 19 instinct ~/.claude/rules/codex-metacognition §3 + 4-agent v3 §8 双 Opus SOP + retrospective 548 行 + handoff template + handoff/README + PR244-closeout land + PR246-global-rules-changelog manifest`; audit=`刑部尚书 Layer 2 verdict CLEAR_WITH_LOW_FOLLOWUPS (0 C / 0 H / 0 M / 4 L post-merge)`; amend trail=4 (战友 explicit override "全部修复"); post-merge follow-up=`L-1/L-2/L-4 + W6K cross-vendor mirror + e2e-placeholder rebase` |
 | `T-DOC-244` | `Baseline doc consolidation + master spec promotion + PRD-v3/SRD-v3 thin shell + 16 ZIP storage land` | `2026-05-07` | PR=#244; merge commit=`e207664`; result=`00-START-HERE + master spec + PRD-v3/SRD-v3 thin shell + 16 ZIP reference storage land + 4 status-word lock`; post-merge drift follow-up delegated to PR #246 |
 | `T-P1A-155` | STEP3 cold-start handoff packet contract | `2026-05-05` | PR=#192; merge commit=`0eb29eb`; candidate-only handoff surface; not authority; not execution approval; not runtime approval |
 | `T-P1A-154` | Overflow candidate registry for DB vNext and blocked runtime lanes | `2026-05-05` | PR=#191; merge commit=`f8347b4`; Wave 6 overflow candidate surface; not migration approval; not runtime approval |
