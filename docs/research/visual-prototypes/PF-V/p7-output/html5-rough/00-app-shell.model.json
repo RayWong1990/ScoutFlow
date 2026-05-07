@@ -1,0 +1,56 @@
+{
+  "surface_id": "00-app-shell",
+  "source_images": [
+    "00_app-shell/task-00_master.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "url-bar",
+        "role": "primary-input"
+      },
+      {
+        "id": "metadata",
+        "role": "panel"
+      },
+      {
+        "id": "scope",
+        "role": "panel"
+      },
+      {
+        "id": "trace",
+        "role": "widest-panel"
+      },
+      {
+        "id": "preview",
+        "role": "last-gate"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "vault-commit-btn",
+      "tag": "button",
+      "label": "入库提交（干跑）",
+      "states": [
+        "disabled"
+      ],
+      "tokens": [
+        "accent_live",
+        "text_muted"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "url-input",
+    "state-badge",
+    "lifecycle-stepper",
+    "evidence-table",
+    "btn",
+    "frontmatter-block"
+  ],
+  "icons_referenced": [
+    "icon-dry-run"
+  ]
+}

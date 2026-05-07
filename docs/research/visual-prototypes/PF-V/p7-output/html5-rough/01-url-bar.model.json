@@ -1,0 +1,66 @@
+{
+  "surface_id": "01-url-bar",
+  "source_images": [
+    "01_url-bar/task-01_state-empty.png",
+    "01_url-bar/task-02_state-focus.png",
+    "01_url-bar/task-03_state-validating.png",
+    "01_url-bar/task-04_state-error.png",
+    "01_url-bar/task-05_state-history-dropdown.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "url-input",
+        "role": "primary-input"
+      },
+      {
+        "id": "submit-btn",
+        "role": "primary-action"
+      },
+      {
+        "id": "history-dropdown",
+        "role": "history-list"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "url-input",
+      "tag": "input",
+      "type": "url",
+      "states": [
+        "empty",
+        "focus",
+        "validating",
+        "error",
+        "history-open"
+      ],
+      "tokens": [
+        "surface_muted",
+        "border_soft",
+        "text_primary",
+        "accent_live"
+      ]
+    },
+    {
+      "id": "submit-btn",
+      "tag": "button",
+      "label": "创建采集",
+      "states": [
+        "disabled",
+        "active"
+      ],
+      "tokens": [
+        "accent_live",
+        "text_primary"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "url-input",
+    "btn",
+    "capture-id-chip",
+    "state-badge"
+  ],
+  "icons_referenced": []
+}

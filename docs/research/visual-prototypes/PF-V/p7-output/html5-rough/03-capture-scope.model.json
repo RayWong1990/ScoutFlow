@@ -1,0 +1,39 @@
+{
+  "surface_id": "03-capture-scope",
+  "source_images": [
+    "03_capture-scope/task-11_lifecycle-start.png",
+    "03_capture-scope/task-12_lifecycle-complete.png",
+    "03_capture-scope/task-13_blocked-layer-tooltip.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "lifecycle-stepper",
+        "role": "state-transition"
+      },
+      {
+        "id": "governance-tooltip",
+        "role": "blocked-boundary"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "lifecycle-stepper",
+      "tag": "ol",
+      "states": [
+        "start",
+        "complete",
+        "blocked-tooltip"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "lifecycle-stepper",
+    "state-badge",
+    "governance-tooltip"
+  ],
+  "icons_referenced": [
+    "icon-success"
+  ]
+}

@@ -1,0 +1,31 @@
+.component-demo {
+  min-height: 100vh;
+  margin: 0;
+  padding: var(--space-lg);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--line-height-body);
+}
+.component-demo code {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono);
+}
+
+.capture-id-chip,
+.capture-id {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-chip);
+  background: var(--surface-muted);
+  color: var(--accent-live);
+  font-family: var(--font-mono);
+  font-size: var(--type-mono);
+  font-weight: var(--font-weight-mono);
+  padding: calc(var(--space-xs) / 2) var(--space-sm);
+}
+.capture-id-chip--muted {
+  color: var(--text-muted);
+}

@@ -1,0 +1,35 @@
+{
+  "surface_id": "11-density-spec",
+  "source_images": [
+    "11_density-spec/task-43_density-compact-baseline.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "compact-shell",
+        "role": "density-reference"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "app-shell",
+      "tag": "main",
+      "states": [
+        "compact-baseline"
+      ],
+      "tokens": [
+        "density-compact"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "lifecycle-stepper",
+    "evidence-table",
+    "frontmatter-block"
+  ],
+  "icons_referenced": [
+    "icon-dry-run"
+  ]
+}

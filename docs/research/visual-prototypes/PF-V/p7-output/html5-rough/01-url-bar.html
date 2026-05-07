@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · URL 输入栏状态</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./01-url-bar.module.css">
+</head>
+<body>
+<main class="url-bar-surface">
+<header class="surface-shell__header"><h1 class="surface-title">URL 输入栏状态集</h1><p>粘贴入口、校验、错误与历史下拉。</p></header>
+<section class="url-bar url-bar--empty">
+  <h3 class="state-label">状态: 空闲</h3>
+  <label class="url-bar__label" for="url-empty">URL 地址</label>
+  <input id="url-empty" type="url" class="url-input__field" placeholder="粘贴一个 URL 或拖入文件" aria-label="URL 地址">
+  <button class="btn btn--blocked url-bar__submit" disabled type="button">创建采集</button>
+</section>
+<hr class="state-divider">
+<section class="url-bar url-bar--focus">
+  <h3 class="state-label">状态: 聚焦</h3>
+  <label class="url-bar__label" for="url-focus">URL 地址</label>
+  <input id="url-focus" type="url" class="url-input__field url-input__field--focus" placeholder="粘贴一个 URL 或拖入文件" aria-label="URL 地址" autofocus>
+  <button class="btn btn--blocked url-bar__submit" disabled type="button">创建采集</button>
+</section>
+<hr class="state-divider">
+<section class="url-bar url-bar--validating">
+  <h3 class="state-label">状态: 校验中</h3>
+  <label class="url-bar__label" for="url-validating">URL 地址</label>
+  <input id="url-validating" type="url" class="url-input__field url-input__field--focus" value="https://www.bilibili.com/video/BV1xK4y1f7yC" aria-label="URL 地址">
+  <span class="url-bar__spinner" aria-busy="true">解析中...</span>
+  <button class="btn btn--blocked url-bar__submit" disabled type="button">创建采集</button>
+</section>
+<hr class="state-divider">
+<section class="url-bar url-bar--error">
+  <h3 class="state-label">状态: 错误</h3>
+  <label class="url-bar__label" for="url-error">URL 地址</label>
+  <input id="url-error" type="url" class="url-input__field url-input__field--error" value="https://invalid-url" aria-invalid="true" aria-describedby="url-error-msg" aria-label="URL 地址">
+  <button class="btn btn--blocked url-bar__submit" disabled type="button">创建采集</button>
+  <p id="url-error-msg" class="url-input__error">URL 格式无效</p>
+</section>
+<hr class="state-divider">
+<section class="url-bar url-bar--history-open">
+  <h3 class="state-label">状态: 历史下拉</h3>
+  <label class="url-bar__label" for="url-history">URL 地址</label>
+  <input id="url-history" type="url" class="url-input__field url-input__field--focus" value="https://www.bilibili.com/video/BV1xK4y1f7yC" aria-label="URL 地址">
+  <button class="btn btn--primary url-bar__submit" type="button">创建采集</button>
+  <ul class="url-bar__history" role="listbox" aria-label="最近采集记录">
+    <li class="url-bar__history-item" role="option"><code class="capture-id">cap_20260506_8a3f2</code><span>https://www.bilibili.com/video/BV1xK4y1f7yC</span><time>14:32 UTC</time><span class="state-badge state-badge--metadata-loaded">已加载</span></li>
+    <li class="url-bar__history-item" role="option"><code class="capture-id">cap_20260505_8a243</code><span>https://www.bilibili.com/video/BV19z4y1m7Qa</span><time>13:08 UTC</time><span class="state-badge state-badge--metadata-loaded">已加载</span></li>
+    <li class="url-bar__history-item" role="option"><code class="capture-id">cap_20260504_8a094</code><span>https://example.com/article/workflow</span><time>12:45 UTC</time><span class="state-badge state-badge--metadata-loaded">已加载</span></li>
+    <li class="url-bar__history-item" role="option"><code class="capture-id">cap_20260503_89ee5</code><span>https://www.bilibili.com/video/BV1a14y1o7xK</span><time>11:29 UTC</time><span class="state-badge state-badge--metadata-loaded">已加载</span></li>
+    <li class="url-bar__history-item" role="option"><code class="capture-id">cap_20260502_89d36</code><span>https://archive.local/capture/demo</span><time>10:35 UTC</time><span class="state-badge state-badge--metadata-loaded">已加载</span></li>
+  </ul>
+</section>
+</main>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 入库预览</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./05-vault-preview.module.css">
+</head>
+<body>
+<main class="vault-preview-surface">
+<header class="surface-shell__header"><h1 class="surface-title">入库预览状态集</h1></header>
+<section class="vault-preview vault-preview--idle panel-card">
+  <h3 class="state-label">状态: 空闲</h3>
+  <h2 class="vault-preview__title">入库预览</h2>
+  <p class="vault-preview__hint">尚未生成预览，等待元数据完成。</p>
+</section>
+<hr class="state-divider">
+<section class="vault-preview vault-preview--ready panel-card">
+  <h3 class="state-label">状态: Markdown 预览就绪</h3>
+  <header class="panel-card__header"><h2 class="vault-preview__title">入库预览</h2><span class="state-badge state-badge--ready">预览就绪</span></header>
+  <pre class="frontmatter-block"><code>---
+title: 深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯
+capture_id: cap_20260506_8a3f2
+status: preview_only
+write_enabled: false
+vault_target: ~/workspace/raw/00-Inbox/
+---</code></pre>
+  <article class="preview-body">
+    <h3>视频摘要</h3>
+    <p>本视频对比了深度工作流与普通工作流的差异，强调操作员在高频采集中的状态边界、证据入账与低摩擦复盘。</p>
+    <p>预览已生成供审阅。提交路径仍处于锁定。</p>
+  </article>
+  <footer class="vault-preview__target"><span>目标: </span><code>~/workspace/raw/00-Inbox/cap_20260506_8a3f2.md</code></footer>
+</section>
+<hr class="state-divider">
+<section class="vault-preview vault-preview--blocked panel-card">
+  <h3 class="state-label">状态: 阻塞队列持有</h3>
+  <aside class="vault-preview__block-banner" role="alert"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-blocked"></use></svg><p>已阻塞: 写入禁用 / 阻塞队列持有</p></aside>
+  <pre class="frontmatter-block"><code>---
+title: 深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯
+capture_id: cap_20260506_8a3f2
+status: preview_only
+write_enabled: false
+vault_target: ~/workspace/raw/00-Inbox/
+---</code></pre>
+  <article class="preview-body">
+    <h3>视频摘要</h3>
+    <p>本视频对比了深度工作流与普通工作流的差异，强调操作员在高频采集中的状态边界、证据入账与低摩擦复盘。</p>
+    <p>预览已生成供审阅。提交路径仍处于锁定。</p>
+  </article>
+</section>
+<hr class="state-divider">
+<section class="vault-preview vault-preview--frontmatter-expanded panel-card">
+  <h3 class="state-label">状态: Frontmatter 展开</h3>
+  <header class="panel-card__header"><h2 class="vault-preview__title">Frontmatter 片段</h2><span class="state-badge state-badge--ready">字段证据</span></header>
+  <dl class="frontmatter-fields">
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-title">title</a></dt><dd><code>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-capture">capture_id</a></dt><dd><code>cap_20260506_8a3f2</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-source">source_url</a></dt><dd><code>https://www.bilibili.com/video/BV1xK4y1f7yC</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-status">status</a></dt><dd><code>preview_only</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-write">write_enabled</a></dt><dd><code>false</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-target">vault_target</a></dt><dd><code>~/workspace/raw/00-Inbox/</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-created">created_at</a></dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-parser">parser</a></dt><dd><code>bbdown_metadata_probe</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-uploader">uploader</a></dt><dd><code>@scout_ops_archive</code></dd>
+    <dt><a class="field-evidence-link" href="#evidence" data-trace-id="trace-duration">duration</a></dt><dd><code>12:34</code></dd>
+  </dl>
+</section>
+<hr class="state-divider">
+<section class="vault-preview vault-preview--copy-action panel-card">
+  <h3 class="state-label">状态: 复制动作</h3>
+  <header class="panel-card__header"><h2 class="vault-preview__title">入库预览</h2><button class="btn btn--primary vault-preview__copy" type="button">复制 Markdown</button></header>
+  <pre class="frontmatter-block"><code>---
+title: 深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯
+capture_id: cap_20260506_8a3f2
+status: preview_only
+write_enabled: false
+vault_target: ~/workspace/raw/00-Inbox/
+---</code></pre>
+  <aside class="toast toast--success" role="status"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>Markdown 已复制到剪贴板</aside>
+</section>
+</main>
+</body>
+</html>

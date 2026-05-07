@@ -1,0 +1,49 @@
+{
+  "surface_id": "05-vault-preview",
+  "source_images": [
+    "05_vault-preview/task-17_idle.png",
+    "05_vault-preview/task-18_ready.png",
+    "05_vault-preview/task-19_blocked-overflow-registry.png",
+    "05_vault-preview/task-20_frontmatter-expanded.png",
+    "05_vault-preview/task-21_copy-action.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "frontmatter",
+        "role": "markdown-preview"
+      },
+      {
+        "id": "target",
+        "role": "vault-target"
+      },
+      {
+        "id": "block-banner",
+        "role": "write-boundary"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "frontmatter-block",
+      "tag": "pre",
+      "states": [
+        "idle",
+        "ready",
+        "blocked",
+        "expanded",
+        "copy"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "state-badge",
+    "frontmatter-block",
+    "btn"
+  ],
+  "icons_referenced": [
+    "icon-blocked",
+    "icon-success"
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "surface_id": "12-type-spec",
+  "source_images": [
+    "12_type-spec/task-44_type-weight-heavy.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "type-shell",
+        "role": "typography-reference"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "app-shell",
+      "tag": "main",
+      "states": [
+        "weight-heavy"
+      ],
+      "tokens": [
+        "type-weight-heavy"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "lifecycle-stepper",
+    "evidence-table",
+    "frontmatter-block"
+  ],
+  "icons_referenced": [
+    "icon-dry-run"
+  ]
+}

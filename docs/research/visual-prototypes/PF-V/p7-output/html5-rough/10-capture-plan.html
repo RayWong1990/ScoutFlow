@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 采集计划信息架构</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./10-capture-plan.module.css">
+</head>
+<body>
+<main class="capture-plan-surface">
+<header class="surface-shell__header"><h1 class="surface-title">采集计划信息架构状态集</h1></header>
+<section class="capture-plan capture-plan--io panel-card">
+  <h3 class="state-label">状态: 计划输入 / 输出契约</h3>
+  <dl class="io-contract"><dt>输入 URL</dt><dd><code>https://www.bilibili.com/video/BV1xK4y1f7yC</code></dd><dt>输入抓取范围</dt><dd><code>metadata, comments, asr</code></dd><dt>输出 Markdown</dt><dd><code>~/workspace/raw/00-Inbox/cap_20260506_8a3f2.md</code></dd><dt>输出 Frontmatter</dt><dd><code>title, capture_id, status, write_enabled</code></dd><dt>输出预览</dt><dd>仅预览</dd></dl>
+</section>
+<hr class="state-divider">
+<section class="capture-plan capture-plan--dry-run panel-card">
+  <h3 class="state-label">状态: 计划干跑</h3>
+  <ul class="automation-hooks"><li class="hook-item hook-item--pass"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>URL 校验通过</li><li class="hook-item hook-item--pass"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>Frontmatter 结构通过</li><li class="hook-item hook-item--pending"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-loading"></use></svg>评论抓取未请求</li><li class="hook-item hook-item--blocked"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-blocked"></use></svg>写入开关关闭</li></ul>
+</section>
+<hr class="state-divider">
+<section class="capture-plan capture-plan--log panel-card">
+  <h3 class="state-label">状态: 计划执行日志</h3>
+  <table class="execution-log"><thead><tr><th>时间</th><th>事件</th><th>说明</th></tr></thead><tbody>
+      <tr class=""><td><code>2026-05-06 14:32 UTC</code></td><td><code>run_start</code></td><td>开始执行计划</td></tr>
+      <tr class=""><td><code>2026-05-06 14:34 UTC</code></td><td><code>capture</code></td><td>12 条采集完成</td></tr>
+      <tr class=""><td><code>2026-05-06 14:36 UTC</code></td><td><code>topic_card</code></td><td>14 张选题卡生成</td></tr>
+      <tr class="execution-row--error"><td><code>2026-05-06 14:38 UTC</code></td><td><code>error</code></td><td>1 条 URL 超时</td></tr>
+      <tr class=""><td><code>2026-05-06 14:39 UTC</code></td><td><code>done</code></td><td>最终状态: 仅预览</td></tr>
+  </tbody></table>
+</section>
+</main>
+</body>
+</html>

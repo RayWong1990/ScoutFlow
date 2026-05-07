@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 入库提交干跑</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./06-vault-commit.module.css">
+</head>
+<body>
+<main class="vault-commit-surface">
+<header class="surface-shell__header"><h1 class="surface-title">入库提交（干跑）状态集</h1></header>
+<section class="vault-commit vault-commit--standard panel-card">
+  <h3 class="state-label">状态: 标准按钮</h3>
+  <button class="btn btn--primary vault-commit__btn" type="button"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-dry-run"></use></svg>入库提交（干跑）</button>
+</section>
+<hr class="state-divider">
+<section class="vault-commit vault-commit--tooltip-flywheel panel-card">
+  <h3 class="state-label">状态: 知识飞轮提示</h3>
+  <button class="btn btn--primary vault-commit__btn" type="button"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-dry-run"></use></svg>入库提交（干跑）</button>
+  <aside class="vault-commit__tooltip" role="tooltip">实际入库后由 Obsidian 接管（增强、双链回填、知识飞轮）</aside>
+</section>
+<hr class="state-divider">
+<section class="vault-commit vault-commit--modal-pass panel-card">
+  <h3 class="state-label">状态: 干跑通过弹窗</h3>
+  <dialog class="modal modal--pass" open>
+    <h2 class="modal__title"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg>干跑通过</h2>
+    <ul class="validation-list">
+      <li class="validation-item validation-item--pass">Frontmatter 完整</li>
+      <li class="validation-item validation-item--pass">入库路径有效</li>
+      <li class="validation-item validation-item--pass">write_enabled = false（预期）</li>
+      <li class="validation-item validation-item--pass">capture_id 唯一</li>
+    </ul>
+    <footer class="modal__footer"><button class="btn btn--secondary" type="button">关闭</button><button class="btn btn--blocked" disabled type="button">实际入库（已锁定）</button></footer>
+  </dialog>
+</section>
+<hr class="state-divider">
+<section class="vault-commit vault-commit--modal-fail panel-card">
+  <h3 class="state-label">状态: 干跑失败弹窗</h3>
+  <dialog class="modal modal--fail" open>
+    <h2 class="modal__title"><svg class="icon" aria-hidden="true"><use href="../icons/state.svg#icon-error"></use></svg>干跑未通过</h2>
+    <ul class="validation-list">
+      <li class="validation-item validation-item--pass">capture_id 唯一</li>
+      <li class="validation-item validation-item--fail">vault_target 缺失<p class="validation-item__error">目标路径必须位于 <code>~/workspace/raw/00-Inbox/</code></p></li>
+      <li class="validation-item validation-item--fail">write_enabled 异常<p class="validation-item__error">仅预览模式必须保持 false / 关闭</p></li>
+    </ul>
+    <footer class="modal__footer"><button class="btn btn--primary" type="button">重试</button><button class="btn btn--secondary" type="button">关闭</button></footer>
+  </dialog>
+</section>
+<hr class="state-divider">
+<section class="vault-commit vault-commit--batch panel-card">
+  <h3 class="state-label">状态: 批量干跑</h3>
+  <header class="panel-card__header"><h2 class="panel-card__title">批量干跑队列</h2><span class="state-badge state-badge--metadata-only">12 条采集</span></header>
+  <table class="batch-table"><thead><tr><th>选择</th><th>capture_id</th><th>状态</th></tr></thead><tbody>
+      <tr><td><input type="checkbox" aria-label="选择 cap_20260506_8a3f2"></td><td><code>cap_20260506_8a3f2</code></td><td><span class="state-badge state-badge--ready">预览就绪</span></td></tr>
+      <tr><td><input type="checkbox" aria-label="选择 cap_20260506_8a3f3"></td><td><code>cap_20260506_8a3f3</code></td><td><span class="state-badge state-badge--warn">待确认</span></td></tr>
+      <tr><td><input type="checkbox" aria-label="选择 cap_20260506_8a3f4"></td><td><code>cap_20260506_8a3f4</code></td><td><span class="state-badge state-badge--ready">预览就绪</span></td></tr>
+      <tr><td><input type="checkbox" aria-label="选择 cap_20260506_8a3f5"></td><td><code>cap_20260506_8a3f5</code></td><td><span class="state-badge state-badge--ready">预览就绪</span></td></tr>
+      <tr><td><input type="checkbox" aria-label="选择 cap_20260506_8a3f6"></td><td><code>cap_20260506_8a3f6</code></td><td><span class="state-badge state-badge--warn">待确认</span></td></tr>
+      <tr><td><input type="checkbox" aria-label="选择 cap_20260506_8a3f7"></td><td><code>cap_20260506_8a3f7</code></td><td><span class="state-badge state-badge--ready">预览就绪</span></td></tr>
+  </tbody></table>
+  <button class="btn btn--primary" type="button">批量干跑</button>
+</section>
+</main>
+</body>
+</html>

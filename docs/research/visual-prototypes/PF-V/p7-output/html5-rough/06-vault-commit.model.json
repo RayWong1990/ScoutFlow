@@ -1,0 +1,50 @@
+{
+  "surface_id": "06-vault-commit",
+  "source_images": [
+    "06_vault-commit/task-22_standard.png",
+    "06_vault-commit/task-23_tooltip-knowledge-flywheel.png",
+    "06_vault-commit/task-24_modal-pass.png",
+    "06_vault-commit/task-25_modal-fail.png",
+    "06_vault-commit/task-26_batch-dry-run.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "dry-run-button",
+        "role": "primary-action"
+      },
+      {
+        "id": "modal",
+        "role": "dry-run-result"
+      },
+      {
+        "id": "batch-table",
+        "role": "queued-captures"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "vault-commit-btn",
+      "tag": "button",
+      "states": [
+        "standard",
+        "tooltip",
+        "modal-pass",
+        "modal-fail",
+        "batch"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "btn",
+    "modal",
+    "state-badge",
+    "panel-card"
+  ],
+  "icons_referenced": [
+    "icon-dry-run",
+    "icon-success",
+    "icon-error"
+  ]
+}

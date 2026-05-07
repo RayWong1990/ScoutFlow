@@ -1,0 +1,56 @@
+/* PF-V P7 tokens.css — ScoutFlow 采集线 design token source of truth */
+:root {
+  /* Color tokens (15 — exact PF-V master context values) */
+  --bg-canvas: #07111b;
+  --bg-shell: #0d1826;
+  --surface-base: #111f31;
+  --surface-elevated: #16263c;
+  --surface-muted: #0b1624;
+  --border-strong: #27415d;
+  --border-soft: #1d3148;
+  --text-primary: #eef4ff;
+  --text-secondary: #a6b8cf;
+  --text-muted: #6d8099;
+  --accent-live: #50d4ff;
+  --accent-success: #53d690;
+  --accent-warn: #ffbe55;
+  --accent-blocked: #ff7b7b;
+  --accent-focus: #9a8cff;
+
+  /* State background colors — derived dark tints from P7 prompt */
+  --state-bg-success: #10291f;
+  --state-bg-warn: #332512;
+  --state-bg-blocked: #33191e;
+  --state-bg-info: #10233d;
+
+  /* Typography */
+  --font-display: "Inter", "SF Pro Display", "Helvetica Neue", sans-serif;
+  --font-body: "Inter", "PingFang SC", "Noto Sans SC", sans-serif;
+  --font-mono: "JetBrains Mono", "SFMono-Regular", monospace;
+  --type-hero: 28px;
+  --type-title: 20px;
+  --type-body: 14px;
+  --type-caption: 12px;
+  --type-mono: 13px;
+  --line-height-body: 1.45;
+  --font-weight-hero: 700;
+  --font-weight-title: 600;
+  --font-weight-body: 400;
+  --font-weight-mono: 500;
+
+  /* Spacing (8px grid) */
+  --space-xs: 8px;
+  --space-sm: 12px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+
+  /* Radius */
+  --radius-panel: 8px;
+  --radius-chip: 999px;
+  --radius-button: 10px;
+
+  /* Shadow */
+  --shadow-panel: 0 24px 48px rgba(0,0,0,0.32);
+  --shadow-elevated: 0 12px 24px rgba(0,0,0,0.24);
+}

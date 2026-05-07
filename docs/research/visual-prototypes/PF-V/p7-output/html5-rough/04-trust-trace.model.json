@@ -1,0 +1,43 @@
+{
+  "surface_id": "04-trust-trace",
+  "source_images": [
+    "04_trust-trace/task-14_filter-dom-only.png",
+    "04_trust-trace/task-15_time-axis.png",
+    "04_trust-trace/task-16_error-path.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "trace-filters",
+        "role": "filter-tabs"
+      },
+      {
+        "id": "graph-placeholder",
+        "role": "graph-todo"
+      },
+      {
+        "id": "evidence-table",
+        "role": "evidence-ledger"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "evidence-table",
+      "tag": "table",
+      "states": [
+        "dom-only",
+        "time-axis",
+        "error-path"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "panel-card",
+    "evidence-table",
+    "state-badge"
+  ],
+  "icons_referenced": [
+    "icon-error"
+  ]
+}

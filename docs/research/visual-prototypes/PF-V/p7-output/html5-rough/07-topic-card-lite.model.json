@@ -1,0 +1,46 @@
+{
+  "surface_id": "07-topic-card-lite",
+  "source_images": [
+    "07_topic-card-lite/task-27_news-article.png",
+    "07_topic-card-lite/task-28_bilibili-video.png",
+    "07_topic-card-lite/task-29_multi-signal.png",
+    "07_topic-card-lite/task-30_evidence-pointers.png",
+    "07_topic-card-lite/task-31_dual-card-compare.png"
+  ],
+  "ia": {
+    "regions": [
+      {
+        "id": "topic-card",
+        "role": "summary-card"
+      },
+      {
+        "id": "signal-chips",
+        "role": "signal-list"
+      },
+      {
+        "id": "evidence-link",
+        "role": "trace-link"
+      }
+    ]
+  },
+  "elements": [
+    {
+      "id": "topic-card",
+      "tag": "article",
+      "states": [
+        "news",
+        "video",
+        "multi-signal",
+        "evidence",
+        "compare"
+      ]
+    }
+  ],
+  "components_extracted": [
+    "topic-card",
+    "tag-list"
+  ],
+  "icons_referenced": [
+    "icon-signal"
+  ]
+}

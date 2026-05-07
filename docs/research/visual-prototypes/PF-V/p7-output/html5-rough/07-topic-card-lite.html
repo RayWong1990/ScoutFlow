@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 轻量选题卡</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./07-topic-card-lite.module.css">
+</head>
+<body>
+<main class="topic-card-lite-surface">
+<header class="surface-shell__header"><h1 class="surface-title">轻量选题卡状态集</h1></header>
+<section class="topic-card topic-card--news">
+  <h3 class="state-label">状态: 新闻文章</h3>
+  <header class="topic-card__source"><code>https://example.com/article</code><time>2026-05-06 14:32 UTC</time></header>
+  <h2 class="topic-card__title">新闻标题示例：开源采集工具的新工作流边界</h2>
+  <p class="topic-card__abstract">文章摘要聚焦本地采集、证据追踪与单人操作员效率。</p>
+  <ul class="signal-chips"><li class="signal-chip "><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 新信号: 高效协作</li></ul>
+</section>
+<hr class="state-divider">
+<section class="topic-card topic-card--video">
+  <h3 class="state-label">状态: Bilibili 视频</h3>
+  <figure class="video-thumb"><span class="video-thumb__duration">12:34</span></figure>
+  <header class="topic-card__source"><code>https://www.bilibili.com/video/BV1xK4y1f7yC</code><code>cap_20260506_8a3f2</code></header>
+  <h2 class="topic-card__title">Async-first 工作流：异步协作的 7 个反直觉规律</h2>
+  <p class="topic-card__abstract">上传者 @scout_ops_archive，围绕异步协作与反直觉规律形成多个可追踪信号。</p>
+  <ul class="signal-chips"><li class="signal-chip "><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 异步优先</li><li class="signal-chip signal-chip--success"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 操作员节奏</li><li class="signal-chip signal-chip--focus"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 证据入账</li></ul>
+</section>
+<hr class="state-divider">
+<section class="topic-card topic-card--multi-signal">
+  <h3 class="state-label">状态: 多信号</h3>
+  <header class="topic-card__source"><code>cap_20260506_8a3f2</code><time>2026-05-06 14:32 UTC</time></header>
+  <h2 class="topic-card__title">高频采集如何反向塑造选题卡</h2>
+  <p class="topic-card__abstract">多个信号共同指向采集范围确认、证据链稳定性与后续内容生产。</p>
+  <ul class="signal-chips"><li class="signal-chip "><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 采集范围</li><li class="signal-chip signal-chip--success"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 信任溯源</li><li class="signal-chip signal-chip--focus"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 入库预览</li><li class="signal-chip signal-chip--blocked"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 写入锁定</li><li class="signal-chip "><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 知识飞轮</li><li class="signal-chip signal-chip--success"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 内容研究</li></ul>
+</section>
+<hr class="state-divider">
+<section class="topic-card topic-card--evidence">
+  <h3 class="state-label">状态: 证据指针</h3>
+  <header class="topic-card__source"><code>cap_20260506_8a3f2</code><time>2026-05-06 14:32 UTC</time></header>
+  <h2 class="topic-card__title">证据链接示例</h2>
+  <p class="topic-card__abstract">摘要中的 <a class="evidence-link" href="#evidence-3" data-trace-id="3">深度工作流</a> 与 <a class="evidence-link" href="#evidence-4" data-trace-id="4">操作员节奏</a> 分别绑定到信任溯源证据行。</p>
+  <ul class="signal-chips"><li class="signal-chip signal-chip--success"><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-signal"></use></svg> 证据已链接</li></ul>
+</section>
+<hr class="state-divider">
+<section class="topic-card-compare">
+  <h3 class="state-label">状态: 双卡对比</h3>
+  <article class="topic-card"><header class="topic-card__source"><code>cap_20260506_8a3f2</code></header><h2 class="topic-card__title">深度工作流</h2><p class="topic-card__abstract">强调专注块与证据沉淀。</p></article>
+  <aside class="compare-divider">对比</aside>
+  <article class="topic-card"><header class="topic-card__source"><code>cap_20260506_91b7c</code></header><h2 class="topic-card__title">普通工作流</h2><p class="topic-card__abstract">强调任务切换与即时响应。</p></article>
+</section>
+</main>
+</body>
+</html>

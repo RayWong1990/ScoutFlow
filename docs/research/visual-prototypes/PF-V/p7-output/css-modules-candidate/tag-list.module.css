@@ -1,0 +1,44 @@
+.component-demo {
+  min-height: 100vh;
+  margin: 0;
+  padding: var(--space-lg);
+  background: var(--bg-canvas);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-size: var(--type-body);
+  line-height: var(--line-height-body);
+}
+.component-demo code {
+  font-family: var(--font-mono);
+  font-size: var(--type-mono);
+}
+
+.tag-list,
+.signal-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.tag-chip,
+.signal-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-chip);
+  background: var(--surface-elevated);
+  color: var(--text-secondary);
+  padding: calc(var(--space-xs) / 2) var(--space-sm);
+  font-size: var(--type-caption);
+}
+.tag-chip--more {
+  color: var(--accent-live);
+  border-color: var(--accent-live);
+  background: var(--state-bg-info);
+}
+.signal-chip--success { color: var(--accent-success); border-color: var(--accent-success); }
+.signal-chip--focus { color: var(--accent-focus); border-color: var(--accent-focus); }
+.signal-chip--blocked { color: var(--accent-blocked); border-color: var(--accent-blocked); }

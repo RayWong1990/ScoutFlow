@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ScoutFlow 采集线 · 应用总览</title>
+  <link rel="stylesheet" href="../tokens.css">
+  <link rel="stylesheet" href="./00-app-shell.module.css">
+</head>
+<body>
+<main class="app-shell">
+
+  <header class="app-shell__header">
+    <h1 class="app-shell__brand">ScoutFlow 采集线 · 本地操作员工作站 · 仅预览模式</h1>
+    <button class="btn btn--blocked vault-commit-btn" type="button" disabled><svg class="icon" aria-hidden="true"><use href="../icons/system.svg#icon-dry-run"></use></svg>入库提交（干跑）</button>
+  </header>
+  <section class="app-shell__url-bar url-bar url-bar--validating" aria-label="URL 采集入口">
+    <label class="url-bar__label" for="app-url">URL 地址</label>
+    <input id="app-url" class="url-input__field url-input__field--focus" type="url" value="https://www.bilibili.com/video/BV1xK4y1f7yC" aria-label="URL 地址">
+    <span class="url-bar__spinner" aria-busy="true">解析中...</span>
+    <button class="btn btn--primary url-bar__submit" type="button">创建采集</button>
+    <button class="btn btn--secondary" type="button">仅预览</button>
+  </section>
+  <section class="app-shell__panels" aria-label="采集工作区">
+    <section class="panel-card panel-card--metadata">
+      <header class="panel-card__header"><h2 class="panel-card__title">实时元数据</h2><span class="state-badge state-badge--metadata-loaded">元数据已加载</span></header>
+      <dl class="metadata-grid">
+    <dt>视频标题</dt><dd>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</dd>
+    <dt>上传者</dt><dd>@scout_ops_archive</dd>
+    <dt>时长</dt><dd><code>12:34</code></dd>
+    <dt>播放量</dt><dd><code>24,891</code></dd>
+    <dt>点赞</dt><dd><code>3,142</code></dd>
+    <dt>评论</dt><dd><code>287</code></dd>
+    <dt>capture_id</dt><dd><code>cap_20260506_8a3f2</code></dd>
+    <dt>最后更新</dt><dd><code>2026-05-06 14:32 UTC</code></dd>
+  </dl>
+    </section>
+    <section class="panel-card panel-card--scope">
+      <header class="panel-card__header"><h2 class="panel-card__title">采集范围</h2><span class="state-badge state-badge--preview-only">仅预览</span></header>
+      <ol class="lifecycle-stepper" aria-label="生命周期阶段">
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">URL 验证</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">元数据加载</span></li>
+    <li class="lifecycle-step lifecycle-step--done"><svg class="lifecycle-step__icon" aria-hidden="true"><use href="../icons/state.svg#icon-success"></use></svg><span class="step-name">正文抓取</span></li>
+    <li class="lifecycle-step lifecycle-step--active"><span class="step-num">4</span><span class="step-name">入库预览</span></li>
+    <li class="lifecycle-step"><span class="step-num">5</span><span class="step-name">入库提交</span></li>
+  </ol>
+      <dl class="scope-state"><dt>写入开关</dt><dd>关闭</dd><dt>预览路径</dt><dd><code>~/workspace/raw/00-Inbox/cap_20260506_8a3f2.md</code></dd></dl>
+    </section>
+    <section class="panel-card panel-card--trace">
+      <header class="panel-card__header"><h2 class="panel-card__title">信任溯源</h2><span class="state-badge state-badge--ready">就绪</span></header>
+      <section class="trust-trace__graph-placeholder" data-todo="graph-rendering"><p class="placeholder-hint">信任溯源图谱（结构占位）</p></section>
+      <table class="evidence-table">
+    <thead><tr><th>状态</th><th>字段</th><th>DOM 路径</th><th>值</th><th>置信度</th></tr></thead>
+    <tbody>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>title</td><td><code>dom.meta.og:title</code></td><td>深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯</td><td>98%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>uploader</td><td><code>dom.handle</code></td><td>@scout_ops_archive</td><td>96%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>duration</td><td><code>json.ld.duration</code></td><td>12:34</td><td>92%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>stats</td><td><code>dom.stats.play</code></td><td>24,891</td><td>91%</td></tr>
+      <tr class="evidence-row"><td class="evidence-status">—</td><td>comments</td><td><code>dom.stats.comment</code></td><td>287</td><td>89%</td></tr>
+    </tbody>
+  </table>
+    </section>
+  </section>
+  <section class="app-shell__preview panel-card">
+    <header class="panel-card__header"><h2 class="panel-card__title">入库预览</h2><span class="state-badge state-badge--ready">预览就绪</span></header>
+    <pre class="frontmatter-block"><code>---
+title: 深度工作流 vs 普通工作流 — 高效操作员的 5 个习惯
+capture_id: cap_20260506_8a3f2
+status: preview_only
+write_enabled: false
+vault_target: ~/workspace/raw/00-Inbox/
+---</code></pre>
+    <footer class="vault-preview__target"><span>目标: Obsidian raw vault inbox（</span><code>~/workspace/raw/00-Inbox/</code><span>）</span></footer>
+  </section>
+
+</main>
+</body>
+</html>
