@@ -227,13 +227,16 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 
 ---
 
-## §10 新 agent / 新 session 必跑的 5 件事
+## §10 新 agent / 新 session 必跑的 8 件事
 
 1. **Read** 本文件 (你正在做)
 2. **Read** `docs/current.md` TL;DR (5 行) 看真态
 3. **Read** `docs/task-index.md` 看 Active 是 0/3 还是已满
 4. **Bash** `git log --oneline origin/main -5` 看最近 5 commit
 5. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + storage U.
+6. **Read** master spec § 13.1 (11 wave) + § 15.2 (优先级 P0-P4) + § 16 (红线 + 升级路径) — single source of routing truth (CC1 retrospective sediment, 2026-05-07)
+7. **Bash** `find <dir> -type f | wc -l` 校验任何 "~N file" 估值 — 子目录会被 count, 直接用估值差 10x (元认知 instinct §3 第 9 条)
+8. **Verify** stack/路线/规范决策 → grep frontmatter `status:` + 核 PR merge 状态 — 文件名带 `candidate-` 后缀的不是 authority (元认知 instinct §3 第 10 条)
 
 如果你是 Codex Long Runner: 战友会 paste commander prompt + 你按 §13 master spec 4-agent 分工执行.
 
@@ -245,13 +248,31 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 
 ---
 
-## §11 维护规则 (本文件)
+## §11 Ad-hoc 工作文件路径 Contract (CC1 retrospective sediment, 2026-05-07)
+
+ScoutFlow ad-hoc 工作文件 (dispatch / commander prompt / 中间产物 / handoff 草稿) **必须放 raw PARA**:
+
+- ✅ 真路径: `/Users/wanglei/workspace/raw/05-Projects/ScoutFlow/dispatches/RUN-<wave>-<date>/`
+- ❌ 反路径: ScoutFlow repo git tracked (会污染 main, 增加 PR 噪声)
+
+**ScoutFlow repo 内只放最终 deliverable**:
+
+- ✅ docs / code / spec / contract / authority files
+- ✅ retrospective / decision-log entry / handoff (轻量, ≤ 10 行, 用 `docs/research/post-frozen/handoff-template.md` 模板)
+- ❌ commander prompt 草稿 / Codex paste-ready / GPT Pro spec 中间产物 / Hermes 输入包
+
+**触发**: mkdir / Write 任何 "工作中间文件" 前必先确认路径分类 (元认知 instinct §3 第 15 条).
+
+---
+
+## §12 维护规则 (本文件)
 
 - 本文件标 `current authority`, 跟 `current.md` / `task-index.md` / `decision-log.md` 同级
 - 真态变更 (新 PR merge / 新 wave land / 新状态词需求) 时**显式更新本文件 §1 锚点 + §7 wave 表**
 - 文档地图 §4 / §5 / §6 跟随实际 docs/ 目录变化更新
 - 状态词 §2 锁 4 类, 任何新状态词需走 user 拍板 + decision-log entry
 - 边界硬红线 §9 跟随 `docs/current.md` "当前禁止" 段同步
+- §10 8 件事 + §11 ad-hoc 路径 跟随元认知 instinct §3 同步 (`~/.claude/rules/codex-metacognition-learnings.md`)
 
 ---
 

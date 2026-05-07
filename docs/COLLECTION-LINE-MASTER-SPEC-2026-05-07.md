@@ -685,6 +685,33 @@ UI dashboard: per-day / per-week / per-month / per-project / per-agent.
 - 失败 / amend / retry pattern catalog
 - 跨项目 SOP 共享
 
+## §9.13 16 U → § 9.x 子模块对应表 (CC1 retrospective sediment, 2026-05-07)
+
+> 解决 "可见性断层" — 16 ZIP 储能层跟 § 9.x 子模块 12/16 1:1 映射, 之前没显式标. 新 agent 起手凭此表立刻知道 U → wave 桥 (元认知 instinct §3 第 14 条).
+
+| U | 主题 | § 9.x 对应 | 消费 wave |
+|---|---|---|---|
+| U6-retrieval-dam | Asset DAM | § 9.1 | W2C 后续 / W6J |
+| U5-agent-fleet | Agent Fleet Dispatch Ledger | § 9.2 | W3E 80packs |
+| U16-memory-graph | Memory Graph (现状 17 → 50-100) | § 9.3 | W2D / W6K |
+| U12-tools-catalog | Skills/Tools/MCP Catalog | § 9.5 | W6K |
+| U11-anti-pattern | Anti-pattern Defense | § 9.6 | pre-commit hook + ~/.claude/rules/anti-patterns.md |
+| U13-visual-brand | Visual Brand Atlas Cascade | § 9.7 | W2C 主菜视觉 input |
+| U14-apple-silicon | Apple Silicon 优化 | § 9.8 | W4F (Phase 2 ASR 解禁后) |
+| U7-state-library | State Machine Library | § 9.9 | W2C state machine |
+| U8-egress | Cross-System Egress | § 9.10 | W2C 输出 contract / 跨项目 |
+| U15-decision-log | Decision Log Atlas | § 9.11 | ~/.claude/skills/ScoutFlow-pr-decisions |
+| U10-runbook | Prosumer SOP Runbook | § 9.12 | ~/.claude/skills/ScoutFlow-runbooks |
+
+**Gap (4 U 没显式 § 9.x 对应)**:
+
+| U | 主题 | 真路线 |
+|---|---|---|
+| U1-deep | PRD-v3/SRD-v3 supplement + NFR | § 19.2 / 升 PRD-v3 candidate shell |
+| U2-deep | 5 Lane spike + vendor matrix + fail-mode | § 4-§ 6 / W4F+W4G+W5H spec 输入 |
+| U3-deep | 4 entity v0→v1 + RI test + OpenAPI | § 5.4 / W4F (Lane-4 dbvnext) |
+| U4-visual-asset | Visual asset DDL + CRUD | § 9.x gap, 待补 (W2C 后续 services/api/scoutflow_api/visual/) |
+
 ---
 
 # §10 算法工程师视角 — Implementation 细节 inventory (现在没做)
