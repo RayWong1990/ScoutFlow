@@ -1,0 +1,30 @@
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  color: var(--text-secondary);
+  font-size: var(--type-caption);
+}
+
+.table th,
+.table td {
+  border-block-end: 1px solid var(--border-soft);
+  padding: var(--space-xs);
+  text-align: start;
+  vertical-align: top;
+}
+
+.table th {
+  color: var(--text-muted);
+  font-weight: var(--font-weight-title);
+}
+
+.table code {
+  color: var(--accent-live);
+  font-family: var(--font-mono);
+  font-size: var(--type-mono);
+}
+
+.errorRow {
+  background: var(--state-bg-blocked);
+  color: var(--accent-blocked);
+}

@@ -1,0 +1,10 @@
+.icon {
+  inline-size: 1rem;
+  block-size: 1rem;
+  color: currentColor;
+  flex: none;
+}
+
+.decorative {
+  display: inline-flex;
+}

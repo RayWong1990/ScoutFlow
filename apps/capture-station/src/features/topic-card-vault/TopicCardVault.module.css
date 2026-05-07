@@ -1,0 +1,22 @@
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.cards {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.headerMeta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  align-items: center;
+}
+
+.aggregate {
+  display: grid;
+  gap: var(--space-sm);
+  color: var(--text-secondary);
+}

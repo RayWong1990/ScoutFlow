@@ -1,0 +1,31 @@
+.root {
+  max-inline-size: calc(var(--space-xl) * 12);
+  border: 1px solid var(--accent-blocked);
+  border-radius: var(--radius-panel);
+  background: var(--surface-elevated);
+  box-shadow: var(--shadow-elevated);
+  color: var(--text-secondary);
+  padding: var(--space-md);
+}
+
+.title {
+  margin: 0 0 var(--space-xs);
+  color: var(--accent-blocked);
+  font-size: var(--type-body);
+  font-weight: var(--font-weight-title);
+}
+
+.body {
+  display: grid;
+  gap: var(--space-xs);
+}
+
+.body p {
+  margin: 0;
+  line-height: var(--line-height-body);
+}
+
+.body code {
+  color: var(--accent-live);
+  font-family: var(--font-mono);
+}

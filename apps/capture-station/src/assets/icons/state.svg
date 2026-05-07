@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="0" height="0" display="none" aria-hidden="true">
+  <symbol id="icon-live" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="72"/>
+    <path d="M128 56v36"/>
+    <path d="M128 164v36"/>
+    <path d="M56 128h36"/>
+    <path d="M164 128h36"/>
+    <circle cx="128" cy="128" r="10" fill="currentColor" stroke="none"/>
+    <path d="M184 72c22 14 36 34 40 58"/>
+    <path d="M224 130l12-18"/>
+  </symbol>
+  <symbol id="icon-success" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="82"/>
+    <path d="M84 130l36 36 64-76"/>
+  </symbol>
+  <symbol id="icon-warning" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M128 42l102 178H26z"/>
+    <path d="M128 96v62"/>
+    <circle cx="128" cy="184" r="6" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="icon-error" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="82"/>
+    <path d="M88 88l80 80"/>
+    <path d="M168 88l-80 80"/>
+  </symbol>
+  <symbol id="icon-blocked" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="82"/>
+    <path d="M72 184L184 72"/>
+  </symbol>
+  <symbol id="icon-locked" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="58" y="112" width="140" height="100" rx="16"/>
+    <path d="M88 112V82a40 40 0 0 1 80 0v30"/>
+    <path d="M128 150v36"/>
+    <circle cx="128" cy="148" r="8"/>
+  </symbol>
+  <symbol id="icon-focus" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M56 92V56h36"/>
+    <path d="M164 56h36v36"/>
+    <path d="M200 164v36h-36"/>
+    <path d="M92 200H56v-36"/>
+    <circle cx="128" cy="128" r="42"/>
+    <path d="M128 76v32"/>
+    <path d="M128 156v32"/>
+    <path d="M76 128h32"/>
+    <path d="M156 128h32"/>
+    <circle cx="128" cy="128" r="8" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="icon-loading" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="76" cy="128" r="14" fill="currentColor" stroke="none"/>
+    <circle cx="128" cy="128" r="22" fill="currentColor" stroke="none"/>
+    <circle cx="180" cy="128" r="14" fill="currentColor" stroke="none"/>
+  </symbol>
+  <symbol id="icon-empty" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="82" stroke-dasharray="16 16"/>
+  </symbol>
+  <symbol id="icon-ready" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="128" cy="128" r="82"/>
+    <path d="M76 134l42 42 82-96" stroke-width="2.5"/>
+  </symbol>
+</svg>

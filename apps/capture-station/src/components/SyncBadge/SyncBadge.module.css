@@ -1,0 +1,28 @@
+.root {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-chip);
+  padding: calc(var(--space-xs) / 2) var(--space-sm);
+  font-size: var(--type-caption);
+  white-space: nowrap;
+}
+
+.synced {
+  border-color: var(--accent-success);
+  background: var(--state-bg-success);
+  color: var(--accent-success);
+}
+
+.pending {
+  border-color: var(--accent-warn);
+  background: var(--state-bg-warn);
+  color: var(--accent-warn);
+}
+
+.externalChanged {
+  border-color: var(--accent-focus);
+  background: var(--surface-muted);
+  color: var(--accent-focus);
+}

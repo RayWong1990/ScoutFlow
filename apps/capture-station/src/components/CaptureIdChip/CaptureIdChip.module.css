@@ -1,0 +1,16 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-chip);
+  background: var(--surface-muted);
+  color: var(--accent-live);
+  font-family: var(--font-mono);
+  font-size: var(--type-mono);
+  font-weight: var(--font-weight-mono);
+  padding: calc(var(--space-xs) / 2) var(--space-sm);
+}
+
+.muted {
+  color: var(--text-muted);
+}

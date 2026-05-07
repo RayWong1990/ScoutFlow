@@ -1,0 +1,23 @@
+.stack {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.target {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  align-items: center;
+  color: var(--text-secondary);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.message {
+  margin: 0;
+  color: var(--accent-success);
+}
