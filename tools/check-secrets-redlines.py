@@ -34,6 +34,14 @@ ALLOWED_DEFINITION_FILES = {
     "docs/specs/raw-response-redaction.md",
     "tools/check-secrets-redlines.py",
 }
+# reference storage (储能层 + archive + post-frozen 历史 commander prompt) 是 grep-able
+# reference, 内含 redacted demo / 反例 narrative / 历史 commander prompt 引用 [REDACTED]
+# 字面均为合法 mention, 跟 4 状态词体系 reference storage 一致 (docs/00-START-HERE.md §2).
+ALLOWED_REDACTED_PREFIXES = (
+    "docs/research/strategic-upgrade/",
+    "docs/archive/",
+    "docs/research/post-frozen/run-",  # historical run-1/run-2 amendment commander prompt
+)
 DEFINITION_CONTEXT_MARKERS = (
     "SECRET_PATTERNS",
     "PatternSpec",
@@ -143,6 +151,12 @@ def find_secret_redlines(repo: Path, tracked_paths: list[str] | None = None) -> 
             continue
         text = read_text_if_text(path)
         if text is None:
+            continue
+
+        # reference storage prefix 豁免 (储能层 + archive + 历史 commander prompt 是 grep-able
+        # reference, 内含 narrative "authorization: ..." / regex demo "SESSDATA=..." 等合法 mention,
+        # 跟 4 状态词体系 reference storage 一致, 跟 BANNED_WORD scan 对称).
+        if any(rel.startswith(prefix) for prefix in ALLOWED_REDACTED_PREFIXES):
             continue
 
         lines = text.splitlines()
