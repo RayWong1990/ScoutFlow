@@ -1,6 +1,6 @@
 ---
 title: ScoutFlow CC1 Session Retrospective + Master Spec Utilization Audit
-status: candidate / retrospective / not-authority
+status: reference storage
 session_id: 1852adc0-f7af-4379-b183-f8c949cc6962
 session_model: Claude Opus 4.7 (1M context)
 session_window: 2026-05-07 14:30 - 22:30 GMT+8 (~8h, 含 1 次 auto-compact + 多次 SessionStart 重连)
@@ -25,7 +25,7 @@ related_files:
 > **包含**:
 > - §1 二次调研报告 — master spec 利用度章节级 audit
 > - §2 10 条本次会话识别错误 + 元认知归因
-> - §3 6 条新增 instinct (加在元认知 §3 自检清单后)
+> - §3 11 条新增 instinct (#9-#19, 含 landed 补丁回写)
 > - §4 项目治理体系优化建议
 > - §5 给未来 ScoutFlow session 的冷启动指导 (含 START-HERE §10 增补)
 > - §6 元元洞察 + 沉淀路径
@@ -168,7 +168,7 @@ session 止 (2026-05-07 22:30):
 单点引 D3 (npm d3) → OpenDesign reuse strategy v2 candidate (D5/§5.2 升级 single-point graph lib slot) → spec PR + Hermes 外审 + merge
 ```
 
-**这是合法升级路径**! 我把 "需走 v2 升级 PR" 当 "禁止". 
+**这是合法升级路径**! 我把 "需走 v2 升级 PR" 当 "禁止".
 
 → **应改推**: W1B 走 D 路径 (v2 升级 PR + 单点 d3 引), 自写代价省, 纪律仍守.
 
@@ -517,8 +517,8 @@ CC1 / CC0 / GPT Pro / Codex / Hermes 之间没有自动通信. 战友是唯一 p
 
 战友总监视角拍板入口, 不要求逐条:
 
-1. **本 retrospective 是否 land 进 PR #244?** — 当前路径 `docs/research/post-frozen/CC1-session-retrospective-2026-05-07.md`, 状态 `candidate / retrospective / not-authority`, 不需要走 authority writer slot
-2. **§3 元认知增补 9-14 + §5.1 START-HERE § 10 增补 6/7/8 + §6.3 § 9.x ↔ U cross-reference 表 — 三组改动是否同意进 PR #244?** (实施成本 ~30 min)
+1. **本 retrospective 是否 land 进 PR #244?** — 当前路径 `docs/research/post-frozen/CC1-session-retrospective-2026-05-07.md`, 状态 `reference storage`, 不需要走 authority writer slot
+2. **§3 元认知增补 9-19 + §5.1 START-HERE §10 增补 6/7/8 + §6.3 §9.x ↔ U cross-reference 表 — 三组改动是否同意进 PR #244?** (实施成本 ~30 min)
 
 战友拍 ✓ 我立刻动手. 拍 ✗ 也 OK, 本 retrospective 单独存档不进 PR 也是合规的 (reference storage).
 

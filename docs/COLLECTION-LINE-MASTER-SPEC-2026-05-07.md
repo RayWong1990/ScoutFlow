@@ -1037,6 +1037,10 @@ SessionStart → 自动注入相关 memory (按 topic / lane / time 排序)
 - 战友 V-PASS (浏览器审 + 5 Gate)
 - 路径 1 merge / 路径 2 amend / 路径 3 root cause
 - 写 closeout receipt (类似 PF-C4-01-v-pass-merged-2026-05-07.md)
+- authority 写回顺序固定: `docs/task-index.md` → `docs/current.md` → `docs/decision-log.md`
+- 跑 `python tools/refresh-start-here.py`，刷新 START-HERE §1 auto-managed 真态锚点
+- 人工复核 `docs/00-START-HERE.md` §7 wave 表 + README / master spec / closeout receipt 的旧 PR / SHA / wave 状态引用
+- 若最新 merged PR 号达到 START-HERE frontmatter `next_forced_refresh_pr`，本次 closeout 还必须完成一次 W6K refresh sprint，并把阈值顺延 `+50`
 
 ---
 
@@ -1218,6 +1222,7 @@ SessionStart → 自动注入相关 memory (按 topic / lane / time 排序)
 - [ ] W6J Vault commit 真解禁 + 全 7 阶段闭环
 - [ ] W5I 评论 / 楼中楼 全功能
 - [ ] W6K Memory 沉淀
+- [ ] W6K START-HERE forced refresh sprint：当前轮已在 `PR #246` 执行；下一次 `PR #300`，其后每 `+50 PR`
 
 ---
 

@@ -27,6 +27,8 @@ jobs:
         run: python tools/check-docs-redlines.py
       - name: Check secret redlines
         run: python tools/check-secrets-redlines.py
+      - name: Check START-HERE freshness
+        run: python tools/refresh-start-here.py --check
 
   api-contract-tests:
     runs-on: ubuntu-latest

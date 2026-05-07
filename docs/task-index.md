@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `T-DOC-244` | `Baseline doc consolidation + master spec promotion + PRD-v3/SRD-v3 thin shell + 16 ZIP storage land` | `active` | `cc1` | `docs only (no runtime / no migration / no app code) + redline tool 单点豁免 reference storage prefix` | `docs/**, README.md, .gitignore, tools/check-docs-redlines.py, tools/check-secrets-redlines.py (双脚本单点 ALLOWED_*_PREFIXES 豁免 reference storage; 不豁免 active code/spec/PRD/SRD/current/decision)` | `services/, apps/, workers/, packages/, data/, referencerepo/` | `00-START-HERE.md / COLLECTION-LINE-MASTER-SPEC / PRD-v2 / SRD-v2` | `docs-check pass + admin merge override (e2e-placeholder-baseline supersede unrelated)` | `若引入 services/apps 改动则停` | `PR #244` |
+| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
 
 ## Review
 
@@ -64,6 +64,7 @@
 
 | 任务 ID | 标题 | 完成时间 | 备注 |
 |---|---|---|---|
+| `T-DOC-244` | `Baseline doc consolidation + master spec promotion + PRD-v3/SRD-v3 thin shell + 16 ZIP storage land` | `2026-05-07` | PR=#244; merge commit=`e207664`; result=`00-START-HERE + master spec + PRD-v3/SRD-v3 thin shell + 16 ZIP reference storage land + 4 status-word lock`; post-merge drift follow-up delegated to PR #246 |
 | `T-P1A-155` | STEP3 cold-start handoff packet contract | `2026-05-05` | PR=#192; merge commit=`0eb29eb`; candidate-only handoff surface; not authority; not execution approval; not runtime approval |
 | `T-P1A-154` | Overflow candidate registry for DB vNext and blocked runtime lanes | `2026-05-05` | PR=#191; merge commit=`f8347b4`; Wave 6 overflow candidate surface; not migration approval; not runtime approval |
 | `T-P1A-153` | `Wave 6 ledger-open candidate` | `2026-05-05` | PR=#190; merge commit=`ad9f38d`; authority-only ledger writeback; state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`; no code-bearing next gate opened |
