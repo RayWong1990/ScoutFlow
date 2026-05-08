@@ -57,6 +57,19 @@ Optional context:
 
 - `03-w1b-codex-commander-prompt-skeleton.md` for implementation handoff consistency.
 - This file (`04`) is the audit prompt, not an object of self-audit.
+- `W1B-MASTER-SELFFLAG.md` as a mandatory caveat source that all downstream surfaces must carry forward.
+
+## §1.5 Mandatory Master Self-flag carry-forward
+
+Hermes must explicitly audit whether these 3 caveats are preserved in `01`, `02`, any candidate-doc PR body, and the eventual implementation receipts:
+
+1. **Split-truth caveat**: authority anchor vs commit-search truth must be refreshed against live readback, not flattened into one historical number.
+2. **Evidence caveat**: bundle-size and tree-shaking gates only pass with local build evidence; GPT Pro planning text cannot satisfy them.
+3. **Visual-evidence caveat**: browser visual evidence is only legal through one of two bounded paths:
+   - `browser_automation` lane explicitly unlocked later; or
+   - local manual screenshot capture without runtime unlock.
+
+If either path is missing or silently upgraded to unconditional `V-PASS`, Hermes must flag it as `CONCERN` or `REJECT`.
 
 ## §2 Inputs to paste inline
 
@@ -127,6 +140,7 @@ Questions:
 - Are 5 overflow lanes kept on Hold?
 - Are authority files absent from candidate deliverable write lists?
 - Is optional authority-writer registration separated into its own dispatch?
+- Do candidate-doc PR body and Hermes paste surfaces carry forward the 3 Master Self-flag caveats?
 
 Verdict: PASS / CONCERN / REJECT.
 
@@ -186,6 +200,7 @@ V-PASS | V-PASS-WITH-CONCERN | V-CONCERN | V-REJECT
 - Do not approve dependency, runtime, migration, browser automation, or raw vault changes.
 - Do not choose path-A/path-B for the user; only audit whether the gate is safe.
 - Do not audit unrelated ScoutFlow waves beyond evidence needed for W1B.
+- Do not treat browser visual evidence as unconditional; it must stay inside the two bounded legal paths above.
 
 ## Self-flag
 

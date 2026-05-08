@@ -132,10 +132,10 @@ describe("TrustTrace", () => {
 
     expect(screen.getByText("Status / Trust Trace / 采集状态")).toBeTruthy();
     expect(screen.getByText("capture / capture_state")).toBeTruthy();
-    expect(screen.getByText("metadata_job")).toBeTruthy();
-    expect(screen.getByText("receipt_ledger")).toBeTruthy();
-    expect(screen.getByText("media_audio")).toBeTruthy();
-    expect(screen.getByText("audit")).toBeTruthy();
+    expect(screen.getAllByText("metadata_job").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("receipt_ledger").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("media_audio").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("audit").length).toBeGreaterThan(0);
     expect(screen.getByText("metadata_snapshot")).toBeTruthy();
     expect(screen.getByText("blocked")).toBeTruthy();
     expect(screen.getByText("W1B graph lane")).toBeTruthy();
@@ -173,8 +173,10 @@ describe("TrustTrace", () => {
 
     render(<TrustTrace />);
 
+    const [routeAlert] = screen.getAllByRole("alert");
+
     expect(
-      within(screen.getByRole("alert")).getByText(
+      within(routeAlert).getByText(
         (_content, node) => node?.tagName.toLowerCase() === "p" && node.textContent === "Trust trace route unavailable",
       ),
     ).toBeTruthy();

@@ -1,0 +1,252 @@
+.cardBody {
+  display: grid;
+  gap: var(--space-md);
+}
+
+.boundaryNote,
+.muted,
+.detailEyebrow {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+.boundaryNote {
+  font-size: var(--type-caption);
+  line-height: 1.5;
+}
+
+.graphShell {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: minmax(0, 1.6fr) minmax(18rem, 1fr);
+  align-items: stretch;
+}
+
+.graphViewport,
+.detailCard,
+.detailEmpty,
+.emptyState {
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-panel);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface-elevated) 88%, transparent), var(--surface-base)),
+    var(--surface-base);
+  box-shadow: var(--shadow-elevated);
+}
+
+.graphViewport {
+  position: relative;
+  min-block-size: 22rem;
+  overflow: hidden;
+}
+
+.graphSvg,
+.nodeLayer {
+  position: absolute;
+  inset: 0;
+}
+
+.graphSvg {
+  inline-size: 100%;
+  block-size: 100%;
+}
+
+.viewportBackground {
+  fill: color-mix(in srgb, var(--surface-base) 94%, #08131f 6%);
+}
+
+.gridField {
+  fill: url(#trust-trace-grid);
+}
+
+.gridLine {
+  stroke: color-mix(in srgb, var(--border-soft) 60%, #3a536a 40%);
+  stroke-width: 1;
+}
+
+.primaryWire,
+.secondaryWire {
+  fill: none;
+  stroke-linecap: round;
+}
+
+.primaryWire {
+  stroke: url(#trust-trace-wire);
+  stroke-width: 3;
+}
+
+.secondaryWire {
+  stroke: color-mix(in srgb, var(--text-muted) 65%, #4d84c6 35%);
+  stroke-dasharray: 10 10;
+  stroke-width: 2;
+}
+
+.nodeLayer {
+  pointer-events: none;
+}
+
+.nodeButton {
+  position: absolute;
+  top: var(--node-y);
+  left: var(--node-x);
+  transform: translate(-50%, -50%);
+  inline-size: clamp(8rem, 18vw, 10.5rem);
+  min-block-size: 4.6rem;
+  display: grid;
+  gap: calc(var(--space-xs) / 2);
+  padding: var(--space-sm);
+  border: 1px solid var(--border-strong);
+  border-radius: calc(var(--radius-panel) - 4px);
+  background: color-mix(in srgb, var(--surface-elevated) 92%, #09141f 8%);
+  color: var(--text-primary);
+  text-align: left;
+  box-shadow: 0 12px 24px rgba(4, 10, 18, 0.22);
+  pointer-events: auto;
+  transition:
+    transform 120ms ease,
+    border-color 120ms ease,
+    box-shadow 120ms ease,
+    background 120ms ease;
+}
+
+.nodeButton:hover,
+.nodeButton:focus-visible,
+.nodeActive {
+  transform: translate(-50%, -50%) scale(1.02);
+  border-color: color-mix(in srgb, var(--border-strong) 35%, #79d2ff 65%);
+  box-shadow: 0 16px 28px rgba(4, 10, 18, 0.28);
+}
+
+.nodeButton:focus-visible {
+  outline: 2px solid color-mix(in srgb, var(--text-primary) 20%, #7ce7ff 80%);
+  outline-offset: 2px;
+}
+
+.toneReady {
+  background:
+    linear-gradient(180deg, rgba(82, 178, 255, 0.18), transparent 52%),
+    color-mix(in srgb, var(--surface-elevated) 90%, #0c1620 10%);
+}
+
+.toneAttention {
+  background:
+    linear-gradient(180deg, rgba(255, 169, 103, 0.2), transparent 52%),
+    color-mix(in srgb, var(--surface-elevated) 90%, #16110b 10%);
+}
+
+.toneMuted {
+  opacity: 0.88;
+}
+
+.nodeTitle {
+  font-family: var(--font-display);
+  font-size: var(--type-body);
+  font-weight: var(--font-weight-title);
+  line-height: 1.2;
+}
+
+.nodeSummary {
+  color: var(--text-secondary);
+  font-size: var(--type-caption);
+  line-height: 1.4;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.detailPane {
+  display: grid;
+}
+
+.detailCard,
+.detailEmpty,
+.emptyState {
+  padding: var(--space-md);
+}
+
+.detailHeader {
+  display: grid;
+  gap: calc(var(--space-xs) / 2);
+  margin-block-end: var(--space-md);
+}
+
+.detailHeader h3,
+.detailHeader p,
+.emptyTitle,
+.detailEmpty p {
+  margin: 0;
+}
+
+.detailHeader h3,
+.emptyTitle {
+  font-family: var(--font-display);
+  font-size: var(--type-title);
+  font-weight: var(--font-weight-title);
+  color: var(--text-primary);
+}
+
+.detailHeader p,
+.emptyState p,
+.detailEmpty p {
+  color: var(--text-secondary);
+}
+
+.detailGrid {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.detailRow {
+  display: grid;
+  gap: calc(var(--space-xs) / 2);
+  padding-block-end: var(--space-sm);
+  border-block-end: 1px solid var(--border-soft);
+}
+
+.detailRow:last-child {
+  padding-block-end: 0;
+  border-block-end: 0;
+}
+
+.detailRow dt {
+  color: var(--text-muted);
+  font-size: var(--type-caption);
+}
+
+.detailRow dd {
+  margin: 0;
+  color: var(--text-primary);
+  overflow-wrap: anywhere;
+}
+
+.emptyState,
+.detailEmpty {
+  display: grid;
+  gap: var(--space-sm);
+  place-content: center;
+  min-block-size: 12rem;
+}
+
+@media (max-width: 960px) {
+  .graphShell {
+    grid-template-columns: 1fr;
+  }
+
+  .detailPane {
+    min-block-size: 14rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .graphViewport {
+    min-block-size: 26rem;
+  }
+
+  .nodeButton {
+    inline-size: clamp(7.2rem, 36vw, 9rem);
+    min-block-size: 4.2rem;
+    padding: var(--space-xs) var(--space-sm);
+  }
+}

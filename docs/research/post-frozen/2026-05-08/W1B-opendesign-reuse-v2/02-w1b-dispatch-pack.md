@@ -21,6 +21,11 @@ not_package_approval: true
 # W1B Dispatch Pack
 
 > Candidate dispatch pack only. It gives CC0/CC1/Codex a concrete plan; it does not register a lane, does not modify authority, and does not execute implementation in this document.
+>
+> Master Self-flag carry-forward is mandatory across this pack, any candidate-doc PR body, and any Hermes paste:
+> 1. authority anchor / commit search split-truth must be called out and refreshed against live readback;
+> 2. bundle-size and tree-shaking gates require local build evidence, not GPT Pro assumption;
+> 3. browser visual evidence is only legal via `browser_automation` lane after explicit unlock or via local manual screenshot capture without runtime unlock.
 
 ## §0.5 Refreshed state summary
 
@@ -126,17 +131,19 @@ input:
 output:
   - branch: `cc0/w1b-opendesign-reuse-v2-2026-05-08`
   - 4 files under `docs/research/post-frozen/2026-05-08/W1B-opendesign-reuse-v2/`
-  - PR body with candidate-only boundary
+  - PR body with candidate-only boundary and all 3 Master Self-flag caveats inlined
 verification:
   - diff only contains intended docs path
   - frontmatter status stays candidate
   - no implementation code
+  - PR body repeats all 3 Master Self-flag caveats verbatim in bounded form
   - docs redline and secrets redline pass
 verdict:
   - clear / concern (<reason>) / partial (<reason>) / reject (<reason>)
 boundary:
   - Do not write PRD/SRD/current/task-index/decision-log from this dispatch
   - Do not claim promotion
+  - Do not open a candidate-doc PR body without the 3 Master Self-flag caveats inline
 amend_trigger:
   - diff includes app code
   - status word drift
