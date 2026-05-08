@@ -1,0 +1,3 @@
+Title: metadata-only runtime fixture
+Platform Item ID: BVSCOUTFLOW1
+Diagnostic: sanitized excerpt for contract validation
