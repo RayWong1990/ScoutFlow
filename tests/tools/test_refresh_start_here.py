@@ -227,6 +227,10 @@ def test_pr_synthetic_ref_check_mode_main_does_not_force_checked_out_head_label(
     )
 
 
+def test_render_ref_label_keeps_first_parent_as_main_content_anchor() -> None:
+    assert refresh_start_here.render_ref_label("origin/main^1") == "main content anchor"
+
+
 def test_refresh_text_uses_latest_merge_pr_with_stable_content_anchor() -> None:
     source = """---
 title: Demo

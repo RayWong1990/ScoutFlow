@@ -169,6 +169,14 @@ def read_current_pr_number(repo: Path, target_ref: str, limit: int = 20) -> int 
     return None
 
 
+def first_parent_if_merge(repo: Path, target_ref: str) -> str | None:
+    output = run_git(repo, "rev-list", "--parents", "-n", "1", target_ref)
+    parts = output.split()
+    if len(parts) < 3:
+        return None
+    return f"{target_ref}^1"
+
+
 def sum_checkpoint_dispatches(runs_dir: Path) -> int:
     if not runs_dir.exists() or not runs_dir.is_dir():
         raise RuntimeError(
@@ -233,7 +241,7 @@ def render_main_head(commits: list[GitCommit]) -> str:
 def render_ref_label(target_ref: str) -> str:
     if target_ref == "HEAD":
         return "checked-out content anchor"
-    if target_ref.endswith("/main"):
+    if target_ref.endswith("/main") or target_ref.endswith("/main^1"):
         return "main content anchor"
     return f"{target_ref} content anchor"
 
@@ -376,6 +384,16 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.check:
         if refreshed != original:
+            first_parent_ref = first_parent_if_merge(ROOT, target_ref) if args.check_mode == "main" else None
+            if first_parent_ref is not None:
+                parent_context = build_context(original, first_parent_ref)
+                parent_refreshed = refresh_text(
+                    original,
+                    parent_context,
+                    update_main_frontmatter=is_main_ref(target_ref),
+                )
+                if parent_refreshed == original:
+                    return 0
             sys.stderr.write(
                 "docs/00-START-HERE.md needs refresh: run `python tools/refresh-start-here.py`\n"
             )
