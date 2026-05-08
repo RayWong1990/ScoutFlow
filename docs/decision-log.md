@@ -700,3 +700,22 @@
   - `docs/specs/parallel-execution-protocol.md`
   - `docs/research/post-frozen/2026-05-08/W2-w2c/01-w2c-cluster-spec.md`
   - `docs/research/post-frozen/2026-05-08/W2-w2c/02-w2c-dispatch-pack.md`
+
+## 2026-05-08 — W2C lane closeout (`T-P1A-156` PR #252 merged)
+
+- Decision (1): `T-P1A-156 / W2C PF-C4-02 real-data wiring` 已闭合；PR #252 admin squash merge 到 main，merge commit=`02ccbdc151816d10acc517bd98181bb2b42f0fe8`，2026-05-08T03:46:55Z；4-PR pipeline (Stage 0 PR #250 + Stage 1-open-lane PR #251 + Stage 1-impl PR #252 + Stage 1-closeout 本 PR) 顺序 merged，符合 master spec §14.4 single-writer + Authority writer max=1 + 4 status word lock。
+- Decision (2): W2C 实施范围 = 39 file / +4647 / -572 (gh pr view 252 changedFiles=39 真值)；13 surface (url-bar / live-metadata / capture-scope / topic-card-preview / topic-card-vault / vault-preview / vault-commit / signal-hypothesis / capture-plan / trust-trace / + AppShell + surfaces.smoke + lib/api-client + lib/w2c-runtime) 完成 existing read-only/dry-run route 真接 + 5 态 state machine (empty/loading/success/error/disabled) + sync-badge 推广 + Trust Trace data shell。
+- Decision (3): Trust Trace 的 graph/timeline/error-path 真实现仍保留给 W1B，本 lane 仅落 `/captures/{id}/trust-trace` readback + state shell，未触碰 W1B 边界；instinct §3 #16 + cross-vendor-audit-layering v2 user-catch 适用：未来 W1B 启动需新 dispatch + 外审。
+- Decision (4): 2 P1 修复 (Codex strict audit 自审捕获后修)：(a) `apps/capture-station/src/lib/w2c-runtime.tsx` discover 起手清旧 capture context，in-flight 请求不冒用旧 `capture_id`；(b) `apps/capture-station/src/features/capture-plan/CapturePlan.tsx` frontmatter 展示锁定后端 contract，仅认 `title / date / tags / status`。
+- Decision (5): W2C 实施期间 5 overflow lane Hold 全守 (true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench)；`write_enabled=False` 硬不变；后端 DTO/`PlatformResult`/`WorkerReceipt` schema 不动 (前端消化，无 contract-fix micro PR 触发)；不构成 runtime / migration / vault commit / browser automation / package strategy / full-signal execution approval。
+- Decision (6): CI 真态 = `docs-smoke + api-contract-tests + capture-station-node + five-gate-checklist` 4 pass；`e2e-placeholder-baseline` fail 是历史 stale 用例 (找已不存在的 `VaultCommitDryRunButton.tsx` + `VaultPreviewPanel.tsx`，本 W2C 实际产物是 `VaultCommit.tsx` + `VaultPreview.tsx`)；admin override squash merge 合规 (跟 PR #243-#248 同既有口径)；e2e placeholder 用例清理留 W6K refresh sprint。
+- Decision (7): non-blocking 残留 = `apps/capture-station/src/App.test.tsx` 的 `act(...)` warning，`W2CRuntimeProvider` mount 阶段异步 load bridge state；不影响 W2C runtime truth 与 merge verdict，留 W1B 接班时清。
+- Decision (8): Layer C closeout 顺序 (master spec §14.4 + 与 D-T-DOC-249 / D-W2C-LANE-OPEN 同节奏): `docs/task-index.md` (T-P1A-156 active → Done + Active 1/3 → 0/3) -> `docs/current.md` (main 锚 `cd9d866` → `02ccbdc` + W2C closed 表述 + capture-station code baseline 升到 `02ccbdc`) -> `docs/decision-log.md` (本 entry) -> `python tools/refresh-start-here.py` (自动刷 START-HERE §1 + frontmatter `last_refreshed_from_main_sha` / `last_refreshed_from_main_pr`)。
+- Decision (9): 元教训 — Codex Stage 1-impl PR #252 strict audit subagent 自审 "无 blocking finding"，但漏 closeout 本步 (Stage 1-closeout 微分支)；CC1 cross-vendor catch P0 BLOCKING (Active 1/3 没 release / current.md main 锚 STALE / decision-log 漏 entry / `refresh-start-here.py --check` exit 1)；本 PR 即修。沉淀进 instinct §3 #22 + cross-vendor-audit-layering skill v3.2 (Post-Execution Process Completion Verification SOP, 输出层防御)。
+- Source:
+  - https://github.com/RayWong1990/ScoutFlow/pull/252
+  - `docs/research/post-frozen/2026-05-08/W2-w2c/receipts/w2c-implementation-receipt-2026-05-08.md`
+  - `docs/research/post-frozen/2026-05-08/W2-w2c/receipts/w2c-checkpoint-2026-05-08.json`
+  - `docs/task-index.md`
+  - `docs/current.md`
+  - `tools/refresh-start-here.py`
