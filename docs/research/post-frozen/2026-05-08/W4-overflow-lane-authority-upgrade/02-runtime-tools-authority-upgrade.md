@@ -25,7 +25,7 @@ disclaimer: |
 | Check | 刷新真态 | Drift / 处理 |
 |---|---|---|
 | 1 — main HEAD | `45e88d45342ba6f6036e68695ca56d09deaaf06d`; message=`Merge pull request #257 from RayWong1990/codex/w4-b-step0-convergence` | 与提示词里 `c802de4` / `4792b0f` 叙述存在 chronological drift; 本文引用 main HEAD 时以 Check 1 为准。PR #257 及更早 PR #245/#247/#248 均标注「撰写时刻历史参考, 真值以 §0.5 Check 为准」。 |
-| 2 — current.md | Active product lane `0/3`; Authority writer `0/1`; state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`; 5 overflow lane Hold 仍列明。 | current.md body 仍写 `c802de4` 作为 main anchor，且 live main 已前进到 `45e88d4`; authority-body drift 存在，但本 lane 不负责修 authority trio。 |
+| 2 — current.md | Active product lane `0/3`; Authority writer `0/1`; state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`; 5 overflow lane Hold 仍列明。 | current.md 当前 main anchor 实际写的是 `e18d45a`（PR #254 docs-only starter cluster），而 live main 已前进到 `45e88d4`; authority-body drift 存在，但本 lane 不负责修 authority trio。 |
 | 3 — task-index.md | Active `0/3`; Review `0`; Authority writer `0/1`; Phase=`Phase 1A — WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。 | 与提示词一致。 |
 | 4 — decision-log.md | tail 可见最新 authority entry 仍聚焦 W2C closeout；未覆盖 PR #257 merge state。 | 本 lane 记录 live drift, 不代写 authority repair；若后续引用 decision-log 最新 merge 状态, 需再做 authority refresh。 |
 | 5 — memory INDEX | `batch_count: 17`; Lessons 7 / Feedback 5 / Patterns 5; 重点含 L-RUNTIME-APPROVAL-DRIFT, L-MIGRATION-DRIFT, L-OVEROBJECTIFICATION, P-PROOF-PAIR-CANARY, P-OVERFLOW-NOT-BLOCKER。 | 与提示词一致。 |
