@@ -1,0 +1,15 @@
+{
+  "style_id": "obsidian_capture_note_v1",
+  "title": "Partial rewrite after safe metadata normalization",
+  "source_summary": "The note shape exists, but some sections remain intentionally thin because only partial evidence has been normalized into the frontend fixture.",
+  "key_points": [
+    "safe fields already support a note skeleton",
+    "transcript-backed details can stay short even when transcript hash exists"
+  ],
+  "transcript_backed_details": "A short transcript-backed excerpt exists, but it is not rich enough yet to support a stronger narrative.",
+  "trust_evidence_notes": "",
+  "follow_up_questions": [],
+  "source_hash": "src_2e40dcbb7724",
+  "transcript_hash": "tr_7fb0dc1f28aa",
+  "rewrite_hash": "rw_3cfdd3f4949b"
+}

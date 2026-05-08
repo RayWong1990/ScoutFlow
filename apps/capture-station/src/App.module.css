@@ -1,0 +1,125 @@
+.page {
+  min-height: 100vh;
+  padding: var(--space-xl);
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.06), transparent 28%),
+    linear-gradient(180deg, rgba(17, 24, 39, 0.96) 0%, rgba(9, 13, 23, 1) 100%);
+  color: var(--text-primary);
+}
+
+.hero {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-lg);
+  align-items: flex-start;
+  margin: 0 auto var(--space-xl);
+  max-width: 1440px;
+}
+
+.heroCopy {
+  display: grid;
+  gap: var(--space-sm);
+  max-width: 920px;
+}
+
+.eyebrow {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: var(--type-caption);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  line-height: 1.02;
+}
+
+.description {
+  margin: 0;
+  max-width: 900px;
+  color: var(--text-secondary);
+  font-size: var(--type-body-lg);
+}
+
+.topFold {
+  display: grid;
+  grid-template-columns: minmax(0, 2.1fr) minmax(320px, 0.9fr);
+  gap: var(--space-lg);
+  align-items: start;
+  margin: 0 auto var(--space-xl);
+  max-width: 1440px;
+}
+
+.sideStack {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.fixtureGrid {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.fixtureRow {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  gap: var(--space-sm);
+  align-items: start;
+}
+
+.fixtureRow dt {
+  color: var(--text-secondary);
+  font-size: var(--type-caption);
+}
+
+.fixtureRow dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.holdGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-md);
+  margin: 0 auto var(--space-xl);
+  max-width: 1440px;
+}
+
+.flowStack {
+  display: grid;
+  gap: var(--space-xl);
+  margin: 0 auto;
+  max-width: 1440px;
+}
+
+@media (max-width: 1024px) {
+  .page {
+    padding: var(--space-lg);
+  }
+
+  .hero,
+  .topFold {
+    grid-template-columns: 1fr;
+  }
+
+  .hero {
+    display: grid;
+  }
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding: var(--space-md);
+  }
+
+  .title {
+    font-size: 2rem;
+  }
+
+  .description {
+    font-size: var(--type-body);
+  }
+}

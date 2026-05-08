@@ -172,7 +172,7 @@ export default function VaultCommit() {
                 title="Dry-run route returned preview-only truth"
                 tone="promote"
                 footer={
-                  <Button variant="success" disabled>
+                  <Button variant="blocked" disabled>
                     committed=false
                   </Button>
                 }

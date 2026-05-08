@@ -1,0 +1,19 @@
+{
+  "style_id": "obsidian_capture_note_v1",
+  "title": "ScoutFlow preview-only operator flow for a Bilibili workflow note",
+  "source_summary": "A metadata-only capture shows a Bilibili workflow clip about keeping evidence first and avoiding premature promotion. The operator should stay inside preview-only posture while still being able to scan the eventual note shape.",
+  "key_points": [
+    "manual_url discover and metadata_fetch are separate truths",
+    "trust trace should expose blocked and degraded states before graph polish",
+    "vault surfaces can be visible without implying committed success"
+  ],
+  "transcript_backed_details": "The transcript-backed section highlights the speaker's repeated emphasis on evidence first, narrow write scope, and operator-visible holds before any runtime tool is approved.",
+  "trust_evidence_notes": "This rewrite stays bounded to safe parsed fields, trust-trace readback, and preview-only vault posture. No runtime transcript execution, no true write, and no migration cues are introduced.",
+  "follow_up_questions": [
+    "Which metadata fields should remain preview-only until runtime tools are explicitly approved?",
+    "What extra evidence should be visible before a future rewrite surface can leave blocked posture?"
+  ],
+  "source_hash": "src_0d84f5d2b6c7",
+  "transcript_hash": "tr_91b1c7fae204",
+  "rewrite_hash": "rw_76a2fe04ad18"
+}
