@@ -2,6 +2,15 @@
 
 > 薄版决策日志。只记录已经 user 拍板的工程/产品决策，不替代 PRD/SRD。
 
+## 2026-05-08 — Phase 1 Remediation Sub-wave Lane Open (post Opus-2 Visual REJECT, post Codex critique on v2)
+
+- 触发: Opus-2 Visual Truth Audit verdict `VISUAL_REJECT (3.6/10)`，`VT-P0-01/02/03` + `VT-P1-01/02/03` + `VT-P2-01/02` 全部 stop-line。
+- v3 修订 (vs v2): Codex critique 6 条全采纳 — delete Active 4 amendment / delete Playwright / Bat-Prep docs-only / 加 Lane D explicit user gate / Opus-3 V-PASS-CLEAR closeout / 加 Commander Monitor。
+- Lane 占用 (Active 3 不动): D + B + C。Lane A 在 Blocked 表，blocked-by visual truth remediation；`PR-B / Round 3` 再 promote A 替换 D。
+- 边界: 不解禁 runtime / true write / migration / browser automation / dependency install。master spec §13 全 Hold 仍在（含 `browser_automation`，含 `dbvnext_migration`）。`write_enabled=False` 不变。
+- 派单 pack 路径: `~/workspace/raw/05-Projects/ScoutFlow/dispatches/RUN-2026-05-08-NIGHT/remediation-wave/`（raw PARA，非 git tracked）。
+- Closure: `PR-A / Round 1` + `Round 2` 7 窗 + `PR-B / Round 3` + `Round 3` Lane A + `Round 4` 战友 localhost `V-PASS` + `Round 5` Opus-3 `V-PASS-CLEAR` + `PR-C / Round 6` closeout。
+
 ## 2026-05-08 — Authority rebase after PR #253 / #254 / #255 merged
 
 - Decision (1): refresh live authority anchor to `origin/main = e18d45a` (`PR #254`, merged at `2026-05-08T05:04:01Z`); current first-parent merged chain snapshot = `e18d45a` (`#254`) ← `d0dcbfe` (`#255`) ← `cf283f9` (`#253`) ← `02ccbdc` (`#252`).
