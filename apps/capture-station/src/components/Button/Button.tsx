@@ -1,8 +1,7 @@
 import type { ButtonHTMLAttributes, ReactNode } from "react";
 
+import { normalizeButtonVariant, type ButtonVariant } from "./derive";
 import styles from "./Button.module.css";
-
-type ButtonVariant = "primary" | "secondary" | "success" | "blocked";
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: ReactNode;
@@ -10,10 +9,11 @@ export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
 };
 
 export default function Button({ children, className, icon, variant = "secondary", type = "button", ...props }: ButtonProps) {
-  const classes = [styles.root, styles[variant], className].filter(Boolean).join(" ");
+  const normalizedVariant = normalizeButtonVariant(variant);
+  const classes = [styles.root, styles[normalizedVariant], className].filter(Boolean).join(" ");
 
   return (
-    <button type={type} className={classes} {...props}>
+    <button type={type} className={classes} data-variant={normalizedVariant} {...props}>
       {icon}
       <span>{children}</span>
     </button>

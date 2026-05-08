@@ -1,0 +1,41 @@
+:root {
+  --state-empty-bg: var(--surface-muted);
+  --state-empty-fg: var(--text-muted);
+  --state-empty-border: var(--border-soft);
+
+  --state-loading-bg: var(--surface-elevated);
+  --state-loading-fg: var(--accent-focus);
+  --state-loading-border: var(--accent-focus);
+
+  --state-disabled-bg: var(--surface-muted);
+  --state-disabled-fg: var(--text-muted);
+  --state-disabled-border: var(--border-soft);
+
+  --state-blocked-bg: var(--state-bg-warn);
+  --state-blocked-fg: var(--accent-warn);
+  --state-blocked-border: var(--accent-warn);
+
+  --state-preview-bg: var(--state-bg-info);
+  --state-preview-fg: var(--accent-live);
+  --state-preview-border: var(--accent-live);
+
+  --state-committed-bg: var(--state-bg-success);
+  --state-committed-fg: var(--accent-success);
+  --state-committed-border: var(--accent-success);
+
+  --state-failed-bg: var(--state-bg-blocked);
+  --state-failed-fg: var(--accent-blocked);
+  --state-failed-border: var(--accent-blocked);
+
+  --state-partial-bg: rgba(154, 140, 255, 0.12);
+  --state-partial-fg: #c6beff;
+  --state-partial-border: rgba(154, 140, 255, 0.45);
+
+  --state-skipped-bg: rgba(109, 128, 153, 0.14);
+  --state-skipped-fg: var(--text-secondary);
+  --state-skipped-border: var(--border-soft);
+  --state-skipped-border-style: dashed;
+
+  --state-stop-shadow: 0 0 0 1px rgba(255, 190, 85, 0.15);
+  --state-panel-outline: rgba(255, 255, 255, 0.04);
+}

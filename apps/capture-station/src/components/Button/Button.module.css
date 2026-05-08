@@ -1,3 +1,5 @@
+@import "../../styles/state-tokens.css";
+
 .root {
   display: inline-flex;
   align-items: center;
@@ -30,17 +32,25 @@
   color: var(--text-secondary);
 }
 
-.success {
-  border-color: var(--accent-success);
-  background: var(--state-bg-success);
-  color: var(--accent-success);
+.preview-only {
+  border-color: var(--state-preview-border);
+  background: rgba(16, 35, 61, 0.88);
+  color: var(--state-preview-fg);
 }
 
 .blocked {
-  border-color: var(--border-soft);
-  background: var(--surface-muted);
-  color: var(--text-muted);
+  border-width: 1.5px;
+  border-color: var(--state-blocked-border);
+  background: linear-gradient(180deg, rgba(255, 190, 85, 0.14), rgba(17, 31, 49, 0.82));
+  box-shadow: var(--state-stop-shadow);
+  color: var(--state-blocked-fg);
   cursor: not-allowed;
+}
+
+.committed {
+  border-color: var(--state-committed-border);
+  background: var(--state-committed-bg);
+  color: var(--state-committed-fg);
 }
 
 .root:disabled {

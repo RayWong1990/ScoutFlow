@@ -3,7 +3,7 @@ import styles from "./PromoteGate.module.css";
 
 export type PromoteGateItem = {
   label: string;
-  status: "met" | "pending";
+  status: "met" | "pending" | "blocked" | "disabled";
 };
 
 export type PromoteGateProps = {
@@ -17,12 +17,25 @@ export default function PromoteGate({ items, title }: PromoteGateProps) {
       <h3 className={styles.title}>{title}</h3>
       <ul className={styles.list}>
         {items.map((item) => (
-          <li key={item.label} className={[styles.item, styles[item.status]].join(" ")}>
-            <Icon sprite="state" name={item.status === "met" ? "success" : "loading"} />
+          <li key={item.label} className={[styles.item, styles[item.status]].join(" ")} data-status={item.status}>
+            <Icon sprite="state" name={iconForStatus(item.status)} />
             <span>{item.label}</span>
           </li>
         ))}
       </ul>
     </section>
   );
+}
+
+function iconForStatus(status: PromoteGateItem["status"]) {
+  switch (status) {
+    case "met":
+      return "success";
+    case "pending":
+      return "loading";
+    case "blocked":
+      return "blocked";
+    case "disabled":
+      return "locked";
+  }
 }

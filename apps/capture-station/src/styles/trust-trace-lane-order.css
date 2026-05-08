@@ -1,0 +1,27 @@
+:root {
+  --trust-trace-lane-gap: var(--space-md);
+  --trust-trace-graph-max-height: 420px;
+  --trust-trace-graph-surface: rgba(17, 31, 49, 0.88);
+  --trust-trace-graph-border: rgba(39, 65, 93, 0.72);
+}
+
+.trustTraceLaneOrder {
+  display: grid;
+  gap: var(--trust-trace-lane-gap);
+}
+
+.trustTraceLaneErrorPath {
+  order: 1;
+}
+
+.trustTraceLaneTimeline {
+  order: 2;
+}
+
+.trustTraceLaneGraph {
+  order: 3;
+  max-block-size: var(--trust-trace-graph-max-height);
+  overflow: hidden;
+  border-color: var(--trust-trace-graph-border);
+  background: var(--trust-trace-graph-surface);
+}
