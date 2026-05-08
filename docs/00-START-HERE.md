@@ -12,7 +12,7 @@ last_refreshed_from_main_sha: 5902ecf
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
-  - candidate north-star # 候选路线图 (master spec / PRD-v3 thin shell / SRD-v3 thin shell)
+  - candidate north-star # 候选路线图 (master spec / 0508 roadmap / PRD-v3 thin shell / SRD-v3 thin shell)
   - reference storage   # 储能层 grep-able (16 ZIP / archive / research)
 ---
 
@@ -58,7 +58,7 @@ status_words_locked:
 |---|---|---|
 | `current authority` | 真状态, 最新事实源 | `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, 本文件 |
 | `promoted addendum` | PRD/SRD 升级补丁, 已 user 拍板 | PRD-v2.1, SRD-v3 h5-bridge |
-| `candidate north-star` | 候选路线图, 不构成 authority | `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`, PRD-v3 thin shell, SRD-v3 thin shell |
+| `candidate north-star` | 候选路线图, 不构成 authority | `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`, `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md`, PRD-v3 thin shell, SRD-v3 thin shell |
 | `reference storage` | 储能层 grep-able reference | 16 ZIP / `docs/archive/` / `docs/research/` / `docs/memory/` |
 
 **严禁**: 引入新状态词. 任何文档 frontmatter `status:` 字段必须用这 4 类之一.
@@ -71,7 +71,7 @@ status_words_locked:
 |---|---|---|---|
 | **L0** | 5 min | `docs/current.md` (TL;DR) + `docs/task-index.md` + `docs/decision-log.md` + 本文件 | 真态 + 决策 + 入口 |
 | **L1** | 15 min | + `docs/PRD-v2-2026-05-04.md` + `docs/SRD-v2-2026-05-04.md` + `docs/PRD-amendments/prd-v2.1-...md` + `docs/SRD-amendments/h5-bridge-para-vault-srd-v3-...md` + `docs/project-context.md` + `AGENTS.md` + `CLAUDE.md` | PRD/SRD baseline + 项目元层 |
-| **L2** | 30 min | + `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` (north-star roadmap) | 11 wave routing + 4-agent 分工 + 现在没做的全部 inventory |
+| **L2** | 35 min | + `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` + `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` | 前者看长期 north-star；后者看批量化转写 program、lane 拆分、batch 节奏、PF-V / DB 修正 |
 | **L3** | 1 h | + 任务相关 U (见 §6 储能层地图) + `docs/specs/contracts-index.md` + `docs/specs/locked-principles.md` | 储能层 + 合约 |
 | **L4** | 按需 | `docs/architecture/`, `docs/research/repairs/`, `docs/research/strategic-upgrade/2026-05-07/audit/` 全集 | 架构 + 修复 + 16 ZIP audit |
 
@@ -107,7 +107,10 @@ D. 项目元层
    └── docs/shoulders-index.md
 
 E. 路线图 / 战略层
-   └── docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md  ← candidate north-star (PR #243 后采集线 11 wave + 4-agent v3 + inventory)
+   ├── docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md
+   │    ← candidate north-star (PR #243 后采集线 11 wave + 4-agent v3 + inventory)
+   └── docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md
+        ← candidate north-star companion (批量化转写平台执行总纲; 衔接 P3 / PF-V / runtime / true-write / batch friction / DB decision)
 
 F. 合约 / 架构
    ├── docs/specs/contracts-index.md          ← 合约总索引
@@ -146,7 +149,7 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 | **doc3** | `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md` | 2055 | PR55-PR74 dispatch backbone | reference storage |
 | errata | `docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md` | — | 接纳后 10 条细节修订建议 | reference storage |
 
-**当前价值**: 历史 reference (PR55-74 已实施完). 新 lane 启动时**不直接 paste** doc1/2/3, 应 paste master spec 或具体 dispatch.
+**当前价值**: 历史 reference (PR55-74 已实施完). 新 lane 启动时**不直接 paste** doc1/2/3, 应 paste master spec、0508 roadmap 或具体 dispatch.
 
 ---
 
@@ -240,8 +243,9 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 2. **Read** `docs/current.md` TL;DR (5 行) 看真态
 3. **Read** `docs/task-index.md` 看 Active 是 0/3 还是已满
 4. **Bash** `git log --oneline origin/main -5` 看最近 5 commit
-5. **Read** master spec § 13.1 (11 wave) + § 15.2 (优先级 P0-P4) + § 16 (红线 + 升级路径) — single source of routing truth (CC1 retrospective sediment, 2026-05-07)
-6. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + storage U (此步依赖 5 的 master spec 输入).
+5. **Read** master spec §13.1 (11 wave) + §15.2 (优先级 P0-P4) + §16 (红线 + 升级路径) — 看长期 north-star、红线和 lane 依赖
+6. **Read** `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` — 看下一波 program、lane 拆分、batch 节奏、PF-V / DB 修正
+7. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + 0508 roadmap 阶段 + storage U
 
 > 以下 7-8 件为 CC1 retrospective sediment (2026-05-07) 增补 — 防止数据估值与 candidate 误读类常见错误:
 
@@ -290,4 +294,4 @@ ScoutFlow ad-hoc 工作文件 (dispatch / commander prompt / 中间产物 / hand
 ---
 
 > 本文件 by CC1 (Anthropic), 2026-05-07. 目的: 让任何新 agent / 新 session 5 min 找到方向, 不靠记忆 / 不靠人工口述.
-> 关联: 战友 doc baseline 整治 PR #244 (single PR squash, 含 master spec promotion + PRD-v3/SRD-v3 thin shell + doc1/2/3 cross-link + README 整改).
+> 关联: 战友 doc baseline 整治 PR #244 (single PR squash, 含 master spec promotion + PRD-v3/SRD-v3 thin shell + doc1/2/3 cross-link + README 整改); 2026-05-08 起另有 `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` 作为批量化转写平台 companion roadmap.

@@ -757,6 +757,21 @@
   - `docs/task-index.md`
   - `docs/current.md`
 
+## 2026-05-08 — 批量化转写平台 companion roadmap 建立
+
+- Decision (1): 新增 `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md`，作为与 `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` 配套使用的 companion roadmap。
+- Decision (2): 角色分工明确化：master spec 继续回答长期 north-star、全生命周期 inventory、11 wave 与升级路径；0508 roadmap 负责批量化转写平台的执行总纲，回答 P3 / PF-V / runtime_tools / true_vault_write / batch friction / DB architecture decision 的 program 顺序。
+- Decision (3): 该 roadmap 状态固定为 `candidate north-star / not-authority`；不构成 runtime approval、migration approval、browser automation approval、true_vault_write approval 或 full-signal execution approval。
+- Decision (4): 路线图主锚固定为 authority state、landed capability、5 overflow Hold 与每轮 preflight live readback；`main HEAD` / PR 号仅作历史 receipts，不作为 program 主锚。
+- Decision (5): 2026-05-08 版核心修正已写入该 roadmap：`3 URL smoke batch + 10 URL friction batch`、新增 `Lane D = PF-V visual productization`、`UI stack decision candidate` 提前、`DB architecture decision` 提前而 `DB migration implementation` 后置、首次 runtime/ASR 只战术性选择一条 route 与一个 engine。
+- Decision (6): `docs/task-index.md`、`docs/00-START-HERE.md` 与 `docs/current.md` 已补充该 companion roadmap 入口，后续新 session 的推荐读法变为 `current -> START-HERE -> master spec -> 0508 roadmap`。
+- Source:
+  - `docs/task-index.md`
+  - `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md`
+  - `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`
+  - `docs/00-START-HERE.md`
+  - `docs/current.md`
+
 ## 2026-05-08 — T-P1A-158 W2C runtime truth repair bundle
 
 - Decision (1): 在不重开 standing active lane 的前提下，`PR #261` 吸收了一个 bounded repair bundle：`apps/capture-station/src/lib/w2c-runtime.tsx` / `.test.tsx`、`tools/refresh-start-here.py`、`tools/check-docs-redlines.py`、`tests/tools/*`、`docs/memory/**` 与 4 张 repair/erratum note。
