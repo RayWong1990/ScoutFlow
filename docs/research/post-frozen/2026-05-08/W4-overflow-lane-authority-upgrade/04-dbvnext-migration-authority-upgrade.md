@@ -20,16 +20,17 @@ disclaimer: |
 
 ## §0.5 Prerequisite Check
 
-> refreshed_at: `2026-05-07T17:15:02Z`. 本段是本文件的真态读回锚, 任一后续 agent 接收本文时必须再次刷新, 不得把本文数值当永久 authority。
+> refreshed_at: `2026-05-08T09:24:11Z`. 本段是本文件的真态读回锚, 任一后续 agent 接收本文时必须再次刷新, 不得把本文数值当永久 authority。
 
 | Check | 刷新真态 | Drift / 处理 |
 |---|---|---|
-| 1 — main HEAD | `6dd27d74c214c3e4768196b59f986a6d226f6699`; message=`feat(memory): cross-vendor memory graph W2D land (16 instinct memory) (#245)` | 与提示词里 `c802de4` / `4792b0f` 叙述存在 chronological drift; 本文引用 main HEAD 时以 Check 1 为准。PR #245/#247/#248 均标注「撰写时刻历史参考, 真值以 §0.5 Check 为准」。 |
-| 2 — current.md | Active product lane `0/3`; Authority writer `0/1`; state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`; 5 overflow lane Hold 仍列明。 | current.md body 仍写 `c802de4` 作为 main anchor, 低风险 authority-body drift; 不改变 lane 边界。 |
+| 1 — main HEAD | `45e88d45342ba6f6036e68695ca56d09deaaf06d`; message=`Merge pull request #257 from RayWong1990/codex/w4-b-step0-convergence` | 本文引用 main HEAD 时以 `45e88d4` 为准；更早 prerequisite truth 只保留为历史背景, 不再作为 live anchor。 |
+| 2 — current.md | Active product lane `0/3`; Authority writer `0/1`; state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`; 5 overflow lane Hold 仍列明。 | `docs/current.md` TL;DR 主锚仍停在 `e18d45a`; lane 边界与计数未漂移，但 main-head 叙述尚未追到 `45e88d4`。 |
 | 3 — task-index.md | Active `0/3`; Review `0`; Authority writer `0/1`; Phase=`Phase 1A — WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。 | 与提示词一致。 |
-| 4 — decision-log.md | PR #247 metadata 明示加入 `D-017 follow-up`; 提示词历史锚点 D-016 已不是唯一候选最新。 | 本文写作时将 D-016 视为历史参考, D-017+ 由 CC0/CC1 接收时复核 decision-log tail。 |
+| 4 — decision-log.md | 顶部 authority rebase 记录仍锚在 `origin/main = e18d45a` / PR #254；PR #247 metadata 明示加入 `D-017 follow-up`。 | 决策条目仍可用，但 main-head 叙述尚未追到 `45e88d4`。 |
 | 5 — memory INDEX | `batch_count: 17`; Lessons 7 / Feedback 5 / Patterns 5; 重点含 L-RUNTIME-APPROVAL-DRIFT, L-MIGRATION-DRIFT, L-OVEROBJECTIFICATION, P-PROOF-PAIR-CANARY, P-OVERFLOW-NOT-BLOCKER。 | 与提示词一致。 |
 | 6 — bridge config | `write_enabled=False` 在未配置 vault root 分支与已配置 vault root 分支均成立。 | 与提示词一致; 本文不改变该 invariant。 |
+| 7 — START-HERE | `docs/00-START-HERE.md` 已由 `python tools/refresh-start-here.py` 刷到 `last_refreshed_from_main_sha: 45e88d4`; auto anchor chain = `45e88d4 ← 3cbe79e ← ca8593a`。 | START-HERE 已进入 `45e88d4` 语境；authority trio 其余文件仍各自保留历史锚点。 |
 | B-lane sanity | `bridge/router.py` 当前暴露 bridge health / vault config / vault preview / vault commit dry-run 4 个 route decorator; migrations baseline 仅 001/002; capture-station package 未见 Playwright / Selenium dependency。 | 提示词里「5 routes」按历史参考处理, 真值以 router 文件为准。 |
 
 **读回证据 URL 包**: main commit API, `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, `docs/memory/INDEX.md`, `services/api/scoutflow_api/bridge/config.py`, `services/api/scoutflow_api/bridge/router.py`, `services/api/migrations/001_phase1a_capture_creation.sql`, `services/api/migrations/002_phase1a_jobs_receipt.sql`, `apps/capture-station/package.json`。

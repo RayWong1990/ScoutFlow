@@ -9,7 +9,7 @@ created_at: 2026-05-08
 upstream_finding: "audit catch — 5 lane §0.5 B-lane sanity / §5.7 amend_trigger paragraph clone, lane 4 缺 lane-specific verify"
 disclaimer: 真态数字以 GitHub live main HEAD 为准; 撰写时刻数字仅为历史参考。
 prerequisite_check: drift_detected
-main_head_drift: "docs/current.md reports c802de4; GitHub chronological latest merge readback is 6dd27d7 / PR #245 W2D memory graph (撰写时刻历史参考, GitHub live 以 §0.5 Check 为准)"
+main_head_drift: "GitHub live main HEAD = 45e88d4; START-HERE 已刷新到 45e88d4 语境；docs/current.md 与 docs/decision-log.md 的主锚仍停在 e18d45a"
 active_product_count: "0/3 (refreshed at §0.5 Check)"
 authority_writer_count: "0/1 (refreshed at §0.5 Check)"
 wave_state: "WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED"
@@ -28,13 +28,15 @@ target_replacement_section:
 
 | Check | Live readback | Result |
 |---|---|---|
-| docs/current.md | reports `main = c802de4`, Active `0/3`, Authority writer `0/1`, `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`, `write_enabled=False` | drift on main-head only; authority counts match |
+| GitHub / origin/main | `45e88d4` / PR #257 merge commit | 本 patch 的 prerequisite truth 以此为准 |
+| docs/00-START-HERE.md | `last_refreshed_from_main_sha: 45e88d4`; auto anchor chain = `45e88d4 ← 3cbe79e ← ca8593a` | START-HERE 已刷新到 45e88d4 语境 |
+| docs/current.md | reports `main = e18d45a`, Active `0/3`, Authority writer `0/1`, `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`, `write_enabled=False` | main-head drift remains in `current.md`; authority counts match |
 | docs/task-index.md | Active table empty, Review empty, Backlog empty; product lane `0/3`, authority writer `0/1` | matches prompt authority state |
-| docs/decision-log.md | current authority file reachable; tail is tool-truncated, but repo search confirms PR #246/D-017 references exist on main | partial tail visibility; no authority-count drift detected |
+| docs/decision-log.md | current authority file reachable; top rebase record still anchors `origin/main = e18d45a`; repo search confirms PR #246/D-017 references exist on main | decision history usable; main-head drift remains in decision-log wording |
 | docs/memory/INDEX.md | `batch_count: 17`, 7 lessons + 5 feedback + 5 patterns | matches prompt |
-| GitHub commit chronological | latest returned commit is `6dd27d7` / PR #245 W2D memory graph, after PR #248 / PR #247 chronologically | drift vs current.md anchor `c802de4` |
+| GitHub commit chronological | latest returned commit is `45e88d4` / PR #257 W4-B Step0 convergence merge | drift vs `current.md` / `decision-log.md` anchor `e18d45a` |
 
-**prerequisite_check = `drift_detected`**. Main-head truth in this packet is: docs authority anchor still says `c802de4`, while GitHub chronological latest merge is `6dd27d7` (撰写时刻历史参考, GitHub live 以 §0.5 Check 为准). This packet does not write authority and does not repair that drift; it only records it for Codex / CC0 intake.
+**prerequisite_check = `partial_refresh_applied`**. Main-head truth in this packet is `45e88d4`. `docs/00-START-HERE.md` has been refreshed into that context, while `docs/current.md` and `docs/decision-log.md` still narrate `e18d45a` as their last authority-rebase anchor. This patch records the post-refresh truth for Codex / CC0 intake without widening lane scope.
 
 ## §0.5 B-lane sanity — lane-specific replacement
 
