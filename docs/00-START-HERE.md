@@ -7,12 +7,12 @@ last_updated: 2026-05-08
 anchor_refresh_tool: tools/refresh-start-here.py
 refresh_interval_pr: 50
 next_forced_refresh_pr: 300
-last_refreshed_from_main_pr: 259
-last_refreshed_from_main_sha: 5777389
+last_refreshed_from_main_pr: 261
+last_refreshed_from_main_sha: 5902ecf
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
-  - candidate north-star # 候选路线图 (master spec / PRD-v3 thin shell / SRD-v3 thin shell)
+  - candidate north-star # 候选路线图 (master spec / 0508 roadmap / PRD-v3 thin shell / SRD-v3 thin shell)
   - reference storage   # 储能层 grep-able (16 ZIP / archive / research)
 ---
 
@@ -25,7 +25,7 @@ status_words_locked:
 ## §0 TL;DR (5 行)
 
 - **是什么**: 单人本地内容采集 / 转写 / 改写 / 入库 raw 系统 (operator workstation, 不是 SaaS)
-- **当前 baseline**: 见 §1 auto-managed 真态锚点（refresh ref 对应的 git truth + authority docs）；capture-station 已 landed 基线 = W2C truthful runtime surfaces + 5 态 state machine + W1B Trust Trace graph/timeline/error-path bounded lanes；`W3E PF-C0-O1` 仅为 docs-only candidate starter cluster
+- **当前 baseline**: 见 §1 auto-managed main truth 锚点；capture-station 已 landed 基线 = W2C truthful runtime surfaces + 5 态 state machine + W1B Trust Trace graph/timeline/error-path bounded lanes；`W3E PF-C0-O1` 仅为 docs-only candidate starter cluster
 - **当前状态**: Active 0/3 / Authority writer 0/1 / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - **5 overflow lane Hold**: write_enabled=False / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench (永不偷开, 走 authority 升级 PR)
 - **入口 4 文件**: `current.md` (真态) / `task-index.md` (lane registry) / `decision-log.md` (决策) / **本文件** (导航)
@@ -34,13 +34,13 @@ status_words_locked:
 
 ## §1 当前真态锚点
 
-> 本段由 `python tools/refresh-start-here.py` 维护；closeout / merge 后跑 refresh，CI 走 `--check --ref HEAD` 验证 checked-out truth。
+> 本段由 `python tools/refresh-start-here.py` 维护。main closeout refresh 写入 `origin/main` / main HEAD truth；PR CI freshness check 默认只验证 committed START-HERE 是否仍对齐 main authority anchor，不把 checked-out synthetic merge ref 写进长期 authority file。
 
 <!-- START_HERE_AUTO_ANCHORS_BEGIN -->
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| checked-out HEAD | `b594375` ← `5777389` (PR #259) ← `beb0fef` (PR #258) |
+| main HEAD | `5902ecf` (PR #261) ← `b1b2350` ← `5777389` (PR #259) |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
@@ -58,7 +58,7 @@ status_words_locked:
 |---|---|---|
 | `current authority` | 真状态, 最新事实源 | `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, 本文件 |
 | `promoted addendum` | PRD/SRD 升级补丁, 已 user 拍板 | PRD-v2.1, SRD-v3 h5-bridge |
-| `candidate north-star` | 候选路线图, 不构成 authority | `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`, PRD-v3 thin shell, SRD-v3 thin shell |
+| `candidate north-star` | 候选路线图, 不构成 authority | `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`, `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md`, PRD-v3 thin shell, SRD-v3 thin shell |
 | `reference storage` | 储能层 grep-able reference | 16 ZIP / `docs/archive/` / `docs/research/` / `docs/memory/` |
 
 **严禁**: 引入新状态词. 任何文档 frontmatter `status:` 字段必须用这 4 类之一.
@@ -71,7 +71,7 @@ status_words_locked:
 |---|---|---|---|
 | **L0** | 5 min | `docs/current.md` (TL;DR) + `docs/task-index.md` + `docs/decision-log.md` + 本文件 | 真态 + 决策 + 入口 |
 | **L1** | 15 min | + `docs/PRD-v2-2026-05-04.md` + `docs/SRD-v2-2026-05-04.md` + `docs/PRD-amendments/prd-v2.1-...md` + `docs/SRD-amendments/h5-bridge-para-vault-srd-v3-...md` + `docs/project-context.md` + `AGENTS.md` + `CLAUDE.md` | PRD/SRD baseline + 项目元层 |
-| **L2** | 30 min | + `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` (north-star roadmap) | 11 wave routing + 4-agent 分工 + 现在没做的全部 inventory |
+| **L2** | 35 min | + `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` + `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` | 前者看长期 north-star；后者看批量化转写 program、lane 拆分、batch 节奏、PF-V / DB 修正 |
 | **L3** | 1 h | + 任务相关 U (见 §6 储能层地图) + `docs/specs/contracts-index.md` + `docs/specs/locked-principles.md` | 储能层 + 合约 |
 | **L4** | 按需 | `docs/architecture/`, `docs/research/repairs/`, `docs/research/strategic-upgrade/2026-05-07/audit/` 全集 | 架构 + 修复 + 16 ZIP audit |
 
@@ -107,7 +107,10 @@ D. 项目元层
    └── docs/shoulders-index.md
 
 E. 路线图 / 战略层
-   └── docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md  ← candidate north-star (PR #243 后采集线 11 wave + 4-agent v3 + inventory)
+   ├── docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md
+   │    ← candidate north-star (PR #243 后采集线 11 wave + 4-agent v3 + inventory)
+   └── docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md
+        ← candidate north-star companion (批量化转写平台执行总纲; 衔接 P3 / PF-V / runtime / true-write / batch friction / DB decision)
 
 F. 合约 / 架构
    ├── docs/specs/contracts-index.md          ← 合约总索引
@@ -146,7 +149,7 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 | **doc3** | `docs/research/pr55-pr74-worklist-candidate-2026-05-04.md` | 2055 | PR55-PR74 dispatch backbone | reference storage |
 | errata | `docs/research/doc1-doc2-doc3-v1.1-acceptance-errata-report-2026-05-04.md` | — | 接纳后 10 条细节修订建议 | reference storage |
 
-**当前价值**: 历史 reference (PR55-74 已实施完). 新 lane 启动时**不直接 paste** doc1/2/3, 应 paste master spec 或具体 dispatch.
+**当前价值**: 历史 reference (PR55-74 已实施完). 新 lane 启动时**不直接 paste** doc1/2/3, 应 paste master spec、0508 roadmap 或具体 dispatch.
 
 ---
 
@@ -182,10 +185,10 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 | Wave | 状态 | 时间 | 派给 |
 |---|---|---|---|
 | **W1A** untracked batch land (16 ZIP storage land) | 已 landed (`PR #244`) | — | CC1 |
-| **W2C** PF-C4-02 真数据接线 + 微交互 | 进行中（`T-P1A-156`; frontend-first existing-route wiring） | 5-7h + validation | Codex |
-| **W1B** PF-C4-EXT D3 graph + timeline + error-path 自写 | 候选 (依赖 OpenDesign v2 升级 PR) | 6-8h | Codex |
+| **W2C** PF-C4-02 真数据接线 + 微交互 | 已 landed / closed（`T-P1A-156`; PR #252 + closeout PR #253） | — | Codex |
+| **W1B** PF-C4-EXT graph + timeline + error-path bounded lanes | 已 landed / closed（`T-P1A-157`; PR #255；PR262 仅补 UI truth guard） | — | Codex |
 | **W2D** U16 memory ingest / memory graph baseline | 已 landed (`PR #245`)；后续扩到 50-100 待继续 | — | CC1 |
-| **W3E** 80-pack 余量 cluster (PF-C0/O1/C3) | 候选 | 多日 | Codex multi-PR |
+| **W3E** 80-pack 余量 cluster (PF-C0/O1/C3) | docs-only candidate starter landed（PR #254）；execution 未批准 | 多日 | Codex multi-PR |
 | **W4F** Phase 2 LANE-2 ASR spike | 候选 (依赖 runtime_tools 解禁) | 多日 | GPT Pro spec + Codex |
 | **W4G** Phase 2 LANE-3 Rewrite | 候选 (依赖 W4F) | 多日 | GPT Pro spec + Codex |
 | **W5H** Source matrix 扩展 (yt-dlp/XHS/抖音/Research) | 候选 (依赖 runtime_tools 解禁) | 多日 | Codex multi-PR |
@@ -240,8 +243,9 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 2. **Read** `docs/current.md` TL;DR (5 行) 看真态
 3. **Read** `docs/task-index.md` 看 Active 是 0/3 还是已满
 4. **Bash** `git log --oneline origin/main -5` 看最近 5 commit
-5. **Read** master spec § 13.1 (11 wave) + § 15.2 (优先级 P0-P4) + § 16 (红线 + 升级路径) — single source of routing truth (CC1 retrospective sediment, 2026-05-07)
-6. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + storage U (此步依赖 5 的 master spec 输入).
+5. **Read** master spec §13.1 (11 wave) + §15.2 (优先级 P0-P4) + §16 (红线 + 升级路径) — 看长期 north-star、红线和 lane 依赖
+6. **Read** `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` — 看下一波 program、lane 拆分、batch 节奏、PF-V / DB 修正
+7. **Decide**: 你的任务在 §7 wave 的哪个? 找对应 master spec 章节 + 0508 roadmap 阶段 + storage U
 
 > 以下 7-8 件为 CC1 retrospective sediment (2026-05-07) 增补 — 防止数据估值与 candidate 误读类常见错误:
 
@@ -279,8 +283,8 @@ ScoutFlow ad-hoc 工作文件 (dispatch / commander prompt / 中间产物 / hand
 
 - 本文件标 `current authority`, 跟 `current.md` / `task-index.md` / `decision-log.md` 同级
 - `Layer A — 减 hard-code, 改引用 + auto-managed anchor`: §0 只给入口和范围，不再重复写死 main SHA / dispatch 总数；§1 真态锚点由脚本维护。
-- `Layer B — 脚本 + gate`: `python tools/refresh-start-here.py` 负责 refresh；`python tools/refresh-start-here.py --check` 进入 docs-check，防止 merge 后继续漂移。
-- `Layer C — wave closeout 强制更新`: 每次 wave / governance lane closeout 按 `docs/task-index.md -> docs/current.md -> docs/decision-log.md -> python tools/refresh-start-here.py` 顺序写回；随后人工复核 §7 wave 表和 README / master spec / closeout receipt 的旧 PR / SHA / wave 状态引用。
+- `Layer B — 脚本 + gate`: `python tools/refresh-start-here.py` 负责 main closeout refresh；`python tools/refresh-start-here.py --check` 进入 docs-check，防止 merge 后继续漂移。`--check --ref HEAD` 只可作为 PR checked-out ref probe，不要求 START-HERE committed text 改成 synthetic HEAD。
+- `Layer C — wave closeout 强制更新`: 每次 wave / governance lane closeout 按 `docs/task-index.md -> docs/current.md -> docs/decision-log.md -> python tools/refresh-start-here.py` 顺序写回；refresh 目标是 main authority truth，随后人工复核 §7 wave 表和 README / master spec / closeout receipt 的旧 PR / SHA / wave 状态引用。
 - `Layer D — 定期 refresh sprint`: 当前轮 refresh 已在 `PR #246` 执行；下一次 forced refresh = `PR #300`，此后每 `+50 PR` 触发一次。若最新 merged PR 号达到 frontmatter `next_forced_refresh_pr`，docs-check 必须 fail 到 refresh 完成为止。
 - 文档地图 §4 / §5 / §6 跟随实际 docs/ 目录变化更新。
 - 状态词 §2 锁 4 类；任何新状态词需走 user 拍板 + decision-log entry。
@@ -290,4 +294,4 @@ ScoutFlow ad-hoc 工作文件 (dispatch / commander prompt / 中间产物 / hand
 ---
 
 > 本文件 by CC1 (Anthropic), 2026-05-07. 目的: 让任何新 agent / 新 session 5 min 找到方向, 不靠记忆 / 不靠人工口述.
-> 关联: 战友 doc baseline 整治 PR #244 (single PR squash, 含 master spec promotion + PRD-v3/SRD-v3 thin shell + doc1/2/3 cross-link + README 整改).
+> 关联: 战友 doc baseline 整治 PR #244 (single PR squash, 含 master spec promotion + PRD-v3/SRD-v3 thin shell + doc1/2/3 cross-link + README 整改); 2026-05-08 起另有 `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` 作为批量化转写平台 companion roadmap.

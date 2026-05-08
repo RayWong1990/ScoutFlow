@@ -93,4 +93,56 @@ describe("TimelineLane", () => {
     expect(within(detail).getByText("metadata_snapshot")).toBeTruthy();
     expect(within(detail).getByText("redaction")).toBeTruthy();
   });
+
+  it("does not render raw long audio transcript in media audio detail", () => {
+    const longTranscript = "future transcript with private operator context ".repeat(8);
+    render(
+      <TimelineLane
+        trace={buildTrace({
+          media_audio: {
+            status: "ok",
+            audio_transcript: longTranscript,
+          },
+        })}
+      />,
+    );
+
+    fireEvent.focus(screen.getByRole("button", { name: /media_audio/i }));
+
+    const detail = screen.getByRole("region", { name: "当前证据详情" });
+    expect(within(detail).queryByText(longTranscript)).toBeNull();
+    expect(within(detail).getByText("audio_transcript_preview")).toBeTruthy();
+    expect(within(detail).getByText(/\[truncated\]/)).toBeTruthy();
+    expect(screen.queryByText(longTranscript)).toBeNull();
+  });
+
+  it("renders blocked and empty audio transcript as bounded status words", () => {
+    const { rerender } = render(
+      <TimelineLane
+        trace={buildTrace({
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+        })}
+      />,
+    );
+
+    fireEvent.focus(screen.getByRole("button", { name: /media_audio/i }));
+    expect(within(screen.getByRole("region", { name: "当前证据详情" })).getByText("blocked")).toBeTruthy();
+
+    rerender(
+      <TimelineLane
+        trace={buildTrace({
+          media_audio: {
+            status: "not_requested",
+            audio_transcript: "",
+          },
+        })}
+      />,
+    );
+
+    fireEvent.focus(screen.getByRole("button", { name: /media_audio/i }));
+    expect(within(screen.getByRole("region", { name: "当前证据详情" })).getByText("not_present")).toBeTruthy();
+  });
 });

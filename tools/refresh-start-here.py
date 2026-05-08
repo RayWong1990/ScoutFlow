@@ -46,6 +46,10 @@ INT_FIELD_TEMPLATE = r"^{field}:\s+.*$"
 SHA_FIELD_RE = re.compile(r"^last_refreshed_from_main_sha:\s+.*$", re.MULTILINE)
 MARKDOWN_COUNT_RE = re.compile(r"\*\*(?P<count>[\d,]+)\s+markdown\*\*")
 WORD_COUNT_RE = re.compile(r"\*\*(?P<count>[\d,]+)\s+字\*\*")
+PR_NUMBER_BY_SHORT_SHA = {
+    # PR #261 landed as a local closeout commit without a "(#261)" subject suffix.
+    "5902ecf": 261,
+}
 
 
 @dataclass(frozen=True)
@@ -65,6 +69,10 @@ class RefreshContext:
     refresh_interval_pr: int
     next_forced_refresh_pr: int
     last_updated: str
+
+
+def default_main_ref() -> str:
+    return f"{REMOTE}/main"
 
 
 def run_git(repo: Path, *args: str) -> str:
@@ -87,15 +95,33 @@ def parse_pr_number(subject: str) -> int | None:
     return int(match.group("pr"))
 
 
+def pr_number_for_commit(sha: str, subject: str) -> int | None:
+    return parse_pr_number(subject) or PR_NUMBER_BY_SHORT_SHA.get(sha)
+
+
 def current_branch_name(repo: Path) -> str:
     branch_name = run_git(repo, "rev-parse", "--abbrev-ref", "HEAD")
     return branch_name.strip()
 
 
-def resolve_target_ref(explicit_ref: str | None, branch_name: str, check_mode: bool) -> str:
+def resolve_target_ref(
+    explicit_ref: str | None,
+    branch_name: str,
+    check_mode: bool,
+    check_anchor_mode: str = "main",
+) -> str:
+    del branch_name
+    if check_mode and check_anchor_mode == "main":
+        return default_main_ref()
     if explicit_ref:
         return explicit_ref
-    return f"{REMOTE}/main"
+    if check_mode and check_anchor_mode == "head":
+        return "HEAD"
+    return default_main_ref()
+
+
+def is_main_ref(target_ref: str) -> bool:
+    return target_ref == "main" or target_ref.endswith("/main")
 
 
 def ensure_ref_is_available(repo: Path, target_ref: str) -> None:
@@ -121,7 +147,7 @@ def read_git_commits(repo: Path, target_ref: str, limit: int = 3) -> list[GitCom
     commits: list[GitCommit] = []
     for line in output.splitlines():
         sha, subject, _date = line.split("\t", 2)
-        commits.append(GitCommit(sha=sha, subject=subject, pr_number=parse_pr_number(subject)))
+        commits.append(GitCommit(sha=sha, subject=subject, pr_number=pr_number_for_commit(sha, subject)))
     if not commits:
         raise RuntimeError(f"{target_ref} has no commits")
     return commits
@@ -222,7 +248,7 @@ def render_anchor_block(context: RefreshContext) -> str:
     return "\n".join(lines)
 
 
-def refresh_text(text: str, context: RefreshContext) -> str:
+def refresh_text(text: str, context: RefreshContext, update_main_frontmatter: bool | None = None) -> str:
     refreshed = text
     current_pr = context.commits[0].pr_number
     next_forced_refresh = compute_next_forced_refresh(
@@ -232,7 +258,10 @@ def refresh_text(text: str, context: RefreshContext) -> str:
     )
 
     refreshed = replace_or_insert_frontmatter_value(refreshed, "last_updated", context.last_updated)
-    if context.target_ref != "HEAD":
+    if update_main_frontmatter is None:
+        update_main_frontmatter = is_main_ref(context.target_ref)
+
+    if update_main_frontmatter:
         refreshed = replace_or_insert_frontmatter_value(
             refreshed,
             "last_refreshed_from_main_pr",
@@ -288,18 +317,44 @@ def main(argv: list[str] | None = None) -> int:
         "--ref",
         dest="target_ref",
         default=None,
-        help="git ref used to render START-HERE truth; default is HEAD for --check/non-main branches, origin/main for local main refresh",
+        help=(
+            "git ref to render for non-check refresh or --check-mode=head. "
+            "Default is ${SCOUTFLOW_REMOTE:-origin}/main. In --check-mode=main, "
+            "an explicit --ref is only resolved as a probe and does not rewrite the START-HERE authority anchor."
+        ),
+    )
+    parser.add_argument(
+        "--check-mode",
+        choices=("main", "head"),
+        default="main",
+        help=(
+            "main checks START-HERE against the remote main authority anchor; "
+            "head checks against the selected ref without updating main frontmatter fields."
+        ),
     )
     args = parser.parse_args(argv)
 
     original = START_HERE_PATH.read_text(encoding="utf-8")
+    if args.check and args.target_ref and args.check_mode == "main":
+        read_git_commits(ROOT, args.target_ref, limit=1)
+
     target_ref = resolve_target_ref(
         explicit_ref=args.target_ref,
         branch_name=current_branch_name(ROOT),
         check_mode=args.check,
+        check_anchor_mode=args.check_mode,
     )
+    if not args.check and not is_main_ref(target_ref):
+        raise RuntimeError(
+            "START-HERE refresh writes long-lived authority anchors and only accepts a main ref. "
+            "Use `--check --check-mode head --ref <ref>` to inspect PR or synthetic refs."
+        )
     context = build_context(original, target_ref)
-    refreshed = refresh_text(original, context)
+    refreshed = refresh_text(
+        original,
+        context,
+        update_main_frontmatter=is_main_ref(target_ref) and args.check_mode == "main",
+    )
 
     if args.check:
         if refreshed != original:

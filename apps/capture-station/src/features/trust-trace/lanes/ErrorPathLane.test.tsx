@@ -144,4 +144,27 @@ describe("ErrorPathLane", () => {
     expect(screen.getByText("metadata_job.status=future_unknown_status")).toBeTruthy();
     expect(screen.getByText("status 为开放字符串，当前仅按保守 degraded 处理，不推断为 clear。")).toBeTruthy();
   });
+
+  it("does not mark failed audit platform_result as clear when evidence exists", () => {
+    render(
+      <ErrorPathLane
+        trace={buildTrace({
+          audit: {
+            platform_result: "failed",
+            evidence_file_path: "docs/evidence.json",
+            artifact_count: 2,
+            redaction_policy: "safe",
+            safe_parsed_fields: {},
+          },
+        })}
+        routeStatus="success"
+        routeErrorCode={null}
+      />,
+    );
+
+    expect(screen.getByText("受阻 1")).toBeTruthy();
+    expect(screen.getByText("正常 5")).toBeTruthy();
+    expect(screen.getByText("audit.platform_result=failed")).toBeTruthy();
+    expect(screen.queryByText("正常 6")).toBeNull();
+  });
 });

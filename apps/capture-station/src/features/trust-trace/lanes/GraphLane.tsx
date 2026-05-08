@@ -53,7 +53,15 @@ function normalizeSignal(value: string | null | undefined): string {
 
 function isFailureLike(value: string | null | undefined): boolean {
   const normalized = normalizeSignal(value);
-  return normalized.includes("fail") || normalized.includes("error") || normalized.includes("blocked") || normalized.includes("not_ready");
+  return (
+    normalized.includes("fail")
+    || normalized.includes("error")
+    || normalized.includes("blocked")
+    || normalized.includes("disabled")
+    || normalized.includes("unavailable")
+    || normalized.includes("not_ready")
+    || normalized === "rejected"
+  );
 }
 
 function isSuccessLike(value: string | null | undefined): boolean {
@@ -91,7 +99,35 @@ function getAuditTone(trace: TrustTraceResponse): NodeTone {
   return "muted";
 }
 
+function formatAudioTranscriptDisplay(value: string): string {
+  const normalized = value.trim();
+  if (!normalized) {
+    return "not_present";
+  }
+  if (normalized.toLowerCase() === "blocked") {
+    return "blocked";
+  }
+  if (normalized.length > 80) {
+    return `${normalized.slice(0, 80)}... [truncated]`;
+  }
+  return `${normalized} [preview]`;
+}
+
+function getMediaAudioTone(trace: TrustTraceResponse): NodeTone {
+  const status = trace.media_audio.status;
+  const transcript = trace.media_audio.audio_transcript;
+  if (isFailureLike(status) || isFailureLike(transcript)) {
+    return "attention";
+  }
+  if (!transcript.trim() || !isSuccessLike(status)) {
+    return "muted";
+  }
+  return "ready";
+}
+
 function buildGraphNodes(trace: TrustTraceResponse): GraphNode[] {
+  const audioTranscriptDisplay = formatAudioTranscriptDisplay(trace.media_audio.audio_transcript);
+
   return [
     {
       id: "capture",
@@ -161,13 +197,13 @@ function buildGraphNodes(trace: TrustTraceResponse): GraphNode[] {
     {
       id: "media_audio",
       title: "media_audio",
-      summary: `${trace.media_audio.status} / ${trace.media_audio.audio_transcript}`,
-      tone: getNodeTone(false, trace.media_audio.audio_transcript === "blocked"),
+      summary: `${trace.media_audio.status} / ${audioTranscriptDisplay}`,
+      tone: getMediaAudioTone(trace),
       x: "43%",
       y: "70%",
       fields: [
         { label: "status", value: trace.media_audio.status },
-        { label: "audio_transcript", value: trace.media_audio.audio_transcript },
+        { label: "audio_transcript_preview", value: audioTranscriptDisplay },
       ],
     },
     {

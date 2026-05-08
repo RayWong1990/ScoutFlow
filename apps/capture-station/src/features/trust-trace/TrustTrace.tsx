@@ -69,10 +69,25 @@ function renderAuditFields(fields: Record<string, string | number | null>) {
   );
 }
 
+function formatAudioTranscriptDisplay(value: string): string {
+  const normalized = value.trim();
+  if (!normalized) {
+    return "not_present";
+  }
+  if (normalized.toLowerCase() === "blocked") {
+    return "blocked";
+  }
+  if (normalized.length > 80) {
+    return `${normalized.slice(0, 80)}... [truncated]`;
+  }
+  return `${normalized} [preview]`;
+}
+
 export default function TrustTrace() {
   const runtime = useW2CRuntime();
   const { currentCaptureId, trustTrace } = runtime;
   const trace = trustTrace.data;
+  const audioTranscriptDisplay = trace ? formatAudioTranscriptDisplay(trace.media_audio.audio_transcript) : null;
 
   const statusBadge =
     trustTrace.status === "success" && trace
@@ -193,7 +208,7 @@ export default function TrustTrace() {
                   <FieldGrid
                     fields={[
                       { label: "status", value: trace.media_audio.status },
-                      { label: "audio_transcript", value: trace.media_audio.audio_transcript },
+                      { label: "audio_transcript_preview", value: audioTranscriptDisplay ?? "not_present" },
                     ]}
                   />
                 </PanelCard>

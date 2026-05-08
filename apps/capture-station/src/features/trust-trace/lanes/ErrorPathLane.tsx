@@ -29,7 +29,13 @@ function normalizeStatus(value: string | null | undefined): string {
 
 function isFailureLike(value: string | null | undefined): boolean {
   const normalized = normalizeStatus(value);
-  return normalized.includes("fail") || normalized.includes("error");
+  return (
+    normalized.includes("fail")
+    || normalized.includes("error")
+    || normalized.includes("blocked")
+    || normalized.includes("not_ready")
+    || normalized === "rejected"
+  );
 }
 
 function isSuccessLike(value: string | null | undefined): boolean {
@@ -165,7 +171,15 @@ function buildStepCards(trace: TrustTraceResponse): StepCard[] {
           detail: `redaction=${trace.receipt_ledger.redaction}`,
         };
 
-  const auditCard: StepCard = isBlank(trace.audit.evidence_file_path) || trace.audit.artifact_count === 0
+  const auditCard: StepCard = isFailureLike(trace.audit.platform_result)
+    ? {
+        key: "audit",
+        label: "audit evidence",
+        tone: "blocked",
+        summary: `audit.platform_result=${trace.audit.platform_result ?? "null"}`,
+        detail: `evidence_file_path=${trace.audit.evidence_file_path ?? "null"} / artifact_count=${trace.audit.artifact_count}`,
+      }
+    : isBlank(trace.audit.evidence_file_path) || trace.audit.artifact_count === 0
     ? {
         key: "audit",
         label: "audit evidence",

@@ -183,4 +183,29 @@ describe("TrustTrace", () => {
     expect(screen.getByText("trust_trace_not_ready")).toBeTruthy();
     expect(screen.getByText("不生成假图谱，不把 503 包装成 success。")).toBeTruthy();
   });
+
+  it("shows only a bounded transcript preview in the media audio panel", () => {
+    const longTranscript = "private transcript segment ".repeat(10);
+    mockedUseW2CRuntime.mockReturnValue(
+      buildRuntime({
+        trustTrace: {
+          status: "success",
+          data: {
+            ...buildTraceResponse(),
+            media_audio: {
+              status: "ok",
+              audio_transcript: longTranscript,
+            },
+          },
+          error: null,
+        },
+      }),
+    );
+
+    render(<TrustTrace />);
+
+    expect(screen.getByText("audio_transcript_preview")).toBeTruthy();
+    expect(screen.getAllByText(/\[truncated\]/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(longTranscript)).toBeNull();
+  });
 });

@@ -23,6 +23,20 @@ function formatNullable(value: string | number | null): string {
   return value == null ? "null" : String(value);
 }
 
+function formatAudioTranscriptDisplay(value: string): string {
+  const normalized = value.trim();
+  if (!normalized) {
+    return "not_present";
+  }
+  if (normalized.toLowerCase() === "blocked") {
+    return "blocked";
+  }
+  if (normalized.length > 80) {
+    return `${normalized.slice(0, 80)}... [truncated]`;
+  }
+  return `${normalized} [preview]`;
+}
+
 function formatStringList(items: string[]): ReactNode {
   if (items.length === 0) {
     return "none";
@@ -55,6 +69,8 @@ function formatSafeParsedFields(fields: TrustTraceResponse["audit"]["safe_parsed
 }
 
 function buildSequence(trace: TrustTraceResponse): SequenceItem[] {
+  const audioTranscriptDisplay = formatAudioTranscriptDisplay(trace.media_audio.audio_transcript);
+
   return [
     {
       id: "capture",
@@ -111,7 +127,7 @@ function buildSequence(trace: TrustTraceResponse): SequenceItem[] {
       summary: trace.media_audio.status,
       details: [
         { label: "status", value: trace.media_audio.status },
-        { label: "audio_transcript", value: trace.media_audio.audio_transcript },
+        { label: "audio_transcript_preview", value: audioTranscriptDisplay },
       ],
     },
     {
