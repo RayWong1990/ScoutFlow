@@ -756,3 +756,29 @@
   - `docs/research/repairs/pr257-start-here-boundary-erratum-2026-05-08.md`
   - `docs/task-index.md`
   - `docs/current.md`
+
+## 2026-05-08 — T-P1A-158 W2C runtime truth repair bundle
+
+- Decision (1): 在不重开 standing active lane 的前提下，`PR #261` 吸收了一个 bounded repair bundle：`apps/capture-station/src/lib/w2c-runtime.tsx` / `.test.tsx`、`tools/refresh-start-here.py`、`tools/check-docs-redlines.py`、`tests/tools/*`、`docs/memory/**` 与 4 张 repair/erratum note。
+- Decision (2): `refreshCaptureBoundData()` 现已带 generation + currentCaptureId 双重 stale guard；旧 refresh 响应不会在 `clearCapture()` 或新 capture 建立后回写旧 trust-trace / vault-preview truth。
+- Decision (3): `isVaultWriteBlocked` 改为默认悲观：只有 bridge health 与 bridge vault config 两端都显式 `write_enabled === true` 时才解除 blocked；在 ScoutFlow 当前边界下，这一条件实际上不会成立，因此 shared runtime boolean 不再对 loading/error/null 态过度乐观。
+- Decision (4): `tools/refresh-start-here.py` 新增显式 `--ref`；CI docs-check 改为 `python tools/refresh-start-here.py --check --ref HEAD`，从而在 PR merge-ref / checked-out HEAD 场景验证 START-HERE freshness，而本地普通 refresh 仍保持 `origin/main` 语义。
+- Decision (5): `tools/check-docs-redlines.py` 新增 frontmatter status taxonomy guard：只允许 4 个锁定状态词，且 `current authority` 仅允许出现在 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/00-START-HERE.md`。
+- Decision (6): `docs/memory/**` 全量回退为 `reference storage`，并补 `memory_role`；`L-AUTHORITY-DRIFT` 的 authority surface 定义已收紧到 4 个 current-authority 文件，不再把 `AGENTS.md` / 根 `CLAUDE.md` 提升成同级 ledger。
+- Decision (7): `docs/research/repairs/pr245-memory-authority-taxonomy-erratum-2026-05-08.md`、`docs/research/repairs/pr247-pr249-start-here-validation-erratum-2026-05-08.md` 与 `docs/research/repairs/pr254-start-here-authority-touch-erratum-2026-05-08.md` 已补齐审计轨迹；这些修正只改 boundary / validation / taxonomy truth，不回滚对应 PR 的 landed substance。
+- Decision (8): 本 repair bundle 不触碰 `services/**`、`workers/**`、`packages/**`、`data/**`、`referencerepo/**`；不解禁 runtime、migration、browser automation、vault true-write；不改 DTO、schema、`PlatformResult` 或 `WorkerReceipt`。
+- Decision (9): Layer C writeback 本次继续按 `docs/task-index.md -> docs/current.md -> docs/decision-log.md -> python tools/refresh-start-here.py` 执行；收口后仍保持 `Active product lane=0/3`、`Authority writer=0/1`、5 overflow lane 全 Hold。
+- Source:
+  - `apps/capture-station/src/lib/w2c-runtime.tsx`
+  - `apps/capture-station/src/lib/w2c-runtime.test.tsx`
+  - `tools/refresh-start-here.py`
+  - `tools/check-docs-redlines.py`
+  - `tests/tools/test_refresh_start_here.py`
+  - `tests/tools/test_check_docs_redlines.py`
+  - `docs/memory/README.md`
+  - `docs/memory/INDEX.md`
+  - `docs/memory/lessons/L-AUTHORITY-DRIFT.md`
+  - `docs/research/repairs/pr245-memory-authority-taxonomy-erratum-2026-05-08.md`
+  - `docs/research/repairs/pr247-pr249-start-here-validation-erratum-2026-05-08.md`
+  - `docs/research/repairs/pr254-start-here-authority-touch-erratum-2026-05-08.md`
+  - `docs/research/repairs/pr261-w2c-runtime-safety-scope-note-2026-05-08.md`

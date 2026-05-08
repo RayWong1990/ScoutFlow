@@ -4,8 +4,9 @@ description: 工程闭环 (CI 绿 / dispatch 跑通 / surface 静态壳) ≠ 产
 type: project
 source_atlas_node: L-PRODUCT-CLOSURE-MISTAKE
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
+memory_role: cross-vendor instinct source
 risk_if_forgotten: critical
-status: current authority
+status: reference storage
 ---
 
 # Product closure ≠ engineering closure

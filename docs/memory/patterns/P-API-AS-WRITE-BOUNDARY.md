@@ -4,7 +4,8 @@ description: Bridge / Thin API 是唯一 write channel; 不允许 frontend 直 w
 type: project
 source_atlas_node: P-API-AS-WRITE-BOUNDARY
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Bridge / Thin API as the only write channel

@@ -25,7 +25,7 @@ status_words_locked:
 ## §0 TL;DR (5 行)
 
 - **是什么**: 单人本地内容采集 / 转写 / 改写 / 入库 raw 系统 (operator workstation, 不是 SaaS)
-- **当前 baseline**: 见 §1 auto-managed 真态锚点 (`git log -1 origin/main` + authority docs); capture-station 已 landed 基线 = W2C truthful runtime surfaces + 5 态 state machine + W1B Trust Trace graph/timeline/error-path bounded lanes；`W3E PF-C0-O1` 仅为 docs-only candidate starter cluster
+- **当前 baseline**: 见 §1 auto-managed 真态锚点（refresh ref 对应的 git truth + authority docs）；capture-station 已 landed 基线 = W2C truthful runtime surfaces + 5 态 state machine + W1B Trust Trace graph/timeline/error-path bounded lanes；`W3E PF-C0-O1` 仅为 docs-only candidate starter cluster
 - **当前状态**: Active 0/3 / Authority writer 0/1 / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - **5 overflow lane Hold**: write_enabled=False / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench (永不偷开, 走 authority 升级 PR)
 - **入口 4 文件**: `current.md` (真态) / `task-index.md` (lane registry) / `decision-log.md` (决策) / **本文件** (导航)
@@ -34,13 +34,13 @@ status_words_locked:
 
 ## §1 当前真态锚点
 
-> 本段由 `python tools/refresh-start-here.py` 维护；closeout / merge 后跑 refresh，CI 走 `--check`。
+> 本段由 `python tools/refresh-start-here.py` 维护；closeout / merge 后跑 refresh，CI 走 `--check --ref HEAD` 验证 checked-out truth。
 
 <!-- START_HERE_AUTO_ANCHORS_BEGIN -->
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| main HEAD | `5777389` (PR #259) ← `beb0fef` (PR #258) ← `1fa0e9a` (PR #260) |
+| checked-out HEAD | `b594375` ← `5777389` (PR #259) ← `beb0fef` (PR #258) |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
@@ -59,7 +59,7 @@ status_words_locked:
 | `current authority` | 真状态, 最新事实源 | `docs/current.md`, `docs/task-index.md`, `docs/decision-log.md`, 本文件 |
 | `promoted addendum` | PRD/SRD 升级补丁, 已 user 拍板 | PRD-v2.1, SRD-v3 h5-bridge |
 | `candidate north-star` | 候选路线图, 不构成 authority | `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`, PRD-v3 thin shell, SRD-v3 thin shell |
-| `reference storage` | 储能层 grep-able reference | 16 ZIP / `docs/archive/` / `docs/research/` |
+| `reference storage` | 储能层 grep-able reference | 16 ZIP / `docs/archive/` / `docs/research/` / `docs/memory/` |
 
 **严禁**: 引入新状态词. 任何文档 frontmatter `status:` 字段必须用这 4 类之一.
 

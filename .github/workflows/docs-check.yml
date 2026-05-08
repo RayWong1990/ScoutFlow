@@ -28,7 +28,7 @@ jobs:
       - name: Check secret redlines
         run: python tools/check-secrets-redlines.py
       - name: Check START-HERE freshness
-        run: python tools/refresh-start-here.py --check
+        run: python tools/refresh-start-here.py --check --ref HEAD
 
   api-contract-tests:
     runs-on: ubuntu-latest

@@ -90,6 +90,8 @@ function preserveOrError<T>(error: CaptureStationApiError, previous: AsyncState<
 export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
   const apiRef = useRef(createCaptureStationApi(import.meta.env.VITE_API_BASE ?? ""));
   const queryClientRef = useRef(createQueryClient());
+  const captureGenerationRef = useRef(0);
+  const currentCaptureIdRef = useRef<string | null>(null);
 
   const [canonicalUrl, setCanonicalUrl] = useState("https://www.bilibili.com/video/BV1xK4y1f7yC");
   const [captureSourceUrl, setCaptureSourceUrl] = useState<string | null>(null);
@@ -102,6 +104,10 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
   const [vaultCommitDryRun, setVaultCommitDryRun] = useState<AsyncState<BridgeVaultCommitResponse>>(idleState());
 
   const currentCaptureId = capture.data?.capture_id ?? null;
+
+  useEffect(() => {
+    currentCaptureIdRef.current = currentCaptureId;
+  }, [currentCaptureId]);
 
   useEffect(() => {
     let cancelled = false;
@@ -148,6 +154,7 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
 
     let cancelled = false;
     const captureId = currentCaptureId;
+    const generation = captureGenerationRef.current;
 
     async function loadCaptureBoundData() {
       setTrustTrace(loadingState());
@@ -157,7 +164,7 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
         queryClientRef.current.get(trustTraceKey(captureId), () => apiRef.current.getTrustTrace(captureId)),
         queryClientRef.current.get(vaultPreviewKey(captureId), () => apiRef.current.getVaultPreview(captureId)),
       ]);
-      if (cancelled) {
+      if (cancelled || generation != captureGenerationRef.current || currentCaptureIdRef.current !== captureId) {
         return;
       }
 
@@ -184,6 +191,7 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
   }, [currentCaptureId]);
 
   async function createCapture() {
+    captureGenerationRef.current += 1;
     queryClientRef.current.clear();
     setCaptureSourceUrl(null);
     setCapture(loadingState());
@@ -217,6 +225,7 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
     }
 
     const captureId = currentCaptureId;
+    const generation = captureGenerationRef.current;
     queryClientRef.current.invalidate(trustTraceKey(captureId));
     queryClientRef.current.invalidate(vaultPreviewKey(captureId));
     setTrustTrace(loadingState());
@@ -226,6 +235,10 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
       apiRef.current.getTrustTrace(captureId),
       apiRef.current.getVaultPreview(captureId),
     ]);
+
+    if (generation != captureGenerationRef.current || currentCaptureIdRef.current !== captureId) {
+      return;
+    }
 
     if (trustTraceResult.status === "fulfilled") {
       setTrustTrace(successState(trustTraceResult.value));
@@ -255,6 +268,7 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
   }
 
   function clearCapture() {
+    captureGenerationRef.current += 1;
     queryClientRef.current.clear();
     setCapture(idleState());
     setCaptureSourceUrl(null);
@@ -265,7 +279,7 @@ export function W2CRuntimeProvider({ children }: { children: ReactNode }) {
   }
 
   const isRuntimeBlocked = true;
-  const isVaultWriteBlocked = bridgeHealth.data?.write_enabled === false || bridgeVaultConfig.data?.write_enabled === false;
+  const isVaultWriteBlocked = bridgeHealth.data?.write_enabled !== true || bridgeVaultConfig.data?.write_enabled !== true;
 
   return (
     <W2CRuntimeContext.Provider

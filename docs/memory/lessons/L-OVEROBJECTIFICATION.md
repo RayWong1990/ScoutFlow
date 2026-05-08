@@ -4,8 +4,9 @@ description: Signal / Hypothesis / CapturePlan / TopicCard 4 entity 扩张早于
 type: project
 source_atlas_node: L-OVEROBJECTIFICATION
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
+memory_role: cross-vendor instinct source
 risk_if_forgotten: high
-status: current authority
+status: reference storage
 ---
 
 # Over-objectification

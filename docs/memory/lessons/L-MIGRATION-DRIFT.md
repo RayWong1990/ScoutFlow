@@ -4,8 +4,9 @@ description: DB schema / migration 不允许跟 candidate spec 一起偷渡; 必
 type: project
 source_atlas_node: L-MIGRATION-DRIFT
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
+memory_role: cross-vendor instinct source
 risk_if_forgotten: critical
-status: current authority
+status: reference storage
 ---
 
 # Migration drift

@@ -4,14 +4,15 @@ description: research note / draft spec / chat summary 被错写成 final author
 type: project
 source_atlas_node: L-AUTHORITY-DRIFT
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
+memory_role: cross-vendor instinct source
 risk_if_forgotten: critical
 cross_session_count: 16
-status: current authority
+status: reference storage
 ---
 
 # Authority drift
 
-research note / draft spec / chat summary / candidate doc / external report / brainstorm output 任何**未经 PR merge + decision-log entry**的内容都不能被引用成 authority. 任何"已批准 / 已 promoted / 已锁定"声明必须有显式 **PR merge SHA + decision-log D-XXX entry** 双轨支撑. authority 文件 (`current.md` / `task-index.md` / `decision-log.md` / `00-START-HERE.md` / `AGENTS.md` / 根 `CLAUDE.md`) 由 single writer (Authority writer max=1) 锁, docs-check 守.
+research note / draft spec / chat summary / candidate doc / external report / brainstorm output 任何**未经 PR merge + decision-log entry**的内容都不能被引用成 authority. 任何"已批准 / 已 promoted / 已锁定"声明必须有显式 **PR merge SHA + decision-log D-XXX entry** 双轨支撑. 当前被锁成 `current authority` 的 surface 只有 `current.md` / `task-index.md` / `decision-log.md` / `00-START-HERE.md`; `AGENTS.md` / 根 `CLAUDE.md` 属于 routing / instruction surface，不等同于 current-authority ledger.
 
 **Why:** 跟 `L-CANDIDATE-PROMOTION` 是 `AP-authority-drift` 同一 anti-pattern 的**两个侧面** — promotion-discipline (语言纪律 4 处声明 candidate) vs **authority-drift (内容性质判断错位)**. ScoutFlow 跨 16 session 多次出现"chat 总结被引成 spec / research note 被当 promoted base / brainstorm 期 candidate 被引为 framework 决策" — 这类失误后果是路线漂移 + runtime/migration 偷渡 + 5 overflow lane 隐性解禁. ATLAS `LINKED-DECISION-AND-RUNBOOK.md` 把 `L-AUTHORITY-DRIFT` + `L-CANDIDATE-PROMOTION` + `T-CANDIDATE-NOT-AUTHORITY` 三者并列为 same anti-pattern 的独立 lesson, 不是同义.
 

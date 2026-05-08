@@ -4,7 +4,8 @@ description: amend_and_proceed + 单 PR direct merge + admin override OK; 但不
 type: feedback
 source_atlas_node: F-DIRECT-MERGE-OK
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Direct merge OK, but not cross-boundary

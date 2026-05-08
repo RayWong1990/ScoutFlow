@@ -4,7 +4,8 @@ description: ZIP truth / GitHub live truth / RAW truth 三层分离; 现状以 G
 type: project
 source_atlas_node: P-DUAL-TRUTH-SEPARATION
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Triple truth separation

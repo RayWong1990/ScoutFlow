@@ -4,7 +4,8 @@ description: 不要建第二知识库 / mirror; 唯一真源 + 短入口指针 >
 type: feedback
 source_atlas_node: F-NOT-HEAVY-KM
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # No heavy knowledge mirror

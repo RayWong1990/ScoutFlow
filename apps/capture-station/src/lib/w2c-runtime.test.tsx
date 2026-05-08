@@ -13,8 +13,14 @@ function RuntimeProbe() {
       <div data-testid="trust-trace-status">{runtime.trustTrace.status}</div>
       <div data-testid="vault-preview-status">{runtime.vaultPreview.status}</div>
       <div data-testid="capture-id">{runtime.currentCaptureId ?? "none"}</div>
+      <div data-testid="trust-trace-capture">{runtime.trustTrace.data?.capture.capture_id ?? "none"}</div>
+      <div data-testid="vault-preview-capture">{runtime.vaultPreview.data?.capture_id ?? "none"}</div>
+      <div data-testid="vault-write-blocked">{runtime.isVaultWriteBlocked ? "yes" : "no"}</div>
       <button type="button" onClick={() => runtime.createCapture()}>
         create
+      </button>
+      <button type="button" onClick={() => runtime.refreshCaptureBoundData()}>
+        refresh
       </button>
       <button type="button" onClick={() => runtime.clearCapture()}>
         clear
@@ -66,6 +72,18 @@ describe("W2CRuntimeProvider", () => {
       expect(fetchMock).toHaveBeenCalledTimes(2);
     });
     expect(screen.getByTestId("capture-status").textContent).toBe("idle");
+  });
+
+  it("keeps vault write blocked before bridge probes resolve", () => {
+    vi.stubGlobal("fetch", vi.fn(() => new Promise(() => undefined)));
+
+    render(
+      <W2CRuntimeProvider>
+        <RuntimeProbe />
+      </W2CRuntimeProvider>,
+    );
+
+    expect(screen.getByTestId("vault-write-blocked").textContent).toBe("yes");
   });
 
   it("creates a capture, enqueues metadata fetch, and loads capture-bound data", async () => {
@@ -664,5 +682,567 @@ describe("W2CRuntimeProvider", () => {
     expect(screen.getByTestId("metadata-status").textContent).toBe("idle");
     expect(screen.getByTestId("trust-trace-status").textContent).toBe("idle");
     expect(screen.getByTestId("vault-preview-status").textContent).toBe("idle");
+  });
+
+  it("does not repopulate capture-bound state when refresh resolves after clear", async () => {
+    let resolveRefreshTrustTrace: ((value: { ok: boolean; status: number; json: () => Promise<unknown> }) => void) | null = null;
+    let resolveRefreshVaultPreview: ((value: { ok: boolean; status: number; json: () => Promise<unknown> }) => void) | null = null;
+
+    const refreshTrustTracePromise = new Promise<{ ok: boolean; status: number; json: () => Promise<unknown> }>((resolve) => {
+      resolveRefreshTrustTrace = resolve;
+    });
+    const refreshVaultPreviewPromise = new Promise<{ ok: boolean; status: number; json: () => Promise<unknown> }>((resolve) => {
+      resolveRefreshVaultPreview = resolve;
+    });
+
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          bridge_available: true,
+          spec_version: "0.1.0",
+          write_enabled: false,
+          blocked_by: ["write_disabled"],
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          vault_root_resolved: true,
+          vault_root: "/tmp/scoutflow-vault",
+          preview_enabled: true,
+          write_enabled: false,
+          frontmatter_mode: "raw_4_field",
+          error: null,
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 201,
+        json: async () => ({
+          capture_id: "cap_old",
+          platform: "bilibili",
+          platform_item_id: "BV1OLD",
+          source_kind: "manual_url",
+          capture_mode: "metadata_only",
+          created_by_path: "quick_capture",
+          status: "discovered",
+          artifact_root_path: "data/artifacts/bilibili/cap_old",
+          manifest_path: "data/artifacts/bilibili/cap_old/bundle/capture-manifest.json",
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          job_id: "job_old",
+          capture_id: "cap_old",
+          job_type: "metadata_fetch",
+          status: "queued",
+          dedupe_key: "bilibili:BV1OLD:metadata_fetch",
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          label: "Status / Trust Trace / 采集状态",
+          capture: {
+            capture_id: "cap_old",
+            platform: "bilibili",
+            platform_item_id: "BV1OLD",
+            source_kind: "manual_url",
+            capture_mode: "metadata_only",
+            created_by_path: "quick_capture",
+          },
+          capture_state: {
+            capture_created: true,
+            status: "discovered",
+          },
+          metadata_job: {
+            present: true,
+            job_id: "job_old",
+            job_type: "metadata_fetch",
+            status: "queued",
+            platform_result: null,
+          },
+          probe_evidence: {
+            present: false,
+            probe_mode: "not-run",
+            source_task_id: null,
+            source_report_path: null,
+            platform_result: null,
+          },
+          receipt_ledger: {
+            present: false,
+            artifact_count: 0,
+            artifact_kinds: [],
+            redaction: "not_applicable",
+          },
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+          audit: {
+            platform_result: null,
+            evidence_file_path: null,
+            artifact_count: 0,
+            redaction_policy: null,
+            safe_parsed_fields: {},
+          },
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          capture_id: "cap_old",
+          target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_old.md",
+          frontmatter: {
+            title: "ScoutFlow BV1OLD",
+            date: "2026-05-08",
+            tags: "调研/ScoutFlow采集",
+            status: "pending",
+          },
+          body_markdown: "# ScoutFlow BV1OLD",
+          warnings: [],
+        }),
+      })
+      .mockImplementationOnce(() => refreshTrustTracePromise)
+      .mockImplementationOnce(() => refreshVaultPreviewPromise);
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(
+      <W2CRuntimeProvider>
+        <RuntimeProbe />
+      </W2CRuntimeProvider>,
+    );
+
+    await act(async () => {
+      screen.getByRole("button", { name: "create" }).click();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("capture-id").textContent).toBe("cap_old");
+      expect(screen.getByTestId("trust-trace-capture").textContent).toBe("cap_old");
+      expect(screen.getByTestId("vault-preview-capture").textContent).toBe("cap_old");
+    });
+
+    await act(async () => {
+      screen.getByRole("button", { name: "refresh" }).click();
+    });
+
+    await act(async () => {
+      screen.getByRole("button", { name: "clear" }).click();
+    });
+
+    expect(screen.getByTestId("capture-id").textContent).toBe("none");
+    expect(screen.getByTestId("trust-trace-status").textContent).toBe("idle");
+    expect(screen.getByTestId("vault-preview-status").textContent).toBe("idle");
+
+    await act(async () => {
+      resolveRefreshTrustTrace?.({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          label: "Status / Trust Trace / 采集状态",
+          capture: {
+            capture_id: "cap_old",
+            platform: "bilibili",
+            platform_item_id: "BV1OLD",
+            source_kind: "manual_url",
+            capture_mode: "metadata_only",
+            created_by_path: "quick_capture",
+          },
+          capture_state: {
+            capture_created: true,
+            status: "discovered",
+          },
+          metadata_job: {
+            present: true,
+            job_id: "job_old",
+            job_type: "metadata_fetch",
+            status: "queued",
+            platform_result: null,
+          },
+          probe_evidence: {
+            present: false,
+            probe_mode: "not-run",
+            source_task_id: null,
+            source_report_path: null,
+            platform_result: null,
+          },
+          receipt_ledger: {
+            present: false,
+            artifact_count: 0,
+            artifact_kinds: [],
+            redaction: "not_applicable",
+          },
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+          audit: {
+            platform_result: null,
+            evidence_file_path: null,
+            artifact_count: 0,
+            redaction_policy: null,
+            safe_parsed_fields: {},
+          },
+        }),
+      });
+      resolveRefreshVaultPreview?.({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          capture_id: "cap_old",
+          target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_old.md",
+          frontmatter: {
+            title: "ScoutFlow BV1OLD",
+            date: "2026-05-08",
+            tags: "调研/ScoutFlow采集",
+            status: "pending",
+          },
+          body_markdown: "# ScoutFlow BV1OLD",
+          warnings: [],
+        }),
+      });
+    });
+
+    expect(screen.getByTestId("capture-id").textContent).toBe("none");
+    expect(screen.getByTestId("trust-trace-status").textContent).toBe("idle");
+    expect(screen.getByTestId("vault-preview-status").textContent).toBe("idle");
+    expect(screen.getByTestId("trust-trace-capture").textContent).toBe("none");
+    expect(screen.getByTestId("vault-preview-capture").textContent).toBe("none");
+  });
+
+  it("does not let an old refresh overwrite a newer capture", async () => {
+    let resolveRefreshTrustTrace: ((value: { ok: boolean; status: number; json: () => Promise<unknown> }) => void) | null = null;
+    let resolveRefreshVaultPreview: ((value: { ok: boolean; status: number; json: () => Promise<unknown> }) => void) | null = null;
+
+    const refreshTrustTracePromise = new Promise<{ ok: boolean; status: number; json: () => Promise<unknown> }>((resolve) => {
+      resolveRefreshTrustTrace = resolve;
+    });
+    const refreshVaultPreviewPromise = new Promise<{ ok: boolean; status: number; json: () => Promise<unknown> }>((resolve) => {
+      resolveRefreshVaultPreview = resolve;
+    });
+
+    const fetchMock = vi
+      .fn()
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          bridge_available: true,
+          spec_version: "0.1.0",
+          write_enabled: false,
+          blocked_by: ["write_disabled"],
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          vault_root_resolved: true,
+          vault_root: "/tmp/scoutflow-vault",
+          preview_enabled: true,
+          write_enabled: false,
+          frontmatter_mode: "raw_4_field",
+          error: null,
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 201,
+        json: async () => ({
+          capture_id: "cap_old",
+          platform: "bilibili",
+          platform_item_id: "BV1OLD",
+          source_kind: "manual_url",
+          capture_mode: "metadata_only",
+          created_by_path: "quick_capture",
+          status: "discovered",
+          artifact_root_path: "data/artifacts/bilibili/cap_old",
+          manifest_path: "data/artifacts/bilibili/cap_old/bundle/capture-manifest.json",
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          job_id: "job_old",
+          capture_id: "cap_old",
+          job_type: "metadata_fetch",
+          status: "queued",
+          dedupe_key: "bilibili:BV1OLD:metadata_fetch",
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          label: "Status / Trust Trace / 采集状态",
+          capture: {
+            capture_id: "cap_old",
+            platform: "bilibili",
+            platform_item_id: "BV1OLD",
+            source_kind: "manual_url",
+            capture_mode: "metadata_only",
+            created_by_path: "quick_capture",
+          },
+          capture_state: {
+            capture_created: true,
+            status: "discovered",
+          },
+          metadata_job: {
+            present: true,
+            job_id: "job_old",
+            job_type: "metadata_fetch",
+            status: "queued",
+            platform_result: null,
+          },
+          probe_evidence: {
+            present: false,
+            probe_mode: "not-run",
+            source_task_id: null,
+            source_report_path: null,
+            platform_result: null,
+          },
+          receipt_ledger: {
+            present: false,
+            artifact_count: 0,
+            artifact_kinds: [],
+            redaction: "not_applicable",
+          },
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+          audit: {
+            platform_result: null,
+            evidence_file_path: null,
+            artifact_count: 0,
+            redaction_policy: null,
+            safe_parsed_fields: {},
+          },
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          capture_id: "cap_old",
+          target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_old.md",
+          frontmatter: {
+            title: "ScoutFlow BV1OLD",
+            date: "2026-05-08",
+            tags: "调研/ScoutFlow采集",
+            status: "pending",
+          },
+          body_markdown: "# ScoutFlow BV1OLD",
+          warnings: [],
+        }),
+      })
+      .mockImplementationOnce(() => refreshTrustTracePromise)
+      .mockImplementationOnce(() => refreshVaultPreviewPromise)
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 201,
+        json: async () => ({
+          capture_id: "cap_new",
+          platform: "bilibili",
+          platform_item_id: "BV1NEW",
+          source_kind: "manual_url",
+          capture_mode: "metadata_only",
+          created_by_path: "quick_capture",
+          status: "discovered",
+          artifact_root_path: "data/artifacts/bilibili/cap_new",
+          manifest_path: "data/artifacts/bilibili/cap_new/bundle/capture-manifest.json",
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          job_id: "job_new",
+          capture_id: "cap_new",
+          job_type: "metadata_fetch",
+          status: "queued",
+          dedupe_key: "bilibili:BV1NEW:metadata_fetch",
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          label: "Status / Trust Trace / 采集状态",
+          capture: {
+            capture_id: "cap_new",
+            platform: "bilibili",
+            platform_item_id: "BV1NEW",
+            source_kind: "manual_url",
+            capture_mode: "metadata_only",
+            created_by_path: "quick_capture",
+          },
+          capture_state: {
+            capture_created: true,
+            status: "discovered",
+          },
+          metadata_job: {
+            present: true,
+            job_id: "job_new",
+            job_type: "metadata_fetch",
+            status: "queued",
+            platform_result: null,
+          },
+          probe_evidence: {
+            present: false,
+            probe_mode: "not-run",
+            source_task_id: null,
+            source_report_path: null,
+            platform_result: null,
+          },
+          receipt_ledger: {
+            present: false,
+            artifact_count: 0,
+            artifact_kinds: [],
+            redaction: "not_applicable",
+          },
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+          audit: {
+            platform_result: null,
+            evidence_file_path: null,
+            artifact_count: 0,
+            redaction_policy: null,
+            safe_parsed_fields: {},
+          },
+        }),
+      })
+      .mockResolvedValueOnce({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          capture_id: "cap_new",
+          target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_new.md",
+          frontmatter: {
+            title: "ScoutFlow BV1NEW",
+            date: "2026-05-08",
+            tags: "调研/ScoutFlow采集",
+            status: "pending",
+          },
+          body_markdown: "# ScoutFlow BV1NEW",
+          warnings: [],
+        }),
+      });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    render(
+      <W2CRuntimeProvider>
+        <RuntimeProbe />
+      </W2CRuntimeProvider>,
+    );
+
+    await act(async () => {
+      screen.getByRole("button", { name: "create" }).click();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("capture-id").textContent).toBe("cap_old");
+    });
+
+    await act(async () => {
+      screen.getByRole("button", { name: "refresh" }).click();
+    });
+
+    await act(async () => {
+      screen.getByRole("button", { name: "create" }).click();
+    });
+
+    await waitFor(() => {
+      expect(screen.getByTestId("capture-id").textContent).toBe("cap_new");
+      expect(screen.getByTestId("trust-trace-capture").textContent).toBe("cap_new");
+      expect(screen.getByTestId("vault-preview-capture").textContent).toBe("cap_new");
+    });
+
+    await act(async () => {
+      resolveRefreshTrustTrace?.({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          label: "Status / Trust Trace / 采集状态",
+          capture: {
+            capture_id: "cap_old",
+            platform: "bilibili",
+            platform_item_id: "BV1OLD",
+            source_kind: "manual_url",
+            capture_mode: "metadata_only",
+            created_by_path: "quick_capture",
+          },
+          capture_state: {
+            capture_created: true,
+            status: "discovered",
+          },
+          metadata_job: {
+            present: true,
+            job_id: "job_old",
+            job_type: "metadata_fetch",
+            status: "queued",
+            platform_result: null,
+          },
+          probe_evidence: {
+            present: false,
+            probe_mode: "not-run",
+            source_task_id: null,
+            source_report_path: null,
+            platform_result: null,
+          },
+          receipt_ledger: {
+            present: false,
+            artifact_count: 0,
+            artifact_kinds: [],
+            redaction: "not_applicable",
+          },
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+          audit: {
+            platform_result: null,
+            evidence_file_path: null,
+            artifact_count: 0,
+            redaction_policy: null,
+            safe_parsed_fields: {},
+          },
+        }),
+      });
+      resolveRefreshVaultPreview?.({
+        ok: true,
+        status: 200,
+        json: async () => ({
+          capture_id: "cap_old",
+          target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_old.md",
+          frontmatter: {
+            title: "ScoutFlow BV1OLD",
+            date: "2026-05-08",
+            tags: "调研/ScoutFlow采集",
+            status: "pending",
+          },
+          body_markdown: "# ScoutFlow BV1OLD",
+          warnings: [],
+        }),
+      });
+    });
+
+    expect(screen.getByTestId("capture-id").textContent).toBe("cap_new");
+    expect(screen.getByTestId("trust-trace-capture").textContent).toBe("cap_new");
+    expect(screen.getByTestId("vault-preview-capture").textContent).toBe("cap_new");
   });
 });

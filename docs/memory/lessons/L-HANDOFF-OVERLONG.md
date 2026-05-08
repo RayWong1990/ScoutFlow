@@ -4,8 +4,9 @@ description: handoff 长不等于可执行; 80 行内可执行 > 800 行不可�
 type: project
 source_atlas_node: L-HANDOFF-OVERLONG
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
+memory_role: cross-vendor instinct source
 risk_if_forgotten: medium
-status: current authority
+status: reference storage
 ---
 
 # Handoff overlong anti-pattern

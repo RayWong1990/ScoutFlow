@@ -141,3 +141,37 @@ def test_changed_paths_falls_back_when_origin_main_diff_is_unavailable(monkeypat
         "apps/new-station/src/App.tsx",
         "tools/check-docs-redlines.py",
     ]
+
+
+def test_status_taxonomy_rejects_current_authority_outside_whitelist(tmp_path: Path) -> None:
+    checker = load_checker()
+    path = tmp_path / "docs/memory/INDEX.md"
+    path.parent.mkdir(parents=True)
+    path.write_text("---\nstatus: current authority\n---\n", encoding="utf-8")
+    failures: list[str] = []
+
+    checker.check_markdown_status_taxonomy(
+        tmp_path,
+        ["docs/memory/INDEX.md"],
+        failures,
+    )
+
+    assert len(failures) == 1
+    assert "docs/memory/INDEX.md" in failures[0]
+    assert "current authority" in failures[0]
+
+
+def test_status_taxonomy_allows_whitelisted_current_authority_path(tmp_path: Path) -> None:
+    checker = load_checker()
+    path = tmp_path / "docs/current.md"
+    path.parent.mkdir(parents=True)
+    path.write_text("---\nstatus: current authority\n---\n", encoding="utf-8")
+    failures: list[str] = []
+
+    checker.check_markdown_status_taxonomy(
+        tmp_path,
+        ["docs/current.md"],
+        failures,
+    )
+
+    assert failures == []

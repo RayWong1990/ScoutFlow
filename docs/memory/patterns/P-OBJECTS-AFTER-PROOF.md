@@ -4,7 +4,8 @@ description: 先 proof loop, 再对象化扩张; entity v0 → v1 必须等 proo
 type: project
 source_atlas_node: P-OBJECTS-AFTER-PROOF
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Objects-after-proof
