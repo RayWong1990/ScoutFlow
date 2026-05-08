@@ -3,12 +3,12 @@ title: ScoutFlow Start Here — 入口 + Agent Cold Start Ladder
 status: current authority
 purpose: 单人本地项目入口 + 新 agent / 新 session 冷启动地图
 created_at: 2026-05-07
-last_updated: 2026-05-07
+last_updated: 2026-05-08
 anchor_refresh_tool: tools/refresh-start-here.py
 refresh_interval_pr: 50
 next_forced_refresh_pr: 300
-last_refreshed_from_main_pr: 247
-last_refreshed_from_main_sha: c802de4
+last_refreshed_from_main_pr: 249
+last_refreshed_from_main_sha: ec7870d
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
@@ -40,7 +40,7 @@ status_words_locked:
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| main HEAD | `c802de4` (PR #247) ← `3c01a1c` (PR #246) ← `e207664` (PR #244) |
+| main HEAD | `ec7870d` (PR #249) ← `6dd27d7` (PR #245) ← `4792b0f` (PR #248) |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
@@ -184,14 +184,14 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 | **W1A** untracked batch land (16 ZIP storage land) | 已 landed (`PR #244`) | — | CC1 |
 | **W2C** PF-C4-02 真数据接线 + 微交互 | candidate | 6-8h | GPT Pro spec + Codex |
 | **W1B** PF-C4-EXT D3 graph + timeline + error-path 自写 | 候选 (依赖 OpenDesign v2 升级 PR) | 6-8h | Codex |
-| **W2D** U16 memory ingest (17 → 50-100) | 候选 | 60-90 min | CC1 |
+| **W2D** U16 memory ingest / memory graph baseline | 已 landed (`PR #245`)；后续扩到 50-100 待继续 | — | CC1 |
 | **W3E** 80-pack 余量 cluster (PF-C0/O1/C3) | 候选 | 多日 | Codex multi-PR |
 | **W4F** Phase 2 LANE-2 ASR spike | 候选 (依赖 runtime_tools 解禁) | 多日 | GPT Pro spec + Codex |
 | **W4G** Phase 2 LANE-3 Rewrite | 候选 (依赖 W4F) | 多日 | GPT Pro spec + Codex |
 | **W5H** Source matrix 扩展 (yt-dlp/XHS/抖音/Research) | 候选 (依赖 runtime_tools 解禁) | 多日 | Codex multi-PR |
 | **W5I** 评论 / 楼中楼 子系统 | 候选 (依赖 W5H) | 多日 | Codex |
 | **W6J** Vault commit 真解禁 | 候选 (依赖 W4F+W4G+W5H + true_vault_write 升级) | 多周 | GPT Pro + Codex |
-| **W6K** Memory + 协作模式沉淀 | 进行中 (`PR #246` 动态维护 harness + W6K 沉淀) | 60-90 min | CC1 |
+| **W6K** Memory + 协作模式沉淀 | 持续沉淀（`PR #246` harness 已 landed；后续 refresh sprint / cross-vendor mirror 按需推进） | 任何 session 间隙 | CC1 |
 
 **详见** [`docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`](./COLLECTION-LINE-MASTER-SPEC-2026-05-07.md) §13-§18.
 

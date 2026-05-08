@@ -2,7 +2,7 @@
 
 ## TL;DR (5 行)
 
-- main = `c802de4` (PR #247 closeout — Layer C writeback) ← `3c01a1c` (PR #246 governance harness); doc baseline = `e207664` (PR #244); capture-station code baseline 仍为 `e1deda6` / PR #243 的 13 surface 静态壳 + tokens 三层 overlay
+- main = `ec7870d` (PR #249 post-frozen W1/W1B/W2/W4/W5 candidate substrate) ← `6dd27d7` (PR #245 W2D memory graph) ← `4792b0f` (PR #248 stale-state cleanup); latest prior authority closeout anchor = `c802de4` (PR #247); capture-station code baseline 仍为 `e1deda6` / PR #243 的 13 surface 静态壳 + tokens 三层 overlay
 - Active product lane `0/3` / Authority writer `0/1` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - write_enabled=False / 5 overflow lane Hold (true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench)
 - PRD canonical = v2 + v2.1 amend (promoted); SRD canonical = v2 + v3-h5-bridge amend (promoted)
@@ -10,9 +10,9 @@
 
 ## 当前状态
 - Phase / Step：`1A` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
-- 主任务：`T-P1A-072` 仅作为当前 authority ledger-open anchor 保留；无 active product task；`Dispatch131 / T-P1A-110 ~ Dispatch172 / T-P1A-151` 已全部以 candidate docs/spec/visual/audit lanes landed；`Dispatch173 ~ Dispatch176 / T-P1A-152 ~ T-P1A-155` 已完成 Wave 5 closeout、Wave 6 candidate open 与 overflow/handoff candidate 落地；其中 `T-P1A-124 / T-P1A-125` 为 bounded frontend candidate surfaces，现已补齐 local frontend validation 与 bounded screenshot packet / Playwright execution evidence，但仍保持 `NOT_EXECUTION_APPROVED`，且不构成全局 visual terminal verdict、product UI approval、runtime approval、package strategy approval 或 frontend execution gate；当前仍未打开新的 code-bearing next gate；`PR #93` 已由 `T-P1A-103` supersede，`PR #93` 不得原样合并
+- 主任务：`T-P1A-072` 仅作为当前 authority ledger-open anchor 保留；无 active product task；`Dispatch131 / T-P1A-110 ~ Dispatch172 / T-P1A-151` 已全部以 candidate docs/spec/visual/audit lanes landed；`Dispatch173 ~ Dispatch176 / T-P1A-152 ~ T-P1A-155` 已完成 Wave 5 closeout、Wave 6 candidate open 与 overflow/handoff candidate 落地；`PR #249` 已将 `docs/research/post-frozen/2026-05-08/{W1,W1B,W2,W4,W5}` candidate packs landed 到 `main`，供 W2C/W1B/W3E/W4 后续消费，但仍保持 `candidate / not-authority / not execution approval`；其中 `T-P1A-124 / T-P1A-125` 为 bounded frontend candidate surfaces，现已补齐 local frontend validation 与 bounded screenshot packet / Playwright execution evidence，但仍保持 `NOT_EXECUTION_APPROVED`，且不构成全局 visual terminal verdict、product UI approval、runtime approval、package strategy approval 或 frontend execution gate；当前仍未打开新的 code-bearing next gate；`PR #93` 已由 `T-P1A-103` supersede，`PR #93` 不得原样合并
 - 工作模式：Active product lane max=`3`，Authority writer max=`1`；Active count=`0/3`，Review count=`0`；Authority writer count=`0/1`
-- 当前结论：Wave 2 closed；Wave 3A closeout 已在 PR #67 记录完成；Wave 3B 的 bridge SPEC、H5 design package、vault SPEC、repo 外 prototype pointer、adapt decision table 已全部 landed（live PR `#70/#71/#72/#73/#74`）；Wave 4 B1 control-plane repair / B2 preflight closure 已由 `T-P1A-103` + `T-P1A-104` 收口；Wave 4 Batch 3 将 vault helper stack、placeholder e2e baseline、5 Gate workflow、frontend lint/typecheck baseline、static Playwright harness、visual reporting template 全部 landed；Wave 5 candidate docs/spec/visual/audit chain（`T-P1A-110 ~ T-P1A-151`）现已 landed 并完成 closeout writeback；Wave 6 现仅打开 candidate planning / overflow / handoff lane；`T-P1A-124 / T-P1A-125` 当前已具备 bounded screenshot packet 与本轮 Playwright execution evidence，但仍无人类视觉终判、无全局 visual terminal verdict，且不提升为 runtime approval；PRD-v2.1 + SRD-v3 H5/Bridge 继续仅作为 planning/contract addenda；当前生效基线仍是 `Active product lane max=3` + `Authority writer max=1`
+- 当前结论：Wave 2 closed；Wave 3A closeout 已在 PR #67 记录完成；Wave 3B 的 bridge SPEC、H5 design package、vault SPEC、repo 外 prototype pointer、adapt decision table 已全部 landed（live PR `#70/#71/#72/#73/#74`）；Wave 4 B1 control-plane repair / B2 preflight closure 已由 `T-P1A-103` + `T-P1A-104` 收口；Wave 4 Batch 3 将 vault helper stack、placeholder e2e baseline、5 Gate workflow、frontend lint/typecheck baseline、static Playwright harness、visual reporting template 全部 landed；Wave 5 candidate docs/spec/visual/audit chain（`T-P1A-110 ~ T-P1A-151`）现已 landed 并完成 closeout writeback；`PR #249` 已补齐 post-frozen `2026-05-08` 的 W1/W1B/W2/W4/W5 candidate substrate，但这些文件仍是下游 dispatch / audit / implementation 的输入，不构成 authority、runtime、migration、browser automation、vault true write 或 frontend execution approval；Wave 6 现仅打开 candidate planning / overflow / handoff lane；`T-P1A-124 / T-P1A-125` 当前已具备 bounded screenshot packet 与本轮 Playwright execution evidence，但仍无人类视觉终判、无全局 visual terminal verdict，且不提升为 runtime approval；PRD-v2.1 + SRD-v3 H5/Bridge 继续仅作为 planning/contract addenda；当前生效基线仍是 `Active product lane max=3` + `Authority writer max=1`
 
 ## 当前允许
 - Wave 3B 已 closed；后续只允许 review / audit / report sync，不允许继续把 Wave 3B artifact 当作未落地 backlog 重跑
@@ -37,7 +37,7 @@
 - 不因 `user_override_for_B2_preflight` 推断 walking skeleton 已发生；不因 B2 preflight closure 解禁 frontend implementation、runtime、migration、vault commit、BBDown live、ffmpeg、ASR 或 browser automation
 
 ## 下一步
-- 当前 authority 已将 `Dispatch131-176 / T-P1A-110 ~ T-P1A-155` 视为已 landed 的 Wave 5 closeout + Wave 6 open/overflow/handoff chain；当前状态保持 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`，且仍没有已打开的 code-bearing next gate
+- 当前 authority 已将 `Dispatch131-176 / T-P1A-110 ~ T-P1A-155` 视为已 landed 的 Wave 5 closeout + Wave 6 open/overflow/handoff chain；`PR #249` 则补齐了 `docs/research/post-frozen/2026-05-08/**` 的 candidate substrate；当前状态保持 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`，且仍没有已打开的 code-bearing next gate
 - `Dispatch175 / T-P1A-154` 与 `Dispatch176 / T-P1A-155` 已落地为 overflow / handoff candidate truth；历史 handoff 名称不构成开工许可，后续仍需新 dispatch 明确范围
 - authority writer 当前空闲 `0/1`；后续并行 lane 仍受 `docs/specs/parallel-execution-protocol.md` 约束
 - 任何 code-bearing migration / runtime / worker / frontend 启动都必须新 dispatch + 外审

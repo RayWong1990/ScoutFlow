@@ -672,3 +672,17 @@
   - `docs/decision-log.md`: 本 entry (PR #246 merged D-017 follow-up) ✓
   - `python tools/refresh-start-here.py`: 自动刷新 START-HERE §1 anchor 块 + frontmatter `last_refreshed_from_main_sha` / `last_refreshed_from_main_pr` ✓
 - e2e-placeholder-baseline FAIL 是 PR #243 pre-existing tech debt (component 改名 vs e2e hardcode), 跟 PR #246 0 因果, admin override per F-DIRECT-MERGE-OK.
+
+## 2026-05-08 — Authority refresh after PR #249 post-frozen cluster-suite landing
+
+- Decision (1): `origin/main` 最新已到 `ec7870d` / PR #249，但 authority 入口仍停在 `c802de4` / PR #247；本次只做 authority refresh，不打开新的 code-bearing next gate。
+- Decision (2): `PR #249` landed truth 被记录为 `docs/research/post-frozen/2026-05-08/{W1,W1B,W2,W4,W5}` candidate substrate；这些文件可作为 W2C/W1B/W3E/W4 后续 dispatch、audit、implementation 输入，但**不是** authority、runtime approval、migration approval、browser automation approval、vault true write approval 或 frontend execution approval。
+- Decision (3): authority 状态继续保持 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`；Active product lane 仍为 `0/3`，Authority writer 仍为 `0/1`。
+- Decision (4): Layer C closeout 顺序再次适用：`docs/task-index.md -> docs/current.md -> docs/decision-log.md -> python tools/refresh-start-here.py`；`refresh-start-here.py` 仅负责 `docs/00-START-HERE.md` 收口，不替代前三张 authority 面同步。
+- Decision (5): `README.md` 与 `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md` 已做人审 stale-anchor 扫描；本轮未发现必须写回的 `PR #247 / c802de4` 残留。
+- Source:
+  - `docs/current.md`
+  - `docs/task-index.md`
+  - `docs/00-START-HERE.md`
+  - `tools/refresh-start-here.py`
+  - `https://github.com/RayWong1990/ScoutFlow/pull/249`
