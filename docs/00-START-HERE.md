@@ -8,7 +8,7 @@ anchor_refresh_tool: tools/refresh-start-here.py
 refresh_interval_pr: 50
 next_forced_refresh_pr: 300
 last_refreshed_from_main_pr: unknown
-last_refreshed_from_main_sha: 3a64cb9
+last_refreshed_from_main_sha: c24368f
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
@@ -27,7 +27,7 @@ status_words_locked:
 - **是什么**: 单人本地内容采集 / 转写 / 改写 / 入库 raw 系统 (operator workstation, 不是 SaaS)
 - **当前 baseline**: 见 §1 auto-managed main truth 锚点；capture-station 已 landed 基线 = W2C truthful runtime surfaces + 5 态 state machine + W1B Trust Trace graph/timeline/error-path bounded lanes + Lane D PF-V visual state primitives；`W3E PF-C0-O1` 仅为 docs-only candidate starter cluster
 - **当前状态**: Active 3/3 / Authority writer 0/1 / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
-- **5 overflow lane Hold**: write_enabled=False / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench (永不偷开, 走 authority 升级 PR)
+- **5 overflow lane Hold**: true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench（永不偷开，走 authority 升级 PR）；`write_enabled=False` 另属独立硬真相
 - **入口 4 文件**: `current.md` (真态) / `task-index.md` (lane registry) / `decision-log.md` (决策) / **本文件** (导航)
 
 ---
@@ -40,7 +40,7 @@ status_words_locked:
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| main HEAD | `3a64cb9` ← `e588e96` ← `5006c32` |
+| main HEAD | `c24368f` ← `7790c36` ← `3a64cb9` |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
