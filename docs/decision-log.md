@@ -737,3 +737,22 @@
   - `docs/task-index.md`
   - `docs/current.md`
   - `tools/refresh-start-here.py`
+
+## 2026-05-08 — W4 Tier 4 merge + authority closeout
+
+- Decision (1): `PR #260 -> #258 -> #259` 已按顺序完成 squash merge；由于 GitHub 不允许直接 merge draft PR，本轮只做了最小机制性 fix-forward：先 `ready for review`，再 merge，未修改 lane 内容。
+- Decision (2): merge commits = `1fa0e9a8143272f494f5795622ff84e30f69dab4` (PR #260) / `beb0fef9cfb47d03d83ad4f73555ab266e6ddb9a` (PR #258) / `5777389e64f46d9fa6e8a74470e29ba6b1ecd653` (PR #259)；`origin/main` 现已前进到 `5777389`。
+- Decision (3): W4 Step0 + lane 1/2/4 Phase 1 candidate spec family 现已全部 landed on `main`；它们仍是 `candidate north-star` / candidate spec family，不构成 runtime approval、migration approval、browser automation approval、vault true-write approval 或任何 overflow lane 解禁。
+- Decision (4): pre-merge truth gate 通过：3 个 PR 均为 `OPEN draft + MERGEABLE`，且 `docs-smoke`、`api-contract-tests`、`capture-station-node` 均为 `SUCCESS`。`e2e-placeholder-baseline` 三者失败栈一致，均为历史 stale placeholder failure（缺失 `VaultCommitDryRunButton.tsx` / `VaultPreviewPanel.tsx`），不是本轮 docs PR 新引入回归。
+- Decision (5): lane 1 ↔ lane 2 handoff 字段对齐继续保持 9-field transcript handoff + 12-slot vault commit role contract；lane 4 adopted path 继续保持 `manual SQL + storage.py loader`，Alembic 继续保持 deferred candidate。
+- Decision (6): `docs/research/repairs/pr255-authority-writeback-erratum-2026-05-08.md` 与 `docs/research/repairs/pr257-start-here-boundary-erratum-2026-05-08.md` 已补齐审计轨迹。修正点仅限 boundary / receipt truth：PR #255 实际发生 authority writeback；PR #257 实际发生 START-HERE refresh。两者都不改写各自 landed substance。
+- Decision (7): `PR #255` 的 follow-up truth bug 仍只保留为 candidate：`ErrorPathLane` failed-audit clear 语义、`GraphLane` media-tone 只看 transcript literal、以及未来 `audio_transcript` truncate/redaction guard 都未在本 closeout 中伪装为已修。
+- Decision (8): Layer C closeout 顺序本次再次执行：`docs/task-index.md -> docs/current.md -> docs/decision-log.md -> python tools/refresh-start-here.py`；当前没有 active code-bearing lane，Authority writer 保持 `0/1`，5 overflow lane 继续 Hold。
+- Source:
+  - https://github.com/RayWong1990/ScoutFlow/pull/260
+  - https://github.com/RayWong1990/ScoutFlow/pull/258
+  - https://github.com/RayWong1990/ScoutFlow/pull/259
+  - `docs/research/repairs/pr255-authority-writeback-erratum-2026-05-08.md`
+  - `docs/research/repairs/pr257-start-here-boundary-erratum-2026-05-08.md`
+  - `docs/task-index.md`
+  - `docs/current.md`
