@@ -3,7 +3,7 @@ from __future__ import annotations
 import os
 from collections.abc import Mapping
 
-from scoutflow_api.bridge.schemas import BridgeErrorCode
+from scoutflow_api.bridge.error_codes import BridgeErrorCode
 from scoutflow_api.vault.schemas import VaultWriterPolicy
 
 

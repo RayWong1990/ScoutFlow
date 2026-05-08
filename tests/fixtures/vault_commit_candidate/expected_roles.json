@@ -1,0 +1,16 @@
+{
+  "roles": [
+    "title_role",
+    "date_role",
+    "tags_role",
+    "status_role",
+    "capture_id_role",
+    "platform_item_id_role",
+    "canonical_url_role",
+    "source_mode_role",
+    "evidence_provenance_role",
+    "trust_trace_role",
+    "content_hash_role",
+    "commit_audit_role"
+  ]
+}

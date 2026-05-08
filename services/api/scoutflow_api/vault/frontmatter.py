@@ -2,7 +2,7 @@ from __future__ import annotations
 
 from datetime import date
 
-from scoutflow_api.bridge.schemas import BridgeErrorCode
+from scoutflow_api.bridge.error_codes import BridgeErrorCode
 from scoutflow_api.vault.schemas import VaultFrontmatter
 from scoutflow_api.vault.writer import DEFAULT_FRONTMATTER_STATUS, DEFAULT_FRONTMATTER_TAGS, VaultWriterError
 

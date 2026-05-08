@@ -21,16 +21,19 @@ def test_vault_package_exports_scaffold_contract() -> None:
         "RAW_FRONTMATTER_MODE",
         "DEFAULT_FRONTMATTER_TAGS",
         "DEFAULT_FRONTMATTER_STATUS",
+        "VaultCommitCandidateV1",
         "VaultWriterError",
         "VaultWriterPolicy",
         "VaultFrontmatter",
         "VaultPreviewDraft",
         "VaultCommitDryRun",
+        "build_commit_candidate_from_preview",
         "build_writer_policy",
         "resolve_required_vault_root",
         "resolve_inbox_target_path",
         "build_frontmatter",
         "build_preview_markdown",
+        "build_secret_scan_report",
         "build_commit_dry_run",
     }
 
@@ -73,7 +76,8 @@ def test_writer_root_is_fail_loud_when_env_missing() -> None:
 
 
 def test_scaffold_models_lock_frontmatter_and_commit_defaults() -> None:
-    from scoutflow_api.vault import VaultCommitDryRun, VaultFrontmatter, VaultPreviewDraft
+    from scoutflow_api.vault import VaultFrontmatter, VaultPreviewDraft
+    from scoutflow_api.vault.commit import build_commit_dry_run_from_preview
 
     frontmatter = VaultFrontmatter(
         title="ScoutFlow BV1xx411c7mD",
@@ -87,10 +91,11 @@ def test_scaffold_models_lock_frontmatter_and_commit_defaults() -> None:
         frontmatter=frontmatter,
         body_markdown="# ScoutFlow BV1xx411c7mD",
     )
-    commit = VaultCommitDryRun(capture_id="cap_123", target_path=preview.target_path)
+    commit = build_commit_dry_run_from_preview(preview)
 
     assert preview.frontmatter.status == "pending"
     assert preview.warnings == []
     assert commit.dry_run is True
     assert commit.committed is False
     assert commit.write_enabled is False
+    assert commit.candidate.spec_version == "VaultCommitCandidateV1"

@@ -3,7 +3,7 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
-from scoutflow_api.bridge.schemas import BridgeErrorCode
+from scoutflow_api.bridge.error_codes import BridgeErrorCode
 from scoutflow_api.vault.writer import VAULT_INBOX_DIR, VaultWriterError
 
 

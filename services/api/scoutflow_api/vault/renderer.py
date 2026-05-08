@@ -5,7 +5,7 @@ from datetime import datetime
 from pathlib import Path
 from typing import Any
 
-from scoutflow_api.bridge.schemas import BridgeErrorCode
+from scoutflow_api.bridge.error_codes import BridgeErrorCode
 from scoutflow_api.vault.frontmatter import build_frontmatter
 from scoutflow_api.vault.path_policy import resolve_inbox_target_path
 from scoutflow_api.vault.schemas import VaultPreviewDraft
