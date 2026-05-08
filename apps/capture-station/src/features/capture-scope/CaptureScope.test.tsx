@@ -1,9 +1,9 @@
-import { fireEvent, render, screen } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 
-import type { CreateCaptureResponse, MetadataFetchJobResponse, TrustTraceResponse } from "../../lib/api-client";
+import type { TrustTraceResponse } from "../../lib/api-client";
 import type { AsyncState, W2CRuntimeValue } from "../../lib/w2c-runtime";
-import UrlBar from "./UrlBar";
+import CaptureScope from "./CaptureScope";
 
 const runtimeHolder = vi.hoisted(() => ({
   value: null as W2CRuntimeValue | null,
@@ -15,32 +15,6 @@ vi.mock("../../lib/w2c-runtime", () => ({
 
 function asyncState<T>(status: AsyncState<T>["status"], data: T | null = null): AsyncState<T> {
   return { status, data, error: null };
-}
-
-function buildCapture(data?: Partial<CreateCaptureResponse>): CreateCaptureResponse {
-  return {
-    capture_id: "cap_123",
-    platform: "bilibili",
-    platform_item_id: "BV1xK4y1f7yC",
-    source_kind: "manual_url",
-    capture_mode: "metadata_only",
-    created_by_path: "quick_capture",
-    status: "discovered",
-    artifact_root_path: "data/artifacts/bilibili/cap_123",
-    manifest_path: "data/artifacts/bilibili/cap_123/bundle/capture-manifest.json",
-    ...data,
-  };
-}
-
-function buildMetadataJob(data?: Partial<MetadataFetchJobResponse>): MetadataFetchJobResponse {
-  return {
-    job_id: "job_123",
-    capture_id: "cap_123",
-    job_type: "metadata_fetch",
-    status: "queued",
-    dedupe_key: "bilibili:BV1xK4y1f7yC:metadata_fetch",
-    ...data,
-  };
 }
 
 function buildTrustTrace(data?: Partial<TrustTraceResponse>): TrustTraceResponse {
@@ -98,13 +72,29 @@ function buildRuntime(overrides: Partial<W2CRuntimeValue> = {}): W2CRuntimeValue
     canonicalUrl: "https://www.bilibili.com/video/BV1xK4y1f7yC",
     setCanonicalUrl: vi.fn(),
     captureSourceUrl: "https://www.bilibili.com/video/BV1xK4y1f7yC",
-    capture: asyncState("idle"),
-    metadataFetch: asyncState("idle"),
+    capture: asyncState("success", {
+      capture_id: "cap_123",
+      platform: "bilibili",
+      platform_item_id: "BV1xK4y1f7yC",
+      source_kind: "manual_url",
+      capture_mode: "metadata_only",
+      created_by_path: "quick_capture",
+      status: "discovered",
+      artifact_root_path: "data/artifacts/bilibili/cap_123",
+      manifest_path: "data/artifacts/bilibili/cap_123/bundle/capture-manifest.json",
+    }),
+    metadataFetch: asyncState("success", {
+      job_id: "job_123",
+      capture_id: "cap_123",
+      job_type: "metadata_fetch",
+      status: "queued",
+      dedupe_key: "bilibili:BV1xK4y1f7yC:metadata_fetch",
+    }),
     bridgeHealth: asyncState("success", {
       bridge_available: true,
       spec_version: "0.1.0",
       write_enabled: false,
-      blocked_by: ["write_disabled"],
+      blocked_by: ["write_disabled", "vault_root_unset"],
     }),
     bridgeVaultConfig: asyncState("success", {
       vault_root_resolved: false,
@@ -114,10 +104,10 @@ function buildRuntime(overrides: Partial<W2CRuntimeValue> = {}): W2CRuntimeValue
       frontmatter_mode: "raw_4_field",
       error: { code: "vault_root_unset", message: "Vault root is not configured." },
     }),
-    trustTrace: asyncState("idle"),
+    trustTrace: asyncState("success", buildTrustTrace()),
     vaultPreview: asyncState("idle"),
     vaultCommitDryRun: asyncState("idle"),
-    currentCaptureId: null,
+    currentCaptureId: "cap_123",
     createCapture: vi.fn().mockResolvedValue(undefined),
     refreshCaptureBoundData: vi.fn().mockResolvedValue(undefined),
     runVaultCommitDryRun: vi.fn().mockResolvedValue(undefined),
@@ -128,39 +118,14 @@ function buildRuntime(overrides: Partial<W2CRuntimeValue> = {}): W2CRuntimeValue
   };
 }
 
-describe("UrlBar", () => {
-  it("lets the operator edit the canonical URL and submit the create-capture action", () => {
-    const setCanonicalUrl = vi.fn();
-    const createCapture = vi.fn().mockResolvedValue(undefined);
+describe("CaptureScope", () => {
+  it("shows governance truth from live bridge and trust-trace state", () => {
+    runtimeHolder.value = buildRuntime();
 
-    runtimeHolder.value = buildRuntime({
-      setCanonicalUrl,
-      createCapture,
-    });
+    render(<CaptureScope />);
 
-    render(<UrlBar />);
-
-    fireEvent.change(screen.getByLabelText("URL 地址"), {
-      target: { value: "https://www.bilibili.com/video/BV19z4y1m7Qa" },
-    });
-    fireEvent.click(screen.getByRole("button", { name: "创建采集" }));
-
-    expect(setCanonicalUrl).toHaveBeenCalledWith("https://www.bilibili.com/video/BV19z4y1m7Qa");
-    expect(createCapture).toHaveBeenCalledTimes(1);
-  });
-
-  it("shows the current capture and keeps metadata enqueue distinct from metadata loaded", () => {
-    runtimeHolder.value = buildRuntime({
-      capture: asyncState("success", buildCapture()),
-      metadataFetch: asyncState("success", buildMetadataJob()),
-      trustTrace: asyncState("success", buildTrustTrace()),
-      currentCaptureId: "cap_123",
-    });
-
-    render(<UrlBar />);
-
-    expect(screen.getByText("当前 capture")).toBeTruthy();
-    expect(screen.getByText("cap_123")).toBeTruthy();
-    expect(screen.getByText("metadata_fetch 已排队，但当前路由只证明 enqueue，不等于元数据已加载。")).toBeTruthy();
+    expect(screen.getAllByText("write_enabled=false").length).toBeGreaterThan(0);
+    expect(screen.getByText("audio_transcript runtime 仍 blocked")).toBeTruthy();
+    expect(screen.getByText("metadata_fetch 入队")).toBeTruthy();
   });
 });

@@ -14,6 +14,7 @@ import TopicCardVault from "./features/topic-card-vault/TopicCardVault";
 import UrlBar from "./features/url-bar/UrlBar";
 import VaultCommit from "./features/vault-commit/VaultCommit";
 import VaultPreview from "./features/vault-preview/VaultPreview";
+import { W2CRuntimeProvider } from "./lib/w2c-runtime";
 
 const surfaces = [
   { id: "00-app-shell", title: "00 App Shell", caption: "工作站总览" },
@@ -50,8 +51,10 @@ export default function App() {
     <TypeSpec />;
 
   return (
-    <AppShell current={current} onSelect={(id) => setCurrent(id as (typeof surfaces)[number]["id"])} surfaces={[...surfaces]}>
-      {currentSurface}
-    </AppShell>
+    <W2CRuntimeProvider>
+      <AppShell current={current} onSelect={(id) => setCurrent(id as (typeof surfaces)[number]["id"])} surfaces={[...surfaces]}>
+        {currentSurface}
+      </AppShell>
+    </W2CRuntimeProvider>
   );
 }

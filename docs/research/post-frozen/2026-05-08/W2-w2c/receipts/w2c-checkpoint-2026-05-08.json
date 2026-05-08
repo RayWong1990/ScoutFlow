@@ -1,0 +1,39 @@
+{
+  "status": "candidate",
+  "branch": "codex/stage1-w2c-impl",
+  "cluster": "W2C",
+  "frontend_first": true,
+  "backend_changed": false,
+  "runtime_unlocked": false,
+  "migration_changed": false,
+  "browser_automation_unlocked": false,
+  "true_vault_write_unlocked": false,
+  "surfaces": {
+    "app_shell": "wired",
+    "url_bar": "wired",
+    "live_metadata": "partially_wired_with_metadata_detail_gap",
+    "capture_scope": "wired",
+    "trust_trace": "wired_shell_only",
+    "vault_preview": "wired",
+    "vault_commit": "wired_dry_run_only",
+    "topic_card_preview": "future_gated_contextualized",
+    "topic_card_vault": "future_gated_contextualized",
+    "signal_hypothesis": "future_gated_contextualized",
+    "capture_plan": "future_gated_contextualized"
+  },
+  "validation": {
+    "frontend_test": "pass",
+    "frontend_lint": "pass",
+    "frontend_typecheck": "pass",
+    "frontend_build": "pass",
+    "python_contract_suite": "pass"
+  },
+  "strict_audit": {
+    "blocking_findings": 0,
+    "non_blocking": [
+      "App.test.tsx emits an act warning because W2CRuntimeProvider loads bridge state on mount."
+    ]
+  },
+  "next_gate": "ready_for_commit_push_pr_merge",
+  "authority_writeback": false
+}
