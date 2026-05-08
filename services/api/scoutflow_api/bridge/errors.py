@@ -4,7 +4,7 @@ from dataclasses import dataclass
 
 from fastapi.responses import JSONResponse
 
-from scoutflow_api.bridge.schemas import BridgeErrorCode
+from scoutflow_api.bridge.error_codes import BridgeErrorCode
 from scoutflow_api.models import ErrorResponse
 
 

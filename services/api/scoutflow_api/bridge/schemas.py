@@ -1,20 +1,10 @@
 from __future__ import annotations
 
-from enum import StrEnum
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field
-
-
-class BridgeErrorCode(StrEnum):
-    bridge_not_implemented = "bridge_not_implemented"
-    vault_root_unset = "vault_root_unset"
-    capture_not_found = "capture_not_found"
-    capture_state_blocked = "capture_state_blocked"
-    metadata_missing = "metadata_missing"
-    frontmatter_invalid = "frontmatter_invalid"
-    path_escape_blocked = "path_escape_blocked"
-    write_disabled = "write_disabled"
+from scoutflow_api.bridge.error_codes import BridgeErrorCode
+from scoutflow_api.vault.schemas import VaultCommitCandidateV1
 
 
 class BridgeError(BaseModel):
@@ -71,4 +61,5 @@ class BridgeVaultCommitResponse(BaseModel):
     dry_run: bool
     write_enabled: Literal[False]
     target_path: str | None = None
+    candidate: VaultCommitCandidateV1
     error: BridgeError | None = None
