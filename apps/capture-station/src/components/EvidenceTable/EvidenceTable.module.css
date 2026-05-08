@@ -1,3 +1,5 @@
+@import "../../styles/state-tokens.css";
+
 .table {
   width: 100%;
   border-collapse: collapse;
@@ -24,7 +26,18 @@
   font-size: var(--type-mono);
 }
 
-.errorRow {
-  background: var(--state-bg-blocked);
-  color: var(--accent-blocked);
+.error,
+.blocked {
+  background: var(--state-failed-bg);
+  color: var(--state-failed-fg);
+}
+
+.preview {
+  background: var(--state-preview-bg);
+  color: var(--state-preview-fg);
+}
+
+.partial {
+  background: var(--state-partial-bg);
+  color: var(--state-partial-fg);
 }

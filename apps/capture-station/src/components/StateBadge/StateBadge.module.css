@@ -1,53 +1,74 @@
+@import "../../styles/state-tokens.css";
+
 .root {
   display: inline-flex;
   align-items: center;
   gap: var(--space-xs);
-  border: 1px solid var(--border-soft);
+  border: 1px solid var(--state-empty-border);
   border-radius: var(--radius-chip);
   padding: calc(var(--space-xs) / 2) var(--space-sm);
   font-size: var(--type-caption);
   font-weight: var(--font-weight-mono);
   white-space: nowrap;
+  line-height: 1.1;
 }
 
-.idle,
-.candidate,
-.stale {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  color: var(--text-secondary);
+.icon {
+  flex: 0 0 auto;
 }
 
-.loading,
+.empty {
+  border-color: var(--state-empty-border);
+  background: var(--state-empty-bg);
+  color: var(--state-empty-fg);
+}
+
+.loading {
+  border-color: var(--state-loading-border);
+  background: var(--state-loading-bg);
+  color: var(--state-loading-fg);
+}
+
+.disabled {
+  border-color: var(--state-disabled-border);
+  background: var(--state-disabled-bg);
+  color: var(--state-disabled-fg);
+}
+
 .blocked {
-  border-color: var(--accent-warn);
-  background: var(--state-bg-warn);
-  color: var(--accent-warn);
+  border-width: 1.5px;
+  border-color: var(--state-blocked-border);
+  background: var(--state-blocked-bg);
+  color: var(--state-blocked-fg);
 }
 
-.ready {
-  border-color: var(--accent-live);
-  background: var(--state-bg-info);
-  color: var(--accent-live);
+.preview {
+  border-color: var(--state-preview-border);
+  background: var(--state-preview-bg);
+  color: var(--state-preview-fg);
 }
 
-.metadataLoaded,
-.success {
-  border-color: var(--accent-success);
-  background: var(--state-bg-success);
-  color: var(--accent-success);
+.committed {
+  border-color: var(--state-committed-border);
+  background: var(--state-committed-bg);
+  color: var(--state-committed-fg);
 }
 
-.previewOnly,
-.metadataOnly,
-.locked {
-  border-color: var(--border-strong);
-  background: var(--surface-muted);
-  color: var(--text-secondary);
+.failed {
+  border-color: var(--state-failed-border);
+  background: var(--state-failed-bg);
+  color: var(--state-failed-fg);
 }
 
-.error {
-  border-color: var(--accent-blocked);
-  background: var(--state-bg-blocked);
-  color: var(--accent-blocked);
+.partial {
+  border-color: var(--state-partial-border);
+  background: var(--state-partial-bg);
+  color: var(--state-partial-fg);
+}
+
+.skipped {
+  border-style: dashed;
+  border-color: var(--state-skipped-border);
+  background: var(--state-skipped-bg);
+  color: var(--state-skipped-fg);
 }

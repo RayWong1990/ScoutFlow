@@ -1,0 +1,39 @@
+/* Lane D state grammar overlay: consumes existing PF-C4 tokens.css variables only */
+:root {
+  --state-empty-bg: var(--surface-muted);
+  --state-empty-fg: var(--text-secondary);
+  --state-empty-border: var(--border-strong);
+
+  --state-loading-bg: var(--state-bg-info);
+  --state-loading-fg: var(--accent-focus);
+  --state-loading-border: var(--accent-focus);
+
+  --state-disabled-bg: color-mix(in srgb, var(--surface-muted) 78%, var(--surface-base));
+  --state-disabled-fg: var(--text-muted);
+  --state-disabled-border: color-mix(in srgb, var(--border-soft) 70%, var(--text-muted));
+
+  --state-blocked-bg: var(--state-bg-warn);
+  --state-blocked-fg: var(--accent-warn);
+  --state-blocked-border: color-mix(in srgb, var(--accent-warn) 72%, var(--border-strong));
+
+  --state-preview-bg: color-mix(in srgb, var(--state-bg-info) 62%, var(--surface-elevated));
+  --state-preview-fg: var(--accent-live);
+  --state-preview-border: color-mix(in srgb, var(--accent-live) 58%, var(--border-strong));
+
+  --state-committed-bg: var(--state-bg-success);
+  --state-committed-fg: var(--accent-success);
+  --state-committed-border: color-mix(in srgb, var(--accent-success) 72%, var(--border-strong));
+
+  --state-failed-bg: var(--state-bg-blocked);
+  --state-failed-fg: var(--accent-blocked);
+  --state-failed-border: color-mix(in srgb, var(--accent-blocked) 72%, var(--border-strong));
+
+  --state-partial-bg: color-mix(in srgb, var(--state-bg-warn) 48%, var(--surface-base));
+  --state-partial-fg: color-mix(in srgb, var(--accent-warn) 78%, var(--text-primary));
+  --state-partial-border: color-mix(in srgb, var(--accent-warn) 52%, var(--border-strong));
+
+  --state-skipped-bg: color-mix(in srgb, var(--surface-muted) 82%, var(--surface-base));
+  --state-skipped-fg: var(--text-muted);
+  --state-skipped-border: color-mix(in srgb, var(--border-strong) 58%, var(--text-muted));
+}
+
