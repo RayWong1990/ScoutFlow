@@ -2,6 +2,14 @@
 
 > 薄版决策日志。只记录已经 user 拍板的工程/产品决策，不替代 PRD/SRD。
 
+## 2026-05-08 — T-P1A-157 W1B lane opened after W2C closeout
+
+- Decision: open `T-P1A-157` as the current active code-bearing lane after `T-P1A-156 / W2C` closed.
+- Scope: `apps/capture-station/src/features/trust-trace/**` bounded graph / timeline / error-path implementation, plus W1B receipts, scope note, and carry-forward doc sync.
+- Boundary: `path-A self-rolled only`; `d3` fallback remains blocked until evidence + Hermes + user gate.
+- Boundary: no backend DTO / enum / receipt schema change; no runtime / browser / vault / migration unlock.
+- W3E PF-C0-O1 remains docs-only candidate work and does not consume an active product slot.
+
 ## 2026-05-03 — Step0 safety baseline accepted for Git bootstrap
 
 - Decision: `A001-A015` accepted as candidate implementation baseline for `Phase 0 / Phase 1A`.

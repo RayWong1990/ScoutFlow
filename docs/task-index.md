@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-157` | `W1B PF-C4-EXT trust-trace bounded lanes` | `active` | `Codex Desktop` | `Trust Trace graph/timeline/error-path bounded self-rolled implementation + W1B receipts/scope note + carry-forward sync` | `apps/capture-station/src/features/trust-trace/**`; `docs/research/post-frozen/2026-05-08/W1B-opendesign-reuse-v2/{02-w1b-dispatch-pack.md,04-w1b-hermes-audit-prompt-skeleton.md,receipts/**}`; `docs/research/repairs/w1b-pf-c4-ext-trust-trace-scope-note-2026-05-08.md` | `services/api/**`; `services/api/migrations/**`; `workers/**`; `packages/**`; `data/**`; `referencerepo/**`; unrelated authority files outside this lane-open writeback` | `docs/PRD-v2-2026-05-04.md`; `docs/SRD-v2-2026-05-04.md`; `docs/specs/locked-principles.md`; `docs/specs/parallel-execution-protocol.md`; `docs/research/post-frozen/2026-05-08/W1B-opendesign-reuse-v2/{01-w1b-cluster-spec.md,02-w1b-dispatch-pack.md,W1B-MASTER-SELFFLAG.md}` | `pnpm --dir apps/capture-station {test,build,lint,typecheck}`; `pytest tests/contracts/test_trust_trace_dto_snapshot_contract.py -q`; docs/secrets redline on W1B receipts | `DTO/enum/schema drift`; `runtime/browser/vault/migration unlock implication`; `path-B d3 fallback without evidence + Hermes + user gate`; `Active >3 / writer >1` | `path-A self-rolled only; W3E remains docs-only candidate lane` |
 
 ## Review
 
