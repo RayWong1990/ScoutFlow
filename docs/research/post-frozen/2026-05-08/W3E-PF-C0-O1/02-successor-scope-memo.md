@@ -21,14 +21,14 @@ historical_reference_only:
 
 ## Historical reference disclaimer
 
-`PF-C0-01R` and adjacent pack wording still mention `PR #194`, but that is no longer a live execution anchor. As of `2026-05-08`, live repo truth in this worktree is `origin/main = 02ccbdc`, with `docs/current.md` naming `T-P1A-156 / W2C` as the only active code-bearing lane and keeping global state at `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`.
+`PF-C0-01R` and adjacent pack wording still mention `PR #194`, but that is no longer a live execution anchor. As of `2026-05-08`, live repo truth in this worktree is `origin/main = cf283f9`, with `docs/current.md` recording `T-P1A-156 / W2C` as closed, `Active 0/3`, and `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`.
 
 This memo therefore treats `PR #194` and `Dispatch126-176` as historical reference only. They can explain lineage and inheritance, but they do not open work by themselves and they do not override current authority.
 
 ## Live truth snapshot
 
 - Live branch anchor: `origin/main`, `main`, and this worktree `HEAD` are all at `02ccbdc`.
-- Current authority anchor: `docs/current.md` and `docs/task-index.md` both show `T-P1A-156 / W2C PF-C4-02 real-data wiring` as the single active product lane.
+- Current authority anchor: `docs/current.md` and `docs/task-index.md` both show `T-P1A-156 / W2C PF-C4-02 real-data wiring` as closed history, and no active product lane is currently open.
 - Current global guardrail: `write_enabled=False`, `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`, overflow lanes remain hold-only.
 - Current routing consequence: successor work may clarify entry, preview, and sequencing rules, but may not imply broader unlocks.
 
@@ -38,7 +38,7 @@ This memo therefore treats `PR #194` and `Dispatch126-176` as historical referen
 flowchart LR
   H["Dispatch126-176 frozen history"] -. inheritance only .-> A["PF-C0/O1 successor entry"]
   A --> B["PF-LP preview-only mainline"]
-  B --> C["Current near-term consumer: T-P1A-156 / W2C readback-safe use"]
+  B --> C["Current near-term consumer: no active code-bearing lane; new dispatch required"]
   A -. named only, not unlocked .-> O["PF-O1 overflow registry"]
   C --> V["Verdict target: successor_scope_clear"]
 ```
@@ -63,7 +63,7 @@ This memo sets a narrow scope for successor consumption:
 
 1. Preview-only means localhost-safe readback, preview rendering, copy/download-style user actions, and evidence wording that stays below execution approval.
 2. Mainline-only means the near-term useful path is the current code-bearing mainline already named by authority, not speculative parallel successor branches.
-3. The current 24h consumer is `T-P1A-156 / W2C`: it can consume this memo as a wording and routing guard so that W2C readback stays honest about preview/readback boundaries.
+3. The current 24h consumer is the next lane opener or reviewer who needs a successor-entry wording guard before opening a new code-bearing lane.
 4. No statement here should be read as approval for authority writeback, runtime enablement, browser automation, vault true write, DB vNext migration, or any automatic downstream cluster opening.
 
 ## Seven-step preview-only pass bar
@@ -72,14 +72,14 @@ This memo sets a narrow scope for successor consumption:
 2. Mark all stale `PR194` and `Dispatch126-176` references as historical-reference-only when reused.
 3. Keep successor routing bound to preview-safe localhost surfaces and readback-safe wording.
 4. Keep `write_enabled=false` and overflow lanes as blocked names, not soft-ready work items.
-5. Treat W2C as the only current mainline consumer; do not infer `PF-C1`, `PF-C2`, `PF-C4`, or `PF-GLOBAL` auto-open from this memo.
+5. Treat current state as `no active code-bearing lane`; do not infer `PF-C1`, `PF-C2`, `PF-C4`, or `PF-GLOBAL` auto-open from this memo.
 6. Reject any automatic `Dispatch177+` continuation logic in naming, staffing, or lane-opening decisions.
 7. Use a bounded verdict word: `verdict_target=successor_scope_clear` means the scope memo is internally consistent for successor routing only.
 
 ## 24h consumer and verdict target
 
-- 24h consumer: `T-P1A-156 / W2C` implementer, reviewer, or auditor who needs a current wording guard before reading post-frozen successor material.
-- Consumer question: "Can I treat frozen 126-176 as background only and keep W2C inside preview-safe/mainline-safe wording?"
+- 24h consumer: the next dispatch author, reviewer, or auditor who needs a current wording guard before reading post-frozen successor material.
+- Consumer question: "Can I treat frozen 126-176 as background only and keep the next lane inside preview-safe/mainline-safe wording?"
 - Verdict target: `successor_scope_clear`
 - Meaning of the verdict target: the memo cleanly separates historical inheritance, current mainline, and blocked overflow without creating implied approval language.
 
@@ -87,4 +87,4 @@ This memo sets a narrow scope for successor consumption:
 
 - Use cluster names and current authority truth for successor sequencing.
 - Do not use linear frozen numbering as an execution trigger.
-- If a future task needs to open beyond W2C or beyond preview-only localhost scope, it requires a fresh dispatch or authority change elsewhere; this memo does not supply that permission.
+- If a future task needs to open a new code-bearing lane or move beyond preview-only localhost scope, it requires a fresh dispatch or authority change elsewhere; this memo does not supply that permission.
