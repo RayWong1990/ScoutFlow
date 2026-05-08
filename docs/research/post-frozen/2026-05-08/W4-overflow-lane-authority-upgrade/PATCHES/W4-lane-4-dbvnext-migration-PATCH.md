@@ -41,15 +41,19 @@ target_replacement_section:
 | Sanity item | Lane 4 live-specific check | Required readback before any lane work |
 |---|---|---|
 | Migration baseline | Current migration baseline has `001_phase1a_capture_creation.sql` and `002_phase1a_jobs_receipt.sql` only in the prompt/live readback scope | Do not create, rename, reorder, squash, or “repair” migration files in this patch |
+| Current adopted path | `services/api/scoutflow_api/storage.py::_init_schema()` 按文件名顺序读取 `services/api/migrations/*.sql`; live scope 内仍只有 001/002 | 本轮 adopted path 明确记录为 manual SQL + storage.py loader; 不新增 SQL, 不修改 loader |
 | Forbidden path | `services/api/migrations/**` is explicitly forbidden in current authority unless a new dispatch + user authorization + separate PR + external audit exists | Lane 4 patch may write candidate upgrade rules only; no SQL migration body |
-| Alembic 工具状态 | ⚠️ 假锚点修正 (CC0 post-audit fix): `services/api/alembic.ini` 在 ScoutFlow live 真态**未实例化** (verify: `find ScoutFlow -name 'alembic*' → 0 hit`). 这是 REPAIR-prompt §6.2.4 自身假锚点 (CC0 写 paste-ready prompt 时未跑 ls/curl verify, GPT Pro 信了 prompt context). 当前 migrations 是手工 .sql 跑, 无 alembic 工具链. | Lane 4 真启动前必须先建 alembic.ini + alembic upgrade head 工具链; 不假装存在; 跟 master spec §16.2 path G "explicit migration dispatch" 对齐 |
+| Alembic 工具状态 | ⚠️ 假锚点修正 (CC0 post-audit fix): `services/api/alembic.ini` 在 ScoutFlow live 真态**未实例化** (verify: `find ScoutFlow -name 'alembic*' → 0 hit`). 这是历史建议里的假前置，不是当前执行基线。 | 本轮只允许把 Alembic 记录为 deferred candidate / historical suggestion；若未来要引入，必须另立 toolchain 评估与 migration PR，不能作为 lane 4 spec 先决条件 |
 | DTO freeze | `PlatformResult`, `WorkerReceipt`, and Trust Trace DTO are locked and cannot be mutated as convenience for DB vNext | Any DTO collision stops and routes to separate design/audit |
 | Referential integrity | DB vNext must preserve capture/job/artifact relationships and idempotency; current schema has capture, artifact_assets, jobs, job_events | Future migration must prove RI and rollback before land |
 | Upgrade path | Master spec §16.2 path G is the legal route: explicit migration dispatch + dry-run evidence + rollback plan + external audit | Lane 4 cannot self-unlock by patching clone text |
 
 ### Lane 4 B-lane sanity verdict
 
-Lane 4 begins `candidate / migration_forbidden / requires explicit dbvnext_migration gate`. It may prepare a migration-readiness checklist, schema-drift detector, rollback criteria, and DTO-collision matrix. It may not write SQL, run Alembic, or alter Pydantic/DTO shapes in this patch.
+Lane 4 begins `candidate / migration_forbidden / requires explicit dbvnext_migration gate`.
+Its current adopted path remains manual SQL + `storage.py` loader.
+Alembic stays deferred candidate only.
+It may prepare a migration-readiness checklist, schema-drift detector, rollback criteria, and DTO-collision matrix. It may not write SQL, require Alembic, or alter Pydantic/DTO shapes in this patch.
 
 ## §5.7 amend_and_proceed
 
