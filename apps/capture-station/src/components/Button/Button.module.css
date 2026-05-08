@@ -1,3 +1,5 @@
+@import "../../styles/state-tokens.css";
+
 .root {
   display: inline-flex;
   align-items: center;
@@ -31,22 +33,28 @@
 }
 
 .success {
-  border-color: var(--accent-success);
-  background: var(--state-bg-success);
-  color: var(--accent-success);
+  border-color: var(--state-committed-border);
+  background: var(--state-committed-bg);
+  color: var(--state-committed-fg);
+}
+
+.preview-only {
+  border-color: var(--state-preview-border);
+  background: var(--state-preview-bg);
+  color: var(--state-preview-fg);
 }
 
 .blocked {
-  border-color: var(--border-soft);
-  background: var(--surface-muted);
-  color: var(--text-muted);
+  border-color: var(--state-blocked-border);
+  background: var(--state-blocked-bg);
+  color: var(--state-blocked-fg);
   cursor: not-allowed;
 }
 
 .root:disabled {
-  border-color: var(--border-soft);
-  background: var(--surface-muted);
-  color: var(--text-muted);
+  border-color: var(--state-disabled-border);
+  background: var(--state-disabled-bg);
+  color: var(--state-disabled-fg);
   cursor: not-allowed;
   transform: none;
 }

@@ -1,0 +1,59 @@
+@import "../../styles/state-tokens.css";
+
+.root {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: var(--space-sm);
+  align-items: start;
+  padding: var(--space-md);
+  border: 1.5px solid var(--state-blocked-border);
+  border-radius: var(--radius-panel);
+  background: var(--state-blocked-bg);
+  color: var(--state-blocked-fg);
+}
+
+.icon {
+  inline-size: 1.5rem;
+  block-size: 1.5rem;
+}
+
+.copy {
+  display: grid;
+  gap: calc(var(--space-xs) * 0.75);
+  min-inline-size: 0;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.header h3,
+.reason,
+.unlockPath {
+  margin: 0;
+}
+
+.holdId {
+  display: inline-flex;
+  align-items: center;
+  min-block-size: 1.5rem;
+  padding: 0 var(--space-sm);
+  border: 1px solid color-mix(in srgb, var(--state-blocked-fg) 36%, transparent);
+  border-radius: var(--radius-chip);
+  font-family: var(--font-mono);
+  font-size: var(--type-caption);
+  font-weight: var(--font-weight-mono);
+  white-space: nowrap;
+}
+
+.reason {
+  color: var(--text-primary);
+}
+
+.unlockPath {
+  color: color-mix(in srgb, var(--state-blocked-fg) 78%, var(--text-primary));
+  font-size: var(--type-caption);
+}

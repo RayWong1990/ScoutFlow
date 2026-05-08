@@ -1,3 +1,6 @@
+import Icon from "../Icon/Icon";
+import { STATE_ICON_NAME, type CaptureSurfaceState } from "../../styles/state-tokens";
+import { resolveStateBadgeTone } from "./derive";
 import styles from "./StateBadge.module.css";
 
 export type StateBadgeTone =
@@ -12,7 +15,8 @@ export type StateBadgeTone =
   | "metadataOnly"
   | "locked"
   | "error"
-  | "success";
+  | "success"
+  | CaptureSurfaceState;
 
 export type StateBadgeProps = {
   tone: StateBadgeTone;
@@ -21,6 +25,13 @@ export type StateBadgeProps = {
 };
 
 export default function StateBadge({ className, label, tone }: StateBadgeProps) {
-  const classes = [styles.root, styles[tone], className].filter(Boolean).join(" ");
-  return <span className={classes}>{label}</span>;
+  const stateTone = resolveStateBadgeTone(tone);
+  const classes = [styles.root, styles[stateTone], className].filter(Boolean).join(" ");
+
+  return (
+    <span className={classes} data-state={stateTone}>
+      <Icon className={styles.icon} sprite="state" name={STATE_ICON_NAME[stateTone]} />
+      <span>{label}</span>
+    </span>
+  );
 }

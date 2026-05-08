@@ -8,7 +8,7 @@ export type EvidenceColumn = {
 
 export type EvidenceRow = {
   id: string;
-  tone?: "default" | "error";
+  tone?: "default" | "error" | "preview" | "blocked" | "partial";
   cells: Record<string, string>;
 };
 
@@ -29,7 +29,11 @@ export default function EvidenceTable({ columns, rows }: EvidenceTableProps) {
       </thead>
       <tbody>
         {rows.map((row) => (
-          <tr key={row.id} className={row.tone === "error" ? styles.errorRow : undefined}>
+          <tr
+            key={row.id}
+            className={row.tone && row.tone !== "default" ? styles[row.tone] : undefined}
+            data-tone={row.tone ?? "default"}
+          >
             {columns.map((column) => {
               const value = row.cells[column.key] ?? "";
               return <td key={column.key}>{column.code ? <code>{value}</code> : value}</td>;

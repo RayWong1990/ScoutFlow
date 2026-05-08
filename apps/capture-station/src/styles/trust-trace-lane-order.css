@@ -1,0 +1,21 @@
+:root {
+  --trust-trace-lane-order-error-path: 1;
+  --trust-trace-lane-order-timeline: 2;
+  --trust-trace-lane-order-graph: 3;
+  --trust-trace-graph-max-height: 22rem;
+  --trust-trace-graph-hero-tint: color-mix(in srgb, var(--surface-elevated) 92%, var(--surface-base));
+}
+
+.trustTraceErrorPathFirst {
+  order: var(--trust-trace-lane-order-error-path);
+}
+
+.trustTraceTimelineMiddle {
+  order: var(--trust-trace-lane-order-timeline);
+}
+
+.trustTraceGraphLast {
+  order: var(--trust-trace-lane-order-graph);
+  max-block-size: var(--trust-trace-graph-max-height);
+}
+

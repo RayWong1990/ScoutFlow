@@ -2,7 +2,7 @@ import type { ButtonHTMLAttributes, ReactNode } from "react";
 
 import styles from "./Button.module.css";
 
-type ButtonVariant = "primary" | "secondary" | "success" | "blocked";
+export type ButtonVariant = "primary" | "secondary" | "success" | "blocked" | "preview-only";
 
 export type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
   icon?: ReactNode;
