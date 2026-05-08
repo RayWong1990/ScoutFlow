@@ -42,6 +42,7 @@ DEFAULT_REFRESH_INTERVAL = 50
 DEFAULT_NEXT_FORCED_REFRESH_PR = 300
 
 PR_NUMBER_RE = re.compile(r"\(#(?P<pr>\d+)\)")
+MERGE_PR_NUMBER_RE = re.compile(r"\bpull request #(?P<pr>\d+)\b", re.IGNORECASE)
 INT_FIELD_TEMPLATE = r"^{field}:\s+.*$"
 SHA_FIELD_RE = re.compile(r"^last_refreshed_from_main_sha:\s+.*$", re.MULTILINE)
 MARKDOWN_COUNT_RE = re.compile(r"\*\*(?P<count>[\d,]+)\s+markdown\*\*")
@@ -63,6 +64,7 @@ class GitCommit:
 class RefreshContext:
     target_ref: str
     commits: list[GitCommit]
+    current_pr_number: int | None
     checkpoint_dispatch_total: int
     strategic_markdown_count: str
     strategic_word_count: str
@@ -90,9 +92,12 @@ def run_git(repo: Path, *args: str) -> str:
 
 def parse_pr_number(subject: str) -> int | None:
     match = PR_NUMBER_RE.search(subject)
-    if not match:
-        return None
-    return int(match.group("pr"))
+    if match:
+        return int(match.group("pr"))
+    merge_match = MERGE_PR_NUMBER_RE.search(subject)
+    if merge_match:
+        return int(merge_match.group("pr"))
+    return None
 
 
 def pr_number_for_commit(sha: str, subject: str) -> int | None:
@@ -143,7 +148,7 @@ def ensure_ref_is_available(repo: Path, target_ref: str) -> None:
 
 def read_git_commits(repo: Path, target_ref: str, limit: int = 3) -> list[GitCommit]:
     ensure_ref_is_available(repo, target_ref)
-    output = run_git(repo, "log", target_ref, f"-{limit}", "--pretty=%h%x09%s%x09%cs")
+    output = run_git(repo, "log", "--no-merges", target_ref, f"-{limit}", "--pretty=%h%x09%s%x09%cs")
     commits: list[GitCommit] = []
     for line in output.splitlines():
         sha, subject, _date = line.split("\t", 2)
@@ -151,6 +156,25 @@ def read_git_commits(repo: Path, target_ref: str, limit: int = 3) -> list[GitCom
     if not commits:
         raise RuntimeError(f"{target_ref} has no commits")
     return commits
+
+
+def read_current_pr_number(repo: Path, target_ref: str, limit: int = 20) -> int | None:
+    ensure_ref_is_available(repo, target_ref)
+    output = run_git(repo, "log", target_ref, f"-{limit}", "--pretty=%h%x09%s")
+    for line in output.splitlines():
+        sha, subject = line.split("\t", 1)
+        pr_number = pr_number_for_commit(sha, subject)
+        if pr_number is not None:
+            return pr_number
+    return None
+
+
+def first_parent_if_merge(repo: Path, target_ref: str) -> str | None:
+    output = run_git(repo, "rev-list", "--parents", "-n", "1", target_ref)
+    parts = output.split()
+    if len(parts) < 3:
+        return None
+    return f"{target_ref}^1"
 
 
 def sum_checkpoint_dispatches(runs_dir: Path) -> int:
@@ -216,10 +240,10 @@ def render_main_head(commits: list[GitCommit]) -> str:
 
 def render_ref_label(target_ref: str) -> str:
     if target_ref == "HEAD":
-        return "checked-out HEAD"
-    if target_ref.endswith("/main"):
-        return "main HEAD"
-    return f"{target_ref} HEAD"
+        return "checked-out content anchor"
+    if target_ref.endswith("/main") or target_ref.endswith("/main^1"):
+        return "main content anchor"
+    return f"{target_ref} content anchor"
 
 
 def render_anchor_block(context: RefreshContext) -> str:
@@ -250,7 +274,7 @@ def render_anchor_block(context: RefreshContext) -> str:
 
 def refresh_text(text: str, context: RefreshContext, update_main_frontmatter: bool | None = None) -> str:
     refreshed = text
-    current_pr = context.commits[0].pr_number
+    current_pr = context.current_pr_number or context.commits[0].pr_number
     next_forced_refresh = compute_next_forced_refresh(
         current_pr=current_pr,
         configured_next=context.next_forced_refresh_pr,
@@ -290,6 +314,7 @@ def refresh_text(text: str, context: RefreshContext, update_main_frontmatter: bo
 
 def build_context(start_here_text: str, target_ref: str) -> RefreshContext:
     commits = read_git_commits(ROOT, target_ref)
+    current_pr_number = read_current_pr_number(ROOT, target_ref)
     strategic_markdown_count, strategic_word_count = parse_strategic_summary(SUMMARY_PATH)
     refresh_interval_pr = frontmatter_int(
         start_here_text, "refresh_interval_pr", DEFAULT_REFRESH_INTERVAL
@@ -301,6 +326,7 @@ def build_context(start_here_text: str, target_ref: str) -> RefreshContext:
     return RefreshContext(
         target_ref=target_ref,
         commits=commits,
+        current_pr_number=current_pr_number,
         checkpoint_dispatch_total=sum_checkpoint_dispatches(RUNS_DIR),
         strategic_markdown_count=strategic_markdown_count,
         strategic_word_count=strategic_word_count,
@@ -320,7 +346,7 @@ def main(argv: list[str] | None = None) -> int:
         help=(
             "git ref to render for non-check refresh or --check-mode=head. "
             "Default is ${SCOUTFLOW_REMOTE:-origin}/main. In --check-mode=main, "
-            "an explicit --ref is only resolved as a probe and does not rewrite the START-HERE authority anchor."
+            "an explicit --ref is only resolved as a probe and does not rewrite the START-HERE authority content anchor."
         ),
     )
     parser.add_argument(
@@ -328,7 +354,7 @@ def main(argv: list[str] | None = None) -> int:
         choices=("main", "head"),
         default="main",
         help=(
-            "main checks START-HERE against the remote main authority anchor; "
+            "main checks START-HERE against the remote main authority content anchor; "
             "head checks against the selected ref without updating main frontmatter fields."
         ),
     )
@@ -358,6 +384,16 @@ def main(argv: list[str] | None = None) -> int:
 
     if args.check:
         if refreshed != original:
+            first_parent_ref = first_parent_if_merge(ROOT, target_ref) if args.check_mode == "main" else None
+            if first_parent_ref is not None:
+                parent_context = build_context(original, first_parent_ref)
+                parent_refreshed = refresh_text(
+                    original,
+                    parent_context,
+                    update_main_frontmatter=is_main_ref(target_ref),
+                )
+                if parent_refreshed == original:
+                    return 0
             sys.stderr.write(
                 "docs/00-START-HERE.md needs refresh: run `python tools/refresh-start-here.py`\n"
             )
