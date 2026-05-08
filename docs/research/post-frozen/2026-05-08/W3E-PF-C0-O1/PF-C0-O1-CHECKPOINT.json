@@ -1,0 +1,43 @@
+{
+  "cluster": "W3E-PF-C0-O1",
+  "status": "candidate",
+  "authority": "not-authority",
+  "captured_head": "02ccbdc151816d10acc517bd98181bb2b42f0fe8",
+  "captured_at": "2026-05-08",
+  "deliverables": [
+    {
+      "path": "docs/research/post-frozen/2026-05-08/W3E-PF-C0-O1/01-successor-entry-readback.md",
+      "dispatch": "PF-C0-01R",
+      "verdict": "clear"
+    },
+    {
+      "path": "docs/research/post-frozen/2026-05-08/W3E-PF-C0-O1/02-successor-scope-memo.md",
+      "dispatch": "PF-C0-MERGED-03+04",
+      "verdict": "clear"
+    },
+    {
+      "path": "docs/research/post-frozen/2026-05-08/W3E-PF-C0-O1/03-mainline-execution-matrix.md",
+      "dispatch": "PF-C0-06R",
+      "verdict": "clear"
+    },
+    {
+      "path": "docs/research/post-frozen/2026-05-08/W3E-PF-C0-O1/04-overflow-registry-v0.md",
+      "dispatch": "PF-O1-01R",
+      "verdict": "clear"
+    }
+  ],
+  "boundary": {
+    "authority_files_touched": false,
+    "deprecated_tasks_executed": false,
+    "overflow_lanes_hold_preserved": true,
+    "runtime_unlocked": false,
+    "browser_automation_unlocked": false,
+    "true_vault_write_unlocked": false,
+    "migration_unlocked": false
+  },
+  "self_flag": [
+    "Execution-time live truth may drift if another window merges stage closeout or authority refresh after this checkpoint.",
+    "PF-LP-14 through PF-LP-18 remain row-level reservoir priority even though the pack is still classified as near-term by the source inventory."
+  ],
+  "next_step": "strict_stage_audit"
+}
