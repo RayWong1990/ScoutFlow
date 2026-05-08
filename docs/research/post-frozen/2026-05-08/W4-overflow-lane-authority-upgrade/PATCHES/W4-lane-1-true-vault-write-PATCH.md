@@ -1,15 +1,15 @@
 ---
-title: W4 Lane 1 (true_vault_write) Patch — §5.7 amend_trigger lane-specific
+title: W4 Lane 1 (true_vault_write) Patch — live truth + spec hardening + §5.7 lane-specific
 status: candidate / patch
 authority: not-authority
 created_by: gpt-pro
 parent_cluster: W4
 parent_lane: true_vault_write
 created_at: 2026-05-08
-upstream_finding: "audit catch — 5 lane §0.5 B-lane sanity / §5.7 amend_trigger paragraph clone, lane 1 缺 lane-specific verify"
+upstream_finding: "audit catch — lane 1 不只缺 §5.7 lane-specific verify, 还需要把 live truth、12-field role contract、dry-run/true-write split、secret scan、rollback 前置条件压实"
 disclaimer: 真态数字以 GitHub live main HEAD 为准; 撰写时刻数字仅为历史参考。
-prerequisite_check: drift_detected
-main_head_drift: "docs/current.md reports c802de4; GitHub chronological latest merge readback is 6dd27d7 / PR #245 W2D memory graph (撰写时刻历史参考, GitHub live 以 §0.5 Check 为准)"
+prerequisite_check: live_checked_with_authority_anchor_drift
+main_head_drift: "docs/current.md main anchor still lags live origin/main=45e88d4 / PR #257; this patch records the drift but does not repair authority"
 active_product_count: "0/3 (refreshed at §0.5 Check)"
 authority_writer_count: "0/1 (refreshed at §0.5 Check)"
 wave_state: "WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED"
@@ -17,6 +17,8 @@ write_enabled: false
 memory_batch_count: 17
 deliverable_type: patch
 target_replacement_section:
+  - "§0.5 Prerequisite Check"
+  - "§1.4 实施前置条件"
   - "§5.7 amend_and_proceed pattern"
 
 ---
@@ -24,21 +26,42 @@ target_replacement_section:
 
 > State: candidate / patch / not-authority / not runtime approval / not migration approval / not lane unlock.
 
-## §0.5 Prerequisite Check
+## §0.5 Prerequisite Check replacement
 
 | Check | Live readback | Result |
 |---|---|---|
-| docs/current.md | reports `main = c802de4`, Active `0/3`, Authority writer `0/1`, `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`, `write_enabled=False` | drift on main-head only; authority counts match |
-| docs/task-index.md | Active table empty, Review empty, Backlog empty; product lane `0/3`, authority writer `0/1` | matches prompt authority state |
-| docs/decision-log.md | current authority file reachable; tail is tool-truncated, but repo search confirms PR #246/D-017 references exist on main | partial tail visibility; no authority-count drift detected |
-| docs/memory/INDEX.md | `batch_count: 17`, 7 lessons + 5 feedback + 5 patterns | matches prompt |
-| GitHub commit chronological | latest returned commit is `6dd27d7` / PR #245 W2D memory graph, after PR #248 / PR #247 chronologically | drift vs current.md anchor `c802de4` |
+| `origin/main` | `45e88d4` / `Merge pull request #257 from RayWong1990/codex/w4-b-step0-convergence` | use as live truth; older SHAs demoted to history only |
+| docs/current.md | Active `0/3`, Authority writer `0/1`, `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`, 5 overflow lane Hold, but main anchor still older than `origin/main` | lane state matches; authority anchor drift remains out of scope here |
+| docs/task-index.md | Active table empty; Review empty; product lane `0/3`; authority writer `0/1` | matches prompt authority state |
+| docs redline / secret redline | both checks pass in worktree | text boundary clean; not equal to lane unlock |
+| bridge config + schemas | both config branches keep `write_enabled=False`; frontmatter mode stays `raw_4_field`; commit response remains dry-run-only | confirms helper stack is still preview/dry-run continuity |
 
-**prerequisite_check = `drift_detected`**. Main-head truth in this packet is: docs authority anchor still says `c802de4`, while GitHub chronological latest merge is `6dd27d7` (撰写时刻历史参考, GitHub live 以 §0.5 Check 为准). This packet does not write authority and does not repair that drift; it only records it for Codex / CC0 intake.
+**prerequisite_check = `live_checked_with_authority_anchor_drift`**. This packet records the 2026-05-08 live truth but does not touch authority files.
 
 ## §0.5 B-lane sanity
 
-Lane 1 §0.5 is intentionally **not replaced** by this patch. The upstream note says Lane 1 already has lane-specific sanity around vault config, Bridge SPEC, router route inventory, and write-disabled truth. CC0 should keep that existing section unless local diff review proves otherwise.
+Lane 1 §0.5 should now explicitly mention three live boundaries: `write_enabled=False` in both config branches, `frontmatter_mode=raw_4_field`, and `BridgeVaultCommitResponse` being dry-run-only. If any of these three truths are absent from the main doc, this patch should add them.
+
+## §1.4 implementation prerequisites replacement
+
+Replace generic wording with the following lane-specific tightenings:
+
+1. `12-field` means **12 role slots**, not today's enforced schema names. Only 4 slots are live exact fields today: `title/date/tags/status`. The other 8 slots must be expressed as role contracts until a later promoted path locks names.
+2. `dry-run response vs true-write response split` must cite live code truth:
+   - preview = `BridgeVaultPreviewResponse`
+   - commit dry-run = `BridgeVaultCommitResponse(committed=false, dry_run=true, write_enabled=false, error=write_disabled)`
+   - future true-write response = separate contract family, not a wording tweak on dry-run
+3. `secret scan` must cover title, URL, transcript, summary/rewrite, markdown body, and receipt fragments staged for vault. If transcript/summary is absent because Lane 2 is still Hold, the state must be written as `blocked/not_present`, not `scan passed`.
+4. `atomic write + rollback` must stay honest:
+   - require completeness gate, secret scan gate, path containment gate, render/hash gate, atomic write gate, receipt/rollback gate
+   - no promise that rollback always restores history
+   - if downstream RAW sync already absorbed the file, escalate to manual cleanup gate
+5. `remaining Hold lanes readback` must stay visible in Lane 1:
+   - runtime_tools Hold
+   - dbvnext_migration Hold
+   - browser_automation Hold
+   - full_signal_workbench Hold
+6. `preview helper != production writer` must be written as a first-class boundary, not left as implied context.
 
 ## §5.7 amend_and_proceed — lane-specific replacement
 
@@ -67,6 +90,6 @@ Lane 1 does **not** use “amend and continue” after these triggers. It uses: 
 
 ## Self-flag
 
-1. ⚠️ I did not replace Lane 1 §0.5 because the task says it is already lane-specific. CC0 should only apply this §5.7 replacement.
-2. ⚠️ “12 fields” for frontmatter completeness came from the prompt’s lane-specific trigger language; live bridge schema still exposes `raw_4_field`, so this patch treats 12-field completeness as future-lane target, not current bridge truth.
-3. ⚠️ Partial commit “7-stage” is named from the prompt; CC0 should align exact stage names with the local Lane 1 source document before land.
+1. ⚠️ This patch now covers §0.5, §1.4, and §5.7. If the main doc already contains stricter local wording, CC0 should preserve the stricter variant rather than re-cloning this patch verbatim.
+2. ⚠️ “12 fields” for frontmatter completeness came from the prompt’s lane-specific trigger language; live bridge schema still exposes `raw_4_field`, so this patch treats 12-field completeness as future role contract, not current bridge truth.
+3. ⚠️ Partial commit stages must stay contract-level in this patch; exact implementation stage names belong to a later code-bearing PR, not this spec-only PR.
