@@ -1,9 +1,12 @@
 import type { ReactNode } from "react";
 
 import CaptureIdChip from "../../components/CaptureIdChip/CaptureIdChip";
+import ErrorPathLane from "./lanes/ErrorPathLane";
+import GraphLane from "./lanes/GraphLane";
 import PanelCard from "../../components/PanelCard/PanelCard";
 import StateBadge from "../../components/StateBadge/StateBadge";
 import SurfaceFrame, { SurfaceDivider, SurfaceSection } from "../../components/SurfaceFrame/SurfaceFrame";
+import TimelineLane from "./lanes/TimelineLane";
 import { useW2CRuntime } from "../../lib/w2c-runtime";
 import styles from "./TrustTrace.module.css";
 
@@ -214,34 +217,15 @@ export default function TrustTrace() {
 
       <SurfaceDivider />
 
-      <SurfaceSection title="状态: W1B placeholders">
+      <SurfaceSection title="状态: W1B bounded lanes">
         <div className={styles.panelGrid}>
-          <PanelCard title="W1B graph lane" eyebrow="trust-trace" aside={<StateBadge tone="candidate" label="future-gated" />}>
-            <div className={styles.stack}>
-              <div className={styles.placeholder} data-todo="trust-trace-graph">
-                DOM / JSON-LD / OpenGraph / Microdata 的图谱连线仍待 W1B PF-C4-EXT graph lane。
-              </div>
-              <p className={styles.muted}>当前 shell 只展示 route readback，不实现 graph/path 算法。</p>
-            </div>
-          </PanelCard>
-
-          <PanelCard title="W1B timeline lane" eyebrow="trust-trace" aside={<StateBadge tone="candidate" label="future-gated" />}>
-            <div className={styles.stack}>
-              <div className={styles.placeholder} data-todo="trust-trace-timeline">
-                时间轴 hover、timestamp 对位、证据 focus 仍属于后续 W1B 接线。
-              </div>
-              <p className={styles.muted}>W2C 不把 readback 时间顺序伪装成完整 timeline 交互。</p>
-            </div>
-          </PanelCard>
-
-          <PanelCard title="W1B error-path lane" eyebrow="trust-trace" aside={<StateBadge tone="candidate" label="future-gated" />}>
-            <div className={styles.stack}>
-              <div className={styles.placeholder} data-todo="trust-trace-error-path">
-                error-path highlight 依赖 graph/path 算法，本轮只保留 honest placeholder。
-              </div>
-              <p className={styles.muted}>错误态只回显 route failure truth，不偷做路径高亮。</p>
-            </div>
-          </PanelCard>
+          <GraphLane trace={trace ?? null} />
+          <TimelineLane trace={trace ?? null} />
+          <ErrorPathLane
+            trace={trace ?? null}
+            routeStatus={trustTrace.status}
+            routeErrorCode={trustTrace.error?.code ?? null}
+          />
         </div>
       </SurfaceSection>
     </SurfaceFrame>

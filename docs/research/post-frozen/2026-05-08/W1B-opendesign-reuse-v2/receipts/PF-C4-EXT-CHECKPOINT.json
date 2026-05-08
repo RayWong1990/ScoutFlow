@@ -1,0 +1,19 @@
+{
+  "lane_id": "W1B-PF-C4-EXT",
+  "status": "candidate",
+  "authority": "not-authority",
+  "captured_head": "02ccbdc151816d10acc517bd98181bb2b42f0fe8",
+  "captured_at": "2026-05-08",
+  "path_choice": "path-A-self-rolled",
+  "graph_result": "clear",
+  "timeline_result": "clear",
+  "error_path_result": "clear",
+  "package_diff": "none",
+  "bundle_delta_kb_gzip": "not-applicable-self-rolled",
+  "tree_shaking_evidence": "not-applicable-self-rolled",
+  "hermes_receipt": "prep-only; no path-B fallback used",
+  "user_gate_receipt": "not-required-for-path-A-docs-only-closeout",
+  "authority_files_touched": "no",
+  "overflow_lanes_changed": "no",
+  "visual_evidence": "not-collected-due-to-gate"
+}
