@@ -4,9 +4,10 @@ description: metadata probe / parser repair / bounded H5 evidence 不自动批�
 type: project
 source_atlas_node: L-RUNTIME-APPROVAL-DRIFT
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
+memory_role: cross-vendor instinct source
 risk_if_forgotten: critical
 cross_session_count: 14
-status: current authority
+status: reference storage
 ---
 
 # Runtime approval drift

@@ -1,6 +1,7 @@
 ---
 title: ScoutFlow Cross-Session Memory Index
-status: current authority
+status: reference storage
+memory_role: cross-vendor memory index
 purpose: 跨 vendor 可读的 instinct memory 入口 (CC0 / CC1 / Codex / GPT Pro 云端 / Hermes 共享)
 created_at: 2026-05-07
 source_atlas: docs/research/strategic-upgrade/2026-05-07/outputs/U16-memory-graph/MASTER-MEMORY-ATLAS.md
@@ -9,7 +10,7 @@ batch_count: 17
 
 # ScoutFlow Cross-Session Memory Index
 
-> 本目录是 ScoutFlow 跨 vendor 可读的 instinct memory. 所有 vendor 通过 git tracked path 读, 不依赖 ~/.claude/.
+> 本目录是 ScoutFlow 跨 vendor 可读的 instinct memory reference。所有 vendor 通过 git tracked path 读, 不依赖 ~/.claude/；它是 operational memory source，不是 current-authority write surface。
 
 ## 跨 vendor 读法
 
@@ -87,7 +88,8 @@ batch_count: 17
 ## 维护规则
 
 - 新 memory 加入: lessons/ / feedback/ / patterns/ 子目录 + 本 INDEX 表加行
-- frontmatter 必含 `cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]` + `status: current authority`
+- frontmatter 必含 `cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]` + `memory_role`
+- `status` 固定使用 `reference storage`，不升级为 `current authority`
 - body ≤ 600 字 中文+半角混排 (rule + Why + How to apply 三段)
 - source_atlas_node 字段链回 U16 ATLAS (本批) 或新 source
 

@@ -4,7 +4,8 @@ description: 强视觉是一级轴, 不是 nice-to-have; 5 Gate aesthetic checkl
 type: feedback
 source_atlas_node: F-STRONG-VISUAL-FIRST-CLASS
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Strong visual = first-class axis

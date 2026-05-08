@@ -29,6 +29,18 @@ FORBIDDEN_ROOT_DIRS = [
 ]
 
 LOCAL_ONLY_ROOTS = ("data/", "referencerepo/")
+ALLOWED_STATUS = {
+    "current authority",
+    "promoted addendum",
+    "candidate north-star",
+    "reference storage",
+}
+CURRENT_AUTHORITY_PATHS = {
+    "docs/current.md",
+    "docs/task-index.md",
+    "docs/decision-log.md",
+    "docs/00-START-HERE.md",
+}
 ALLOWED_BANNED_WORD_FILES = {
     "docs/specs/locked-principles.md",
     "tools/check-docs-redlines.py",
@@ -50,6 +62,7 @@ INLINE_TASK_STATE_RE = re.compile(
 DETAIL_TASK_STATE_RE = re.compile(
     r"^\s*-\s+`?(?P<task>T-P(?:0|1A)-\d{3}[A-Z]?)`?.*?状态\s+`?(?P<state>active|backlog|in_progress|review|done|blocked)`?"
 )
+FRONTMATTER_STATUS_RE = re.compile(r"^status:\s*(.+?)\s*$", re.MULTILINE)
 ACTIVE_COUNT_RE = re.compile(r"Active count=`?(\d+)/(\d+)`?")
 OLD_RUNNING_STATUS = " ".join(("T-P0-001", "执行中"))
 TASK_INDEX_SECTIONS = {"Active", "Review", "Backlog", "Blocked", "Done"}
@@ -107,6 +120,19 @@ def read_text_if_text(path: Path) -> str | None:
         return data.decode("utf-8")
     except UnicodeDecodeError:
         return data.decode("utf-8", errors="ignore")
+
+
+def extract_frontmatter_status(text: str) -> str | None:
+    if not text.startswith("---\n"):
+        return None
+    frontmatter_end = text.find("\n---", 4)
+    if frontmatter_end == -1:
+        return None
+    frontmatter = text[: frontmatter_end + 1]
+    match = FRONTMATTER_STATUS_RE.search(frontmatter)
+    if match is None:
+        return None
+    return match.group(1).strip()
 
 
 def extract_line_value(text: str, label: str) -> str | None:
@@ -379,6 +405,40 @@ def check_local_only_tracking(tracked: list[str], failures: list[str]) -> None:
         failures.append("data/ 或 referencerepo/ 不得被 git 跟踪：" + ", ".join(tracked_local[:20]))
 
 
+def check_markdown_status_taxonomy(
+    repo: Path,
+    tracked: list[str],
+    failures: list[str],
+    changed_paths: list[str] | None = None,
+) -> None:
+    candidate_paths = tracked
+    if changed_paths is not None:
+        changed_set = {path.replace("\\", "/") for path in changed_paths}
+        candidate_paths = [rel for rel in tracked if rel in changed_set]
+
+    for rel in candidate_paths:
+        if not rel.endswith(".md"):
+            continue
+        path = repo / rel
+        if not path.is_file():
+            continue
+        text = read_text_if_text(path)
+        if text is None:
+            continue
+        status = extract_frontmatter_status(text)
+        if status is None:
+            continue
+        if status not in ALLOWED_STATUS:
+            failures.append(
+                f"frontmatter status 非法：{rel} -> {status}；仅允许 {', '.join(sorted(ALLOWED_STATUS))}"
+            )
+            continue
+        if status == "current authority" and rel not in CURRENT_AUTHORITY_PATHS:
+            failures.append(
+                f"frontmatter status 越权：{rel} 使用 current authority；仅白名单路径可用。"
+            )
+
+
 def check_banned_words(repo: Path, tracked: list[str], failures: list[str]) -> None:
     for rel in tracked:
         if rel in ALLOWED_BANNED_WORD_FILES:
@@ -459,8 +519,11 @@ def main() -> int:
         failures.append(str(exc))
         tracked = []
 
+    changed_paths = run_git_changed_paths(repo)
+
     check_local_only_tracking(tracked, failures)
-    check_app_diff_scope_guard(repo, tracked, failures)
+    check_markdown_status_taxonomy(repo, tracked, failures, changed_paths=changed_paths)
+    check_app_diff_scope_guard(repo, tracked, failures, changed_paths=changed_paths)
     check_banned_words(repo, tracked, failures)
     check_old_status(repo, tracked, failures)
     check_task_index_parser_self_check(failures)

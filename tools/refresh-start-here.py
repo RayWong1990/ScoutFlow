@@ -57,6 +57,7 @@ class GitCommit:
 
 @dataclass(frozen=True)
 class RefreshContext:
+    target_ref: str
     commits: list[GitCommit]
     checkpoint_dispatch_total: int
     strategic_markdown_count: str
@@ -86,7 +87,20 @@ def parse_pr_number(subject: str) -> int | None:
     return int(match.group("pr"))
 
 
-def read_git_commits(repo: Path, limit: int = 3) -> list[GitCommit]:
+def current_branch_name(repo: Path) -> str:
+    branch_name = run_git(repo, "rev-parse", "--abbrev-ref", "HEAD")
+    return branch_name.strip()
+
+
+def resolve_target_ref(explicit_ref: str | None, branch_name: str, check_mode: bool) -> str:
+    if explicit_ref:
+        return explicit_ref
+    return f"{REMOTE}/main"
+
+
+def ensure_ref_is_available(repo: Path, target_ref: str) -> None:
+    if not target_ref.startswith(f"{REMOTE}/"):
+        return
     remote_check = subprocess.run(
         ["git", "remote", "get-url", REMOTE],
         cwd=repo,
@@ -99,13 +113,17 @@ def read_git_commits(repo: Path, limit: int = 3) -> list[GitCommit]:
             f"git remote {REMOTE!r} not found "
             f"(set SCOUTFLOW_REMOTE to a valid remote name; default 'origin')"
         )
-    output = run_git(repo, "log", f"{REMOTE}/main", f"-{limit}", "--pretty=%h%x09%s%x09%cs")
+
+
+def read_git_commits(repo: Path, target_ref: str, limit: int = 3) -> list[GitCommit]:
+    ensure_ref_is_available(repo, target_ref)
+    output = run_git(repo, "log", target_ref, f"-{limit}", "--pretty=%h%x09%s%x09%cs")
     commits: list[GitCommit] = []
     for line in output.splitlines():
         sha, subject, _date = line.split("\t", 2)
         commits.append(GitCommit(sha=sha, subject=subject, pr_number=parse_pr_number(subject)))
     if not commits:
-        raise RuntimeError("origin/main has no commits")
+        raise RuntimeError(f"{target_ref} has no commits")
     return commits
 
 
@@ -170,13 +188,21 @@ def render_main_head(commits: list[GitCommit]) -> str:
     return " ← ".join(rendered)
 
 
+def render_ref_label(target_ref: str) -> str:
+    if target_ref == "HEAD":
+        return "checked-out HEAD"
+    if target_ref.endswith("/main"):
+        return "main HEAD"
+    return f"{target_ref} HEAD"
+
+
 def render_anchor_block(context: RefreshContext) -> str:
     lines = [
         AUTO_BEGIN,
         "| 维度 | 值 |",
         "|---|---|",
         "| repo | `/Users/wanglei/workspace/ScoutFlow` |",
-        f"| main HEAD | {render_main_head(context.commits)} |",
+        f"| {render_ref_label(context.target_ref)} | {render_main_head(context.commits)} |",
         "| capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |",
         (
             "| checkpoint dispatch 累计 | "
@@ -206,16 +232,17 @@ def refresh_text(text: str, context: RefreshContext) -> str:
     )
 
     refreshed = replace_or_insert_frontmatter_value(refreshed, "last_updated", context.last_updated)
-    refreshed = replace_or_insert_frontmatter_value(
-        refreshed,
-        "last_refreshed_from_main_pr",
-        str(current_pr if current_pr is not None else "unknown"),
-    )
-    refreshed = SHA_FIELD_RE.sub(
-        f"last_refreshed_from_main_sha: {context.commits[0].sha}",
-        refreshed,
-        count=1,
-    )
+    if context.target_ref != "HEAD":
+        refreshed = replace_or_insert_frontmatter_value(
+            refreshed,
+            "last_refreshed_from_main_pr",
+            str(current_pr if current_pr is not None else "unknown"),
+        )
+        refreshed = SHA_FIELD_RE.sub(
+            f"last_refreshed_from_main_sha: {context.commits[0].sha}",
+            refreshed,
+            count=1,
+        )
     refreshed = replace_or_insert_frontmatter_value(
         refreshed, "refresh_interval_pr", str(context.refresh_interval_pr)
     )
@@ -232,8 +259,8 @@ def refresh_text(text: str, context: RefreshContext) -> str:
     return anchor_pattern.sub(render_anchor_block(context), refreshed, count=1)
 
 
-def build_context(start_here_text: str) -> RefreshContext:
-    commits = read_git_commits(ROOT)
+def build_context(start_here_text: str, target_ref: str) -> RefreshContext:
+    commits = read_git_commits(ROOT, target_ref)
     strategic_markdown_count, strategic_word_count = parse_strategic_summary(SUMMARY_PATH)
     refresh_interval_pr = frontmatter_int(
         start_here_text, "refresh_interval_pr", DEFAULT_REFRESH_INTERVAL
@@ -241,8 +268,9 @@ def build_context(start_here_text: str) -> RefreshContext:
     next_forced_refresh_pr = frontmatter_int(
         start_here_text, "next_forced_refresh_pr", DEFAULT_NEXT_FORCED_REFRESH_PR
     )
-    last_updated = run_git(ROOT, "log", f"{REMOTE}/main", "-1", "--pretty=%cs")
+    last_updated = run_git(ROOT, "log", target_ref, "-1", "--pretty=%cs")
     return RefreshContext(
+        target_ref=target_ref,
         commits=commits,
         checkpoint_dispatch_total=sum_checkpoint_dispatches(RUNS_DIR),
         strategic_markdown_count=strategic_markdown_count,
@@ -256,10 +284,21 @@ def build_context(start_here_text: str) -> RefreshContext:
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--check", action="store_true", help="fail if START-HERE needs refresh")
+    parser.add_argument(
+        "--ref",
+        dest="target_ref",
+        default=None,
+        help="git ref used to render START-HERE truth; default is HEAD for --check/non-main branches, origin/main for local main refresh",
+    )
     args = parser.parse_args(argv)
 
     original = START_HERE_PATH.read_text(encoding="utf-8")
-    context = build_context(original)
+    target_ref = resolve_target_ref(
+        explicit_ref=args.target_ref,
+        branch_name=current_branch_name(ROOT),
+        check_mode=args.check,
+    )
+    context = build_context(original, target_ref)
     refreshed = refresh_text(original, context)
 
     if args.check:

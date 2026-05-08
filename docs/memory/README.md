@@ -1,16 +1,17 @@
 ---
 title: ScoutFlow docs/memory/ — Cross-Vendor Memory Path
-status: current authority
+status: reference storage
+memory_role: cross-vendor memory root
 created_at: 2026-05-07
 ---
 
 # docs/memory/
 
-ScoutFlow 跨 vendor 可读的 instinct memory 真源.
+ScoutFlow 跨 vendor 可读的 instinct memory reference root.
 
 **入口**: [INDEX.md](./INDEX.md)
 
-**4 状态词锁**: 本目录所有 file `status: current authority` (跟 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/00-START-HERE.md` 同级).
+**4 状态词锁**: 本目录所有 file 使用 `status: reference storage`，作为 cross-vendor instinct memory 的 git-tracked reference，不跟 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/00-START-HERE.md` 同级。
 
 **跨 vendor 共享**:
 

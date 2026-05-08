@@ -4,7 +4,8 @@ description: topic-card-lite + vault preview + RAW handoff 三件套是 ScoutFlo
 type: project
 source_atlas_node: P-PROOF-PAIR-CANARY
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Proof pair canary

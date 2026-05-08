@@ -4,7 +4,8 @@ description: overflow registry 收纳 blocked options 不阻塞 product main; 5 
 type: project
 source_atlas_node: P-OVERFLOW-NOT-BLOCKER
 cross_vendor_readers: [cc0, cc1, codex, gpt-pro, hermes]
-status: current authority
+memory_role: cross-vendor instinct source
+status: reference storage
 ---
 
 # Overflow registry — not a blocker
