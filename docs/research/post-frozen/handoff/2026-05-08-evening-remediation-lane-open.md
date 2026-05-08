@@ -1,7 +1,8 @@
 ---
 date: 2026-05-08
 session: phase-1-remediation-sub-wave-lane-open-v3
-status: handoff / read-only
+status: reference storage
+handoff_mode: handoff / read-only
 ---
 # Phase 1 Remediation Sub-wave Lane Open Handoff (v3)
 
