@@ -20,7 +20,14 @@ export type CreateCaptureResponse = {
   status: string;
   artifact_root_path: string;
   manifest_path: string;
-  canonical_url: string;
+};
+
+export type MetadataFetchJobResponse = {
+  job_id: string;
+  capture_id: string;
+  job_type: "metadata_fetch";
+  status: "queued" | "running" | "succeeded" | "failed";
+  dedupe_key: string;
 };
 
 export type BridgeVaultConfigResponse = {
@@ -44,8 +51,56 @@ export type BridgeVaultCommitResponse = {
   capture_id: string;
   committed: boolean;
   dry_run: boolean;
+  write_enabled: false;
   target_path: string | null;
   error: BridgeError | null;
+};
+
+export type TrustTraceResponse = {
+  label: string;
+  capture: {
+    capture_id: string;
+    platform: string;
+    platform_item_id: string;
+    source_kind: string;
+    capture_mode: string;
+    created_by_path: string;
+  };
+  capture_state: {
+    capture_created: boolean;
+    status: string;
+  };
+  metadata_job: {
+    present: boolean;
+    job_id: string | null;
+    job_type: string | null;
+    status: string | null;
+    platform_result: string | null;
+  };
+  probe_evidence: {
+    present: boolean;
+    probe_mode: string;
+    source_task_id: string | null;
+    source_report_path: string | null;
+    platform_result: string | null;
+  };
+  receipt_ledger: {
+    present: boolean;
+    artifact_count: number;
+    artifact_kinds: string[];
+    redaction: string;
+  };
+  media_audio: {
+    status: string;
+    audio_transcript: string;
+  };
+  audit: {
+    platform_result: string | null;
+    evidence_file_path: string | null;
+    artifact_count: number;
+    redaction_policy: string | null;
+    safe_parsed_fields: Record<string, string | number | null>;
+  };
 };
 
 export class CaptureStationApiError extends Error {
@@ -95,8 +150,8 @@ async function requestJson<T>(baseUrl: string, path: string, init?: RequestInit)
 
 export function createCaptureStationApi(baseUrl = "") {
   return {
-    createCapture: async (canonicalUrl: string): Promise<CreateCaptureResponse> => {
-      const response = await requestJson<Omit<CreateCaptureResponse, "canonical_url">>(baseUrl, "/captures/discover", {
+    createCapture: (canonicalUrl: string): Promise<CreateCaptureResponse> =>
+      requestJson<CreateCaptureResponse>(baseUrl, "/captures/discover", {
         method: "POST",
         body: JSON.stringify({
           platform: "bilibili",
@@ -104,13 +159,13 @@ export function createCaptureStationApi(baseUrl = "") {
           source_kind: "manual_url",
           quick_capture_preset: "metadata_only"
         })
-      });
-
-      return {
-        ...response,
-        canonical_url: canonicalUrl
-      };
-    },
+      }),
+    postMetadataFetchJob: (captureId: string) =>
+      requestJson<MetadataFetchJobResponse>(baseUrl, `/captures/${captureId}/metadata-fetch/jobs`, {
+        method: "POST"
+      }),
+    getTrustTrace: (captureId: string) =>
+      requestJson<TrustTraceResponse>(baseUrl, `/captures/${captureId}/trust-trace`),
     getBridgeHealth: () => requestJson<BridgeHealthResponse>(baseUrl, "/bridge/health"),
     getBridgeVaultConfig: () => requestJson<BridgeVaultConfigResponse>(baseUrl, "/bridge/vault/config"),
     getVaultPreview: (captureId: string) =>

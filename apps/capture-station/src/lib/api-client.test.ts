@@ -45,8 +45,7 @@ describe("api-client", () => {
       })
     });
     expect(result).toMatchObject({
-      capture_id: "01JABCDEF0123456789ABCDEFG",
-      canonical_url: "https://www.bilibili.com/video/BV1AB411c7mD"
+      capture_id: "01JABCDEF0123456789ABCDEFG"
     });
   });
 
@@ -78,12 +77,98 @@ describe("api-client", () => {
     });
   });
 
+  it("enqueues metadata fetch for a capture id without implying readback success", async () => {
+    const api = createCaptureStationApi("http://127.0.0.1:8000");
+    const enqueuePayload = {
+      job_id: "job_123",
+      capture_id: "cap_123",
+      job_type: "metadata_fetch",
+      status: "queued",
+      dedupe_key: "bilibili:BV1AB411c7mD:metadata_fetch"
+    };
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => enqueuePayload
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(api.postMetadataFetchJob("cap_123")).resolves.toEqual(enqueuePayload);
+    expect(fetchMock).toHaveBeenCalledWith("http://127.0.0.1:8000/captures/cap_123/metadata-fetch/jobs", {
+      headers: { "Content-Type": "application/json" },
+      method: "POST"
+    });
+  });
+
+  it("loads layered trust trace for a capture id without flattening dto names", async () => {
+    const api = createCaptureStationApi("http://127.0.0.1:8000");
+    const trustTracePayload = {
+      label: "Status / Trust Trace / 采集状态",
+      capture: {
+        capture_id: "cap_123",
+        platform: "bilibili",
+        platform_item_id: "BV1AB411c7mD",
+        source_kind: "manual_url",
+        capture_mode: "metadata_only",
+        created_by_path: "quick_capture"
+      },
+      capture_state: {
+        capture_created: true,
+        status: "discovered"
+      },
+      metadata_job: {
+        present: true,
+        job_id: "job_123",
+        job_type: "metadata_fetch",
+        status: "queued",
+        platform_result: null
+      },
+      probe_evidence: {
+        present: false,
+        probe_mode: "not-run",
+        source_task_id: null,
+        source_report_path: null,
+        platform_result: null
+      },
+      receipt_ledger: {
+        present: false,
+        artifact_count: 0,
+        artifact_kinds: [],
+        redaction: "not_applicable"
+      },
+      media_audio: {
+        status: "not_approved",
+        audio_transcript: "blocked"
+      },
+      audit: {
+        platform_result: null,
+        evidence_file_path: null,
+        artifact_count: 0,
+        redaction_policy: null,
+        safe_parsed_fields: {}
+      }
+    };
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => trustTracePayload
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(api.getTrustTrace("cap_123")).resolves.toEqual(trustTracePayload);
+    expect(fetchMock).toHaveBeenCalledWith("http://127.0.0.1:8000/captures/cap_123/trust-trace", {
+      headers: { "Content-Type": "application/json" }
+    });
+  });
+
   it("raises a typed error for non-2xx responses", async () => {
     const api = createCaptureStationApi("http://127.0.0.1:8000");
     const fetchMock = vi.fn().mockResolvedValue({
       ok: false,
       status: 409,
-      json: async () => ({ code: "write_disabled", message: "Bridge write path is not approved" })
+      json: async () => ({ code: "write_disabled", message: "Bridge write path is not approved", write_enabled: false })
     });
 
     vi.stubGlobal("fetch", fetchMock);
@@ -129,5 +214,47 @@ describe("api-client", () => {
       message: "Bridge request failed with status 500",
       payload: null
     });
+  });
+
+  it("preserves typed errors for trust trace load failures", async () => {
+    const api = createCaptureStationApi("http://127.0.0.1:8000");
+    const payload = {
+      code: "capture_not_found",
+      message: "Capture cap_missing was not found."
+    };
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: false,
+      status: 404,
+      json: async () => payload
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(api.getTrustTrace("cap_missing")).rejects.toMatchObject({
+      status: 404,
+      code: "capture_not_found",
+      payload
+    });
+  });
+
+  it("keeps write_enabled=false on vault commit dry-run responses", async () => {
+    const api = createCaptureStationApi("http://127.0.0.1:8000");
+    const payload = {
+      capture_id: "cap_123",
+      committed: false,
+      dry_run: true,
+      write_enabled: false as const,
+      target_path: "/tmp/scoutflow-vault/00-Inbox/scoutflow-cap_123.md",
+      error: null,
+    };
+    const fetchMock = vi.fn().mockResolvedValue({
+      ok: true,
+      status: 200,
+      json: async () => payload,
+    });
+
+    vi.stubGlobal("fetch", fetchMock);
+
+    await expect(api.postVaultCommitDryRun("cap_123")).resolves.toEqual(payload);
   });
 });
