@@ -2,6 +2,16 @@
 
 > 薄版决策日志。只记录已经 user 拍板的工程/产品决策，不替代 PRD/SRD。
 
+## 2026-05-08 — Authority rebase after PR #253 / #254 / #255 merged
+
+- Decision (1): refresh live authority anchor to `origin/main = e18d45a` (`PR #254`, merged at `2026-05-08T05:04:01Z`); current first-parent merged chain snapshot = `e18d45a` (`#254`) ← `d0dcbfe` (`#255`) ← `cf283f9` (`#253`) ← `02ccbdc` (`#252`).
+- Decision (2): absorb `PR #253 / cf283f9` as the missing Layer C closeout for `T-P1A-156 / W2C`; this PR did not open a new product lane.
+- Decision (3): absorb `PR #255 / d0dcbfe` as `T-P1A-157 / W1B PF-C4-EXT` landed and closed; Active product count remains `0/3`, and there is no currently open code-bearing lane.
+- Decision (4): absorb `PR #254 / e18d45a` as `W3E PF-C0-O1` docs-only candidate starter cluster landed on `main`; it remains candidate-only and does not consume an active product slot.
+- Decision (5): capture-station authority baseline is no longer “W2C data shell only”; it is now `W2C truthful runtime surfaces + W1B trust-trace graph/timeline/error-path bounded lanes landed`.
+- Decision (6): live refresh snapshot at writeback time = `merged PR 248 / open PR 0`; this is a refresh-time snapshot only, and future truth must continue to come from live GitHub checks.
+- Decision (7): 5 overflow lanes remain Hold; `write_enabled=False` remains hard truth; no runtime / migration / browser automation / vault true write / full-signal execution approval is granted by this rebase.
+
 ## 2026-05-08 — T-P1A-157 W1B lane opened after W2C closeout
 
 - Decision: open `T-P1A-157` as the current active code-bearing lane after `T-P1A-156 / W2C` closed.
