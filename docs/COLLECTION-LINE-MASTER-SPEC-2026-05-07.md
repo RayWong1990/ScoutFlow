@@ -1228,16 +1228,14 @@ SessionStart → 自动注入相关 memory (按 topic / lane / time 排序)
 
 # §19 引用 + 单源 anchor
 
-## §19.1 真 authority 文档
+## §19.1 四层引用表
 
-- `docs/current.md` — 当前真态 (治理硬规则)
-- `docs/task-index.md` — Active lane registry (max=3)
-- `docs/decision-log.md` — Authority writer (max=1, 单写)
-- `docs/research/repairs/opendesign-reuse-strategy-candidate-2026-05-05.md` (PR #122 merged) — 真 stack authority + §10 reject list
-- `docs/PRD-amendments/prd-v2.1-...-candidate-2026-05-04.md` — 单人 prosumer + 强视觉 capture-side
-- `docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md` — 5 routes 边界 + Trust Trace DTO 锁
-- `bridge/config.py:24,36` — write_enabled=False invariant
-- `~/.claude/rules/aesthetic-first-principles.md` — 5 Gate Checklist
+| Tier | 当前条目 | 不包含（must NOT） |
+|---|---|---|
+| Tier 1: current authority | `docs/current.md`、`docs/task-index.md`、`docs/decision-log.md`、`docs/00-START-HERE.md` | 任何代码、任何 amendment、任何 candidate |
+| Tier 2: promoted addendum | `docs/PRD-amendments/prd-v2.1-strong-visual-h5-para-pr-factory-candidate-2026-05-04.md`、`docs/SRD-amendments/h5-bridge-para-vault-srd-v3-candidate-2026-05-04.md`、`docs/research/repairs/opendesign-reuse-strategy-candidate-2026-05-05.md`（PR #122 promoted） | thin shell PRD-v3 / SRD-v3（仍 candidate）、任何未 promoted candidate |
+| Tier 3: candidate north-star | `docs/COLLECTION-LINE-MASTER-SPEC-2026-05-07.md`、`docs/research/post-frozen/2026-05-08/W4-overflow-lane-authority-upgrade/**`、`00-w4-step0-convergence.md` | promoted addendum |
+| Tier 4: reference storage | `docs/research/strategic-upgrade/2026-05-07/outputs/U1-deep/` ~ `U16-memory-graph/`、`~/.claude/rules/*`、`~/.claude/projects/.../memory/*`、`bridge/config.py:24,36` 的 `write_enabled=False` invariant 文档化提及（不是代码本身） | 任何 candidate 或 authority |
 
 ## §19.2 储能层 reference (16 ZIP)
 
