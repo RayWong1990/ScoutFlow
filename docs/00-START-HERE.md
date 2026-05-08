@@ -8,7 +8,7 @@ anchor_refresh_tool: tools/refresh-start-here.py
 refresh_interval_pr: 50
 next_forced_refresh_pr: 300
 last_refreshed_from_main_pr: unknown
-last_refreshed_from_main_sha: db80ad7
+last_refreshed_from_main_sha: 376ec0c
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
@@ -40,7 +40,7 @@ status_words_locked:
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| main HEAD | `db80ad7` ← `e065ef2` ← `979b1c5` |
+| main HEAD | `376ec0c` ← `124ae8f` ← `908443b` |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
