@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`3/3`，Review count=`4`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -20,13 +20,18 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-LANE-D-CODE-BEARING` | `Lane D PF-V visual productization` | `active 1/3` | `Codex Desktop` | `StateBadge` / `PromoteGate` / `Button` / `HoldBanner` / `EvidenceTable` + Trust Trace polish；修 Opus-2 `VT-P0-01/02/03` + `VT-P2-01/02` | `apps/capture-station/src/components/{StateBadge,PromoteGate,Button,HoldBanner,EvidenceTable}/**` + `apps/capture-station/src/styles/{tokens.css,trust-trace-lane-order.css}` + bounded Trust Trace callsites/tests | `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `services/**` / `workers/**` / `packages/**` / `data/**` / `referencerepo/**` / Lane A path set | `docs/BATCH-TRANSCRIPTION-MASTER-ROADMAP-2026-05-08.md` + PF-V reuse / master 手顺 v3 Round 2 | `dispatch §8 local UI validation + visual drift checks` | `Gate 1.5` 未明确 / Active 漂到 `4` / 引入新 dependency / 误写 runtime ready | `critical path；Lane A 必须等本 lane merge 才能在 PR-B promote` |
+| `T-P1A-161` | `Lane B runtime_tools gate readiness` | `active 2/3` | `Codex Desktop` | `RuntimeCanaryManifestV1` + safe excerpt + no-live-run readiness；不跑 live tool execution | `docs/research/post-frozen/2026-05-08/lane-b-runtime-tools/**` + `docs/specs/runtime-tools-canary-contract-candidate.md` + `services/api/scoutflow_api/external_tools/**` (seam/fixture only) + `tests/contracts/test_runtime_tools_*contract*.py` + `tests/fixtures/runtime_tools/**` | `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/00-START-HERE.md` / `apps/**` / `services/api/migrations/**` / raw stdout/stderr / credential-bearing artifacts | `PRD-v2` + `SRD-v2` + platform adapter risk contract + master 手顺 v3 Round 2 | `dispatch §10 contract tests + no-live-run boundary grep` | 任何 live tool run / raw excerpt 泄露 / `apps/**` touched / authority drift | `bounded first-canary hypothesis only；not approved / unlocked / production-ready` |
+| `T-P1A-162` | `Lane C true_vault_write gate readiness` | `active 3/3` | `Codex Desktop` | `VaultCommitCandidateV1` 12-role + secret-scan + path-containment + atomic/rollback precondition；不 flip true write | `docs/research/post-frozen/2026-05-08/lane-c-true-vault-write/**` + `docs/specs/vault-commit-candidate-v1-contract-candidate.md` + bounded vault/bridge contract files/tests | `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/00-START-HERE.md` / `apps/**` / `services/api/migrations/**` / `write_enabled=False` flip / `data/**` / `referencerepo/**` | `PRD-v2.1` + `SRD-v3 h5-bridge` addendum + locked vault boundary + master 手顺 v3 Round 2 | `dispatch §14 contract/readline validation + secret/path containment checks` | 任何 `write_enabled=True` / fake committed cue / secret echo / migration implied | `same-payload minimal flip readiness only；not true-write approval` |
 
 ## Review
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `Lane-D-CANDIDATE-DOCS` | `Lane D visual productization docs sidecar` | `review/docs-only` | `Codex Desktop` | `PF-V-ASSET-MAP` / `COMPONENT-TARGET-MAP` / `STATE-VISUAL-GRAMMAR` / `DEPENDENCY-DECISION-INTAKE` / `CODE-BEARING-CONVERSION-GATE` | `docs/research/post-frozen/2026-05-08/lane-d-visual-productization/**` | `apps/**` / `services/**` / `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/specs/**` / `docs/research/visual-prototypes/PF-V/**` | GPT Pro pack A/C ingest + master 手顺 v3 Round 2 | `docs redline + candidate-status grep` | 写成 authority / 直接 mirror raw GPT Pro 包 / 任何代码改动 | `candidate / docs-only / not-authority` |
+| `T-P1V-BAT-PREP` | `Batch manifest schema prep` | `review/docs-only` | `Codex Desktop` | `ItemRunManifestV1` / `BatchRunManifestV1` schema、state vocab、failure classes、operator checklist 引用 | `docs/specs/batch-manifest-v1-contracts-candidate.md` + optional `docs/research/post-frozen/2026-05-08/batch-manifest-prep/INDEX.md` | `apps/**` / `services/**` / `workers/**` / `packages/**` / `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/specs/contracts-index.md` | GPT Pro pack D 01/02/08 + master 手顺 v3 Round 2 | `docs redline + state-word scan` | 批量执行被写成已批准 / Storybook or code file 进入 diff | `future Phase 3 citeable source only；not batch runner approval` |
+| `T-P1V-MANUAL-EVIDENCE` | `Manual visual evidence packet helper` | `review/docs-only` | `Codex Desktop` | `README` / packet/verdict template / round-4 folder scaffolding；供战友 localhost V-PASS 使用 | `docs/research/post-frozen/evidence/visual-2026-05-08-evening/**` | `apps/**` / `services/**` / `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/specs/**` / Playwright / Puppeteer / Selenium files | Opus-2 §5 + GPT Pro C localhost review points + master 手顺 v3 Round 4/5 | `docs redline + no-browser-tooling grep` | 任何 screenshot/e2e claim 伪造 / 引入 browser automation tooling | `template/scaffolding only；Codex 不实际跑 localhost` |
+| `T-P1V-MONITOR` | `Commander live truth monitor` | `review/read-only-resident` | `Codex Desktop` | `git fetch` / PR queue / drift alert / raw PARA `_monitor/` archive；repo tracked authority files只读观察 | `~/workspace/raw/05-Projects/ScoutFlow/dispatches/RUN-2026-05-08-NIGHT/remediation-wave/_monitor/**`（repo tracked authority files read-only） | 对 `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` / `docs/00-START-HERE.md` 的直接写回；任何 code path | master 手顺 v3 Round 2-6 + monitor dispatch | `_monitor` receipt cadence + drift alert completeness | Active=4 / Gate 1.5 缺失时未报警 / 任何 authority writeback | `resident monitor；not product lane` |
 
 ## Backlog
 
@@ -58,7 +63,7 @@
 
 | 任务 ID | 标题 | 阻塞原因 | 需要动作 | 时间 |
 |---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-160` | `Lane A P3 preview vertical slice` | `blocked_by_visual_truth_remediation` | `wait for T-P1A-LANE-D-CODE-BEARING merge + PR-B promote to Active` | `2026-05-08` |
 
 ## Done
 
