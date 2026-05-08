@@ -10,6 +10,7 @@ import CapturePlan from "./capture-plan/CapturePlan";
 import CaptureScope from "./capture-scope/CaptureScope";
 import DensitySpec from "./_specs/DensitySpec";
 import LiveMetadata from "./live-metadata/LiveMetadata";
+import RewriteOutputPreview from "./rewrite-output/RewriteOutputPreview";
 import SignalHypothesis from "./signal-hypothesis/SignalHypothesis";
 import TopicCardLite from "./topic-card-preview/TopicCardLite";
 import TopicCardVault from "./topic-card-vault/TopicCardVault";
@@ -18,6 +19,7 @@ import UrlBar from "./url-bar/UrlBar";
 import VaultCommit from "./vault-commit/VaultCommit";
 import VaultPreview from "./vault-preview/VaultPreview";
 import TypeSpec from "./_specs/TypeSpec";
+import { rewriteOutputFixtures } from "../fixtures/rewrite-output-v1";
 
 vi.mock("../lib/w2c-runtime", async () => {
   const actual = await vi.importActual<typeof import("../lib/w2c-runtime")>("../lib/w2c-runtime");
@@ -240,5 +242,15 @@ describe("surface smoke tests", () => {
   it("renders type spec surface", () => {
     render(<TypeSpec />);
     expect(screen.getByText("字重规格 · V4 高字重")).toBeTruthy();
+  });
+
+  it("renders rewrite output surface", () => {
+    render(
+      <RewriteOutputPreview
+        fixture={rewriteOutputFixtures["ok-with-transcript"].output}
+        fixtureName={rewriteOutputFixtures["ok-with-transcript"].fileName}
+      />,
+    );
+    expect(screen.getByText("Rewrite Output V1")).toBeTruthy();
   });
 });

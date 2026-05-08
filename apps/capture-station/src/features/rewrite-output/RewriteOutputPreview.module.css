@@ -1,0 +1,101 @@
+.stack {
+  display: grid;
+  gap: var(--space-lg);
+}
+
+.overview {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+  gap: var(--space-md);
+  align-items: start;
+}
+
+.copyStack {
+  display: grid;
+  gap: var(--space-sm);
+}
+
+.detail {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.grid {
+  display: grid;
+  gap: var(--space-sm);
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 104px minmax(0, 1fr);
+  gap: var(--space-sm);
+}
+
+.row dt {
+  color: var(--text-secondary);
+  font-size: var(--type-caption);
+}
+
+.row dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.blockedBox {
+  display: grid;
+  gap: var(--space-xs);
+  border: 1px solid var(--state-border-blocked);
+  border-radius: var(--radius-panel);
+  background: var(--state-bg-blocked);
+  color: var(--state-text-blocked);
+  padding: var(--space-md);
+}
+
+.blockedBox p {
+  margin: 0;
+}
+
+.sectionGrid {
+  display: grid;
+  gap: var(--space-md);
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+}
+
+.sectionCard {
+  display: grid;
+  gap: var(--space-sm);
+  min-height: 180px;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-panel);
+  background: var(--surface-panel);
+  padding: var(--space-md);
+}
+
+.sectionHeader h3 {
+  margin: 0;
+  font-size: var(--type-body-lg);
+}
+
+.sectionBody {
+  margin: 0;
+  color: var(--text-secondary);
+  white-space: pre-wrap;
+}
+
+.bulletList {
+  margin: 0;
+  padding-left: 1.1rem;
+  color: var(--text-secondary);
+}
+
+.emptyCopy {
+  margin: 0;
+  color: var(--text-muted);
+}
+
+@media (max-width: 900px) {
+  .overview {
+    grid-template-columns: 1fr;
+  }
+}

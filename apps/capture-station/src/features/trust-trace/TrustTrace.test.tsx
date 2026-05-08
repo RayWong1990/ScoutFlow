@@ -1,4 +1,4 @@
-import { render, screen, within } from "@testing-library/react";
+import { render, screen } from "@testing-library/react";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import { CaptureStationApiError, type TrustTraceResponse } from "../../lib/api-client";
@@ -173,13 +173,8 @@ describe("TrustTrace", () => {
 
     render(<TrustTrace />);
 
-    const [routeAlert] = screen.getAllByRole("alert");
-
-    expect(
-      within(routeAlert).getByText(
-        (_content, node) => node?.tagName.toLowerCase() === "p" && node.textContent === "Trust trace route unavailable",
-      ),
-    ).toBeTruthy();
+    expect(screen.getAllByText("Trust trace route unavailable").length).toBeGreaterThan(0);
+    expect(screen.getByText("GET /captures/{id}/trust-trace 返回错误")).toBeTruthy();
     expect(screen.getByText("trust_trace_not_ready")).toBeTruthy();
     expect(screen.getByText("不生成假图谱，不把 503 包装成 success。")).toBeTruthy();
   });

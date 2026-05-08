@@ -1,0 +1,17 @@
+{
+  "style_id": "obsidian_capture_note_v1",
+  "title": "Rewrite blocked pending transcript handoff",
+  "source_summary": "The operator can already see metadata and trust-trace posture, but the transcript handoff is missing so the rewrite must stay explicitly blocked.",
+  "key_points": [
+    "metadata-only truth is visible",
+    "rewrite surface must not fake transcript-backed prose"
+  ],
+  "transcript_backed_details": "",
+  "trust_evidence_notes": "The surface remains truthful by showing the rewrite schema and blocked reason instead of invented note copy.",
+  "follow_up_questions": [
+    "When transcript handoff arrives, which passages should be promoted into the note?"
+  ],
+  "source_hash": "src_5af18bc4c32d",
+  "transcript_hash": null,
+  "rewrite_hash": "rw_c4d2a08f3ef6"
+}

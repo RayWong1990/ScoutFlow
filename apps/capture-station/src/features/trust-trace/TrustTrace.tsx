@@ -5,9 +5,11 @@ import ErrorPathLane from "./lanes/ErrorPathLane";
 import GraphLane from "./lanes/GraphLane";
 import PanelCard from "../../components/PanelCard/PanelCard";
 import StateBadge from "../../components/StateBadge/StateBadge";
+import { deriveTrustTraceBadge } from "../../components/StateBadge/derive";
 import SurfaceFrame, { SurfaceDivider, SurfaceSection } from "../../components/SurfaceFrame/SurfaceFrame";
 import TimelineLane from "./lanes/TimelineLane";
 import { useW2CRuntime } from "../../lib/w2c-runtime";
+import "../../styles/trust-trace-lane-order.css";
 import styles from "./TrustTrace.module.css";
 
 type Field = {
@@ -88,26 +90,43 @@ export default function TrustTrace() {
   const { currentCaptureId, trustTrace } = runtime;
   const trace = trustTrace.data;
   const audioTranscriptDisplay = trace ? formatAudioTranscriptDisplay(trace.media_audio.audio_transcript) : null;
-
-  const statusBadge =
-    trustTrace.status === "success" && trace
-      ? <StateBadge tone="ready" label={trace.capture_state.status} />
-      : trustTrace.status === "loading"
-        ? <StateBadge tone="loading" label="loading" />
-        : trustTrace.status === "error"
-          ? <StateBadge tone="error" label="route error" />
-          : <StateBadge tone="idle" label={currentCaptureId ? "waiting" : "empty"} />;
+  const trustTraceBadge = deriveTrustTraceBadge({
+    trace,
+    routeStatus: trustTrace.status,
+    currentCaptureId,
+  });
+  const statusBadge = <StateBadge tone={trustTraceBadge.tone} label={trustTraceBadge.label} />;
 
   return (
     <SurfaceFrame
       title="信任溯源状态集"
-      description="GET /captures/{id}/trust-trace 的 readback shell 只消费分层 DTO；graph / timeline / error-path 仍保留为 W1B 边界。"
+      description="GET /captures/{id}/trust-trace 的 readback shell 只消费分层 DTO；顶层先看 error-path summary，graph 降级为 secondary diagnostic。"
     >
+      <SurfaceSection title="状态: error-path first">
+        <div className="trustTraceLaneOrder">
+          <div className="trustTraceLaneErrorPath">
+            <ErrorPathLane
+              trace={trace ?? null}
+              routeStatus={trustTrace.status}
+              routeErrorCode={trustTrace.error?.code ?? null}
+            />
+          </div>
+          <div className="trustTraceLaneTimeline">
+            <TimelineLane trace={trace ?? null} />
+          </div>
+          <div className="trustTraceLaneGraph">
+            <GraphLane trace={trace ?? null} />
+          </div>
+        </div>
+      </SurfaceSection>
+
+      <SurfaceDivider />
+
       <SurfaceSection title="状态: route readback">
         <PanelCard
           title="Trust Trace readback"
           eyebrow="trust-trace"
-          description="只读回显 capture / capture_state / metadata_job / probe_evidence / receipt_ledger / media_audio / audit。"
+          description="只读回显 capture / capture_state / metadata_job / probe_evidence / receipt_ledger / media_audio / audit；业务风险先由 error-path lane 表达。"
           aside={statusBadge}
         >
           <div className={styles.stack}>
@@ -228,20 +247,6 @@ export default function TrustTrace() {
             ) : null}
           </div>
         </PanelCard>
-      </SurfaceSection>
-
-      <SurfaceDivider />
-
-      <SurfaceSection title="状态: W1B bounded lanes">
-        <div className={styles.panelGrid}>
-          <GraphLane trace={trace ?? null} />
-          <TimelineLane trace={trace ?? null} />
-          <ErrorPathLane
-            trace={trace ?? null}
-            routeStatus={trustTrace.status}
-            routeErrorCode={trustTrace.error?.code ?? null}
-          />
-        </div>
       </SurfaceSection>
     </SurfaceFrame>
   );
