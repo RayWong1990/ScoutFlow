@@ -2,6 +2,13 @@
 
 > 薄版决策日志。只记录已经 user 拍板的工程/产品决策，不替代 PRD/SRD。
 
+## 2026-05-08 — Sub-wave Round 3 — Lane A Promote (post Lane D code-bearing merge)
+
+- Lane D `T-P1A-LANE-D-CODE-BEARING` 已由 `PR #271 / 3a64cb9` merged；visual primitives（`StateBadge` variants、`HoldBanner`、`EvidenceTable`、Trust Trace polish、lane-order tokens）已落 `origin/main`。
+- Lane A `T-P1A-160` 从 Blocked → Active；当前 Active 仍严格为 `3/3`（slot replacement，max 不动）。
+- Codex-264 / Lane A 启动前置已满足：可 consume Lane D merged primitives，推进 single-flow IA + `RewriteOutputV1` surface。
+- Hold 不变：`write_enabled=False`、`runtime_tools`、`true_vault_write`、`browser_automation`、`dbvnext_migration`、`full_signal_workbench` 继续受控。
+
 ## 2026-05-08 — Phase 1 Remediation Sub-wave Lane Open (post Opus-2 Visual REJECT, post Codex critique on v2)
 
 - 触发: Opus-2 Visual Truth Audit verdict `VISUAL_REJECT (3.6/10)`，`VT-P0-01/02/03` + `VT-P1-01/02/03` + `VT-P2-01/02` 全部 stop-line。

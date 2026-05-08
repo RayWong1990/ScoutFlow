@@ -2,7 +2,7 @@
 
 ## TL;DR (5 行)
 
-- main = `db80ad7` (PR #262 close PR226-PR261 consistency gaps) ← `5902ecf` (PR #261 W4 closeout + truth repairs) ← `5777389` (PR #259 lane 4 manual-SQL candidate landed) ← `beb0fef` (PR #258 lane 2 runtime_tools candidate landed) ← `1fa0e9a` (PR #260 lane 1 true_vault_write candidate landed); capture-station code baseline 仍为 `d0dcbfe` / PR #255 的 W2C truthful runtime surfaces + 5 态状态机 + W1B Trust Trace graph/timeline/error-path bounded lanes
+- main = `3a64cb9` (PR #271 Lane D PF-V visual productization merged) ← `376ec0c` (PR #263 remediation sub-wave lane-open) ← `db80ad7` (PR #262 close PR226-PR261 consistency gaps) ← `5902ecf` (PR #261 W4 closeout + truth repairs) ← `5777389` (PR #259 lane 4 manual-SQL candidate landed); capture-station code baseline 已升到 Lane D merged truth：W2C truthful runtime surfaces + 5 态状态机 + W1B Trust Trace bounded lanes + PF-V visual state primitives (`StateBadge` / `HoldBanner` / `EvidenceTable` / lane-order tokens)
 - Active product lane `3/3` / Authority writer `0/1` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - write_enabled=False / 5 overflow lane Hold (true_vault_write / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench)
 - PRD canonical = v2 + v2.1 amend (promoted); SRD canonical = v2 + v3-h5-bridge amend (promoted)
@@ -10,14 +10,14 @@
 
 ## 当前状态
 - Phase / Step：`1A` / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
-- 主任务：`PR #262 / db80ad7` 已把 `PR226-PR261` consistency gaps 收口，并作为本轮 authority 起点。当前已打开 `Phase 1 remediation sub-wave OPEN`：Active=`T-P1A-LANE-D-CODE-BEARING`（Lane D, critical path）+ `T-P1A-161`（Lane B）+ `T-P1A-162`（Lane C）；Blocked=`T-P1A-160`（Lane A, `blocked_by_visual_truth_remediation`，待 `PR-B / Round 3` promote）；Review/docs-only=`Lane-D-CANDIDATE-DOCS` + `T-P1V-BAT-PREP` + `T-P1V-MANUAL-EVIDENCE` + `T-P1V-MONITOR`。触发原因是 Opus-2 Visual Truth Audit verdict=`VISUAL_REJECT (3.6/10)`，以及对 master v2 的 6 条 Codex critique 已在 v3 全采纳。
+- 主任务：`PR #271 / 3a64cb9` 已将 `T-P1A-LANE-D-CODE-BEARING` 的 visual primitives 落到 `main`，满足本轮 Round 3 promote 前置。当前进入 `Phase 1 remediation sub-wave Round 3`：Active=`T-P1A-160`（Lane A）+ `T-P1A-161`（Lane B）+ `T-P1A-162`（Lane C）；Lane D=`done`；Review/docs-only=`Lane-D-CANDIDATE-DOCS` + `T-P1V-BAT-PREP` + `T-P1V-MANUAL-EVIDENCE` + `T-P1V-MONITOR`。本次 promote 只做 slot replacement，不新增第 4 条 active lane，也不构成 visual closeout。
 - 工作模式：Active product lane max=`3`，Authority writer max=`1`；Active count=`3/3`，Review count=`4`；Authority writer count=`0/1`
-- 当前结论：本轮 sub-wave 只打开 D+B+C 三条 active lane，**不**修改 `Active product lane max=3`，也**不**把 Lane A 提前写成 active。`write_enabled=False` 继续是硬真相；5 overflow Hold（`true_vault_write` / `runtime_tools` / `browser_automation` / `dbvnext_migration` / `full_signal_workbench`）全部不变；`master spec §13` 全 Hold 仍在。Lane D code-bearing 仍需战友 `Gate 1.5 explicit user gate` 才能启动；在此之前，本 sub-wave 不解禁 runtime / true write / migration / browser automation / dependency install。
+- 当前结论：Lane D 已 merged 并转入 Done，Lane A 已从 Blocked promote 到 Active，当前 Active 仍严格为 `3/3`（A+B+C，slot replacement）。`write_enabled=False` 继续是硬真相；5 overflow Hold（`true_vault_write` / `runtime_tools` / `browser_automation` / `dbvnext_migration` / `full_signal_workbench`）全部不变；`master spec §13` 全 Hold 仍在；本轮仍不解禁 runtime / true write / migration / browser automation / dependency install，也不把 Opus-2 visual REJECT 写成已 closeout。
 
 ## 当前允许
-- 当前允许的直接后续只有本 sub-wave 的 Round 2 准备与 docs-only companion drafting；`T-P1A-LANE-D-CODE-BEARING` / `T-P1A-161` / `T-P1A-162` 的实际 code-bearing 窗启动仍以战友 `Gate 1.5 explicit user gate` 为前置，未打 `✓` 不得发窗
+- 当前允许的直接后续包括 `T-P1A-160` 的 Round 3 code-bearing 实施与其 localhost / visual audit 准备；`T-P1A-161` / `T-P1A-162` 继续保持 active；Round 3 之后仍不得跳过 Round 4/5 直接 closeout
 - Wave 3B 已 closed；后续只允许 review / audit / report sync，不允许继续把 Wave 3B artifact 当作未落地 backlog 重跑
-- 当前 capture-station code-bearing 只允许本轮 `T-P1A-LANE-D-CODE-BEARING` 的 PF-V visual productization 边界；`T-P1A-158` 已作为一次性 bounded repair 在 `PR #261` 内收口，Lane A 仍需等 Lane D merge 后再由 `PR-B` promote，任何超出当前 dispatch 的 capture-station 改动仍必须新 dispatch + 新 Active row + 外审
+- 当前 capture-station code-bearing 允许 `T-P1A-160` 在已合入的 Lane D primitives 基础上推进 single-item preview vertical slice；`T-P1A-158` 已作为一次性 bounded repair 在 `PR #261` 内收口；任何超出 Lane A 当前 dispatch 或回头改写 Lane D owned path 的改动仍必须新 dispatch + 新 Active row + 外审
 - `docs/research/shoulders/clone-plan-2026-05-05.md` 与 `docs/research/shoulders/referencerepo-index-2026-05-05.md` 继续保留为历史真相源；`referencerepo/**` 仍永远 local-only
 - `plan/` 是 gitignored local handoff workspace，不是 authority surface，不进入 tracked truth
 - B2 preflight 已关闭；B2 execution 可以进入 commander prompt 准备，但仍需按 normal validation 执行，不得把 preflight closure 当作 runtime/frontend/migration approval
@@ -42,7 +42,7 @@
 - 不因 `user_override_for_B2_preflight` 推断 walking skeleton 已发生；不因 B2 preflight closure 解禁 frontend implementation、runtime、migration、vault commit、BBDown live、ffmpeg、ASR 或 browser automation
 
 ## 下一步
-- 当前 authority 已将 `PR #262 / db80ad7` 视为本轮 sub-wave 的 live baseline；`T-P1A-LANE-D-CODE-BEARING` + `T-P1A-161` + `T-P1A-162` 已注册为 active `3/3`，`T-P1A-160` 仍在 Blocked 表等待 Lane D merge 后由 `PR-B` promote；`Lane-D-CANDIDATE-DOCS` / `T-P1V-BAT-PREP` / `T-P1V-MANUAL-EVIDENCE` / `T-P1V-MONITOR` 已注册为本轮 review/docs-only support lanes
+- 当前 authority 已将 `PR #271 / 3a64cb9` 视为本轮 Round 3 promote 的 live baseline；`T-P1A-160` + `T-P1A-161` + `T-P1A-162` 已注册为 active `3/3`，`T-P1A-LANE-D-CODE-BEARING` 已转入 Done；`Lane-D-CANDIDATE-DOCS` / `T-P1V-BAT-PREP` / `T-P1V-MANUAL-EVIDENCE` / `T-P1V-MONITOR` 继续作为 review/docs-only support lanes
 - `Dispatch175 / T-P1A-154` 与 `Dispatch176 / T-P1A-155` 已落地为 overflow / handoff candidate truth；历史 handoff 名称不构成开工许可，后续仍需新 dispatch 明确范围
-- authority writer 当前空闲 `0/1`；后续并行 lane 仍受 `docs/specs/parallel-execution-protocol.md` 约束；只有战友 `Gate 1.5 explicit user gate` 后，Round 2 的 7 窗（含 Lane D/B/C 三条 code-bearing）才允许启动；W4 Step0 + lane 1/2/4 已完成 spec family closeout，但 5 overflow lane 仍全部 Hold
+- authority writer 当前空闲 `0/1`；后续并行 lane 仍受 `docs/specs/parallel-execution-protocol.md` 约束；当前 next-step 已切到 Round 4/5/6：Lane A PR 完成后走战友 localhost `V-PASS`、再走 Opus-3 `V-PASS-CLEAR`、最后由 `PR-C` 做 closeout；W4 Step0 + lane 1/2/4 已完成 spec family closeout，但 5 overflow lane 仍全部 Hold
 - 任何 code-bearing migration / runtime / worker / frontend 启动都必须新 dispatch + 外审
