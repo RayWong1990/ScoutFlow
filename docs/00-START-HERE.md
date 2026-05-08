@@ -7,8 +7,8 @@ last_updated: 2026-05-08
 anchor_refresh_tool: tools/refresh-start-here.py
 refresh_interval_pr: 50
 next_forced_refresh_pr: 300
-last_refreshed_from_main_pr: unknown
-last_refreshed_from_main_sha: 73c59fb
+last_refreshed_from_main_pr: 273
+last_refreshed_from_main_sha: 086083b
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
@@ -34,13 +34,13 @@ status_words_locked:
 
 ## §1 当前真态锚点
 
-> 本段由 `python tools/refresh-start-here.py` 维护。main closeout refresh 写入 `origin/main` / main HEAD truth；PR CI freshness check 默认只验证 committed START-HERE 是否仍对齐 main authority anchor，不把 checked-out synthetic merge ref 写进长期 authority file。
+> 本段由 `python tools/refresh-start-here.py` 维护。main closeout refresh 写入 `origin/main` 的 content anchor（排除 GitHub merge wrapper，避免 PR 无法预知 merge commit SHA）；PR CI freshness check 默认只验证 committed START-HERE 是否仍对齐 main authority anchor，不把 checked-out synthetic merge ref 写进长期 authority file。
 
 <!-- START_HERE_AUTO_ANCHORS_BEGIN -->
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| main HEAD | `73c59fb` ← `086083b` ← `c24368f` |
+| main content anchor | `086083b` ← `7790c36` ← `e588e96` |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
