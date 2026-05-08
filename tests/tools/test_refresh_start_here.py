@@ -28,6 +28,10 @@ def test_pr_number_for_commit_uses_squash_commit_override() -> None:
     assert refresh_start_here.pr_number_for_commit("5902ecf", "governance: repair memory taxonomy and W2C truth guards") == 261
 
 
+def test_parse_pr_number_supports_github_merge_commit_subject() -> None:
+    assert refresh_start_here.parse_pr_number("Merge pull request #273 from owner/branch") == 273
+
+
 def test_resolve_target_ref_keeps_check_main_mode_on_origin_main_with_explicit_head_ref() -> None:
     assert (
         refresh_start_here.resolve_target_ref(explicit_ref="HEAD", branch_name="codex/fix-branch", check_mode=True)
@@ -71,6 +75,7 @@ def test_render_anchor_block_uses_live_values() -> None:
             refresh_start_here.GitCommit("e1deda6", "feat: shell (#243)", 243),
             refresh_start_here.GitCommit("00917fe", "feat: closeout (#242)", 242),
         ],
+        current_pr_number=244,
         checkpoint_dispatch_total=38,
         strategic_markdown_count="895",
         strategic_word_count="1,479,998",
@@ -110,6 +115,7 @@ old
             refresh_start_here.GitCommit("244abcd", "docs: baseline (#244)", 244),
             refresh_start_here.GitCommit("243abcd", "feat: shell (#243)", 243),
         ],
+        current_pr_number=300,
         checkpoint_dispatch_total=38,
         strategic_markdown_count="895",
         strategic_word_count="1,479,998",
@@ -153,6 +159,7 @@ old
             refresh_start_here.GitCommit("b1b2350", "docs(governance): close W4 tier4 merge and errata", None),
             refresh_start_here.GitCommit("5777389", "W4-E: lock lane 4 DB vNext spec to manual SQL path (#259)", 259),
         ],
+        current_pr_number=261,
         checkpoint_dispatch_total=38,
         strategic_markdown_count="895",
         strategic_word_count="1,479,998",
@@ -165,7 +172,7 @@ old
 
     assert "last_refreshed_from_main_pr: 261" in refreshed
     assert "last_refreshed_from_main_sha: 5902ecf" in refreshed
-    assert "| main HEAD | `5902ecf` (PR #261) ← `b1b2350` ← `5777389` (PR #259) |" in refreshed
+    assert "| main content anchor | `5902ecf` (PR #261) ← `b1b2350` ← `5777389` (PR #259) |" in refreshed
 
 
 def test_refresh_text_keeps_main_frontmatter_when_rendering_head_truth() -> None:
@@ -192,6 +199,7 @@ old
             refresh_start_here.GitCommit("5777389", "W4-E: lock lane 4 DB vNext spec to manual SQL path (#259)", 259),
             refresh_start_here.GitCommit("beb0fef", "W4-C: harden lane 2 runtime tools spec candidate (#258)", 258),
         ],
+        current_pr_number=259,
         checkpoint_dispatch_total=38,
         strategic_markdown_count="895",
         strategic_word_count="1,479,998",
@@ -204,7 +212,7 @@ old
 
     assert "last_refreshed_from_main_pr: 259" in refreshed
     assert "last_refreshed_from_main_sha: 5777389" in refreshed
-    assert "| checked-out HEAD | `b594375` ← `5777389` (PR #259) ← `beb0fef` (PR #258) |" in refreshed
+    assert "| checked-out content anchor | `b594375` ← `5777389` (PR #259) ← `beb0fef` (PR #258) |" in refreshed
 
 
 def test_pr_synthetic_ref_check_mode_main_does_not_force_checked_out_head_label() -> None:
@@ -217,3 +225,43 @@ def test_pr_synthetic_ref_check_mode_main_does_not_force_checked_out_head_label(
         )
         == "origin/main"
     )
+
+
+def test_refresh_text_uses_latest_merge_pr_with_stable_content_anchor() -> None:
+    source = """---
+title: Demo
+status: current authority
+last_updated: 2026-05-06
+refresh_interval_pr: 50
+next_forced_refresh_pr: 300
+last_refreshed_from_main_pr: 272
+last_refreshed_from_main_sha: 7790c36
+---
+
+## §1 当前真态锚点
+
+<!-- START_HERE_AUTO_ANCHORS_BEGIN -->
+old
+<!-- START_HERE_AUTO_ANCHORS_END -->
+"""
+    context = refresh_start_here.RefreshContext(
+        target_ref="origin/main",
+        commits=[
+            refresh_start_here.GitCommit("086083b", "docs(start-here): fix overflow hold summary and refresh anchor", None),
+            refresh_start_here.GitCommit("7790c36", "docs(governance): promote T-P1A-160 after Lane D merge", None),
+            refresh_start_here.GitCommit("e588e96", "docs(repair): add lane-d PF-V scope note for PR271", None),
+        ],
+        current_pr_number=273,
+        checkpoint_dispatch_total=38,
+        strategic_markdown_count="895",
+        strategic_word_count="1,479,998",
+        refresh_interval_pr=50,
+        next_forced_refresh_pr=300,
+        last_updated="2026-05-08",
+    )
+
+    refreshed = refresh_start_here.refresh_text(source, context)
+
+    assert "last_refreshed_from_main_pr: 273" in refreshed
+    assert "last_refreshed_from_main_sha: 086083b" in refreshed
+    assert "| main content anchor | `086083b` ← `7790c36` ← `e588e96` |" in refreshed
