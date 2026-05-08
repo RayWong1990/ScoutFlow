@@ -782,3 +782,25 @@
   - `docs/research/repairs/pr247-pr249-start-here-validation-erratum-2026-05-08.md`
   - `docs/research/repairs/pr254-start-here-authority-touch-erratum-2026-05-08.md`
   - `docs/research/repairs/pr261-w2c-runtime-safety-scope-note-2026-05-08.md`
+
+## 2026-05-08 — PR262 consistency full repair after PR261
+
+- Decision (1): PR261 merge commit `5902ecf` is the closeout anchor for this repair; `docs/current.md` and `docs/00-START-HERE.md` must point at PR #261 / `5902ecf` before any later PR262 merge truth is claimed.
+- Decision (2): PR261 validation readback was not clean: the PR body listed `python tools/refresh-start-here.py --check --ref HEAD`, while CI docs-smoke failed at START-HERE freshness.
+- Decision (3): START-HERE / current.md are now aligned to PR261 merge truth by PR262; PR261 itself remains a valid repair bundle but not a fully clean validation closeout.
+- Decision (4): `tools/refresh-start-here.py` semantics are repaired: main closeout refresh writes `origin/main` / main HEAD authority fields, while checked-out PR refs are probe/check inputs and must not be written as synthetic long-lived START-HERE truth.
+- Decision (5): W4 lane spec validation pattern is repaired: forbidden phrase absence checks must use `! rg -n ...` or an equivalent no-match script, not a bare `rg -n ...` receipt line.
+- Decision (6): W1B UI truth bugs are repaired in `ErrorPathLane` / `GraphLane` / `TimelineLane` without DTO, schema, backend, `PlatformResult`, or `WorkerReceipt` changes.
+- Decision (7): 5 overflow lanes remain Hold; this PR grants no runtime, migration, browser automation, vault true-write, or full-signal workbench approval.
+- Decision (8): PR262 is not a new feature lane; it is consistency repair / closeout. Active product lane remains `0/3`, Authority writer returns to `0/1`.
+- Source:
+  - `docs/current.md`
+  - `docs/task-index.md`
+  - `docs/00-START-HERE.md`
+  - `tools/refresh-start-here.py`
+  - `tools/check-docs-redlines.py`
+  - `apps/capture-station/src/features/trust-trace/lanes/ErrorPathLane.tsx`
+  - `apps/capture-station/src/features/trust-trace/lanes/GraphLane.tsx`
+  - `apps/capture-station/src/features/trust-trace/lanes/TimelineLane.tsx`
+  - `docs/research/repairs/pr258-pr260-w4-lane-validation-and-start-here-erratum-2026-05-08.md`
+  - `docs/research/repairs/pr261-validation-and-closeout-erratum-2026-05-08.md`

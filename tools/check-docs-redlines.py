@@ -3,6 +3,7 @@
 
 from __future__ import annotations
 
+import argparse
 import re
 import subprocess
 import sys
@@ -34,6 +35,29 @@ ALLOWED_STATUS = {
     "promoted addendum",
     "candidate north-star",
     "reference storage",
+}
+LEGACY_STATUS_PREFIXES = ("candidate", "draft", "research", "superseded", "archived")
+LEGACY_STATUS_TOKENS = (
+    "candidate",
+    "not-authority",
+    "amendment",
+    "promoted",
+    "accepted",
+    "review",
+    "prototype",
+    "closeout",
+    "pending",
+    "source_pointer",
+    "note-draft",
+)
+ILLEGAL_STATUS_WORDS = {
+    "active",
+    "backlog",
+    "in_progress",
+    "review",
+    "done",
+    "blocked",
+    "current",
 }
 CURRENT_AUTHORITY_PATHS = {
     "docs/current.md",
@@ -133,6 +157,24 @@ def extract_frontmatter_status(text: str) -> str | None:
     if match is None:
         return None
     return match.group(1).strip()
+
+
+def normalize_frontmatter_status(status: str) -> str:
+    return status.strip().strip('"').strip("'")
+
+
+def is_legacy_status_compatible(status: str) -> bool:
+    normalized = normalize_frontmatter_status(status).lower()
+    if normalized in ALLOWED_STATUS:
+        return True
+    if normalized in ILLEGAL_STATUS_WORDS:
+        return False
+    if any(token in normalized for token in LEGACY_STATUS_TOKENS):
+        return True
+    return any(
+        normalized == prefix or normalized.startswith(f"{prefix} /")
+        for prefix in LEGACY_STATUS_PREFIXES
+    )
 
 
 def extract_line_value(text: str, label: str) -> str | None:
@@ -410,11 +452,15 @@ def check_markdown_status_taxonomy(
     tracked: list[str],
     failures: list[str],
     changed_paths: list[str] | None = None,
+    full_scan: bool = False,
 ) -> None:
     candidate_paths = tracked
     if changed_paths is not None:
         changed_set = {path.replace("\\", "/") for path in changed_paths}
-        candidate_paths = [rel for rel in tracked if rel in changed_set]
+        if not full_scan:
+            candidate_paths = [rel for rel in tracked if rel in changed_set]
+    else:
+        changed_set = set()
 
     for rel in candidate_paths:
         if not rel.endswith(".md"):
@@ -428,7 +474,9 @@ def check_markdown_status_taxonomy(
         status = extract_frontmatter_status(text)
         if status is None:
             continue
-        if status not in ALLOWED_STATUS:
+        status = normalize_frontmatter_status(status)
+        enforce_strict_word = not full_scan or rel in changed_set
+        if status not in ALLOWED_STATUS and (enforce_strict_word or not is_legacy_status_compatible(status)):
             failures.append(
                 f"frontmatter status 非法：{rel} -> {status}；仅允许 {', '.join(sorted(ALLOWED_STATUS))}"
             )
@@ -503,7 +551,19 @@ def check_task_state_consistency(repo: Path, failures: list[str]) -> None:
     failures.extend(current_doc_state_failures(current))
 
 
-def main() -> int:
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument(
+        "--full-status-scan",
+        action="store_true",
+        help=(
+            "scan all tracked markdown frontmatter for status taxonomy drift. "
+            "Historical candidate/research/draft composites are grandfathered, "
+            "but current authority outside the whitelist and task-state words fail."
+        ),
+    )
+    args = parser.parse_args(argv)
+
     repo = Path.cwd()
     failures: list[str] = []
 
@@ -522,7 +582,13 @@ def main() -> int:
     changed_paths = run_git_changed_paths(repo)
 
     check_local_only_tracking(tracked, failures)
-    check_markdown_status_taxonomy(repo, tracked, failures, changed_paths=changed_paths)
+    check_markdown_status_taxonomy(
+        repo,
+        tracked,
+        failures,
+        changed_paths=changed_paths,
+        full_scan=args.full_status_scan,
+    )
     check_app_diff_scope_guard(repo, tracked, failures, changed_paths=changed_paths)
     check_banned_words(repo, tracked, failures)
     check_old_status(repo, tracked, failures)
@@ -537,7 +603,8 @@ def main() -> int:
             print(f"- {failure}")
         return 1
 
-    print("文档红线检查通过：required docs、禁止目录、local-only 跟踪、禁用命名、任务状态一致性均符合当前任务边界。")
+    mode = "full status scan + " if args.full_status_scan else ""
+    print(f"文档红线检查通过：{mode}required docs、禁止目录、local-only 跟踪、禁用命名、任务状态一致性均符合当前任务边界。")
     return 0
 
 

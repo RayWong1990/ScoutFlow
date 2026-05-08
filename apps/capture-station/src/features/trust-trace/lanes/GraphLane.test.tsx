@@ -125,4 +125,75 @@ describe("GraphLane", () => {
     expect(screen.getByRole("button", { name: "section node metadata_job" }).getAttribute("data-tone")).toBe("attention");
     expect(screen.getByRole("button", { name: "section node audit" }).getAttribute("data-tone")).toBe("attention");
   });
+
+  it("marks media audio status blocks as attention even when transcript is empty", () => {
+    render(
+      <GraphLane
+        trace={buildTraceResponse({
+          media_audio: {
+            status: "blocked",
+            audio_transcript: "",
+          },
+        })}
+      />,
+    );
+
+    const mediaNode = screen.getByRole("button", { name: "section node media_audio" });
+    expect(mediaNode.getAttribute("data-tone")).toBe("attention");
+    expect(within(mediaNode).getByText("blocked / not_present")).toBeTruthy();
+  });
+
+  it("marks blocked transcript as attention even when status is not approved", () => {
+    render(
+      <GraphLane
+        trace={buildTraceResponse({
+          media_audio: {
+            status: "not_approved",
+            audio_transcript: "blocked",
+          },
+        })}
+      />,
+    );
+
+    expect(screen.getByRole("button", { name: "section node media_audio" }).getAttribute("data-tone")).toBe("attention");
+  });
+
+  it("keeps not requested empty media audio muted instead of ready", () => {
+    render(
+      <GraphLane
+        trace={buildTraceResponse({
+          media_audio: {
+            status: "not_requested",
+            audio_transcript: "",
+          },
+        })}
+      />,
+    );
+
+    const mediaNode = screen.getByRole("button", { name: "section node media_audio" });
+    expect(mediaNode.getAttribute("data-tone")).toBe("muted");
+    expect(within(mediaNode).getByText("not_requested / not_present")).toBeTruthy();
+  });
+
+  it("renders only a bounded transcript preview in media audio detail", () => {
+    const longTranscript = "sensitive transcript ".repeat(12);
+    render(
+      <GraphLane
+        trace={buildTraceResponse({
+          media_audio: {
+            status: "ok",
+            audio_transcript: longTranscript,
+          },
+        })}
+      />,
+    );
+
+    fireEvent.focus(screen.getByRole("button", { name: "section node media_audio" }));
+
+    const detail = screen.getByRole("region", { name: "node detail media_audio" });
+    expect(within(detail).queryByText(longTranscript)).toBeNull();
+    expect(within(detail).getByText("audio_transcript_preview")).toBeTruthy();
+    expect(within(detail).getAllByText(/\[truncated\]/).length).toBeGreaterThan(0);
+    expect(screen.queryByText(longTranscript)).toBeNull();
+  });
 });

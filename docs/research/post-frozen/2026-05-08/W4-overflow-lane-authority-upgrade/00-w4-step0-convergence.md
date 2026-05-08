@@ -34,6 +34,12 @@ historical_prompt_values_are_reference_only: true
 - 不改 lane 1/2/4 主文档，不改对应 PATCH。
 - hard-code 的 PR 号、SHA、count 只作撰写时参考；真值以本节 check 为准。
 
+**Validation receipt guard (PR262 erratum)**
+
+- 若验证目标是 forbidden phrase / forbidden claim **无命中**，receipt 必须使用 `! rg -n "pattern" path...` 或等价 no-match 脚本。
+- 不允许用裸 `rg -n "pattern" path...` 伪装成 no-match pass；裸 `rg -n` 只适合证明应当存在的锚点。
+- 不得为了让 no-match 命令通过而删除有意义的 boundary wording；修的是 validation command semantics，不是擦掉边界词。
+
 ## §1 §19.1 目标四层映射表
 
 | Tier | 包含（must） | 不包含（must NOT） |
