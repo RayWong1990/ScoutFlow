@@ -7,8 +7,8 @@ last_updated: 2026-05-08
 anchor_refresh_tool: tools/refresh-start-here.py
 refresh_interval_pr: 50
 next_forced_refresh_pr: 300
-last_refreshed_from_main_pr: 249
-last_refreshed_from_main_sha: ec7870d
+last_refreshed_from_main_pr: 250
+last_refreshed_from_main_sha: cd9d866
 status_words_locked:
   - current authority   # 真状态 (current.md / task-index.md / decision-log.md / 本文件)
   - promoted addendum   # PRD/SRD 已升级 (PRD-v2.1 / SRD-v3 h5-bridge)
@@ -26,7 +26,7 @@ status_words_locked:
 
 - **是什么**: 单人本地内容采集 / 转写 / 改写 / 入库 raw 系统 (operator workstation, 不是 SaaS)
 - **当前 baseline**: 见 §1 auto-managed 真态锚点 (`git log -1 origin/main` + authority docs); capture-station 已 landed 基线 = 13 surface 静态壳 + tokens 三层 overlay
-- **当前状态**: Active 0/3 / Authority writer 0/1 / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
+- **当前状态**: Active 1/3 / Authority writer 0/1 / `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`
 - **5 overflow lane Hold**: write_enabled=False / runtime_tools / browser_automation / dbvnext_migration / full_signal_workbench (永不偷开, 走 authority 升级 PR)
 - **入口 4 文件**: `current.md` (真态) / `task-index.md` (lane registry) / `decision-log.md` (决策) / **本文件** (导航)
 
@@ -40,7 +40,7 @@ status_words_locked:
 | 维度 | 值 |
 |---|---|
 | repo | `/Users/wanglei/workspace/ScoutFlow` |
-| main HEAD | `ec7870d` (PR #249) ← `6dd27d7` (PR #245) ← `4792b0f` (PR #248) |
+| main HEAD | `cd9d866` (PR #250) ← `ec7870d` (PR #249) ← `6dd27d7` (PR #245) |
 | capture-station stack | React 18.3.1 + Vite 5.4.10 + CSS Modules + tokens.css 三层 overlay + 自写 SVG sprite |
 | checkpoint dispatch 累计 | `38`（`docs/research/post-frozen/runs/CHECKPOINT-Run*-final.json` 当前求和；不含 Amendment / PF-C4-01 / governance lane） |
 | PRD canonical | PRD-v2 + PRD-v2.1 amend (promoted, PR #58) |
@@ -182,7 +182,7 @@ I. 创世文档 v0.1 (2026-05-03, reference storage)
 | Wave | 状态 | 时间 | 派给 |
 |---|---|---|---|
 | **W1A** untracked batch land (16 ZIP storage land) | 已 landed (`PR #244`) | — | CC1 |
-| **W2C** PF-C4-02 真数据接线 + 微交互 | candidate | 6-8h | GPT Pro spec + Codex |
+| **W2C** PF-C4-02 真数据接线 + 微交互 | 进行中（`T-P1A-156`; frontend-first existing-route wiring） | 5-7h + validation | Codex |
 | **W1B** PF-C4-EXT D3 graph + timeline + error-path 自写 | 候选 (依赖 OpenDesign v2 升级 PR) | 6-8h | Codex |
 | **W2D** U16 memory ingest / memory graph baseline | 已 landed (`PR #245`)；后续扩到 50-100 待继续 | — | CC1 |
 | **W3E** 80-pack 余量 cluster (PF-C0/O1/C3) | 候选 | 多日 | Codex multi-PR |

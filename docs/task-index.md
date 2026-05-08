@@ -1,7 +1,7 @@
 # ScoutFlow Task Index
 
 > 共享薄账本。当前只服务 Step0 与 Phase 0 / 1A 开工安全，不承担重治理职能。
-> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`0/3`，Review count=`0`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
+> 当前限制：Active product lane max=`3` + Authority writer max=`1`；当前 Active product count=`1/3`，Review count=`0`，Authority writer count=`0/1`；Wave 6 candidate state=`WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`。
 
 ## 规则
 
@@ -20,7 +20,7 @@
 
 | 任务 ID | 标题 | 状态 | Owner Tool | 范围 | Allowed Paths | Forbidden Paths | 关联 PRD / SRD / Contract | Validation | Stop-the-line | 备注 |
 |---|---|---|---|---|---|---|---|---|---|---|
-| `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` | `—` |
+| `T-P1A-156` | `W2C PF-C4-02 real-data wiring` | `active` | `Codex Desktop` | `Capture Station existing-route wiring + shared state adapter + disabled/future-gated honesty; frontend-first W2C implementation` | `apps/capture-station/src/**`; `tests/api/{test_main_app_routers.py,test_capture_trust_trace.py,test_bridge_vault_preview_smoke.py}`; `tests/contracts/{test_bridge_route_group_contract.py,test_bridge_health_config_contract.py,test_bridge_vault_preview_contract.py,test_bridge_vault_commit_dry_run_contract.py,test_trust_trace_dto_snapshot_contract.py}`; `docs/research/post-frozen/2026-05-08/W2-w2c/receipts/**` | `services/api/**` by default; `services/api/migrations/**`; `workers/**`; `packages/**`; `data/**`; `referencerepo/**`; authority files; Trust Trace graph/timeline/error-path implementation` | `docs/PRD-v2-2026-05-04.md`; `docs/SRD-v2-2026-05-04.md`; `docs/specs/locked-principles.md`; `docs/specs/parallel-execution-protocol.md`; `docs/research/post-frozen/2026-05-08/W2-w2c/{01-w2c-cluster-spec.md,02-w2c-dispatch-pack.md}` | `pnpm --dir apps/capture-station {test,build,lint,typecheck}`; targeted `pytest` bridge/trust-trace contract suite; W2C receipt/checkpoint | `unexpected write_enabled drift`; DTO/enum/schema drift; backend expansion required; W1B same-file overlap; runtime verbs enabled; Active >3 / writer >1 | `frontend-first; backend mismatch => split separate micro PR; trust-trace shell/readback only` |
 
 ## Review
 
