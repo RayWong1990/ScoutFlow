@@ -686,3 +686,17 @@
   - `docs/00-START-HERE.md`
   - `tools/refresh-start-here.py`
   - `https://github.com/RayWong1990/ScoutFlow/pull/249`
+
+## 2026-05-08 — W2C lane open (`T-P1A-156`)
+
+- Decision (1): 打开 `T-P1A-156 / W2C PF-C4-02 real-data wiring` 作为当前唯一 active product lane；Active product count=`1/3`，Authority writer count=`0/1`。
+- Decision (2): `T-P1A-156` 边界锁为 frontend-first：默认 allowed path 仅含 `apps/capture-station/src/**`、选定 bridge/trust-trace test、以及 W2C receipt/checkpoint；默认不改 `services/api/**`。
+- Decision (3): `trust-trace/**` 在本轮只允许 `/captures/{id}/trust-trace` readback + state shell；graph / timeline / error-path implementation 仍保留给 W1B，不在 W2C lane 内偷跑。
+- Decision (4): 若 live router / DTO mismatch 阻断 truthful rendering，W2C 不得顺手扩 backend；必须 stop-the-line，拆单独 micro PR，并先过外审再回到 W2C 主实现。
+- Decision (5): 打开 `T-P1A-156` 不改变全局状态词；authority 仍保持 `WAVE_6_CANDIDATE_OPEN / NOT_EXECUTION_APPROVED`，不构成 runtime、migration、browser automation、vault true write 或 full-signal execution approval。
+- Source:
+  - `docs/task-index.md`
+  - `docs/current.md`
+  - `docs/specs/parallel-execution-protocol.md`
+  - `docs/research/post-frozen/2026-05-08/W2-w2c/01-w2c-cluster-spec.md`
+  - `docs/research/post-frozen/2026-05-08/W2-w2c/02-w2c-dispatch-pack.md`
