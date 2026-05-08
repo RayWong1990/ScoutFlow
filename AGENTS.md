@@ -29,10 +29,17 @@
 ## 5. 写回顺序
 - 任务状态变化：先 `docs/task-index.md`，再 `docs/current.md`，必要时追加 `docs/decision-log.md`。
 - Contract 变化同步 `docs/specs/contracts-index.md`；LP 变化同步 `docs/specs/locked-principles.md`。
-## 6. 并行规则
+## 6. 审计与验证闭环
+- 非 trivial 的策略、架构、PR、schema、数据链路、主链路变更，默认运行 verifier / self-audit loop：先复述目标 / 边界 / 假设，再从 correctness / edge cases / regression / evidence-receipt-ledger / authority drift / path scope / 文档级联 / 维护成本几个维度找 `P0/P1/P2` 风险；高风险项必须修复、降级口径或明确 blocked；随后跑最小必要验证，再次审计 diff 或策略，直到没有未闭环的 `P0/P1`。
+- “有信心”不是证据；结论必须绑定已读文件、已跑命令、测试结果或显式假设。不得用“看起来可以”“应该没问题”充当 closeout 依据。
+- 涉及 `PR #`、`origin/main`、Active count、file count、path existence、merge 状态的推荐 / prompt / closeout / merge 前，先做 live truth preflight：`git fetch origin`、`gh pr view/list`、`git rev-parse origin/main`、必要时直接读取 authority 文件或 `find ... | wc -l`。
+- 任何 closeout / merge 前，检查 `docs/current.md`、`docs/task-index.md`、`docs/decision-log.md`、`docs/00-START-HERE.md`、`AGENTS.md` 是否一致；`python tools/refresh-start-here.py --check` 失败视为真阻塞，而不是文书小问题。
+- 评估故障、回归或 audit finding 时，必须区分 `introduced` 与 `exposed`；不要默认把最近 PR 当作根因。
+- ScoutFlow 是单人本地 localhost 项目；默认走“最快可验证主链路”。防止把问题错误升级成 SaaS / 多租户 / 企业级审批 / 无关 NFR。
+## 7. 并行规则
 - 遵守 `docs/specs/parallel-execution-protocol.md`：lane=3 + authority writer=1。
 - `docs/current.md` / `docs/task-index.md` / `docs/decision-log.md` 只能由当前主写入窗口修改。
-## 7. 工具分工
+## 8. 工具分工
 | Tool | Role | Boundary |
 |---|---|---|
 | `Codex Desktop` | 主写入、验证、commit / PR owner | 不绕过账本 |
@@ -40,5 +47,5 @@
 | `Claude Code` | IA / UX / contract review | 默认 read-only |
 | `GPT Pro` | GitHub 外审 | 不直接改 repo |
 | `OpenClaw/Hermes` | research / rebuttal | 默认 read-only |
-## 8. 输出要求
+## 9. 输出要求
 引用具体文件；区分 enforced contract、candidate、Phase 2+ outline；不把聊天内容当仓库事实。
