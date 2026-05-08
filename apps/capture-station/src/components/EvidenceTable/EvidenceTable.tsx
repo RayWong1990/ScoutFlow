@@ -8,35 +8,55 @@ export type EvidenceColumn = {
 
 export type EvidenceRow = {
   id: string;
-  tone?: "default" | "error";
+  tone?: "default" | "preview" | "blocked" | "failed" | "partial" | "committed" | "error";
   cells: Record<string, string>;
 };
 
 export type EvidenceTableProps = {
+  title?: string;
+  description?: string;
   columns: EvidenceColumn[];
   rows: EvidenceRow[];
+  emptyCopy?: string;
 };
 
-export default function EvidenceTable({ columns, rows }: EvidenceTableProps) {
+export default function EvidenceTable({ columns, description, emptyCopy = "当前还没有可展示的 evidence 行。", rows, title }: EvidenceTableProps) {
   return (
-    <table className={styles.table}>
-      <thead>
-        <tr>
-          {columns.map((column) => (
-            <th key={column.key}>{column.label}</th>
-          ))}
-        </tr>
-      </thead>
-      <tbody>
-        {rows.map((row) => (
-          <tr key={row.id} className={row.tone === "error" ? styles.errorRow : undefined}>
-            {columns.map((column) => {
-              const value = row.cells[column.key] ?? "";
-              return <td key={column.key}>{column.code ? <code>{value}</code> : value}</td>;
-            })}
+    <section className={styles.root}>
+      {title || description ? (
+        <header className={styles.header}>
+          {title ? <h3 className={styles.title}>{title}</h3> : null}
+          {description ? <p className={styles.description}>{description}</p> : null}
+        </header>
+      ) : null}
+
+      <table className={styles.table}>
+        <thead>
+          <tr>
+            {columns.map((column) => (
+              <th key={column.key}>{column.label}</th>
+            ))}
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {rows.length === 0 ? (
+            <tr>
+              <td className={styles.emptyCell} colSpan={Math.max(columns.length, 1)}>
+                {emptyCopy}
+              </td>
+            </tr>
+          ) : (
+            rows.map((row) => (
+              <tr key={row.id} className={row.tone ? styles[row.tone] : undefined} data-tone={row.tone ?? "default"}>
+                {columns.map((column) => {
+                  const value = row.cells[column.key] ?? "";
+                  return <td key={column.key}>{column.code ? <code>{value}</code> : value}</td>;
+                })}
+              </tr>
+            ))
+          )}
+        </tbody>
+      </table>
+    </section>
   );
 }

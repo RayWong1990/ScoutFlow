@@ -1,3 +1,5 @@
+@import "../../styles/state-tokens.css";
+
 .root {
   display: grid;
   gap: var(--space-md);
@@ -27,12 +29,32 @@
   align-items: center;
   gap: var(--space-xs);
   color: var(--text-secondary);
+  border: 1px solid transparent;
+  border-radius: calc(var(--radius-panel) - 2px);
+  padding: var(--space-xs) var(--space-sm);
+  background: rgba(255, 255, 255, 0.02);
 }
 
 .met {
   color: var(--accent-success);
+  border-color: rgba(83, 214, 144, 0.22);
 }
 
 .pending {
-  color: var(--accent-warn);
+  color: var(--accent-focus);
+  border-color: rgba(154, 140, 255, 0.28);
+}
+
+.blocked {
+  color: var(--state-blocked-fg);
+  border-width: 1.5px;
+  border-color: var(--state-blocked-border);
+  background: linear-gradient(180deg, rgba(255, 190, 85, 0.16), rgba(17, 31, 49, 0.88));
+  box-shadow: var(--state-stop-shadow);
+}
+
+.disabled {
+  color: var(--state-disabled-fg);
+  border-style: dashed;
+  border-color: var(--state-disabled-border);
 }
