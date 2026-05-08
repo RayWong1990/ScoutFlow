@@ -1,0 +1,29 @@
+{
+  "manifest_version": "RuntimeCanaryManifestV1",
+  "lane_id": "Lane B",
+  "task_id": "T-P1A-161",
+  "source_family": "bilibili",
+  "source_kind": "manual_url",
+  "route_hypothesis": "yt-dlp metadata-first",
+  "fallback_hypothesis": "BBDown fallback-comparator",
+  "tool_execution_status": "not_executed",
+  "repo_external_temp_root": "/tmp/scoutflow-runtime-tools",
+  "network_used": false,
+  "media_downloaded": false,
+  "raw_stdout_tracked": false,
+  "raw_stderr_tracked": false,
+  "credential_material_seen": false,
+  "safe_stdout_excerpt_path": "tests/fixtures/runtime_tools/safe_stdout_excerpt.txt",
+  "safe_stderr_excerpt_path": "tests/fixtures/runtime_tools/safe_stderr_excerpt.txt",
+  "platform_result": null,
+  "failure_classification_reason": "not_executed_by_dispatch_boundary",
+  "remaining_holds": [
+    "write_enabled=False",
+    "runtime_tools",
+    "true_vault_write",
+    "browser_automation",
+    "dbvnext_migration",
+    "full_signal_workbench"
+  ],
+  "human_runtime_gate_required": true
+}
